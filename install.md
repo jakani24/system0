@@ -26,4 +26,11 @@ The 'printer' table:<br>
   <tr><td>apikey</td><td>varchar(255)</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
 </table>
 
+The 'queue' table:<br>
+<table>
+  <tr><th>Field</th><th>Type</th><th>NULL</th><th>Key</th><th>Default</th><th>Extra</th>  </tr>
+  <tr>from_userid</tr><tr>int</tr><tr>NO</tr><tr></tr><tr>NULL</tr><tr></tr>
+  <tr>id</tr><tr>int</tr><tr>NO</tr><tr>PRI</tr><tr>NULL</tr><tr>auto_increment</tr>
+   <tr>filepath</tr><tr>varchar(255)</tr><tr>NO</tr><tr></tr><tr>NULL</tr><tr></tr>
+</table>
 2) I don't know how the product will look like at the end, so I don't know step 2 yet!
