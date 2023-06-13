@@ -24,6 +24,7 @@ The 'printer' table:<br>
    <tr><td>used_by_userid</td><td>int</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
    <tr><td>printer_url</td><td>varchar(255)</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
   <tr><td>apikey</td><td>varchar(255)</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
+  <tr><td>cancel</td><td>int</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
 </table>
 
 The 'queue' table:<br>
