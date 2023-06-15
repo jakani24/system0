@@ -62,7 +62,7 @@ function load_admin()
 				$email=htmlspecialchars($_POST["email"]);
 				$bug=htmlspecialchars($_POST["bug"]);
 				$text=urlencode("JWAF INFORMATION:\nuser: $username;\nemail: $email\nbug: $bug\nEND");
-    				exec("curl 'https://api.callmebot.com/whatsapp.php?phone=41775252026&text=$text&apikey=6002955'");			
+    				exec("curl 'https://api.callmebot.com/whatsapp.php?phone=phone&text=$text&apikey=key'");			
 				echo("<br>Vielen Dank, deine Fehlermeldung ist bei uns angekommen und wir kümmern uns darum.");
 			}
 		?>
