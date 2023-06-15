@@ -5,6 +5,7 @@
 session_start();
 include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
 include "config.php";
+include "queue.php";
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
     header("location: login.php");
@@ -39,8 +40,10 @@ function load_user()
 	{
 		echo "<script type='text/javascript' >load_admin()</script>";
 	}
+	test_queue($link);
 ?>
 <?php $color=$_SESSION["color"]; ?>
+<?php $userid=$_SESSION["id"]; ?>
 <?php echo(" <body style='background-color:$color'> ");?>
 <div id="content"></div>
 
@@ -50,7 +53,120 @@ function load_user()
 </head>
 
 <body>
+		<?php
+		if(isset($_POST["printer"]))
+		{
+			//echo($_POST["printer"]);
+			$status=0;
+			$free=0;
+			$url="";
+			$apikey="";
+			$printer_url="";
+			$printer_id=htmlspecialchars($_POST["printer"]);
+			if($printer_id=="queue")
+			{
+			 //send file to queue because no printer is ready!
+			 	$sql="INSERT INTO queue (from_userid,filepath) VALUES (?,?)";
+				//echo $sql;
+		
+				if(!empty($_FILES['file_upload']))
+				{
+					$ok_ft=array("gcode","");
+					$unwanted_chr=[' ','(',')','/','\\','<','>',':',';','?','*','"','|','%'];
+					$filetype = strtolower(pathinfo($_FILES['file_upload']['name'],PATHINFO_EXTENSION));
+					$path = "/var/www/html/system0/html/user_files/$username/";
+					$filename=basename( $_FILES['file_upload']['name']);
+					$filename=str_replace($unwanted_chr,"_",$filename);
+					$path = $path . $filename;
+
+					//if(in_array($filetype,$unwanted_ft))
+					if(!in_array($filetype,$ok_ft))
+					{
+						echo "Sorry, this file extensions is not allowed!";
+					}
+					else
+					{
+						if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
+							echo "<center>Success! The file ".  basename( $_FILES['file_upload']['name']). " has been uploaded</center>";
+							echo("<center>Sending file to queue...</center>");
+							
+							$stmt = mysqli_prepare($link, $sql);	
+							//echo ("test".mysqli_error($link));
+							mysqli_stmt_bind_param($stmt, "is", $userid,$path);				
+							mysqli_stmt_execute($stmt);
+
+							echo("<center>File sent to queue.<br>system0 uploader done. Thank you!</center>");
+						}
+						else
+						{
+							echo "There was an error uploading the file, please try again! path:".$path;
+						}
+					}
+					unset($_FILES['file']);
+				}				 	
+			}
+			else
+			{
+				$sql="select printer_url, free, system_status,apikey,printer_url from printer where id=$printer_id";
+				//echo $sql;
+				$stmt = mysqli_prepare($link, $sql);					
+				mysqli_stmt_execute($stmt);
+				mysqli_stmt_store_result($stmt);
+				mysqli_stmt_bind_result($stmt, $url,$free,$status,$apikey,$printer_url);
+				mysqli_stmt_fetch($stmt);	
+				if($free!=1 or $status!=0)
+				{
+					echo("<center>Fatale error! The printer is not available. Please trie again later or trie use another printer</center>");
+					exit;
+				}	
+				if(!empty($_FILES['file_upload']))
+				{
+					$ok_ft=array("gcode","");
+					$unwanted_chr=[' ','(',')','/','\\','<','>',':',';','?','*','"','|','%'];
+					$filetype = strtolower(pathinfo($_FILES['file_upload']['name'],PATHINFO_EXTENSION));
+					$path = "/var/www/html/system0/html/user_files/$username/";
+					$filename=basename( $_FILES['file_upload']['name']);
+					$filename=str_replace($unwanted_chr,"_",$filename);
+					$path = $path . $filename;
+
+					//if(in_array($filetype,$unwanted_ft))
+					if(!in_array($filetype,$ok_ft))
+					{
+						echo "Sorry, this file extensions is not allowed!";
+					}
+					else
+					{
+						if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
+							echo "<center>Success! The file ".  basename( $_FILES['file_upload']['name']). " has been uploaded</center>";
+							echo("<center>Sending file to 3D-printer...</center>");
+							exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
+							//file is on printer and ready to be printed
+							$userid=$_SESSION["id"];
+							echo("<center>File sent and printer job started.<br>system0 uploader done. Thank you!</center>");
+							$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
+							$json=json_decode($fg,true);
+							if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
+							{
+								echo("<center><br><br><p style='color:red'>There was an error starting the print job for your file!<br>The error is on our machine or printer, so please wait and trie again in some time!<br></p></center>");
+							}
+							else
+							{
+								$sql="update printer set free=0, printing=1, used_by_userid=$userid where id=$printer_id";
+								$stmt = mysqli_prepare($link, $sql);					
+								mysqli_stmt_execute($stmt);
+							}
+						}
+						else
+						{
+							echo "There was an error uploading the file, please try again! path:".$path;
+						}
+					}
+					unset($_FILES['file']);
+				}	
+			}
+		}
 	
+	?>
 	<center>
 	<h1>Print a file</h1>
 		<form enctype="multipart/form-data" method="POST" action="">
@@ -75,7 +191,7 @@ function load_user()
 					{
 						$id=0;
 						$sql="Select id from printer where id>$last_id and free=1 order by id";
-						echo $sql;
+						//echo $sql;
 						$stmt = mysqli_prepare($link, $sql);
 						mysqli_stmt_execute($stmt);
 						mysqli_stmt_store_result($stmt);
@@ -96,70 +212,7 @@ function load_user()
 			<input type="submit" value="Print file">
 		</form>
 	</center>
-	<?php
-		if(isset($_POST["printer"]))
-		{
-			//echo($_POST["printer"]);
-			$status=0;
-			$free=0;
-			$url="";
-			$apikey="";
-			$printer_url="";
-			$printer_id=htmlspecialchars($_POST["printer"]);
-			if($printer_id=="queue")
-			{
-			 //send file to queue because no printer is ready!
-			}
-			$sql="select printer_url, free, system_status,apikey,printer_url from printer where id=$printer_id";
-			//echo $sql;
-			$stmt = mysqli_prepare($link, $sql);					
-			mysqli_stmt_execute($stmt);
-			mysqli_stmt_store_result($stmt);
-			mysqli_stmt_bind_result($stmt, $url,$free,$status,$apikey,$printer_url);
-			mysqli_stmt_fetch($stmt);	
-			if($free!=1 or $status!=0)
-			{
-				echo("Fatale error! The printer is not available. Please trie again later or trie use another printer");
-				exit;
-			}	
-			if(!empty($_FILES['file_upload']))
-			{
-				$ok_ft=array("gcode","docx","doc","xlsx","xls","pptx","ppt","png","jpg","jpeg","gif","txt","enc","zip","keyx","csv","cbr","7z","gz","cfg","cpp","c","cxx","layout","pdf");
-				$unwanted_chr=[' ','(',')','/','\\','<','>',':',';','?','*','"','|','%'];
-				$filetype = strtolower(pathinfo($_FILES['file_upload']['name'],PATHINFO_EXTENSION));
-				$path = "/var/www/html/system0/html/user_files/$username/";
-				$filename=basename( $_FILES['file_upload']['name']);
-				$filename=str_replace($unwanted_chr,"_",$filename);
-				$path = $path . $filename;
 
-				//if(in_array($filetype,$unwanted_ft))
-				if(!in_array($filetype,$ok_ft))
-				{
-					echo "Sorry, this file extensions is not allowed!";
-				}
-				else
-				{
-					if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
-						echo "<center>Success! The file ".  basename( $_FILES['file_upload']['name']). " has been uploaded</center>";
-						echo("<center>Sending file to 3D-printer...</center>");
-						exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local"');
-						//file is on printer and ready to be printed
-						$userid=$_SESSION["id"];
-						$sql="update printer set free=0, printing=1, used_by_userid=$userid where id=$printer_id";
-						$stmt = mysqli_prepare($link, $sql);					
-						mysqli_stmt_execute($stmt);
-						echo("<center>File sent and printer job started.<br>system0 uploader done. Thank you!</center>");
-					}
-					else
-					{
-						echo "There was an error uploading the file, please try again! path:".$path;
-					}
-				}
-				unset($_FILES['file']);
-			}	
-		}
-	
-	?>
 <br><br><br>
 </body>
 
