@@ -34,7 +34,11 @@ The 'queue' table:<br>
   <tr><td>id</td><td>int</td><td>NO</td><td>PRI</td><td>NULL</td><td>auto_increment</td></tr>
    <tr><td>filepath</td><td>varchar(255)</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
 </table>
-2) I don't know how the product will look like at the end, so I don't know step 2 yet!
+2) Install apache2 webserver.<br>
+3) Copy the system0 folder into /var/www/html.<br>
+4) Grant an sql user all permissions on your tables and add the credentials of this user in "system0/html/php/login/v3/php/config.php".<br>
+4.5) If you want to get notifications from jwaf, add your CallMeBot API key in "waf.php" and "bugreport.php".<br>
+5) I think you are all set and system0 should work.<br> 
 
 
 # Installation to your Octoprint machine<br>
