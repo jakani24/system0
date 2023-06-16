@@ -23,3 +23,8 @@ As well as the mysql databases for user and printermanagement.
 # warning
 My code often looks horribly and uses outdated methods.<br>
 So be prepared for ugly code.
+
+# User management
+System0 has its own user management with users and admins.<br>
+But due to the modular design of system0 it should not be hard to add new usertypes or permissions.<br>
+The user management of octoprint is not used. All the API calls go throu the admin api key of octoprint.<br>
