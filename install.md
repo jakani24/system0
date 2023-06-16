@@ -39,13 +39,16 @@ The 'queue' table:<br>
 
 # Installation to your Octoprint machine<br>
 1) If you're planning to access the machine from outside of your local network do the following:<br>
-  run this command to install ngrok: `curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok`<br>
-  add your ngrok auth token: `ngrok config add-authtoken TOKEN`<br>
-  start ngrok with the following command: `ngrok http 80`<br>
-  paste the following code into a script and run it: `url=$(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"https:..([^"]*).*/\1/p' ) \ echo $url \ curl --silent https://jakach.duckdns.org/system0/html/api/update_url?url=$url&id=ENTER_THE_ID_FOR_THIS_MACHINE_HERE`<br>
-  and replace the ENTER_THE_ID_FOR_THIS_MACHINE_HERE with a positive integer. This integer will be used to identifie the printer later on. <br>
-  if you run the command with an id that is already taken it will overwrite the old entry!<br>
-  The machine should now be registret at system0.
+  a) run this command to install ngrok: `curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok`<br><br>
+  b) add your ngrok auth token: `ngrok config add-authtoken TOKEN`<br><br>
+  c) start ngrok with the following command: `ngrok http 80`<br><br>
+  d) Run the following command to register the printer to system0: `url=$(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"https:..([^"]*).*/\1/p' )` <br>
+   `echo $url`<br>
+   `curl --silent https://SYSTEM0_WEBSERVER_URL/system0/html/api/update_url?url=$url&id=ENTER_THE_ID_FOR_THIS_MACHINE_HERE`
+  <br><br>
+  e) and replace the ENTER_THE_ID_FOR_THIS_MACHINE_HERE with a positive integer. This integer will be used to identifie the printer later on. <br><br>
+  f) if you run the command with an id that is already taken it will overwrite/update the old entry!<br>So you can for example make a script that updates the octoprint url once a day or after every reboot, because ngrok will give you a new url after every restart<br><br>
+  The machine should now be registered at system0 and show up in the print selection as "Printer ID_YOU_GAVE_IT".
 
 <br><br>
 2) If you will only use system0 on a local network:<br> 
