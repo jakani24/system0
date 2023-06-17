@@ -5,6 +5,7 @@
 session_start();
 include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
 include "config.php";
+require_once "/var/www/html/system0/html/php/login/v3/log/log.php";
 include "queue.php";
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
@@ -49,7 +50,7 @@ function load_user()
 
 <head>
   <title>Print a file</title>
-  
+   <link rel="stylesheet" href="/system0/html/php/login/css/system0.css">
 </head>
 
 <body>
@@ -83,6 +84,7 @@ function load_user()
 					if(!in_array($filetype,$ok_ft))
 					{
 						echo "Sorry, this file extensions is not allowed!";
+						sys0_log("Could not upload file for ".$_SESSION["username"]." because of unknown file extension",$_SESSION["username"],"PRINT::UPLOAD::FILE::FAILED");//notes,username,type
 					}
 					else
 					{
@@ -96,7 +98,8 @@ function load_user()
 							mysqli_stmt_execute($stmt);
 
 							echo("<center>File sent to queue.<br>system0 uploader done. Thank you!</center>");
-						}
+							sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to the queue",$_SESSION["username"],"PRINT::UPLOAD::QUEUE");//notes,username,type
+						}   
 						else
 						{
 							echo "There was an error uploading the file, please try again! path:".$path;
@@ -117,6 +120,7 @@ function load_user()
 				if($free!=1 or $status!=0)
 				{
 					echo("<center>Fatale error! The printer is not available. Please trie again later or trie use another printer</center>");
+					sys0_log("Could not start job for ".$_SESSION["username"]." with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
 					exit;
 				}	
 				if(!empty($_FILES['file_upload']))
@@ -133,6 +137,7 @@ function load_user()
 					if(!in_array($filetype,$ok_ft))
 					{
 						echo "Sorry, this file extensions is not allowed!";
+						sys0_log("Could not upload file for ".$_SESSION["username"]." because of unknown file extension",$_SESSION["username"],"PRINT::UPLOAD::FILE::FAILED");//notes,username,type
 					}
 					else
 					{
@@ -143,11 +148,13 @@ function load_user()
 							//file is on printer and ready to be printed
 							$userid=$_SESSION["id"];
 							echo("<center>File sent and printer job started.<br>system0 uploader done. Thank you!</center>");
+							sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
 							$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
 							$json=json_decode($fg,true);
 							if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
 							{
 								echo("<center><br><br><p style='color:red'>There was an error starting the print job for your file!<br>The error is on our machine or printer, so please wait and trie again in some time!<br></p></center>");
+								sys0_log("Could not start job for ".$_SESSION["username"]."with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
 							}
 							else
 							{
