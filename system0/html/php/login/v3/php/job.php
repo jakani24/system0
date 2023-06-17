@@ -4,6 +4,7 @@
 // Initialize the session
 session_start();
 include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
+require_once "/var/www/html/system0/html/php/login/v3/log/log.php";
 include "config.php";
 include "queue.php";
 // Check if the user is logged in, if not then redirect him to login page
@@ -65,6 +66,7 @@ function load_user()
 <body>
 <center>
 	<h1>Your running Jobs</h1>
+	<div style="overflow-x: auto;">
 	<?php
 		if(isset($_POST['free']))
 		{
@@ -84,6 +86,7 @@ function load_user()
 				$sql="update printer set free=1,printing=0,cancel=0 ,used_by_userid=0 where id=1";
 				$stmt = mysqli_prepare($link, $sql);					
 				mysqli_stmt_execute($stmt);
+				sys0_log("User ".$_SESSION["username"]." freed printer ".$_GET["free"]."",$_SESSION["username"],"JOB::PRINTERCTRL::FREE");//notes,username,type
 			}
 		}
 		if(isset($_POST['cancel']))
@@ -109,12 +112,14 @@ function load_user()
 				if($json["error"]!="")
 				{
 					echo("<center><br><br><p style='color:red'>There was an error canceling the print job !<br>The error is on our machine or printer, so please wait and trie again in some time!<br></p></center>");
+					sys0_log("User ".$_SESSION["username"]." could not cancel job on printer; error: ".$json["error"]."".$_GET["free"]."",$_SESSION["username"],"JOB::PRINTERCTRL::CANCEL::FAILED");//notes,username,type
 				}
 				else
 				{
 					$sql="update printer set cancel=1 where id=$printer_id";
 					$stmt = mysqli_prepare($link, $sql);					
 					mysqli_stmt_execute($stmt);
+					sys0_log("User ".$_SESSION["username"]." canceled job on printer ".$_GET["free"]."",$_SESSION["username"],"JOB::PRINTERCTRL::CANCEL");//notes,username,type
 				}
 			}
 		}
@@ -134,6 +139,7 @@ function load_user()
 			$sql="delete from queue where id=$queueid";
 			$stmt = mysqli_prepare($link, $sql);				
 			mysqli_stmt_execute($stmt);
+			sys0_log("User ".$_SESSION["username"]." removed file #".$_GET["remove"]." from queue",$_SESSION["username"],"JOB::QUEUECTRL::REMOVE");//notes,username,type
 			}
 		
 		}
@@ -181,6 +187,7 @@ function load_user()
 		echo("</table>");
 		echo("free your printer after you've taken out your print!</div>");
 	?>
+	</div>
 	<h1>Your jobs in queue</h1>
 	<div style="overflow-x: auto;">
 	<?php
@@ -212,7 +219,7 @@ function load_user()
 			$cnt--;
 		}
 		echo("</table>");	
-	
+		echo("It might take some time for your job in queue to start after a printer is free.<br>(After every print the printer has to cool down)");
 	?>
 	<?php
 		test_queue($link);
