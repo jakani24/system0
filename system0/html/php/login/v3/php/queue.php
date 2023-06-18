@@ -1,5 +1,5 @@
 <?php
-	function test_queue($link)
+	function test_queue($link)//function to check if any printer is free and if there are jobs in queue. If yes push jo to printer
 	{
 		
 		$sql="select id, from_userid,filepath from queue order by id";

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
-<?php
+<?php //this file is only viewable by the admin and shows all jobs of all printers
 // Initialize the session
 session_start();
 include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
-require_once "/var/www/html/system0/html/php/login/v3/log/log.php";
 include "config.php";
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["role"]!=="admin"){
     header("location: login.php");
     exit;
 }
@@ -63,16 +62,16 @@ function load_user()
 </style>
 <body>
 <center>
-	<h1>Your running Jobs</h1>
+	<h1>All running Jobs</h1>
 	<br>
-	<a href="job_info.php">Reload</a>
+	<a href="job_info_all.php">Reload</a>
 	<br>
 	<br>
 	<?php
 		$cnt=0;
 		$url="";
 		$apikey="";
-		$sql="select count(*) from printer where used_by_userid=$id";
+		$sql="select count(*) from printer";
 		$stmt = mysqli_prepare($link, $sql);					
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_store_result($stmt);
@@ -83,7 +82,7 @@ function load_user()
 		while($cnt!=0)
 		{
 			echo("<table><tr><th>Keyword</th><th>value</th></tr>");
-			$sql="select id,printer_url,apikey from printer where used_by_userid=$id";
+			$sql="select id,printer_url,apikey from printer";
 			$stmt = mysqli_prepare($link, $sql);					
 			mysqli_stmt_execute($stmt);
 			mysqli_stmt_store_result($stmt);
@@ -116,10 +115,9 @@ function load_user()
 			echo("<br><br>");
 		}
 		//echo("free your printer after you've taken out your print!</div>");
-		echo("<a href='job.php'>back to job control</a>");
+		echo("<a href='all_jobs.php'>back to job control</a>");
 	?>
 </center>
 <br><br><br>
 </body>
-<!-- curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"https:..([^"]*).*/\1/p' -->
 </html>

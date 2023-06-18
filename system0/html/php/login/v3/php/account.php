@@ -15,6 +15,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <head>
   <title>Account settings</title>
 </head>
+<style>
+.button2{
+	height:auto;
+	width:300px;
+}
+.button2:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+</style>
 <?php $color=$_SESSION["color"]; ?>
 <?php echo(" <body style='background-color:$color'> ");?>
 
@@ -76,13 +86,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
    <center>
         <h1>Account settings</h1>
         <br><br><br>
-        <a href="/system0/html/php/login/v3/reset-password.php" ><button>Reset your password</button></a>
+        <a href="/system0/html/php/login/v3/reset-password.php" ><button class="button2">Reset your password</button></a>
         <br><br>
-        <a href="/system0/html/php/login/v3/delete-account.php"><button>Delete your account and all the data associated with it</button></a>
+        <a href="/system0/html/php/login/v3/delete-account.php"><button class="button2">Delete your account and all the data associated with it</button></a>
         <br><br>
-        <a href="/system0/html/php/login/v3/php/privacy-policy.php"><button>Our privacy policy</button></a>
+        <a href="/system0/html/php/login/v3/php/privacy-policy.php"><button class="button2">Our privacy policy</button></a>
         <br><br>
-        <a href="/system0/html/php/login/v3/php/disclaimer.php"><button>Dislcaimer</button></a>
+        <a href="/system0/html/php/login/v3/php/disclaimer.php"><button class="button2">Dislcaimer</button></a>
         <br><br>
         <form method="POST" action="#">
             <label for="name">background color</label>

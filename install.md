@@ -34,6 +34,13 @@ The 'queue' table:<br>
   <tr><td>id</td><td>int</td><td>NO</td><td>PRI</td><td>NULL</td><td>auto_increment</td></tr>
    <tr><td>filepath</td><td>varchar(255)</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
 </table>
+
+The 'api' table:<br>
+<table>
+  <tr><th>Field</th><th>Type</th><th>NULL</th><th>Key</th><th>Default</th><th>Extra</th>  </tr>
+  <tr><td>id</td><td>int</td><td>NO</td><td>PRI</td><td>NULL</td><td>auto_increment</td></tr>
+  <tr><td>apikey</td><td>varchar(255)</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
+ </table>
 2) Install apache2 webserver.<br>
 3) Copy the system0 folder into /var/www/html.<br>
 4) Grant an sql user all permissions on your tables and add the credentials of this user in "system0/html/php/login/v3/php/config.php".<br>
@@ -48,7 +55,7 @@ The 'queue' table:<br>
   c) start ngrok with the following command: `ngrok http 80`<br><br>
   d) Run the following command to register the printer to system0: `url=$(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"https:..([^"]*).*/\1/p' )` <br>
    `echo $url`<br>
-   `curl --silent https://SYSTEM0_WEBSERVER_URL/system0/html/api/update_url?url=$url&id=ENTER_THE_ID_FOR_THIS_MACHINE_HERE`
+   `curl --silent https://SYSTEM0_WEBSERVER_URL/system0/html/api/update_url?url=$url&id=ENTER_THE_ID_FOR_THIS_MACHINE_HERE&apikey=YOUR_SYSTEM0_APIKEY&octoapikey=OCTOPRINT_ADMIN_APIKEY`
   <br><br>
   e) and replace the ENTER_THE_ID_FOR_THIS_MACHINE_HERE with a positive integer. This integer will be used to identifie the printer later on. <br><br>
   f) if you run the command with an id that is already taken it will overwrite/update the old entry!<br>So you can for example make a script that updates the octoprint url once a day or after every reboot, because ngrok will give you a new url after every restart<br><br>

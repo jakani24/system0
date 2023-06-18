@@ -28,3 +28,7 @@ So be prepared for ugly code.
 System0 has its own user management with users and admins.<br>
 But due to the modular design of system0 it should not be hard to add new usertypes or permissions.<br>
 The user management of octoprint is not used. All the API calls go throu the admin api key of octoprint.<br>
+
+# How does it work
+![image](https://github.com/jakani24/system0/assets/89935073/2a0be6d8-3f16-40ec-8317-873ceecc0ec5)
+
