@@ -17,7 +17,10 @@ $id=$_SESSION["id"];
 
 
 
-<?php $color=$_SESSION["color"]; ?>
+<?php 
+	$color=$_SESSION["color"]; 
+	include "/var/www/html/system0/html/php/login/v3/components.php";
+?>
 <?php echo(" <body style='background-color:$color'> ");?>
 <div id="content"></div>
 
@@ -25,22 +28,11 @@ $id=$_SESSION["id"];
   <title>Your jobs</title>
   
 </head>
-<style>
-		table, td, th
-		{
-				border:1px solid;
-				border-collapse: collapse;
-				height:22px;
-		}
-		tr:nth-child(odd){background-color:#DCDCDC}
-		tr:hover{background-color:#aaa}
-		th{background-color:gray;text-align: left;}
-</style>
 <body>
 <center>
 	<h1>Your running Jobs</h1>
 	<br>
-	<a href="job_info_for_new_system.php">Reload</a>
+	<button type="button" class="btn btn-light" href="job_info_for_new_system.php">Reload</button>
 	<br>
 	<br>
 	<?php
@@ -57,7 +49,7 @@ $id=$_SESSION["id"];
 		echo '<div style="overflow-x: auto;">';
 		while($cnt!=0)
 		{
-			echo("<table><tr><th>Keyword</th><th>value</th></tr>");
+			echo("<table class="table"><thead><tr><th>Keyword</th><th>value</th></tr><t/head></tbody>");
 			$sql="select id,printer_url,apikey from printer where used_by_userid=$id";
 			$stmt = mysqli_prepare($link, $sql);					
 			mysqli_stmt_execute($stmt);
@@ -86,7 +78,7 @@ $id=$_SESSION["id"];
 			echo("<tr><td>print time left</td><td>".$json["progress"]["printTimeLeft"]." Seconds</td></tr>");
 
 			$cnt--;
-			echo("</table>");
+			echo("</tbody></table>");
 			echo("<iframe height='135' width='240' src='$url/webcam/?action=stream'></iframe>");
 			echo("<br><br>");
 		}
