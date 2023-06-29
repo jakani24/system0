@@ -89,7 +89,7 @@ $id=$_SESSION["id"];
 						mysqli_stmt_fetch($stmt);	
 						if($cnt!=$_SESSION['id'])
 						{
-							echo("Wrong userid!");
+							echo("<p>Wrong userid!</p>");
 						}
 						else
 						{
@@ -112,7 +112,7 @@ $id=$_SESSION["id"];
 						mysqli_stmt_fetch($stmt);	
 						if($cnt!=$_SESSION['id'])
 						{
-							echo("Wrong userid!");
+							echo("<p>Wrong userid!</p>");
 						}
 						else
 						{
@@ -164,7 +164,19 @@ $id=$_SESSION["id"];
 					mysqli_stmt_fetch($stmt);	
 					//echo($cnt);
 					//echo '<div style="overflow-x: auto;">';
-					echo("<table><tr><th>Printer</th><th>file</th><th>completion</th><th>free</th><th>cancel print</th><th>detailes</th></tr>");
+					echo(
+							"<table class="table">
+			 					<thead>
+    							<tr>
+      							<th scope="col">Printer</th>
+      							<th scope="col">File</th>
+      							<th scope="col">Completion</th>
+      							<th scope="col">Free</th>
+						 				<th scope="col">Cancel Print</th>
+					 					<th scope="col">Details</th>
+    							</tr>
+  							</thead>
+				 				</tbody>");
 					while($cnt!=0)
 					{
 						$sql="select id,printer_url,apikey,cancel from printer where used_by_userid=$id";
@@ -194,9 +206,9 @@ $id=$_SESSION["id"];
 			 			
 						$cnt--;
 					}
-					echo("</table>");
+					echo("</tbody></table>");
 					//echo("</div>");
-					echo("free your printer after you've taken out your print!");
+					echo("<p>free your printer after you've taken out your print!</p>");
 				?>	
 				<!-- list queue -->
 				<?php
@@ -211,7 +223,7 @@ $id=$_SESSION["id"];
 					mysqli_stmt_fetch($stmt);	
 					//echo($cnt);
 					//echo '<div style="overflow-x: auto;">';
-					echo("<table><tr><th>file</th><th>remove from queue</th></tr>");
+					echo("<table class="table"><thead><tr><th>file</th><th>remove from queue</th></tr></thead><tbody>");
 					while($cnt!=0)
 					{
 						$sql="select id,filepath from queue where from_userid=$userid";
@@ -227,9 +239,9 @@ $id=$_SESSION["id"];
 			 			
 						$cnt--;
 					}
-					echo("</table>");	
+					echo("</tbody></table>");	
 					//echo("</div>");
-					echo("It might take some time for your job in queue to start after a printer is free.<br>(After every print the printer has to cool down)");
+					echo("<p>It might take some time for your job in queue to start after a printer is free.<br>(After every print the printer has to cool down)</p>");
 				?>
 				<?php
 					test_queue($link); //test for a free printer. If any printe ris free and there are jobs in queue, push job to printer
