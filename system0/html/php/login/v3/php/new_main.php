@@ -167,18 +167,18 @@ $id=$_SESSION["id"];
 					//echo($cnt);
 					//echo '<div style="overflow-x: auto;">';
 					echo(
-							"<table class="table">
+						"<table class='table'>
 			 					<thead>
     							<tr>
-      							<th scope="col">Printer</th>
-      							<th scope="col">File</th>
-      							<th scope="col">Completion</th>
-      							<th scope="col">Free</th>
-						 				<th scope="col">Cancel Print</th>
-					 					<th scope="col">Details</th>
+      							<th scope='col'>Printer</th>
+      							<th scope='col'>File</th>
+      							<th scope='col'>Completion</th>
+      							<th scope='col'>Free</th>
+						 				<th scope='col'>Cancel Print</th>
+					 					<th scope='col'>Details</th>
     							</tr>
   							</thead>
-				 				</tbody>");
+				 			</tbody>");
 					while($cnt!=0)
 					{
 						$sql="select id,printer_url,apikey,cancel from printer where used_by_userid=$id";
