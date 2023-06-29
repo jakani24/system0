@@ -71,8 +71,8 @@ function load_user()
 		mysqli_stmt_store_result($stmt);
 		mysqli_stmt_bind_result($stmt, $apikey_fromdb);
 		mysqli_stmt_fetch($stmt);	
-		echo($apikey_fromdb);
-		echo("<br>Please treat this key like a password.<br>It is essential to not let anyone know this key!");	
+		echo("<bold>".$apikey_fromdb."</bold>");
+		echo("<br><br>Please treat this key like a password.<br>It is essential to not let anyone know this key!");	
 	?>
 </center>
 <br><br><br>
