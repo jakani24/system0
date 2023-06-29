@@ -9,10 +9,8 @@ Additionally it should be able to have something like a queue so even if no prin
 System0 is mainly written for ksw (Kantonsschule Wattwil ST. Gallen CH-switzerland)
 
 # earlybird
-The project system0 started only about two weeks ago (June 23), so it will take a long time until it will be ready for use!
+The project system0 started only a few weeks ago (June 23), so it will take a long time until it will be ready for use!
 
-# development
-Due to the exam weeks right now I can not code much, but in 4-5 weeks i will have some time to continue on this project. 
 
 # usability
 Due to the fact that this project will mainly be used at KSW it won't be to easy to set up.<br>
