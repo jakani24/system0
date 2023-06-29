@@ -7,7 +7,6 @@ include "/var/www/html/system0/html/php/login/v3/waf/waf.php";		//waf
 require_once "/var/www/html/system0/html/php/login/v3/log/log.php";	//logging functions
 include "config.php";							//db config & login
 include "queue.php";
- include "/var/www/html/system0/html/php/login/v3/components.php";
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
     header("location: login.php");
@@ -19,6 +18,9 @@ $id=$_SESSION["id"];
 
 	<head>
 		<title>System0 web page</title>
+		<?php
+			 include "/var/www/html/system0/html/php/login/v3/components.php";
+		?>
 	</head>
 	<!-- temporary -->
 	<style>
