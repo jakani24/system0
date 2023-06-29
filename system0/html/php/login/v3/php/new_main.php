@@ -23,20 +23,7 @@ $id=$_SESSION["id"];
 		?>
 	</head>
 	<!-- temporary -->
-	<style>
-		table, td, th
-		{
-				border:1px solid;
-				border-collapse: collapse;
-				height:22px;
-		}
-		tr:nth-child(odd){background-color:#DCDCDC}
-		tr:hover{background-color:#aaa}
-		th{background-color:gray;text-align: left;}
-			* {
-		  box-sizing: border-box;
-		}	
-	</style>
+	
 	<?php $color=$_SESSION["color"]; ?>
 	<?php echo(" <body style='background-color:$color'> ");?>
 	<!-- title and so on -->
