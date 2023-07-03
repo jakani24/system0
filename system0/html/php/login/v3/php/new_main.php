@@ -220,7 +220,7 @@ $id=$_SESSION["id"];
 					mysqli_stmt_fetch($stmt);	
 					//echo($cnt);
 					//echo '<div style="overflow-x: auto;">';
-					echo("<table class="table"><thead><tr><th>file</th><th>remove from queue</th></tr></thead><tbody>");
+					echo("<table class='table'><thead><tr><th>file</th><th>remove from queue</th></tr></thead><tbody>");
 					while($cnt!=0)
 					{
 						$sql="select id,filepath from queue where from_userid=$userid";
