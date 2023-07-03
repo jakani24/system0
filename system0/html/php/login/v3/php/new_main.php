@@ -47,7 +47,7 @@ $id=$_SESSION["id"];
 		          <a class="dropdown-item" href="#">Something else here</a>
 		        </div>
 		      </li>
-		      <li class="nav-item" ml-auto>
+		      <li class="nav-item" mr-0>
 						<a href="#Settings" class="btn" role="button"><i class="fa-solid fa-gear"></i></a>
             <a href="#logout" class="btn" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>	
 					</li>
@@ -56,16 +56,21 @@ $id=$_SESSION["id"];
 		</nav>
 
 		<!-- buttons for ctrl -->
-
-		<div class="d-flex flex-row">
-  		<button type="button" href="print.php" class="btn btn-primary p-2">Print a file</button>
-			<button type="button" href="print.php" class="btn btn-primary p-2">Print a file</button>
+		<div class="container">
+			<div class="d-flex flex-row" mx-3>
+				<div class="p-2">
+					<button type="button" href="print.php" class="btn btn-primary p-2">Print a file</button>
+				</div>
+  			<div class="p-2">
+					<button type="button" href="print.php" class="btn btn-primary p-2">Print a file</button>
+				</div>
+			</div>
 		</div>
-		
 		<!-- your jobs -->
-		<div class="job_ctrl" style="width:100%">
-		
-			<div class="main_job_ctrl" style="overflow-x: auto;width:50%;float:left">
+
+		<div class="d-flex">
+			
+			<div class="container job p-2">
 				<?php
 					if(isset($_POST['free']))//free a printer
 					{
@@ -237,8 +242,8 @@ $id=$_SESSION["id"];
 				?>				
 			</div>
 			<!-- job detailes -->
-			<div class="main_job_info" style="overflow-x: auto;width:50%;float:left;">
-				<iframe src="job_info_for_new_system.php" style="width:100%;100%:auto;border:0px;"></iframe>
+			<div class="container job_info p-2">
+				<iframe src="job_info_for_new_system.php"></iframe>
 			</div>
 		</div>
 	</body>
