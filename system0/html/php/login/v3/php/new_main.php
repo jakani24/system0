@@ -23,33 +23,20 @@ $id=$_SESSION["id"];
 		?>
 	</head>
 	<!-- temporary -->
-	<style>
-		table, td, th
-		{
-				border:1px solid;
-				border-collapse: collapse;
-				height:22px;
-		}
-		tr:nth-child(odd){background-color:#DCDCDC}
-		tr:hover{background-color:#aaa}
-		th{background-color:gray;text-align: left;}
-			* {
-		  box-sizing: border-box;
-		}	
-	</style>
+	
 	<?php $color=$_SESSION["color"]; ?>
 	<?php echo(" <body style='background-color:$color'> ");?>
 	<!-- title and so on -->
-		
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		  <a class="navbar-brand" href="#">Navbar</a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		  </button>
-		
-		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		    <ul class="navbar-nav">
-		      <li class="nav-item dropdown mr-auto">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Navbar</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item dropdown mr-auto">
 		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		          Dropdown
 		        </a>
@@ -60,25 +47,33 @@ $id=$_SESSION["id"];
 		          <a class="dropdown-item" href="#">Something else here</a>
 		        </div>
 		      </li>
-		      <li class="nav-item" ml-auto>
-						<a href="#Settings" class="btn" role="button"><i class="fa-solid fa-gear"></i></a>
-            <a href="#logout" class="btn" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>	
-					</li>
-		    </ul>
-		  </div>
+					</ul>
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a href="#Settings" class="btn" role="button"><i class="fa-solid fa-gear"></i></a>
+            	<a href="#logout" class="btn" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</nav>
 
 		<!-- buttons for ctrl -->
-
-		<div class="d-flex flex-row">
-  		<button type="button" href="print.php" class="btn btn-primary p-2">Print a file</button>
-			<button type="button" href="print.php" class="btn btn-primary p-2">Print a file</button>
+		<div class="container">
+			<div class="d-flex flex-row" mx-3>
+				<div class="p-2">
+					<button type="button" href="print.php" class="btn btn-primary p-2">Print a file</button>
+				</div>
+  			<div class="p-2">
+					<button type="button" href="print.php" class="btn btn-primary p-2">Print a file</button>
+				</div>
+			</div>
 		</div>
-		
 		<!-- your jobs -->
-		<div class="job_ctrl" style="width:100%">
-		
-			<div class="main_job_ctrl" style="overflow-x: auto;width:50%;float:left">
+
+		<div class="d-flex">
+			
+			<div class="container job p-2">
 				<?php
 					if(isset($_POST['free']))//free a printer
 					{
@@ -250,8 +245,8 @@ $id=$_SESSION["id"];
 				?>				
 			</div>
 			<!-- job detailes -->
-			<div class="main_job_info" style="overflow-x: auto;width:50%;float:left;">
-				<iframe src="job_info_for_new_system.php" style="width:100%;100%:auto;border:0px;"></iframe>
+			<div class="container job_info p-2">
+				<iframe src="job_info_for_new_system.php"></iframe>
 			</div>
 		</div>
 	</body>
