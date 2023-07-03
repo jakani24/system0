@@ -50,7 +50,7 @@ $id=$_SESSION["id"];
 						echo '<div style="overflow-x: auto;">';
 						while($cnt!=0)
 						{
-							echo("<table class="table"><thead><tr><th>Keyword</th><th>value</th></tr><t/head></tbody>");
+							echo("<table class='table'><thead><tr><th>Keyword</th><th>value</th></tr><t/head></tbody>");
 							$sql="select id,printer_url,apikey from printer where used_by_userid=$id";
 							$stmt = mysqli_prepare($link, $sql);					
 							mysqli_stmt_execute($stmt);
