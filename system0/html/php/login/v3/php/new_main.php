@@ -27,16 +27,16 @@ $id=$_SESSION["id"];
 	<?php $color=$_SESSION["color"]; ?>
 	<?php echo(" <body style='background-color:$color'> ");?>
 	<!-- title and so on -->
-		
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		  <a class="navbar-brand" href="#">Navbar</a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		    <span class="navbar-toggler-icon"></span>
-		  </button>
-		
-		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		    <ul class="navbar-nav">
-		      <li class="nav-item dropdown mr-auto">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Navbar</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item dropdown mr-auto">
 		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		          Dropdown
 		        </a>
@@ -47,12 +47,15 @@ $id=$_SESSION["id"];
 		          <a class="dropdown-item" href="#">Something else here</a>
 		        </div>
 		      </li>
-		      <li class="nav-item" mr-0>
-						<a href="#Settings" class="btn" role="button"><i class="fa-solid fa-gear"></i></a>
-            <a href="#logout" class="btn" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>	
-					</li>
-		    </ul>
-		  </div>
+					</ul>
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a href="#Settings" class="btn" role="button"><i class="fa-solid fa-gear"></i></a>
+            	<a href="#logout" class="btn" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</nav>
 
 		<!-- buttons for ctrl -->
