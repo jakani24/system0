@@ -1,11 +1,7 @@
-body {
-  font-size: 17px;
-  text-decoration: none;
-  font-family: arial;
-  
-}
-
-.container {
-  margin: 10%;
-  padding: 20%;
-}
+html, body {
+  			font-size: 17px;
+		  	text-decoration: none;
+		  	font-family: arial;
+			height: 100%;
+			width: 100%;
+		  }
