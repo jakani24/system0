@@ -32,7 +32,7 @@ $id=$_SESSION["id"];
 		<div class="center">
 		      	<h1>Your running Jobs</h1>
 			<br>
-			<button type="button" class="btn btn-primary" href="job_info_for_new_system.php">Reload</button>
+			<button type="button" class="btn btn-primary btn-lg" onclick="location.href = 'job_info_for_new_system.php';">Reload</button>
 			<br>
 			<br>
 			<div class="container">
