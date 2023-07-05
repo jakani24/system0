@@ -256,18 +256,18 @@ $id=$_SESSION["id"];
 			</div>
 			<!-- job detailes -->
 			<div style="flex-grow: 1;">
-				
+				<div class="p-2 small">
 					<?php
 						if($cnt_of_job!=0)
 						{
-							echo('<div class="p-2 small">');
+							//echo('<div class="p-2 small">');
 							echo('<iframe src="job_info_for_new_system.php" width="100%" height="100%" frameborder="0"></iframe>');
-							echo('</div>');
+							//echo('</div>');
 						}
 						else
 							echo("<div class='alert alert-primary' role='alert'>Info of your jobs will be displayed here if any are available.</div>");
 					?>
-				
+			</div>
 			</div>
 		</div>
 	</body>
