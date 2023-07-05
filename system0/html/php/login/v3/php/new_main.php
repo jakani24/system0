@@ -66,7 +66,7 @@ $id=$_SESSION["id"];
 						mysqli_stmt_fetch($stmt);	
 						if($cnt!=$_SESSION['id'])
 						{
-							echo("Wrong userid!");
+							echo("<div class='alert alert-danger' role='alert'>Wrong userid</div>");
 						}
 						else
 						{
@@ -89,7 +89,7 @@ $id=$_SESSION["id"];
 						mysqli_stmt_fetch($stmt);	
 						if($cnt!=$_SESSION['id'])
 						{
-							echo("Wrong userid!");
+							echo("<div class="alert alert-danger" role="alert">Wrong userid!</div>");
 						}
 						else
 						{
@@ -98,7 +98,7 @@ $id=$_SESSION["id"];
 							$json=json_decode($fg,true);
 							if($json["error"]!="")
 							{
-								echo("<center><br><br><p style='color:red'>There was an error canceling the print job !<br>The error is on our machine or printer, so please wait and trie again in some time!<br></p></center>");
+								echo("<div class='alert alert-danger' role='alert'>There was an error canceling the print job !<br>The error is on our machine or printer, so please wait and trie again in some time!</div>");
 								sys0_log("User ".$_SESSION["username"]." could not cancel job on printer; error: ".$json["error"]."".$_GET["free"]."",$_SESSION["username"],"JOB::PRINTERCTRL::CANCEL::FAILED");//notes,username,type
 							}
 							else
@@ -173,7 +173,7 @@ $id=$_SESSION["id"];
 					}
 					echo("</table>");
 					//echo("</div>");
-					echo("free your printer after you've taken out your print!");
+					echo("<div class='alert alert-primary' role='alert'>free your printer after you've taken out your print!</div>");
 				?>	
 				<!-- list queue -->
 				<?php
@@ -206,7 +206,7 @@ $id=$_SESSION["id"];
 					}
 					echo("</table>");	
 					//echo("</div>");
-					echo("It might take some time for your job in queue to start after a printer is free.<br>(After every print the printer has to cool down)");
+					echo("<div class='alert alert-primary' role='alert'>It might take some time for your job in queue to start after a printer is free.<br>(After every print the printer has to cool down)</div>");
 				?>
 				<?php
 					test_queue($link); //test for a free printer. If any printe ris free and there are jobs in queue, push job to printer
