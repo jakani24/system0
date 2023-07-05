@@ -50,7 +50,7 @@ $id=$_SESSION["id"];
 					</ul>
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a href="#Settings" class="btn" role="button"><i class="fa-solid fa-gear"></i></a>
+							<a href="/system0/html/php/login/v3/php/account.php" class="btn" role="button"><i class="fa-solid fa-gear"></i></a>
             						<a href="/system0/html/php/login/v3/logout.php" class="btn" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
 						</li>
 					</ul>
