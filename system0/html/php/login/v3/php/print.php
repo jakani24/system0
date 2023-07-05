@@ -177,8 +177,8 @@ function load_user()
 		}
 	
 	?>
-	<div class="container border">
-		<div class="text-center">
+	<div class="container border d-flex align-items-center justify-content-center">
+	  <div class="text-center">
 	    <h1>Print a file</h1>
 	    <form class="mt-5" enctype="multipart/form-data" method="POST" action="">
 	      <div class="form-group">
@@ -228,6 +228,7 @@ function load_user()
 	    </form>
 	  </div>
 	</div>
+
 </body>
 
 </html>
