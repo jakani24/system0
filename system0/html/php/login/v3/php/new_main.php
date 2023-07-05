@@ -50,7 +50,7 @@ $id=$_SESSION["id"];
 					</ul>
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a href="#Settings" class="btn" role="button"><i class="fa-solid fa-gear"></i></a>
+							<a href="/system0/html/php/login/v3/php/account.php" class="btn" role="button"><i class="fa-solid fa-gear"></i></a>
             						<a href="/system0/html/php/login/v3/logout.php" class="btn" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
 						</li>
 					</ul>
@@ -86,7 +86,7 @@ $id=$_SESSION["id"];
 							mysqli_stmt_fetch($stmt);	
 							if($cnt!=$_SESSION['id'])
 							{
-								echo("<p>Wrong userid!</p>");
+								echo("<div class='alert alert-danger' role='alert'>Wrong userid!</div>");
 							}
 							else
 							{
@@ -109,7 +109,7 @@ $id=$_SESSION["id"];
 							mysqli_stmt_fetch($stmt);	
 							if($cnt!=$_SESSION['id'])
 							{
-								echo("<p>Wrong userid!</p>");
+								echo("<div class='alert alert-danger' role='alert'>Wrong userid!</div>");
 							}
 							else
 							{
@@ -118,7 +118,7 @@ $id=$_SESSION["id"];
 								$json=json_decode($fg,true);
 								if($json["error"]!="")
 								{
-									echo("<center><br><br><p style='color:red'>There was an error canceling the print job !<br>The error is on our machine or printer, so please wait and trie again in some time!<br></p></center>");
+									echo("<div class='alert alert-danger' role='alert'>There was an error canceling the print job !<br>The error is on our machine or printer, so please wait and trie again in some time!<br></div>");
 									sys0_log("User ".$_SESSION["username"]." could not cancel job on printer; error: ".$json["error"]."".$_GET["free"]."",$_SESSION["username"],"JOB::PRINTERCTRL::CANCEL::FAILED");//notes,username,type
 								}
 								else
@@ -207,11 +207,11 @@ $id=$_SESSION["id"];
 							}
 							echo("</tbody></table>");
 							//echo("</div>");
-							echo("<p>free your printer after you've taken out your print!</p>");
+							echo("<div class='alert alert-primary' role='alert'>free your printer after you've taken out your print!</div>");
 						}
 						else
 						{
-							echo("<p>running jobs and queue items will be displayed here if any are available.</p>");
+							echo("<div class='alert alert-primary' role='alert'>running jobs and queue items will be displayed here if any are available.</div>");
 						}
 					?>	
 					<!-- list queue -->
@@ -246,7 +246,7 @@ $id=$_SESSION["id"];
 							}
 							echo("</tbody></table>");	
 							//echo("</div>");
-							echo("<p>It might take some time for your job in queue to start after a printer is free.<br>(After every print the printer has to cool down)</p>");
+							echo("<div class='alert alert-primary' role='alert'>It might take some time for your job in queue to start after a printer is free.<br>(After every print the printer has to cool down)</div>");
 						}
 					?>
 					<?php
@@ -265,7 +265,7 @@ $id=$_SESSION["id"];
 							echo('</div>');
 						}
 						else
-							echo("<p>Info of your jobs will be displayed here if any are available.</p>");
+							echo("<div class='alert alert-primary' role='alert'>Info of your jobs will be displayed here if any are available.</div>");
 					?>
 				
 			</div>
