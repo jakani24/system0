@@ -177,53 +177,57 @@ function load_user()
 		}
 	
 	?>
-	<center>
-	<h1>Print a file</h1>
-		<form enctype="multipart/form-data" method="POST" action="">
-		<label for="file_upload">Your file to print</label>
-			<input type="file" name="file_upload" required/><br><br>
-			<label for="printer">Printer to print</label>
-			<select name="printer" required>
-				<!-- php um printer auszulesen -->
-				<?php
-				//get number of printers
-					$num_of_printers=0;
-					$sql="select count(*) from printer";
-					$stmt = mysqli_prepare($link, $sql);					
-					mysqli_stmt_execute($stmt);
-					mysqli_stmt_store_result($stmt);
-					mysqli_stmt_bind_result($stmt, $num_of_printers);
-					mysqli_stmt_fetch($stmt);
-					//echo("test1:".$num_of_printers);
-					$last_id=0;
-					$printers_av=0;
-					while($num_of_printers!=0)
-					{
-						$id=0;
-						$sql="Select id from printer where id>$last_id and free=1 order by id";
-						//echo $sql;
-						$stmt = mysqli_prepare($link, $sql);
-						mysqli_stmt_execute($stmt);
-						mysqli_stmt_store_result($stmt);
-						mysqli_stmt_bind_result($stmt, $id);
-						mysqli_stmt_fetch($stmt);
-						if($id!=0 && $id!=$last_id)
-						{
-							echo("<option printer='$id' value='$id'>Printer $id</option>");
-							$printers_av++;
-						}
-						$last_id=$id;
-						$num_of_printers--;
-					}
-					if($printers_av==0)
-						echo("<option printer='queue' value='queue'>No printer available (send to queue)</option>");
-				?>
-			</select><br><br>
-			<input type="submit" value="Print file">
-		</form>
-	</center>
-
-<br><br><br>
+	<div class="container">
+		<div class="text-center">
+	    <h1>Print a file</h1>
+	    <form class="mt-5" enctype="multipart/form-data" method="POST" action="">
+	      <div class="form-group">
+	        <label for="file_upload">Your file to print</label>
+	        <input type="file" class="form-control-file" name="file_upload" required>
+	      </div>
+	      <div class="form-group">
+	        <label for="printer">Printer to print</label>
+	        <select class="form-control" name="printer" required>
+	          <!-- PHP to retrieve printers -->
+	          <?php
+	            //get number of printers
+	            $num_of_printers=0;
+	            $sql="select count(*) from printer";
+	            $stmt = mysqli_prepare($link, $sql);
+	            mysqli_stmt_execute($stmt);
+	            mysqli_stmt_store_result($stmt);
+	            mysqli_stmt_bind_result($stmt, $num_of_printers);
+	            mysqli_stmt_fetch($stmt);
+	            //echo("test1:".$num_of_printers);
+	            $last_id=0;
+	            $printers_av=0;
+	            while($num_of_printers!=0)
+	            {
+	              $id=0;
+	              $sql="Select id from printer where id>$last_id and free=1 order by id";
+	              //echo $sql;
+	              $stmt = mysqli_prepare($link, $sql);
+	              mysqli_stmt_execute($stmt);
+	              mysqli_stmt_store_result($stmt);
+	              mysqli_stmt_bind_result($stmt, $id);
+	              mysqli_stmt_fetch($stmt);
+	              if($id!=0 && $id!=$last_id)
+	              {
+	                echo("<option printer='$id' value='$id'>Printer $id</option>");
+	                $printers_av++;
+	              }
+	              $last_id=$id;
+	              $num_of_printers--;
+	            }
+	            if($printers_av==0)
+	              echo("<option printer='queue' value='queue'>No printer available (send to queue)</option>");
+	          ?>
+	        </select>
+	      </div>
+	      <input type="submit" class="btn btn-primary" value="Print file">
+	    </form>
+	  </div>
+	</div>
 </body>
 
 </html>
