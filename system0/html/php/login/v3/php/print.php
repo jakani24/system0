@@ -177,8 +177,8 @@ function load_user()
 		}
 	
 	?>
-	<div class="container">
-		<div class="text-center">
+	<div class="container border d-flex align-items-center justify-content-center">
+	  <div class="text-center">
 	    <h1>Print a file</h1>
 	    <form class="mt-5" enctype="multipart/form-data" method="POST" action="">
 	      <div class="form-group">
@@ -187,7 +187,7 @@ function load_user()
 	      </div>
 	      <div class="form-group">
 	        <label for="printer">Printer to print</label>
-	        <select class="form-control" name="printer" required>
+	        <select class="form-control selector" name="printer" required>
 	          <!-- PHP to retrieve printers -->
 	          <?php
 	            //get number of printers
@@ -228,6 +228,7 @@ function load_user()
 	    </form>
 	  </div>
 	</div>
+
 </body>
 
 </html>

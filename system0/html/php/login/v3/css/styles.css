@@ -1,7 +1,18 @@
 html, body {
-  			font-size: 17px;
-		  	text-decoration: none;
-		  	font-family: arial;
-			height: 100%;
-			width: 100%;
-		  }
+	font-size: 17px;
+	text-decoration: none;
+	font-family: arial;
+	height: 100%;
+	width: 100%;
+}
+
+.border {
+	border-style: solid;
+	width: 40%;
+}
+
+.selector {
+	width: 20%;
+	
+}
+
