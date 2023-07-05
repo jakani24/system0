@@ -51,6 +51,9 @@ function load_user()
 <head>
   <title>Print a file</title>
    <link rel="stylesheet" href="/system0/html/php/login/css/system0.css">
+	<?php
+		include "/var/www/html/system0/html/php/login/v3/components.php";
+	?>
 </head>
 
 <body>
