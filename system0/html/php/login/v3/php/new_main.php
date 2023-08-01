@@ -27,37 +27,34 @@ $id=$_SESSION["id"];
 	<?php $color=$_SESSION["color"]; ?>
 	<?php echo(" <body style='background-color:$color' class='d-flex flex-column'> ");?>
 	<!-- title and so on -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Navbar</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item dropdown mr-auto">
-		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		          Dropdown
-		        </a>
-		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="#">Action</a>
-		          <a class="dropdown-item" href="#">Another action</a>
-		          <div class="dropdown-divider"></div>
-		          <a class="dropdown-item" href="#">Something else here</a>
-		        </div>
-		      </li>
-					</ul>
-					<ul class="navbar-nav">
-						<li class="nav-item">
-							<a href="/system0/html/php/login/v3/php/account.php" class="btn" role="button"><i class="fa-solid fa-gear"></i></a>
-            	<a href="/system0/html/php/login/v3/logout.php" class="btn" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-
+	<script src="/system0/html/php/login/v3/js/load_page.js"></script>
+	<script>
+	function load_admin()
+	{
+		$(document).ready(function(){
+	   	$('#content').load("/system0/html/php/login/v3/html/admin_page.html");
+		});
+	}
+	function load_user()
+	{
+		$(document).ready(function(){
+	   	$('#content').load("/system0/html/php/login/v3/html/user_page.html");
+		});
+	}
+	</script>
+	<?php
+		$role=$_SESSION["role"];
+		if($role=="user")
+		{
+			echo "<script type='text/javascript' >load_user()</script>";
+		}
+		if($role=="admin")
+		{
+			echo "<script type='text/javascript' >load_admin()</script>";
+		}
+		test_queue($link);
+	?>
+		<div id="content"></div>
 		<!-- buttons for ctrl -->
 		<div class="flex-grow-1 d-flex justify-content-center align-items-center">
 			<div class="d-flex">
