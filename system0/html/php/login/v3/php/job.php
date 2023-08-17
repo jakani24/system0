@@ -217,8 +217,8 @@ function load_user()
 				test_queue($link); //test for a free printer. If any printe ris free and there are jobs in queue, push job to printer
 			?>
 			</div>
-    </div>
-</div>
+    		</div>
+	</div>
 	
 </body>
 
