@@ -93,7 +93,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 				<br><br>
 				<a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/reset-password.php" role="button">Reset your password</a>
 				<a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/delete-account.php" role="button">Delete your account and all the data associated with it</a>
-				<a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/php/privacy-policy.php" role="button">Our privacy policy</a>
+				<br><a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/php/privacy-policy.php" role="button">Our privacy policy</a>
 				<br>
 				<a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/php/disclaimer.php" role="button">Dislcaimer</a>
 				<br><br>
