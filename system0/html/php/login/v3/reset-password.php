@@ -158,11 +158,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $role=$_SESSION["role"];
         if($role==="user")
         {
-            echo ('<a class="btn btn-link ml-2" href="user.php">Cancel</a>');
+            echo ('<a class="btn btn-link ml-2" href="new_main.php">Cancel</a>');
         }
         else if($role==="admin")
         {
-            echo ('<a class="btn btn-link ml-2" href="admin.php">Cancel</a>');
+            echo ('<a class="btn btn-link ml-2" href="new_main.php">Cancel</a>');
         }
         ?>
     </form>
