@@ -7,7 +7,6 @@ include "/var/www/html/system0/html/php/login/v3/waf/waf.php";		//waf
 require_once "/var/www/html/system0/html/php/login/v3/log/log.php";	//logging functions
 include "config.php";							//db config & login
 include "queue.php";							//job queue system
- include "/var/www/html/system0/html/php/login/v3/components.php";
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
     header("location: login.php");
@@ -16,7 +15,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
 $username=htmlspecialchars($_SESSION["username"]);
 $id=$_SESSION["id"];
 ?>
-
+<?php
+	include "/var/www/html/system0/html/php/login/v3/components.php";
+?>
 
 <script src="/system0/html/php/login/v3/js/load_page.js"></script>
 <script>
@@ -45,10 +46,7 @@ function load_user()
 	}
 
 ?>
-<?php 
-	$color=$_SESSION["color"]; 
-	include "/var/www/html/system0/html/php/login/v3/components.php";
-?>
+
 <?php echo(" <body style='background-color:$color'> ");?>
 <div id="content"></div>
 
