@@ -25,7 +25,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 </style>
-<?php $color=$_SESSION["color"]; ?>
+<?php 
+	$color=$_SESSION["color"]; 
+	include "/var/www/html/system0/html/php/login/v3/components.php";
+?>
 <?php echo(" <body style='background-color:$color'> ");?>
 
     <script src="/system0/html/php/login/v3/js/load_page.js"></script>
@@ -83,25 +86,26 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     ?>
 	<div id="content"></div>
     <!--Account things-->
-   <center>
-        <h1>Account settings</h1>
-        <br><br><br>
-        <a href="/system0/html/php/login/v3/reset-password.php" ><button class="button2">Reset your password</button></a>
-        <br><br>
-        <a href="/system0/html/php/login/v3/delete-account.php"><button class="button2">Delete your account and all the data associated with it</button></a>
-        <br><br>
-        <a href="/system0/html/php/login/v3/php/privacy-policy.php"><button class="button2">Our privacy policy</button></a>
-        <br><br>
-        <a href="/system0/html/php/login/v3/php/disclaimer.php"><button class="button2">Dislcaimer</button></a>
-        <br><br>
-        <form method="POST" action="#">
-            <label for="name">background color</label>
-            <input type="color" id="color" name="color" placeholder="background color" value=<?php echo('"');echo($color);echo('"');?>/>
-            <!--<br><br>-->
-            <input type="submit" value="submit" />
-           
-        
-        </form>
-    </center>
-    </body>
+		<div class="container mt-5">
+		  <div class="row justify-content-center">
+			<div class="col-md-6 border p-4">
+				<h1>Account settings</h1>
+				<br><br>
+				<a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/reset-password.php" role="button">Reset your password</a>
+				<a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/delete-account.php" role="button">Delete your account and all the data associated with it</a>
+				<a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/php/privacy-policy.php" role="button">Our privacy policy</a>
+				<br>
+				<a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/php/disclaimer.php" role="button">Dislcaimer</a>
+				<br><br>
+				<form method="POST" action="#">
+					<div class="mb-3">
+					  <label for="color" class="form-label">Background Color</label>
+					  <input type="color" id="color" name="color" class="form-control selector" value="<?php echo $color; ?>" />
+					</div>
+					<button type="submit" class="btn btn-secondary">Submit</button>
+				  </form>
+			
+			</div>
+		  </div>
+		</div>
 </html>
