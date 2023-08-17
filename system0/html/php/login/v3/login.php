@@ -25,11 +25,11 @@ if($error!=="error1" && $error!=="error2")
 {
     if($_SESSION["role"]==="admin")
     {
-        header("LOCATION: admin.php");
+        header("LOCATION: php/new_main.php");
     }
     else if($_SESSION["role"]==="user")
     {
-        header("LOCATION: user.php");
+        header("LOCATION: php/new_main.php");
     }
 }
 // Include config file
@@ -122,12 +122,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		                    if($role=="admin")
 		                    {
 		                        log_("$username logged in as admin","LOGIN:SUCCESS");
-		                        header("location:admin.php");
+		                        header("location:php/new_main.php");
 		                    }
 		                    else
 		                    {
 		                        log_("$username logged in as user","LOGIN:SUCCESS");
-		                        header("location:user.php");
+		                        header("location:php/new_main.php");
 		                    }
 		                }
 		                else
