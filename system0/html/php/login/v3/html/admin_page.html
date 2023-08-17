@@ -6,53 +6,54 @@
 
 </head>
 <body>
-
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-			<a class="navbar-brand" href="/system0/html/index.php">Home</a>
-			
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Dropdown
-						</a>
-						<ul class="dropdown-menu">
-						<a class="dropdown-item" href="/system0/html/php/login/v3/php/bugreport.php">Fehler melden</a>
-						<a class="dropdown-item" href="/system0/html/php/login/v3/php/create_admin.php">Create a New Admin</a>
-						<a class="dropdown-item" href="/system0/html/php/login/v3/php/remove_user.php">Ban a User</a>
-						<a class="dropdown-item" href="/system0/html/php/login/v3/php/print.php">Print a File</a>
-						<a class="dropdown-item" href="/system0/html/php/login/v3/php/job.php">My Printer Jobs</a>
-						<a class="dropdown-item" href="/system0/html/php/login/v3/php/all_jobs.php">All Printer Jobs</a>
-						<a class="dropdown-item" href="/system0/html/php/login/v3/php/view_log.php">View system0 Log</a>
-						<a class="dropdown-item" href="/system0/html/php/login/v3/php/view_apikey.php">View the system0 API Key</a>
-						<a class="dropdown-item" href="https://stats.uptimerobot.com/4nr4WTYQVy">System Status</a>
-						</ul>
+	<div id="page-container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="container-fluid">
+				<a class="navbar-brand" href="/system0/html/index.php">Home</a>
+				
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Dropdown
+							</a>
+							<ul class="dropdown-menu">
+								<a class="dropdown-item" href="/system0/html/php/login/v3/php/bugreport.php">Fehler melden</a>
+								<a class="dropdown-item" href="/system0/html/php/login/v3/php/create_admin.php">Create a New Admin</a>
+								<a class="dropdown-item" href="/system0/html/php/login/v3/php/remove_user.php">Ban a User</a>
+								<a class="dropdown-item" href="/system0/html/php/login/v3/php/print.php">Print a File</a>
+								<a class="dropdown-item" href="/system0/html/php/login/v3/php/job.php">My Printer Jobs</a>
+								<a class="dropdown-item" href="/system0/html/php/login/v3/php/all_jobs.php">All Printer Jobs</a>
+								<a class="dropdown-item" href="/system0/html/php/login/v3/php/view_log.php">View system0 Log</a>
+								<a class="dropdown-item" href="/system0/html/php/login/v3/php/view_apikey.php">View the system0 API Key</a>
+								<a class="dropdown-item" href="https://stats.uptimerobot.com/4nr4WTYQVy">System Status</a>
+							</ul>
+						</li>
+					</ul>
+					<li class="d-flex">
+						<a href="/system0/html/php/login/v3/php/account.php" class="btn" role="button"><i class="fa-solid fa-gear"></i></a>
+						<a href="/system0/html/php/login/v3/logout.php" class="btn" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
 					</li>
-				</ul>
-				<li class="d-flex">
-					<a href="/system0/html/php/login/v3/php/account.php" class="btn" role="button"><i class="fa-solid fa-gear"></i></a>
-					<a href="/system0/html/php/login/v3/logout.php" class="btn" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
-				</li>
+				</div>
 			</div>
+		</nav>
+		
+		<br><br><br>
+		
+		<!--<script>
+		function myFunction() {
+		  var x = document.getElementById("navbarSupportedContent");
+		  if (x.className === "collapse navbar-collapse") {
+		    x.className += " responsive";
+		  } else {
+		    x.className = "collapse navbar-collapse";
+		  }
+		}
+		</script>-->
+		
+		<div style="width:100%;bottom:0px;position:fixed;padding: 0px 0px 0px 0px;background:#333;height:auto;z-index:999;">
+		  <center style="color:white">&copy; <a style="color:light-blue" href="mailto:janis.steiner@protonmail.com">janis.steiner@protonmail.com</a> system0 v 1.0.0</center>
 		</div>
-	</nav>
-	
-	<br><br><br>
-	
-	<!--<script>
-	function myFunction() {
-	  var x = document.getElementById("navbarSupportedContent");
-	  if (x.className === "collapse navbar-collapse") {
-	    x.className += " responsive";
-	  } else {
-	    x.className = "collapse navbar-collapse";
-	  }
-	}
-	</script>-->
-	
-	<div style="width:100%;bottom:0px;position:fixed;padding: 0px 0px 0px 0px;background:#333;height:auto;z-index:999;">
-	  <center style="color:white">&copy; <a style="color:light-blue" href="mailto:janis.steiner@protonmail.com">janis.steiner@protonmail.com</a> system0 v 1.0.0</center>
 	</div>
 </body>
 </html>
