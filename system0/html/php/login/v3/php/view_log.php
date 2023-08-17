@@ -55,7 +55,7 @@ function load_user()
 <body>
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-auto">
       <h1>All entries</h1>
 			<div class="overflow-auto">
 			<table class="table">
