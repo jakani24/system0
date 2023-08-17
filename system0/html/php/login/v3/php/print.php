@@ -15,7 +15,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
 $username=htmlspecialchars($_SESSION["username"]);
 ?>
 
-
+<?php 
+	$color=$_SESSION["color"]; 
+	include "/var/www/html/system0/html/php/login/v3/components.php";
+?>
 <script src="/system0/html/php/login/v3/js/load_page.js"></script>
 <script>
 function load_admin()
@@ -43,10 +46,7 @@ function load_user()
 	}
 	test_queue($link);
 ?>
-<?php 
-	$color=$_SESSION["color"]; 
-	include "/var/www/html/system0/html/php/login/v3/components.php";
-?>
+
 <?php $userid=$_SESSION["id"]; ?>
 <?php echo(" <body style='background-color:$color'> ");?>
 <div id="content"></div>
@@ -54,9 +54,6 @@ function load_user()
 <head>
   <title>Print a file</title>
 
-	<?php
-		include "/var/www/html/system0/html/php/login/v3/components.php";
-	?>
 </head>
 
 <body>
