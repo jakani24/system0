@@ -6,11 +6,11 @@ include "/var/www/html/system0/html/php/login/v3/waf/waf_no_anti_xss.php";
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     if($_SESSION["role"]==="user")
     {
-         header("location: user.php");
+         header("location: php/new_main.php");
     }
     if($_SESSION["role"]==="admin")
     {
-         header("location: admin.php");
+         header("location: php/new_main.php");
     }
     exit;
 }
