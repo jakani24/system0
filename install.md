@@ -64,4 +64,5 @@ The 'api' table:<br>
 
 <br><br>
 2) If you will only use system0 on a local network:<br> 
-    just skip the ngrok part and execute the commands with the ip of your device.<br>
+    just skip the ngrok part and execute the follwoing command with the ip of your device.<br>
+  `curl --silent https://SYSTEM0_WEBSERVER_URL/system0/html/api/update_url.php?url=IP_OF_YOUR_OCTOPRINT_MACHINE&id=ENTER_THE_ID_FOR_THIS_MACHINE_HERE&apikey=YOUR_SYSTEM0_APIKEY&octoapikey=OCTOPRINT_ADMIN_APIKEY`
