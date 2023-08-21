@@ -8,7 +8,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION[
     exit;
 }
 ?>
- 
+ <?php
+	include "/var/www/html/system0/html/php/login/v3/components.php";
+?>
 <?php
 // Include config file
 require_once "config.php";
@@ -56,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 }
             } else{
                 log_("$username tried to create account. Undefind failure","ACCOUNT_CREATE:FAILURE");
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "<div class='alert alert-danger' role='alert'>Oops! Something went wrong. Please try again later.</div>";
             }
 
             // Close statement
@@ -127,31 +129,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 </head>
 <body>
-    <div class="wrapper">
-<div class="container">
-    <h3 class="text-center">Create Account</h3>
-    <form action="" method="post">
-      <div class="form-group">
-        <label for="username">New Username:</label>
-        <input type="text" class="form-control" id="username" name="username" required>
-      </div>
-      <div class="form-group">
-        <label for="pwd">New Password:</label>
-        <input type="password" class="form-control" id="pwd" name="password" required>
-      </div>
-      <div class="form-group">
-        <label for="pwd">Confirm New Password:</label>
-        <input type="password" class="form-control" id="pwd" name="confirm_password" required>
-      </div>
-      <button type="submit" name="submit" class="btn btn-default">Create Account</button>
-    </form>
-        <p>By creating an acocunt you accept our <a href="/php/login/v3/php/privacy-policy.php">Privacy Policy</a></p>
-  </div>
-    </div>  
-    <?php 
-    if(!empty($err)){
-        echo '<div class="alert alert-danger">' . $err . '</div>';
-    }        
-    ?>
+  <div class="container">
+		<div class="row justify-content-center">
+		  <div class="col-md-6">
+			  <h3 class="text-center">Create Account</h3>
+				<form action="" method="post">
+				  <div class="form-group mb-3">
+					<label for="username">New Username:</label>
+					<input type="text" class="form-control" id="username" name="username" required>
+				  </div>
+				  <div class="form-group mb-3">
+					<label for="pwd">New Password:</label>
+					<input type="password" class="form-control" id="pwd" name="password" required>
+				  </div>
+				  <div class="form-group mb-3">
+					<label for="pwd">Confirm New Password:</label>
+					<input type="password" class="form-control" id="pwd" name="confirm_password" required>
+				  </div>
+				<button type="button" name="submit" class="btn btn-primary">Create Account</button><br><br>
+				</form>
+			  <p>By creating an acocunt you accept our <a href="/php/login/v3/php/privacy-policy.php">Privacy Policy</a></p>
+			</div>
+		</div>
+	</div>
+  <?php 
+  if(!empty($err)){
+    echo '<div class="alert alert-danger">' . $err . '</div>';
+  }        
+  ?>
 </body>
 </html>
