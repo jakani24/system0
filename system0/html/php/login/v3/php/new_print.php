@@ -15,45 +15,18 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
 $username=htmlspecialchars($_SESSION["username"]);
 ?>
 
-<?php 
-	$color=$_SESSION["color"]; 
-	include "/var/www/html/system0/html/php/login/v3/components.php";
-?>
-<script src="/system0/html/php/login/v3/js/load_page.js"></script>
-<script>
-function load_admin()
-{
-	$(document).ready(function(){
-   	$('#content').load("/system0/html/php/login/v3/html/admin_page.html");
-	});
-}
-function load_user()
-{
-	$(document).ready(function(){
-   	$('#content').load("/system0/html/php/login/v3/html/user_page.html");
-	});
-}
-</script>
+
 <?php
-	$role=$_SESSION["role"];
-	if($role=="user")
-	{
-		echo "<script type='text/javascript' >load_user()</script>";
-	}
-	if($role=="admin")
-	{
-		echo "<script type='text/javascript' >load_admin()</script>";
-	}
 	test_queue($link);
 ?>
-
+<?php $color=$_SESSION["color"]; ?>
 <?php $userid=$_SESSION["id"]; ?>
 <?php echo(" <body style='background-color:$color'> ");?>
 <div id="content"></div>
 
 <head>
   <title>Print a file</title>
-
+   <!-- <link rel="stylesheet" href="/system0/html/php/login/css/system0.css"> -->
 </head>
 
 <body>
@@ -177,62 +150,53 @@ function load_user()
 		}
 	
 	?>
-	
-		<div class="container border d-flex align-items-center justify-content-center">
-			<div class="text-center mt-5">
-				
-				<h1>Print a file</h1>
-				<form class="mt-5" enctype="multipart/form-data" method="POST" action="">
-					<div class="form-group">
-						<label for="file_upload">Your file to print</label>
-						<input type="file" class="form-control-file" name="file_upload" required>
-					</div>
-					<br><br>
-					<div class="form-group">
-						<label for="printer">Printer to print</label>
-						<select class="form-control selector" name="printer" required>
-							<!-- PHP to retrieve printers -->
-							<?php
-							//get number of printers
-							$num_of_printers=0;
-							$sql="select count(*) from printer";
-							$stmt = mysqli_prepare($link, $sql);
-							mysqli_stmt_execute($stmt);
-							mysqli_stmt_store_result($stmt);
-							mysqli_stmt_bind_result($stmt, $num_of_printers);
-							mysqli_stmt_fetch($stmt);
-							//echo("test1:".$num_of_printers);
-							$last_id=0;
-							$printers_av=0;
-							while($num_of_printers!=0)
-							{
-								$id=0;
-								$sql="Select id from printer where id>$last_id and free=1 order by id";
-								//echo $sql;
-								$stmt = mysqli_prepare($link, $sql);
-								mysqli_stmt_execute($stmt);
-								mysqli_stmt_store_result($stmt);
-								mysqli_stmt_bind_result($stmt, $id);
-								mysqli_stmt_fetch($stmt);
-								if($id!=0 && $id!=$last_id)
-								{
-									echo("<option printer='$id' value='$id'>Printer $id</option>");
-									$printers_av++;
-								}
-								$last_id=$id;
-								$num_of_printers--;
-							}
-							if($printers_av==0)
-								echo("<option printer='queue' value='queue'>No printer available (send to queue)</option>");
-							?>
-						</select>
-					</div>
-					<br><br>
-					<input type="submit" class="btn btn-primary" value="Print file">
-				</form>
-			</div>
-		</div>
+	<center>
+	<h1>Print a file</h1>
+		<form enctype="multipart/form-data" method="POST" action="">
+		<label for="file_upload">Your file to print</label>
+			<input type="file" name="file_upload" required/><br><br>
+			<label for="printer">Printer to print</label>
+			<select name="printer" required>
+				<!-- php um printer auszulesen -->
+				<?php
+				//get number of printers
+					$num_of_printers=0;
+					$sql="select count(*) from printer";
+					$stmt = mysqli_prepare($link, $sql);					
+					mysqli_stmt_execute($stmt);
+					mysqli_stmt_store_result($stmt);
+					mysqli_stmt_bind_result($stmt, $num_of_printers);
+					mysqli_stmt_fetch($stmt);
+					//echo("test1:".$num_of_printers);
+					$last_id=0;
+					$printers_av=0;
+					while($num_of_printers!=0)
+					{
+						$id=0;
+						$sql="Select id from printer where id>$last_id and free=1 order by id";
+						//echo $sql;
+						$stmt = mysqli_prepare($link, $sql);
+						mysqli_stmt_execute($stmt);
+						mysqli_stmt_store_result($stmt);
+						mysqli_stmt_bind_result($stmt, $id);
+						mysqli_stmt_fetch($stmt);
+						if($id!=0 && $id!=$last_id)
+						{
+							echo("<option printer='$id' value='$id'>Printer $id</option>");
+							$printers_av++;
+						}
+						$last_id=$id;
+						$num_of_printers--;
+					}
+					if($printers_av==0)
+						echo("<option printer='queue' value='queue'>No printer available (send to queue)</option>");
+				?>
+			</select><br><br>
+			<input type="submit" value="Print file">
+		</form>
+	</center>
 
+<br><br><br>
 </body>
 
 </html>

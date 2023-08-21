@@ -6,11 +6,11 @@ include "/var/www/html/system0/html/php/login/v3/waf/waf_no_anti_xss.php";
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     if($_SESSION["role"]==="user")
     {
-         header("location: user.php");
+         header("location: php/new_main.php");
     }
     if($_SESSION["role"]==="admin")
     {
-         header("location: admin.php");
+         header("location: php/new_main.php");
     }
     exit;
 }
@@ -25,11 +25,11 @@ if($error!=="error1" && $error!=="error2")
 {
     if($_SESSION["role"]==="admin")
     {
-        header("LOCATION: admin.php");
+        header("LOCATION: php/new_main.php");
     }
     else if($_SESSION["role"]==="user")
     {
-        header("LOCATION: user.php");
+        header("LOCATION: php/new_main.php");
     }
 }
 // Include config file
@@ -122,12 +122,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		                    if($role=="admin")
 		                    {
 		                        log_("$username logged in as admin","LOGIN:SUCCESS");
-		                        header("location:admin.php");
+		                        header("location:php/new_main.php");
 		                    }
 		                    else
 		                    {
 		                        log_("$username logged in as user","LOGIN:SUCCESS");
-		                        header("location:user.php");
+		                        header("location:php/new_main.php");
 		                    }
 		                }
 		                else
@@ -164,32 +164,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+		<?php include "/var/www/html/system0/html/php/login/v3/components.php";?>
     <title>Login</title>
-    <link rel="stylesheet" href="/system0/html/php/login/css/style.css">
 </head>
 <body>
-    <div class="wrapper">
+    <div class="container mt-5">
+		  <div class="row justify-content-center">
+		    <div class="col-md-6">
+		      <h3 class="text-center">Login</h3>
+		      <form action="" method="post">
+		        <div class="mb-3">
+		          <label for="username" class="form-label">Username:</label>
+		          <input type="text" class="form-control" id="username" name="username" required>
+		        </div>
+		        <div class="mb-3">
+		          <label for="pwd" class="form-label">Password:</label>
+		          <input type="password" class="form-control" id="pwd" name="password" required>
+		        </div>
+		        <div class="mb-3 form-check">
+		          <input type="checkbox" class="form-check-input" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">
+		          <label class="form-check-label" for="keepmeloggedin">Keep me logged in</label>
+		        </div>
+		        <button type="submit" name="submit" class="btn btn-primary">Login</button>
+		      </form>
+		      <div class="text-center mt-3">
+		        <a href="php/create_user.php">Don't have an account? Create one!</a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 
-        
-         <div class="container">
-            <h3 class="text-center">Login</h3>
-            <form action="" method="post">
-              <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" required>
-              </div>
-              <div class="form-group">
-                <label for="pwd">Password:</label>
-                <input type="password" class="form-control" id="pwd" name="password" required>
-              </div>
-              <button type="submit" name="submit" class="btn btn-default">Login</button>
-              &emsp;
-              <input type="checkbox" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">
-              <label for="keepmeloggedin">Keep me logged in</label> 
-            </form>
-          </div>
-        <center><a href="php/create_user.php">no account? Create one!</a></center>
-    </div>
+
         <?php 
         if(!empty($login_err)){
             echo '<div class="alert alert-danger">' . $login_err . '</div>';

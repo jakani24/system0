@@ -12,6 +12,9 @@ else
 <head>
 	<title>Privacy Policy</title>
 </head>
+<?php
+	include "/var/www/html/system0/html/php/login/v3/components.php";
+?>
 <?php $color=$_SESSION["color"]; ?>
 <?php echo(" <body style='background-color:$color'> ");?>
 	        <script src="/system0/html/php/login/v3/js/load_page.js"></script>

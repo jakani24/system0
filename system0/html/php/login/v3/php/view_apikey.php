@@ -41,7 +41,10 @@ function load_user()
 		echo "<script type='text/javascript' >load_admin()</script>";
 	}
 ?>
-<?php $color=$_SESSION["color"]; ?>
+<?php 
+	$color=$_SESSION["color"]; 
+	include "/var/www/html/system0/html/php/login/v3/components.php";
+?>
 <?php echo(" <body style='background-color:$color'> ");?>
 <div id="content"></div>
 
@@ -49,32 +52,27 @@ function load_user()
   <title>Api viewer</title>
   
 </head>
-<style>
-		table, td, th
-		{
-				border:1px solid;
-				border-collapse: collapse;
-				height:22px;
-		}
-		tr:nth-child(odd){background-color:#DCDCDC}
-		tr:hover{background-color:#aaa}
-		th{background-color:gray;text-align: left;}
-</style>
+
 <body>
-<center>
-	<h1>Your system0 APIkey:</h1>
-	<?php
-		$apikey_fromdb="";
-		$sql="select apikey from api where id=1";
-		$stmt = mysqli_prepare($link, $sql);
-		mysqli_stmt_execute($stmt);
-		mysqli_stmt_store_result($stmt);
-		mysqli_stmt_bind_result($stmt, $apikey_fromdb);
-		mysqli_stmt_fetch($stmt);	
-		echo($apikey_fromdb);
-		echo("<br>Please treat this key like a password.<br>It is essential to not let anyone know this key!");	
-	?>
-</center>
-<br><br><br>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1>Your system0 APIkey:</h1>
+			<?php
+				$apikey_fromdb="";
+				$sql="select apikey from api where id=1";
+				$stmt = mysqli_prepare($link, $sql);
+				mysqli_stmt_execute($stmt);
+				mysqli_stmt_store_result($stmt);
+				mysqli_stmt_bind_result($stmt, $apikey_fromdb);
+				mysqli_stmt_fetch($stmt);	
+				echo("<b>".$apikey_fromdb."</b>");
+				echo("<br><br>Please treat this key like a password.<br>It is essential to not let anyone know this key!");	
+			?>
+    </div>
+  </div>
+</div>
+	
+
 </body>
 </html>

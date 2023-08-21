@@ -12,7 +12,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION[
 }
 ?>
 
-
+<?php 
+	$color=$_SESSION["color"]; 
+	include "/var/www/html/system0/html/php/login/v3/components.php";
+?>
 <script src="/system0/html/php/login/v3/js/load_page.js"></script>
 <script>
 function load_admin()
