@@ -75,16 +75,29 @@ function load_admin()
 			    
                     }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "<div class='alert alert-danger' role='alert'>Oops! Something went wrong. Please try again later.</div>";
             }
 
             // Close statement
             mysqli_stmt_close($stmt);
         }		
-  	echo('<center><h3> Please select a user to delete:</h3><br></center>');
-	echo('<center><form action="" method="post">');
-	echo('<label for="lang">username:</label>');
-	echo('<select name="username" id="username">');      
+	echo('<div class="container mt-5">
+			<div class="d-flex justify-content-center mb-3">
+				<h3>Please select a user to delete:</h3>
+			</div>
+			
+			
+			<form action="" method="post" style="width: 40%;" class="mx-auto">
+				<div class="mb-3">
+					<div class="row">
+						<div class="col">
+					  		<label for="lang">Username:</label>
+						</div>
+						<div class="col">
+					  		<select name="username" id="username" class="form-select">
+						');
+
+
         //now get those users
         $cnt2=1;
         $id=0;
@@ -106,7 +119,7 @@ function load_admin()
 							echo('<option username="'.$username.'">'.$username.'</option>');
 						}
 				} else{
-					echo "Oops! Something went wrong. Please try again later.";
+					echo "<div class='alert alert-danger' role='alert'>Oops! Something went wrong. Please try again later.</div>";
 				}
 
 				// Close statement
@@ -114,9 +127,17 @@ function load_admin()
 			}
 			$cnt2++;
 		}
-  	echo('</select>');
-	echo('<input type="submit" id="ban" ban="ban" /></center>');
-	echo('</form>'); 
+  	echo('</select>
+					 </div>
+										<div class="col">
+									  		<div class="d-flex justify-content-center">
+												<button type="submit" class="btn btn-danger" id="ban" ban="ban">Delete User</button>
+									  		</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>');
 	echo("<br><br>");
 	echo('<center><h3> Please select a user to ban:</h3><br></center>');
 	echo('<center><form action="" method="post">');
