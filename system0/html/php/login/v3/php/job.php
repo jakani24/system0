@@ -180,7 +180,7 @@ function load_user()
 				echo("free your printer after you've taken out your print!");
 			?>
 			
-			<h1>Your jobs in queue</h1>
+			<h1 class="mt-5">Your jobs in queue</h1>
 			<?php
 				$userid=$_SESSION["id"];	//show users job in queue
 				$cnt=0;
