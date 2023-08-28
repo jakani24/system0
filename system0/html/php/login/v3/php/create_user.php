@@ -141,14 +141,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		        <div class="text-center mt-3">
     		        <p class="mt-3">By creating an account you accept our <a href="/system0/html/php/login/v3/php/privacy-policy.php">Privacy Policy</a></p>
     				<p class="text-center mt-3">Already have an account? <a href="../login.php">Login here</a>.</p>
-	            </div>
+	            	</div>
+			<?php 
+			    if(!empty($err)){
+				echo '<div class="alert alert-danger">' . $err . '</div>';
+			    }        
+		    	?>
 		    </div>
 	    </div>
 	</div>
-    <?php 
-    if(!empty($err)){
-        echo '<div class="alert alert-danger">' . $err . '</div>';
-    }        
-    ?>
+    
 </body>
 </html>
