@@ -15,16 +15,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <head>
   <title>Account settings</title>
 </head>
-<style>
-.button2{
-	height:auto;
-	width:300px;
-}
-.button2:hover {
-	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
 
-</style>
 <?php 
 	$color=$_SESSION["color"]; 
 	include "/var/www/html/system0/html/php/login/v3/components.php";
