@@ -138,11 +138,21 @@ function load_admin()
 								</div>
 							</form>
 						</div>');
-	echo("<br><br>");
-	echo('<center><h3> Please select a user to ban:</h3><br></center>');
-	echo('<center><form action="" method="post">');
-	echo('<label for="lang">username:</label>');
-	echo('<select name="ban" id="ban">');      
+	echo('<br><br>
+ 		<div class="container mt-5">
+			<div class="d-flex justify-content-center mb-3">
+				<h3>Please select a user to ban:</h3>
+			</div>
+			
+			
+			<form action="" method="post" style="width: 40%;" class="mx-auto">
+				<div class="mb-3">
+					<div class="row">
+						<div class="col">
+					  		<label for="lang">Username:</label>
+						</div>
+						<div class="col">
+					  		<select name="ban" id="ban" class="form-select">');
         //now get those users
         $cnt2=1;
         $id=0;
@@ -164,7 +174,7 @@ function load_admin()
 							echo('<option ban="'.$username.'">'.$username.'</option>');
 						}
 				} else{
-					echo "Oops! Something went wrong. Please try again later.";
+					echo "<div class='alert alert-danger' role='alert'>Oops! Something went wrong. Please try again later.</div>";
 				}
 
 				// Close statement
@@ -183,14 +193,33 @@ function load_admin()
   	echo('<option reason="inappropriate username">inappropriate username</option>');
   	echo('<option reason="Illegal files">Illegal files</option>');
   	echo('<option reason="Unspecified">Other</option>');
-  	echo('</select>');
-	echo('<input type="submit"/></center>');
-	echo('</form>'); 
+  	echo('</select>
+   									</div>
+										<div class="col">
+									  		<div class="d-flex justify-content-center">
+												<button type="submit" class="btn btn-danger">Send</button>
+									  		</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>');
+ 
 	echo("<br><br>");
-	echo('<center><h3> Please select a user to unban:</h3><br></center>');
-	echo('<center><form action="" method="post">');
-	echo('<label for="lang">username:</label>');
-	echo('<select name="unban" id="unban">');      
+	echo('<div class="container mt-5">
+			<div class="d-flex justify-content-center mb-3">
+				<h3>Please select a user to unban:</h3>
+			</div>
+			
+			
+			<form action="" method="post" style="width: 40%;" class="mx-auto">
+				<div class="mb-3">
+					<div class="row">
+						<div class="col">
+					  		<label for="lang">Username:</label>
+						</div>
+						<div class="col">
+					  		<select name="unban" id="unban" class="form-select">');     
         //now get those users
         $cnt2=1;
         $id=0;
@@ -212,7 +241,7 @@ function load_admin()
 							echo('<option unban="'.$username.'">'.$username.'</option>');
 						}
 				} else{
-					echo "Oops! Something went wrong. Please try again later.";
+					echo "<div class='alert alert-danger' role='alert'>Oops! Something went wrong. Please try again later.</div>";
 				}
 
 				// Close statement
@@ -220,9 +249,17 @@ function load_admin()
 			}
 			$cnt2++;
 		}
-  	echo('</select>');
-	echo('<input type="submit" id="unban" unban="unban" /></center>');
-	echo('</form>');
+  	echo('</select>
+   				</div>
+					<div class="col">
+						<div class="d-flex justify-content-center">
+							<button type="submit" class="btn btn-danger" id="unban" unban="unban">Senden</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>');
     // Close connection
     mysqli_close($link);
 
