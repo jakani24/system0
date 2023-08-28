@@ -54,8 +54,8 @@ function load_admin()
 		<h1>Fehler melden</h1>
 		<form method="post" action="bugreport.php?sent">
 		<p>Beschreibung des Fehlers:</p><br>
-		<textarea type="text" name="bug" cols="40" rows="5" required></textarea><br>
-		<p>Deine Email für weitere Nachfragen (optional)</p><br>
+		<textarea type="text" name="bug" cols="40" rows="5" required></textarea><br><br>
+		<p>Deine Email für weitere Nachfragen (optional)</p>
 		<input type="text" name="email"/>
 		<input type="submit" value="abschicken" />
 		</form>
@@ -66,7 +66,7 @@ function load_admin()
 				$bug=htmlspecialchars($_POST["bug"]);
 				$text=urlencode("JWAF INFORMATION:\nuser: $username;\nemail: $email\nbug: $bug\nEND");
     				exec("curl 'https://api.callmebot.com/whatsapp.php?phone=41775252026&text=$text&apikey=6002955'");			
-				echo("<br>Vielen Dank, deine Fehlermeldung ist bei uns angekommen und wir kümmern uns darum.");
+				echo("<div class="alert alert-success" role="alert">Vielen Dank, deine Fehlermeldung ist bei uns angekommen und wir kümmern uns darum.</div>");
 			}
 		?>
 	</center>

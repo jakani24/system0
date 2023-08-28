@@ -56,21 +56,17 @@ $id=$_SESSION["id"];
 	?>
 		<div id="content"></div>
 		<!-- buttons for ctrl -->
-		<div class="flex-grow-1 d-flex justify-content-center align-items-center">
-			<div class="d-flex">
-				<div class="m-3">
-					<button type="button" href="print.php" class="btn btn-primary btn-lg" onclick="location.href = 'print.php';">Print a file</button>
-				</div>
-				<div class="m-3">
-					<button type="button" href="print.php" class="btn btn-primary btn-lg" onclick="location.href = 'print.php';">Print a file</button>
+		<div class="container-fluid">
+			<div class="row" style="height: 50vh;">
+				<div class="col-md-12 d-flex justify-content-center align-items-center">
+					<button type="button" href="print.php" class="btn btn-primary btn-lg mx-5" onclick="location.href = 'print.php';">Print a file</button>
+					<button type="button" href="print.php" class="btn btn-primary btn-lg mx-5" onclick="location.href = 'print.php';">Print a file</button>
 				</div>
 			</div>
-		</div>
-		<!-- your jobs -->
+			<div class="row" style="height: 50vh;">
+				<div class="col-md-8" style="height: 100%;">
+				<!-- your jobs -->
 
-		<div class="d-flex flex-grow-2 h-75">
-			<div style="flex-grow: 2;">
-				<div class="job p-2 big">
 					<?php
 						if(isset($_POST['free']))//free a printer
 						{
@@ -248,12 +244,11 @@ $id=$_SESSION["id"];
 					?>
 					<?php
 						test_queue($link); //test for a free printer. If any printe ris free and there are jobs in queue, push job to printer
-					?>				
+					?>		
 				</div>
-			</div>
+				<div class="col-md-4" style="height: 100%;">
 			<!-- job detailes -->
-			<div style="flex-grow: 1;">
-				<div class="p-2 small">
+	
 					<?php
 						if($cnt_of_job!=0)
 						{
@@ -263,8 +258,8 @@ $id=$_SESSION["id"];
 						}
 						else
 							echo("<div class='alert alert-primary' role='alert'>Info of your jobs will be displayed here if any are available.</div>");
-					?>
-			</div>
+					?>				
+				</div>
 			</div>
 		</div>
 	</body>

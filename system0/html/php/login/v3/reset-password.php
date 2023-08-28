@@ -134,7 +134,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Reset Password</title>
    <link rel="stylesheet" href="/system0/html/php/login/css/style.css">
 </head>
-<?php $color=$_SESSION["color"]; ?>
+<?php 
+	$color=$_SESSION["color"]; 
+	include "/var/www/html/system0/html/php/login/v3/components.php";
+?>
 <?php echo(" <body style='background-color:$color'> ");?>
    
 <div class="container">
