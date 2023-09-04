@@ -192,8 +192,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							<a href="php/create_user.php">Don't have an account? Create one!</a>
 						</div>
 						<?php 
-							if(!empty($err)){
-							echo '<div class="alert alert-danger">' . $err . '</div>';
+							if(!empty($login_err)){
+							echo '<div class="alert alert-danger">' . $login_err . '</div>';
 							}        
 						?>
 					</div>
