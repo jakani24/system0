@@ -137,8 +137,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
-           <link rel="stylesheet" href="/system0/html/php/login/css/style.css">
-
 </head>
 <?php echo(" <body style='background-color:$color'> ");?>
 	<div class="container">

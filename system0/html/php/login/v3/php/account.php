@@ -77,7 +77,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     ?>
 	<div id="content"></div>
     <!--Account things-->
-		<div class="container mt-5">
+		<div class="container mt-3">
 		  <div class="row justify-content-center">
 			<div class="col-md-6 border p-4">
 				<h1>Account settings</h1>
