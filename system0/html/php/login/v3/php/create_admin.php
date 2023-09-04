@@ -8,7 +8,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION[
     exit;
 }
 ?>
- 
+ <?php 
+	$color=$_SESSION["color"]; 
+	include "/var/www/html/system0/html/php/login/v3/components.php";
+?>
+<script src="/system0/html/php/login/v3/js/load_page.js"></script>
+     <script>
+     	function load_user()
+        {
+            $(document).ready(function(){
+            $('#content').load("/system0/html/php/login/v3/html/admin_page.html");
+            });
+        }
+        load_user();
+     </script>
 <?php
 // Include config file
 require_once "config.php";
@@ -56,7 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 }
             } else{
                 log_("$username tried to create account. Undefind failure","ACCOUNT_CREATE:FAILURE");
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "<div class='alert alert-danger' role='alert'>Oops! Something went wrong. Please try again later.</div>";
             }
 
             // Close statement
@@ -103,6 +116,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
+                mkdir("/var/www/html/system0/html/user_files/$username");
                 header("location: /system0/html/php/login/v3/admin.php");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -123,35 +137,41 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
-           <link rel="stylesheet" href="/system0/html/php/login/css/style.css">
-
 </head>
-<body>
-    <div class="wrapper">
-<div class="container">
-    <h3 class="text-center">Create Account</h3>
-    <form action="" method="post">
-      <div class="form-group">
-        <label for="username">New Username:</label>
-        <input type="text" class="form-control" id="username" name="username" required>
-      </div>
-      <div class="form-group">
-        <label for="pwd">New Password:</label>
-        <input type="password" class="form-control" id="pwd" name="password" required>
-      </div>
-      <div class="form-group">
-        <label for="pwd">Confirm New Password:</label>
-        <input type="password" class="form-control" id="pwd" name="confirm_password" required>
-      </div>
-      <button type="submit" name="submit" class="btn btn-default">Create Account</button>
-    </form>
-        <p>By creating an acocunt you accept our <a href="/php/login/v3/php/privacy-policy.php">Privacy Policy</a></p>
-  </div>
-    </div>  
-    <?php 
-    if(!empty($err)){
-        echo '<div class="alert alert-danger">' . $err . '</div>';
-    }        
-    ?>
+<?php echo(" <body style='background-color:$color'> ");?>
+	<div class="container">
+		<div class="d-flex align-items-center justify-content-center vh-100">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-6">
+						<h3 class="text-center">Create Account</h3>
+						<form action="" method="post">
+							<div class="form-group mb-3">
+								<label for="username">New Username:</label>
+								<input type="text" class="form-control" id="username" name="username" required>
+						  	</div>
+						  	<div class="form-group mb-3">
+								<label for="pwd">New Password:</label>
+								<input type="password" class="form-control" id="pwd" name="password" required>
+						  	</div>
+						  	<div class="form-group mb-3">
+								<label for="pwd">Confirm New Password:</label>
+								<input type="password" class="form-control" id="pwd" name="confirm_password" required>
+						  	</div>
+							<button type="button" name="submit" class="btn btn-primary">Create Account</button><br><br>
+						</form>
+						<div class="text-center mt-3">
+							<p class="mt-3">By creating an account you accept our <a href="/system0/html/php/login/v3/php/privacy-policy.php">Privacy Policy</a></p>
+							<p class="mt-3">Already have an account? <a href="../login.php">Login here</a>.</p>
+						</div>
+						<?php 
+						    if(!empty($err)){
+							echo '<div class="alert alert-danger">' . $err . '</div>';
+						    }        
+						?>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
 </html>

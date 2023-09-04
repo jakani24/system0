@@ -178,7 +178,7 @@ function load_user()
 	
 	?>
 	
-		<div class="container border d-flex align-items-center justify-content-center">
+		<div class="container d-flex align-items-center justify-content-center">
 			<div class="text-center mt-5">
 				
 				<h1>Print a file</h1>
@@ -186,10 +186,11 @@ function load_user()
 					<div class="form-group">
 						<label for="file_upload">Your file to print</label>
 						<input type="file" class="form-control-file" name="file_upload" required>
+</div>
 					</div>
 					<br><br>
 					<div class="form-group">
-						<label for="printer">Printer to print</label>
+						<label class="my-3" for="printer">Printer to print</label>
 						<select class="form-control selector" name="printer" required>
 							<!-- PHP to retrieve printers -->
 							<?php

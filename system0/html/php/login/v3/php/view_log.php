@@ -125,7 +125,7 @@ function load_user()
 			
 			?>
 			</td><!-- username -->
-			<td><input type="submit" value="Apply filter"></td>
+			<td><button type="submit" class="btn btn-primary">Apply filter</button>
 			</tr></form>
 			<?php
 				 $fp=fopen("/var/www/html/system0/html/php/login/v3/log/sys0.log","r");
