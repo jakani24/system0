@@ -233,6 +233,7 @@ function load_user()
 				</form>
 			</div>
 		</div>
+	<div id="footer"></div>
 
 </body>
 

@@ -262,6 +262,7 @@ $id=$_SESSION["id"];
 				</div>
 			</div>
 		</div>
+		<div id="footer"></div>
 	</body>
 
 

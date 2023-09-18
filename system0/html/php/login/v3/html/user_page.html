@@ -3,8 +3,15 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="system0/html/php/login/v3/components.php" rel="stylesheet">
-
-
+<script>
+	function load_footer()
+        {
+            $(document).ready(function(){
+            $('#footer').load("/system0/html/php/system0/html/php/login/v3/html/footer.html");
+            });
+        }
+	load_footer()
+</script>
 </head>
 <body>
 <div id="page-container">
@@ -18,7 +25,7 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						<i class="fa-solid fa-bars" style="color: #ffffff;"></i>
+						<i class="fa-solid fa-bars" style="color: #2E6A2F;"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-dark">
 							<a class="dropdown-item" href="/system0/html/php/login/v3/php/bugreport.php">Fehler melden</a>
@@ -28,8 +35,8 @@
 					</li>
 				</ul>
 				<li class="d-flex">
-					<a href="/system0/html/php/login/v3/php/account.php" class="btn" role="button"><i class="fa-solid fa-gear" style="color: #ffffff;"></i></a>
-					<a href="/system0/html/php/login/v3/logout.php" class="btn" role="button"><i class="fa-solid fa-right-from-bracket" style="color: #ffffff;"></i></a>
+					<a href="/system0/html/php/login/v3/php/account.php" class="btn" role="button"><i class="fa-solid fa-gear" style="color: #2E6A2F;"></i></a>
+					<a href="/system0/html/php/login/v3/logout.php" class="btn" role="button"><i class="fa-solid fa-right-from-bracket" style="color: #2E6A2F;"></i></a>
 				</li>
 			</div>
 		</div>
