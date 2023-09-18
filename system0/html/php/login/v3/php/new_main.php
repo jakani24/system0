@@ -155,7 +155,7 @@ $id=$_SESSION["id"];
 						$cnt_of_job=$cnt;
 						//echo($cnt);
 						//echo '<div style="overflow-x: auto;">';
-						if($count!=0){
+						if($cnt!=0){
 							echo(
 								"<table class='table'>
 					 				<thead>
