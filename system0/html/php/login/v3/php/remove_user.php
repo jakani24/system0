@@ -260,6 +260,7 @@ function load_admin()
 			</div>
 		</form>
 	</div>');
+	<div id="footer"></div>
     // Close connection
     mysqli_close($link);
 
