@@ -3,7 +3,15 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="system0/html/php/login/v3/components.php" rel="stylesheet">
-
+<?php
+	function load_footer()
+        {
+            $(document).ready(function(){
+            $('#footer').load("/system0/html/php/system0/html/php/login/v3/html/footer.html");
+            });
+        }
+	load_footer()
+?>
 
 </head>
 <body>
