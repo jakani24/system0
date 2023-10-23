@@ -184,8 +184,11 @@
 				<h1>Print a file</h1>
 				<form class="mt-5" enctype="multipart/form-data" method="POST" action="">
 					<div class="form-group">
-						<label for="file_upload">Your file to print</label>
-						<input type="file" class="form-control-file" name="file_upload" required>
+						<div class="custom-file">
+
+							<label for="file_upload">Your file to print</label>
+							<input type="file" class="form-control-file" name="file_upload" required>
+						</div>
 					</div>
 					<br><br>
 					<div class="form-group">
