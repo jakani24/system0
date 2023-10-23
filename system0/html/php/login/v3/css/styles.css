@@ -15,3 +15,26 @@ html, body {
 	
 }
 
+/*Datei-Upload-Button in Print.php*/
+.custom-file-label::after {
+	content: "Durchsuchen"; /* Text auf dem Button */
+}
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+	content: "Durchsuchen";
+}
+
+.custom-file-input~.custom-file-label {
+	border: 1px solid #ccc; /*   Rahmen  */
+}
+
+.custom-file-input~.custom-file-label::after {
+	background-color: #007BFF; 
+	border: 1px solid #007BFF; 
+	color: #fff; 
+}
+
+.custom-file-input~.custom-file-label:hover::after {
+	background-color: #0056b3; 
+	border: 1px solid #0056b3; 
+}
