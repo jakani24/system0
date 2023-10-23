@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html>
-<?php
-// Initialize the session
-session_start();
-include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
-include "config.php";
-require_once "/var/www/html/system0/html/php/login/v3/log/log.php";
-include "queue.php";
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
-    header("location: login.php");
-    exit;
-}
-$username=htmlspecialchars($_SESSION["username"]);
-?>
-
-<?php 
-	$color=$_SESSION["color"]; 
-	include "/var/www/html/system0/html/php/login/v3/components.php";
-?>
-<script src="/system0/html/php/login/v3/js/load_page.js"></script>
-<script>
-function load_admin()
-{
-	$(document).ready(function(){
-   	$('#content').load("/system0/html/php/login/v3/html/admin_page.html");
-	});
-}
-function load_user()
-{
-	$(document).ready(function(){
-   	$('#content').load("/system0/html/php/login/v3/html/user_page.html");
-	});
-}
-</script>
-<?php
-	$role=$_SESSION["role"];
-	if($role=="user")
-	{
-		echo "<script type='text/javascript' >load_user()</script>";
+	<?php
+	// Initialize the session
+	session_start();
+	include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
+	include "config.php";
+	require_once "/var/www/html/system0/html/php/login/v3/log/log.php";
+	include "queue.php";
+	// Check if the user is logged in, if not then redirect him to login page
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
+	    header("location: login.php");
+	    exit;
 	}
-	if($role=="admin")
-	{
-		echo "<script type='text/javascript' >load_admin()</script>";
-	}
-	test_queue($link);
-?>
+	$username=htmlspecialchars($_SESSION["username"]);
+	?>
 
-<?php $userid=$_SESSION["id"]; ?>
-<?php echo(" <body style='background-color:$color'> ");?>
-<div id="content"></div>
+	<?php 
+		$color=$_SESSION["color"]; 
+		include "/var/www/html/system0/html/php/login/v3/components.php";
+	?>
+	<script src="/system0/html/php/login/v3/js/load_page.js"></script>
+	<script>
+		function load_admin()
+		{
+			$(document).ready(function(){
+		   	$('#content').load("/system0/html/php/login/v3/html/admin_page.html");
+			});
+		}
+		function load_user()
+		{
+			$(document).ready(function(){
+		   	$('#content').load("/system0/html/php/login/v3/html/user_page.html");
+			});
+		}
+	</script>
+	<?php
+		$role=$_SESSION["role"];
+		if($role=="user")
+		{
+			echo "<script type='text/javascript' >load_user()</script>";
+		}
+		if($role=="admin")
+		{
+			echo "<script type='text/javascript' >load_admin()</script>";
+		}
+		test_queue($link);
+	?>
 
-<head>
-  <title>Print a file</title>
+	<?php $userid=$_SESSION["id"]; ?>
+	<?php echo(" <body style='background-color:$color'> ");?>
+	<div id="content"></div>
 
-</head>
+	<head>
+	  <title>Print a file</title>
+	
+	</head>
 
-<body>
+	<body>
 		<?php
 		if(isset($_POST["printer"]))
 		{
@@ -186,7 +186,6 @@ function load_user()
 					<div class="form-group">
 						<label for="file_upload">Your file to print</label>
 						<input type="file" class="form-control-file" name="file_upload" required>
-</div>
 					</div>
 					<br><br>
 					<div class="form-group">
