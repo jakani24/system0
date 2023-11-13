@@ -58,7 +58,7 @@ function load_user()
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
-			<h1>Your running Jobs</h1>
+			<h1>Meine laufenden Aufträge</h1>
 			<?php
 				if(isset($_POST['free']))//free a printer
 				{
@@ -71,7 +71,7 @@ function load_user()
 					mysqli_stmt_fetch($stmt);	
 					if($cnt!=$_SESSION['id'])
 					{
-						echo("<div class='alert alert-danger' role='alert'>Wrong userid!</div>");
+						echo("<div class='alert alert-danger' role='alert'>Falsche userid!</div>");
 					}
 					else
 					{
@@ -94,7 +94,7 @@ function load_user()
 					mysqli_stmt_fetch($stmt);	
 					if($cnt!=$_SESSION['id'])
 					{
-						echo("<div class='alert alert-danger' role='alert'>Wrong userid!</div>");
+						echo("<div class='alert alert-danger' role='alert'>Falsche userid!</div>");
 					}
 					else
 					{
@@ -103,7 +103,7 @@ function load_user()
 						$json=json_decode($fg,true);
 						if($json["error"]!="")
 						{
-							echo("<br><div class='alert alert-danger' role='alert'>There was an error canceling the print job !<br>The error is on our machine or printer, so please wait and trie again in some time!</div><br>");
+							echo("<br><div class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Druckvorgang wurde abgebrochen ! <br>Der Fehler befindet sich beim Drucker. Bitte warte einen moment und versuche es dann erneut!</div><br>");
 							sys0_log("User ".$_SESSION["username"]." could not cancel job on printer; error: ".$json["error"]."".$_GET["free"]."",$_SESSION["username"],"JOB::PRINTERCTRL::CANCEL::FAILED");//notes,username,type
 						}
 						else
@@ -145,7 +145,7 @@ function load_user()
 				mysqli_stmt_bind_result($stmt, $cnt);
 				mysqli_stmt_fetch($stmt);	
 				//echo($cnt);
-				echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th scope='col'>Printer</th><th scope='col'>File</th><th scope='col'>Completion</th><th scope='col'>Cancel print</th><th scope='col'>Detailes</th></tr></thead><tbody>");
+				echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th scope='col'>Drucker</th><th scope='col'>Datei</th><th scope='col'>Fertigstellung</th><th scope='col'>Abbrechen</th><th scope='col'>Informationen</th></tr></thead><tbody>");
 				while($cnt!=0)
 				{
 					$sql="select id,printer_url,apikey,cancel from printer where used_by_userid=$id";
@@ -176,11 +176,11 @@ function load_user()
 					$cnt--;
 				}
 				echo("</tbody></table></div></div></div></div>");
-				echo("free your printer after you've taken out your print!");
+				echo("Bitte entferne deinen Druck aus dem Drucker nach dem Druckvorgang.");
 			?>
 			<br>
 	    		<br>
-			<h1 class="mt-5">Your jobs in queue</h1>
+			<h1 class="mt-5">Meine Aufträge in der Warteschlange</h1>
 			<?php
 				$userid=$_SESSION["id"];	//show users job in queue
 				$cnt=0;
@@ -192,7 +192,7 @@ function load_user()
 				mysqli_stmt_bind_result($stmt, $cnt);
 				mysqli_stmt_fetch($stmt);	
 				//echo($cnt);
-				echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>file</th><th>remove from queue</th></tr></thead><tbody>");
+				echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Datei</th><th>Aus der Warteschlange entfernen</th></tr></thead><tbody>");
 				while($cnt!=0)
 				{
 					$sql="select id,filepath from queue where from_userid=$userid";
@@ -209,7 +209,7 @@ function load_user()
 					$cnt--;
 				}
 				echo("");	
-				echo("It might take some time for your job in queue to start after a printer is free.<br>(After every print the printer has to cool down)");
+				echo("Es kann einen Moment dauern bis der Druckvorgang startet, da der Drucker vor jedem Druck abkühlen muss. ");
 			?>
 			<?php
 				test_queue($link); //test for a free printer. If any printe ris free and there are jobs in queue, push job to printer
