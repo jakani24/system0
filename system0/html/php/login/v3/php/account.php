@@ -77,23 +77,23 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     ?>
 	<div id="content"></div>
     <!--Account things-->
-		<div class="container mt-3">
+		<div class="container mt-5">
 		  <div class="row justify-content-center">
 			<div class="col-md-6 p-4">
 				<h1>Account settings</h1>
 				<br><br>
-				<a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/reset-password.php" role="button">Reset your password</a>
-				<a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/delete-account.php" role="button">Delete your account and all the data associated with it</a>
-				<br><a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/php/privacy-policy.php" role="button">Our privacy policy</a>
+				<a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/reset-password.php" role="button">Passwort zurücksetzen</a>
+				<a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/delete-account.php" role="button">Account und alle dazugehörigen Daten löschen</a>
+				<br><a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/privacy-policy.php" role="button">Unsere Privacy Policy</a>
 				<br>
-				<a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/php/disclaimer.php" role="button">Dislcaimer</a>
+				<a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/disclaimer.php" role="button">Dislcaimer</a>
 				<br><br>
 				<form method="POST" action="#">
 					<div class="mb-3">
-					  <label for="color" class="form-label">Background Color</label>
-					  <input type="color" id="color" name="color" class="form-control selector" value="<?php echo $color; ?>" />
+					  <label for="color" class="form-label">Hintergrundfarbe</label>
+						<input type="color" name="color" class="form-control form-control-color selector" id="color" value="<?php echo $color; ?>" title="Hintergrundfarbe wählen">
 					</div>
-					<button type="submit" class="btn btn-secondary">Submit</button>
+					<button type="submit" class="btn btn-dark">Submit</button>
 				  </form>
 			
 			</div>
