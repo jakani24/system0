@@ -79,7 +79,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <!--Account things-->
 		<div class="container mt-3">
 		  <div class="row justify-content-center">
-			<div class="col-md-6 border p-4">
+			<div class="col-md-6 p-4">
 				<h1>Account settings</h1>
 				<br><br>
 				<a class="btn btn-secondary btn-block m-2" href="/system0/html/php/login/v3/reset-password.php" role="button">Reset your password</a>
