@@ -231,7 +231,7 @@
 						</select>
 					</div>
 					<br><br>
-					<input type="submit" class="btn btn-dark" value="Print file">
+					<input type="submit" class="btn btn-dark mb-5" value="Print file">
 				</form>
 			</div>
 		</div>
