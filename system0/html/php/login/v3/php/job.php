@@ -58,7 +58,9 @@ function load_user()
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
-			<h1>Meine laufenden Aufträge</h1>
+	    		<div class="mb-2"
+				<h1>Meine laufenden Aufträge</h1>
+			</div>
 			<?php
 				if(isset($_POST['free']))//free a printer
 				{
@@ -176,11 +178,11 @@ function load_user()
 					$cnt--;
 				}
 				echo("</tbody></table></div></div></div></div>");
-				echo("Bitte entferne deinen Druck aus dem Drucker nach dem Druckvorgang.");
+				echo("<p class'mt-2'>Bitte entferne deinen Druck aus dem Drucker nach dem Druckvorgang.</p>");
 			?>
 			<br>
 	    		<br>
-			<h1 class="mt-5">Meine Aufträge in der Warteschlange</h1>
+			<h1 class="mt-5 mb-2">Meine Aufträge in der Warteschlange</h1>
 			<?php
 				$userid=$_SESSION["id"];	//show users job in queue
 				$cnt=0;
