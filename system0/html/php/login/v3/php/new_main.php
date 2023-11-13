@@ -59,8 +59,7 @@ $id=$_SESSION["id"];
 		<div class="container-fluid">
 			<div class="row" style="height: 50vh;">
 				<div class="col-md-12 d-flex justify-content-center align-items-center">
-					<button type="button" href="print.php" class="btn btn-primary btn-lg mx-5" onclick="location.href = 'print.php';">Print a file</button>
-					<button type="button" href="print.php" class="btn btn-primary btn-lg mx-5" onclick="location.href = 'print.php';">Print a file</button>
+					<button type="button" href="print.php" class="btn btn-dark btn-lg mx-5" onclick="location.href = 'print.php';">Datei drucken</button>
 				</div>
 			</div>
 			<div class="row" style="height: 50vh;">
@@ -202,11 +201,11 @@ $id=$_SESSION["id"];
 							}
 							echo("</tbody></table>");
 							//echo("</div>");
-							echo("<div class='alert alert-primary' role='alert'>free your printer after you've taken out your print!</div>");
+							echo("<div class='alert alert-dark' role='alert'>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde.</div>");
 						}
 						else
 						{
-							echo("<div class='alert alert-primary' role='alert'>running jobs and queue items will be displayed here if any are available.</div>");
+							echo("<div class='alert alert-dark' role='alert'>Laufende Vorgänge werden hier aufgelistet.</div>");
 						}
 					?>	
 					<!-- list queue -->
@@ -224,7 +223,7 @@ $id=$_SESSION["id"];
 						//echo '<div style="overflow-x: auto;">';
 						$last_id=0;
 						if($cnt!=0){
-							echo("<table class='table'><thead><tr><th>file</th><th>remove from queue</th></tr></thead><tbody>");
+							echo("<table class='table'><thead><tr><th>Datei</th><th>Aus der Warteschlange entfernen</th></tr></thead><tbody>");
 							while($cnt!=0)
 							{
 								$sql="select id,filepath from queue where from_userid=$userid AND id>$last_id ORDER BY id";
@@ -243,7 +242,7 @@ $id=$_SESSION["id"];
 							}
 							echo("</tbody></table>");	
 							//echo("</div>");
-							echo("<div class='alert alert-primary' role='alert'>It might take some time for your job in queue to start after a printer is free.<br>(After every print the printer has to cool down)</div>");
+							echo("<div class='alert alert-dark' role='alert'>Es kann einen Moment dauern bis der Druckvorgang startet, da der Drucker nach jedem Druck abkühlen muss.</div>");
 						}
 					?>
 					<?php
@@ -261,7 +260,7 @@ $id=$_SESSION["id"];
 							//echo('</div>');
 						}
 						else
-							echo("<div class='alert alert-primary' role='alert'>Info of your jobs will be displayed here if any are available.</div>");
+							echo("<div class='alert alert-dark' role='alert'>Informationen zu deinem Auftrag werden hier gezeigt. </div>");
 					?>				
 				</div>
 			</div>
