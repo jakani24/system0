@@ -58,7 +58,7 @@
 	<div id="content"></div>
 
 	<head>
-	  <title>Print a file</title>
+	  <title>Datei drucken</title>
 	
 	</head>
 
@@ -128,7 +128,7 @@
 				mysqli_stmt_fetch($stmt);	
 				if($free!=1 or $status!=0)
 				{
-					echo("<center>Fatale error! The printer is not available. Please trie again later or trie use another printer</center>");
+					echo("<center>Fehler! Der Drucker ist zur Zeit nicht verfügbar. Warte einen Moment oder versuche es mit einem anderen Drucker erneut. </center>");
 					sys0_log("Could not start job for ".$_SESSION["username"]." with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
 					exit;
 				}	
@@ -145,24 +145,24 @@
 					//if(in_array($filetype,$unwanted_ft))
 					if(!in_array($filetype,$ok_ft))
 					{
-						echo "Sorry, this file extensions is not allowed!";
+						echo "Das Dateiformat wird nicht unterstüzt. ";
 						sys0_log("Could not upload file for ".$_SESSION["username"]." because of unknown file extension",$_SESSION["username"],"PRINT::UPLOAD::FILE::FAILED");//notes,username,type
 					}
 					else
 					{
 						if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
-							echo "<center>Success! The file ".  basename( $_FILES['file_upload']['name']). " has been uploaded</center>";
-							echo("<center>Sending file to 3D-printer...</center>");
+							echo("<div class='alert alert-success' role='alert'>Erfolg! Die Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen.</div>");
+							echo("<div class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div>");
 							exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
 							//file is on printer and ready to be printed
 							$userid=$_SESSION["id"];
-							echo("<center>File sent and printer job started.<br>system0 uploader done. Thank you!</center>");
+							echo("<div class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div>");
 							sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
 							$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
 							$json=json_decode($fg,true);
 							if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
 							{
-								echo("<center><br><br><p style='color:red'>There was an error starting the print job for your file!<br>The error is on our machine or printer, so please wait and trie again in some time!<br></p></center>");
+								echo("<div class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgagn konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div>");
 								sys0_log("Could not start job for ".$_SESSION["username"]."with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
 							}
 							else
@@ -174,7 +174,7 @@
 						}
 						else
 						{
-							echo "There was an error uploading the file, please try again! path:".$path;
+							echo("<div class='alert alert-danger' role='alert'>Ein Fehler beim Uploaden der Datei ist aufgetreten! Versuche es erneut! </div>");
 						}
 					}
 					unset($_FILES['file']);
@@ -187,7 +187,7 @@
 		<div class="container d-flex align-items-center justify-content-center">
 			<div class="text-center mt-5">
 				
-				<h1>Print a file</h1>
+				<h1>datei drucken</h1>
 				<form class="mt-5" enctype="multipart/form-data" method="POST" action="">
 					<div class="form-group">
 						<div class="custom-file">
@@ -237,7 +237,7 @@
 						</select>
 					</div>
 					<br><br>
-					<input type="submit" class="btn btn-dark" value="Print file">
+					<input type="submit" class="btn btn-dark mb-5" value="Print file">
 				</form>
 			</div>
 		</div>
