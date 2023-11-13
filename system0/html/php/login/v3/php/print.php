@@ -241,6 +241,7 @@
 				</form>
 			</div>
 		</div>
+		<br>
 	<div id="footer"></div>
 
 </body>
