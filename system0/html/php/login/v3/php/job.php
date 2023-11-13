@@ -209,7 +209,7 @@ function load_user()
 					$cnt--;
 				}
 				echo("");	
-				echo("Es kann einen Moment dauern bis der Druckvorgang startet, da der Drucker vor jedem Druck abkühlen muss. ");
+				echo("Es kann einen Moment dauern bis der Druckvorgang startet, da der Drucker nach jedem Druck abkühlen muss. ");
 			?>
 			<?php
 				test_queue($link); //test for a free printer. If any printe ris free and there are jobs in queue, push job to printer
