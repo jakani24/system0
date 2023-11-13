@@ -34,11 +34,17 @@ $id=$_SESSION["id"];
 		$(document).ready(function(){
 	   	$('#content').load("/system0/html/php/login/v3/html/admin_page.html");
 		});
+		$(document).ready(function(){
+   		$('#footer').load("/system0/html/php/login/v3/html/footer.html");
+		});
 	}
 	function load_user()
 	{
 		$(document).ready(function(){
 	   	$('#content').load("/system0/html/php/login/v3/html/user_page.html");
+		});
+		$(document).ready(function(){
+   		$('#footer').load("/system0/html/php/login/v3/html/footer.html");
 		});
 	}
 	</script>
@@ -59,8 +65,7 @@ $id=$_SESSION["id"];
 		<div class="container-fluid">
 			<div class="row" style="height: 50vh;">
 				<div class="col-md-12 d-flex justify-content-center align-items-center">
-					<button type="button" href="print.php" class="btn btn-primary btn-lg mx-5" onclick="location.href = 'print.php';">Print a file</button>
-					<button type="button" href="print.php" class="btn btn-primary btn-lg mx-5" onclick="location.href = 'print.php';">Print a file</button>
+					<button type="button" href="print.php" class="btn btn-dark btn-lg mx-5" onclick="location.href = 'print.php';">Datei drucken</button>
 				</div>
 			</div>
 			<div class="row" style="height: 50vh;">
@@ -177,13 +182,13 @@ $id=$_SESSION["id"];
 								$stmt = mysqli_prepare($link, $sql);					
 								mysqli_stmt_execute($stmt);
 								mysqli_stmt_store_result($stmt);
-								mysqli_stmt_bind_result($stmt, $id,$url,$apikey,$cancel);
+								mysqli_stmt_bind_result($stmt, $printer_id,$url,$apikey,$cancel);
 								mysqli_stmt_fetch($stmt);
 								//echo("curl $url/api/job?apikey=$apikey > /var/www/html/system0/html/user_files/$username/json.json");
 								exec("curl --max-time 10 $url/api/job?apikey=$apikey > /var/www/html/system0/html/user_files/$username/json.json");
 								$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
 								$json=json_decode($fg,true);
-								$last_id=$id;
+								$last_id=$printer_id;
 								//var_dump($json);
 								//echo($fg);
 								
@@ -192,21 +197,21 @@ $id=$_SESSION["id"];
 									$progress=-$progress;
 								$file=$json['job']['file']['name'];
 								if($progress==100)
-									echo("<tr><td>$id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$id'><input type='submit' value='free'  name='free'> </form></td><td>Job already finished</td><td><form method='POST' action='new_main.php'><input type='submit' value='detailes'> </form></td></tr>");
+									echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><input type='submit' value='free'  name='free'> </form></td><td>Job already finished</td><td><form method='POST' action='new_main.php'><input type='submit' value='detailes'> </form></td></tr>");
 								else if($cancel==1)
-									echo("<tr><td>$id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$id'><input type='submit' value='free'  name='free'> </form></td><td>Job cancelled</td><td><form method='POST' action='new_main.php'><input type='submit' value='detailes'> </form></td></tr>");
+									echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><input type='submit' value='free'  name='free'> </form></td><td>Job cancelled</td><td><form method='POST' action='new_main.php'><input type='submit' value='detailes'> </form></td></tr>");
 								else
-									echo("<tr><td>$id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$id'><input type='submit' value='cancel'  name='cancel'> </form></td><td><form method='POST' action='new_main.php'><input type='submit' value='detailes'> </form></td></tr>");
+									echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><input type='submit' value='cancel'  name='cancel'> </form></td><td><form method='POST' action='new_main.php'><input type='submit' value='detailes'> </form></td></tr>");
 					 			
 								$cnt--;
 							}
 							echo("</tbody></table>");
 							//echo("</div>");
-							echo("<div class='alert alert-primary' role='alert'>free your printer after you've taken out your print!</div>");
+							echo("<div class='alert alert-dark' role='alert'>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde.</div>");
 						}
 						else
 						{
-							echo("<div class='alert alert-primary' role='alert'>running jobs and queue items will be displayed here if any are available.</div>");
+							echo("<div class='alert alert-dark' role='alert'>Laufende Vorgänge werden hier aufgelistet.</div>");
 						}
 					?>	
 					<!-- list queue -->
@@ -222,26 +227,28 @@ $id=$_SESSION["id"];
 						mysqli_stmt_fetch($stmt);	
 						//echo($cnt);
 						//echo '<div style="overflow-x: auto;">';
+						$last_id=0;
 						if($cnt!=0){
-							echo("<table class='table'><thead><tr><th>file</th><th>remove from queue</th></tr></thead><tbody>");
+							echo("<table class='table'><thead><tr><th>Datei</th><th>Aus der Warteschlange entfernen</th></tr></thead><tbody>");
 							while($cnt!=0)
 							{
-								$sql="select id,filepath from queue where from_userid=$userid";
+								$sql="select id,filepath from queue where from_userid=$userid AND id>$last_id ORDER BY id";
 								$cancel=0;
 								$stmt = mysqli_prepare($link, $sql);	
 								echo mysqli_error($link);				
 								mysqli_stmt_execute($stmt);
 								mysqli_stmt_store_result($stmt);
-								mysqli_stmt_bind_result($stmt, $id,$filepath);
+								mysqli_stmt_bind_result($stmt, $queue_id,$filepath);
 								mysqli_stmt_fetch($stmt);
 								$filepath=basename($filepath);
-								echo("<tr><td>$filepath</td><td><form method='POST' action='?remove=$id'><input type='submit' value='remove'  name='remove'> </form></td></tr>");
+								$last_id=$queue_id;
+								echo("<tr><td>$filepath</td><td><form method='POST' action='?remove=$queue_id'><input type='submit' value='remove'  name='remove'> </form></td></tr>");
 					 			
 								$cnt--;
 							}
 							echo("</tbody></table>");	
 							//echo("</div>");
-							echo("<div class='alert alert-primary' role='alert'>It might take some time for your job in queue to start after a printer is free.<br>(After every print the printer has to cool down)</div>");
+							echo("<div class='alert alert-dark' role='alert'>Es kann einen Moment dauern bis der Druckvorgang startet, da der Drucker nach jedem Druck abkühlen muss.</div>");
 						}
 					?>
 					<?php
@@ -259,11 +266,12 @@ $id=$_SESSION["id"];
 							//echo('</div>');
 						}
 						else
-							echo("<div class='alert alert-primary' role='alert'>Info of your jobs will be displayed here if any are available.</div>");
+							echo("<div class='alert alert-dark' role='alert'>Informationen zu deinem Auftrag werden hier gezeigt. </div>");
 					?>				
 				</div>
 			</div>
 		</div>
+	<br>
 		<div id="footer"></div>
 	</body>
 
