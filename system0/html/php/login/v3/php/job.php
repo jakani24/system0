@@ -222,7 +222,7 @@ function load_user()
 			</div>
     		</div>
 	</div>
-	<div id="footer"></div>
+	<div class="mt-5" id="footer"></div>
 	
 </body>
 
