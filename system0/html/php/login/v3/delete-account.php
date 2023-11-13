@@ -18,7 +18,10 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <title>Account settings</title>
        <link rel="stylesheet" href="/system0/html/php/login/css/style.css">
     </head>
-<?php $color=$_SESSION["color"]; ?>
+<?php 
+  $color=$_SESSION["color"]; 
+ 	include "/var/www/html/system0/html/php/login/v3/components.php";
+ ?>
 <?php echo(" <body style='background-color:$color'> ");?>
 
         <script src="/system0/html/php/login/v3/js/load_page.js"></script>
@@ -49,40 +52,43 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             }
         ?>
 
-        <div id="content"></div>
-        <center>
-            <p><br><br>When you delete your account the following will happen:<br>
-            <br>
-            -We will delete all your data from our systems.<br>
-            -We will delete your cloud as well as your voctr files.<br>
-            -Your username will be freed. This means anyone can reregister with your username.
-            </p>
-            <form action="" method="post">
-            <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-              <label for="fname">To continue please type in your username:</label><br>
-              <input type="text" id="username" name="username">
-              <input type="submit" value="Submit">
-            </form>
-            
-            <?php
-                if(!empty($_POST["username"]))
-                {
-                    if($_POST["username"]===$_SESSION["username"])
-                    {
-                        $username_td=$_SESSION["username"];
-                        $username_td=htmlspecialchars($username_td);
-                        $sql="DELETE FROM users WHERE username = '$username_td';";
-                        //echo($sql);
-                        $stmt = mysqli_prepare($link, $sql);
-                        mysqli_stmt_execute($stmt);
-                        header("LOCATION:/php/login/v3/logout.php");
-                    }
-                    else
-                    {
-                        echo '<br><br><div class="alert alert-danger">Usernames did not match!</div>';
-                    }
-                }
-            ?>
-        </center>
+        <div class="container mt-5">
+         <div class="row justify-content-center">
+             <div class="col-md-8 text-center">
+                 <div id="content">
+                     <p class="mt-4">When you delete your account, the following will happen:</p>
+                     <ul class="list-unstyled">
+                         <li>- We will delete all your data from our systems.</li>
+                         <li>- We will delete your cloud as well as your voctr files.</li>
+                         <li>- Your username will be freed. This means anyone can re-register with your username.</li>
+                     </ul>
+                 </div>
+                 <form action="" method="post" class="mt-4">
+                     <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+                     <div class="mb-3">
+                         <label for="username" class="form-label">To continue, please type in your username:</label>
+                         <input type="text" id="username" name="username" class="form-control" required>
+                     </div>
+                     <button type="submit" class="btn btn-primary">Submit</button>
+                 </form>
+ 
+                 <?php
+                 if (!empty($_POST["username"])) {
+                     if ($_POST["username"] === $_SESSION["username"]) {
+                         $username_td = $_SESSION["username"];
+                         $username_td = htmlspecialchars($username_td);
+                         $sql = "DELETE FROM users WHERE username = '$username_td';";
+                         //echo($sql);
+                         $stmt = mysqli_prepare($link, $sql);
+                         mysqli_stmt_execute($stmt);
+                         header("LOCATION:/php/login/v3/logout.php");
+                     } else {
+                         echo '<div class="alert alert-danger mt-4">Usernames did not match!</div>';
+                     }
+                 }
+                 ?>
+             </div>
+         </div>
+     </div>
     </body>
 </html>

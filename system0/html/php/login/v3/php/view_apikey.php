@@ -72,6 +72,7 @@ function load_user()
     </div>
   </div>
 </div>
+<div id="footer"></div>
 	
 
 </body>

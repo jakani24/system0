@@ -83,7 +83,7 @@ $id=$_SESSION["id"];
 							}
 							else
 							{
-								$sql="update printer set free=1,printing=0,cancel=0 ,used_by_userid=0 where id=1";
+								$sql="update printer set free=1,printing=0,cancel=0 ,used_by_userid=0 where id=$printer_id";
 								$stmt = mysqli_prepare($link, $sql);					
 								mysqli_stmt_execute($stmt);
 								sys0_log("User ".$_SESSION["username"]." freed printer ".$_GET["free"]."",$_SESSION["username"],"JOB::PRINTERCTRL::FREE");//notes,username,type
@@ -155,7 +155,7 @@ $id=$_SESSION["id"];
 						$cnt_of_job=$cnt;
 						//echo($cnt);
 						//echo '<div style="overflow-x: auto;">';
-						if($count!=0){
+						if($cnt!=0){
 							echo(
 								"<table class='table'>
 					 				<thead>
@@ -169,9 +169,10 @@ $id=$_SESSION["id"];
 		    							</tr>
 		  							</thead>
 						 			<tbody>");
+							$last_id=0;
 							while($cnt!=0)
 							{
-								$sql="select id,printer_url,apikey,cancel from printer where used_by_userid=$id";
+								$sql="select id,printer_url,apikey,cancel from printer where used_by_userid=$id AND id>$last_id ORDER BY id";
 								$cancel=0;
 								$stmt = mysqli_prepare($link, $sql);					
 								mysqli_stmt_execute($stmt);
@@ -182,6 +183,7 @@ $id=$_SESSION["id"];
 								exec("curl --max-time 10 $url/api/job?apikey=$apikey > /var/www/html/system0/html/user_files/$username/json.json");
 								$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
 								$json=json_decode($fg,true);
+								$last_id=$id;
 								//var_dump($json);
 								//echo($fg);
 								
@@ -220,7 +222,7 @@ $id=$_SESSION["id"];
 						mysqli_stmt_fetch($stmt);	
 						//echo($cnt);
 						//echo '<div style="overflow-x: auto;">';
-						if($count!=0){
+						if($cnt!=0){
 							echo("<table class='table'><thead><tr><th>file</th><th>remove from queue</th></tr></thead><tbody>");
 							while($cnt!=0)
 							{
@@ -262,6 +264,7 @@ $id=$_SESSION["id"];
 				</div>
 			</div>
 		</div>
+		<div id="footer"></div>
 	</body>
 
 
