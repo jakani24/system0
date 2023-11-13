@@ -63,7 +63,7 @@ function load_admin()
 					<label class="my-3" for="email">Deine Email für weitere Nachfragen (optional)</label>
 					<input type="text" class="form-control mx-auto" id="email" name="email" style="width:50%;">
 				  </div>
-				  <button type="submit" class="btn btn-primary my-5">abschicken</button>
+				  <button type="submit" class="btn btn-dark my-5">abschicken</button>
 				</form>
 				<?php
 				  if(isset($_GET["sent"]))
