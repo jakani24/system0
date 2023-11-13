@@ -186,8 +186,8 @@
 					<div class="form-group">
 						<div class="custom-file">
 
-							<label for="file_upload">Your file to print</label>
-							<input type="file" class="form-control-file" name="file_upload" required>
+							<label for="file_upload" class="form-label">Zu druckende Datei</label>
+							<input type="file" class="form-control" type="file" name="file_upload" required>  
 						</div>
 					</div>
 					<br><br>
@@ -231,7 +231,7 @@
 						</select>
 					</div>
 					<br><br>
-					<input type="submit" class="btn btn-primary" value="Print file">
+					<input type="submit" class="btn btn-dark" value="Print file">
 				</form>
 			</div>
 		</div>
