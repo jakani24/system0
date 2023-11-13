@@ -201,11 +201,11 @@ $id=$_SESSION["id"];
 							}
 							echo("</tbody></table>");
 							//echo("</div>");
-							echo("<div class='alert alert-primary' role='alert'>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde.</div>");
+							echo("<div class='alert alert-dark' role='alert'>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde.</div>");
 						}
 						else
 						{
-							echo("<div class='alert alert-primary' role='alert'>Laufende Vorgänge werden hier aufgelistet.</div>");
+							echo("<div class='alert alert-dark' role='alert'>Laufende Vorgänge werden hier aufgelistet.</div>");
 						}
 					?>	
 					<!-- list queue -->
@@ -240,7 +240,7 @@ $id=$_SESSION["id"];
 							}
 							echo("</tbody></table>");	
 							//echo("</div>");
-							echo("<div class='alert alert-primary' role='alert'>Es kann einen Moment dauern bis der Druckvorgang startet, da der Drucker nach jedem Druck abkühlen muss.</div>");
+							echo("<div class='alert alert-dark' role='alert'>Es kann einen Moment dauern bis der Druckvorgang startet, da der Drucker nach jedem Druck abkühlen muss.</div>");
 						}
 					?>
 					<?php
@@ -258,7 +258,7 @@ $id=$_SESSION["id"];
 							//echo('</div>');
 						}
 						else
-							echo("<div class='alert alert-primary' role='alert'>Informationen zu deinem Auftrag werden hier gezeigt. </div>");
+							echo("<div class='alert alert-dark' role='alert'>Informationen zu deinem Auftrag werden hier gezeigt. </div>");
 					?>				
 				</div>
 			</div>
