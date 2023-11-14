@@ -13,7 +13,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Account settings</title>
+  <title>Account Einstellungen</title>
 </head>
 
 <?php 
@@ -78,25 +78,26 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 	<div id="content"></div>
     <!--Account things-->
 		<div class="container mt-5">
-		  <div class="row justify-content-center">
-			<div class="col-md-6 p-4">
-				<h1>Account settings</h1>
-				<br><br>
-				<a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/reset-password.php" role="button">Passwort zurücksetzen</a>
-				<a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/delete-account.php" role="button">Account und alle dazugehörigen Daten löschen</a>
-				<br><a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/privacy-policy.php" role="button">Unsere Privacy Policy</a>
-				<br>
-				<a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/disclaimer.php" role="button">Dislcaimer</a>
-				<br><br>
-				<form method="POST" action="#">
-					<div class="mb-3">
-					  <label for="color" class="form-label">Hintergrundfarbe</label>
-						<input type="color" name="color" class="form-control form-control-color selector" id="color" value="<?php echo $color; ?>" title="Hintergrundfarbe wählen">
-					</div>
-					<button type="submit" class="btn btn-dark">Submit</button>
-				  </form>
+			<div class="row justify-content-center">
+				<div class="col-md-6 p-4">
+					<h1 class="mb-2">Account Einstellungen</h1>
+					<a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/reset-password.php" role="button">Passwort zurücksetzen</a><br>
+					<a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/delete-account.php" role="button">Account und alle dazugehörigen Daten löschen</a>
+					<br><a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/privacy-policy.php" role="button">Unsere Privacy Policy</a>
+					<br>
+					<a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/disclaimer.php" role="button">Dislcaimer</a>
+					<br><br>
+					<form method="POST" action="#">
+						<div class="mb-3">
+					  	<label for="color" class="form-label">Hintergrundfarbe</label>
+							<input type="color" name="color" class="form-control form-control-color selector" id="color" value="<?php echo $color; ?>" title="Hintergrundfarbe wählen">
+						</div>
+						<button type="submit" class="btn btn-dark">Submit</button>
+				  	</form>
 			
-			</div>
-		  </div>
+				</div>
+		  	</div>
 		</div>
+	<div class="mt-5" id="footer"></div>
+
 </html>
