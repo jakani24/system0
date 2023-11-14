@@ -132,7 +132,7 @@ function load_user()
 					$last_id=0;					
 					while($cnt!=0)
 					{
-						$sql="select id,printer_url,apikey,cancel from printer where free=0 where id>$last_id ORDER BY id";
+						$sql="select id,printer_url,apikey,cancel from printer where free=0 and id>$last_id ORDER BY id";
 						$cancel=0;
 						$stmt = mysqli_prepare($link, $sql);					
 						mysqli_stmt_execute($stmt);
