@@ -198,7 +198,7 @@
 					</div>
 					<br><br>
 					<div class="form-group">
-						<label class="my-3" for="printer">Printer to print</label>
+						<label class="my-3" for="printer">Druckerauswahl</label>
 						<select class="form-control selector" name="printer" required>
 							<!-- PHP to retrieve printers -->
 							<?php
@@ -237,7 +237,7 @@
 						</select>
 					</div>
 					<br><br>
-					<input type="submit" class="btn btn-dark mb-5" value="Print file">
+					<input type="submit" class="btn btn-dark mb-5" value="Datei drucken">
 				</form>
 			</div>
 		</div>
