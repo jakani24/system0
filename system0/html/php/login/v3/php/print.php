@@ -24,7 +24,7 @@
 		function load_admin()
 		{
 			$(document).ready(function(){
-		   	$('#content').load("/system0/html/php/login/v3/html/admin_page.php");
+		   	$('#content').load("/system0/html/php/login/v3/html/admin_page.html");
 			});
 			$(document).ready(function(){
    		$('#footer').load("/system0/html/php/login/v3/html/footer.html");
@@ -33,7 +33,7 @@
 		function load_user()
 		{
 			$(document).ready(function(){
-		   	$('#content').load("/system0/html/php/login/v3/html/user_page.php");
+		   	$('#content').load("/system0/html/php/login/v3/html/user_page.html");
 			});
 			$(document).ready(function(){
    		$('#footer').load("/system0/html/php/login/v3/html/footer.html");
