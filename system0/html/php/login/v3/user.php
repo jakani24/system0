@@ -32,7 +32,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION[
      	function load_user()
         {
             $(document).ready(function(){
-            $('#content').load("/system0/html/php/login/v3/html/user_page.php");
+            $('#content').load("/system0/html/php/login/v3/html/user_page.html");
             });
         }
         load_user();

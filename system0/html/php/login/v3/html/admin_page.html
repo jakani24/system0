@@ -27,10 +27,14 @@
                 <i class="fa-solid fa-bars" style="color: #2E6A2F;"></i>
               </a>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <a class="dropdown-item" href="/system0/html/php/login/v3/php/new_main.php">Startseite</a>
-                <a class="dropdown-item" href="/system0/html/php/login/v3/php/bugreport.php">Fehler melden</a>
-                <a class="dropdown-item" href="/system0/html/php/login/v3/php/print.php">Datei drucken</a>
-                <!--<a class="dropdown-item" href="/system0/html/php/login/v3/php/job.php">Meine Druckvorgänge</a>-->
+		<a class="dropdown-item" href="/system0/html/php/login/v3/php/bugreport.php">Fehler melden</a>
+		<a class="dropdown-item" href="/system0/html/php/login/v3/php/create_admin.php">Neue Admin erstellen</a>
+		<a class="dropdown-item" href="/system0/html/php/login/v3/php/remove_user.php">User enfernen</a>
+		<a class="dropdown-item" href="/system0/html/php/login/v3/php/print.php">Datei drucken</a>
+		<!--<a class="dropdown-item" href="/system0/html/php/login/v3/php/job.php">Meine Druckvorgänge</a>-->
+		<a class="dropdown-item" href="/system0/html/php/login/v3/php/all_jobs.php">Alle Druckvorgänge</a>
+		<a class="dropdown-item" href="/system0/html/php/login/v3/php/view_log.php">View system0 Log</a>
+		<a class="dropdown-item" href="/system0/html/php/login/v3/php/view_apikey.php">View the system0 API Key</a>
               </ul>
             </li>
           </ul>
@@ -54,10 +58,33 @@
           <div class="modal-body">
             <?php 
               $color=$_SESSION["color"]; 
+              include "/var/www/html/system0/html/php/login/v3/components.php";
             ?>
+            <?php echo(" <body style='background-color:$color'> ");?>
+
+            <script src="/system0/html/php/login/v3/js/load_page.js"></script>
+            <script>
+              function load_user() {
+                $(document).ready(function(){
+                  $('#content').load("/system0/html/php/login/v3/html/user_page.html");
+                });
+              }
+              function load_admin() {
+                $(document).ready(function(){
+                  $('#content').load("/system0/html/php/login/v3/html/admin_page.html");
+                });
+              }
+            </script>
 
             <?php
               $username=$_SESSION["username"];
+              $role=$_SESSION["role"];
+              if($role=="user") {
+                echo "<script type='text/javascript' >load_user()</script>";
+              }
+              if($role=="admin") {
+                echo "<script type='text/javascript' >load_admin()</script>";
+              }
             ?>
 
             <?php
@@ -113,4 +140,3 @@
   </div>
 </body>
 </html>
-
