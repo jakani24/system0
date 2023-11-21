@@ -26,7 +26,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION[
      	function load_user()
         {
             $(document).ready(function(){
-            $('#content').load("/system0/html/php/login/v3/html/admin_page.html");
+            $('#content').load("/system0/html/php/login/v3/html/admin_page.php");
             });
         }
         load_user();
