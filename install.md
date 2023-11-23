@@ -42,6 +42,13 @@ The 'api' table:<br>
   <tr><td>id</td><td>int</td><td>NO</td><td>PRI</td><td>NULL</td><td>auto_increment</td></tr>
   <tr><td>apikey</td><td>varchar(255)</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
  </table>
+
+ The 'print_key' table:<br>
+<table>
+  <tr><th>Field</th><th>Type</th><th>NULL</th><th>Key</th><th>Default</th><th>Extra</th>  </tr>
+  <tr><td>id</td><td>int</td><td>NO</td><td>PRI</td><td>NULL</td><td>auto_increment</td></tr>
+  <tr><td>print_key</td><td>varchar(50)</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
+ </table>
 2) Install apache2 webserver.<br>
 3) Copy the system0 folder into /var/www/html.<br>
 4) Grant an sql user all permissions on your tables and add the credentials of this user in "system0/html/php/login/v3/php/config.php".<br>
