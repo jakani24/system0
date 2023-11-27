@@ -77,7 +77,7 @@
 			//url=http://octopiX.local/webcam/?action=snapshot
 			$path = "/var/www/html/system0/html/user_files/$username/image.jpeg";
 			exec("wget \"http://$printer_url/webcam/?action=snapshot\" -O $path");
-			echo("<img  height='135' width='240' src='/system0/html/user_files/$username/image.jpeg'>");
+			echo("<img style='transform: rotate(180deg);' height='135' width='240' src='/system0/html/user_files/$username/image.jpeg'>");
 		?>
 		<script>
 			setInterval(function() {
