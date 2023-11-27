@@ -80,7 +80,7 @@ $id=$_SESSION["id"];
 			
 						$cnt--;
 						echo("</tbody></table>");
-						echo("<iframe height='135' width='240' src='$url/webcam/?action=stream'></iframe>");
+						echo("<iframe height='135' width='240' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$id'></iframe>");
 						echo("<br><br>");
 					}
 					//echo("free your printer after you've taken out your print!</div>");
