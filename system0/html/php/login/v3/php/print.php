@@ -207,7 +207,7 @@
 		<div class="container d-flex align-items-center justify-content-center">
 			<div class="text-center mt-5">
 				
-				<h1>datei drucken</h1>
+				<h1>Datei drucken</h1>
 				<form class="mt-5" enctype="multipart/form-data" method="POST" action="">
 					<div class="form-group">
 						<div class="custom-file">
@@ -218,7 +218,7 @@
 					</div>
 					<br><br>
 					<div class="form-group">
-						<label class="my-3" for="printer">Printer to print</label>
+						<label class="my-3" for="printer">Druckerauswahl</label>
 						<select class="form-control selector" name="printer" required>
 							<!-- PHP to retrieve printers -->
 							<?php
@@ -259,7 +259,7 @@
 					<br><br>
 					<label class="my-3" for="print_key">Druckschlüssel (Kann im Sekretariat gekauft werden)</label>
 					<input type="text" class="form-control text" id="print_key" name="print_key" placeholder="z.B. A3Rg4Hujkief"><br>
-					<input type="submit" class="btn btn-dark mb-5" value="Print file">
+					<input type="submit" class="btn btn-dark mb-5" value="Datei drucken">
 				</form>
 			</div>
 		</div>
