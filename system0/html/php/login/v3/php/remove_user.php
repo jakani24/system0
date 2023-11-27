@@ -184,7 +184,7 @@ function load_admin()
 		}
   	echo('</select>');
   	//echo('<br><input type="text" value="ban reason" id="reason" name="reason" />');
-  	echo('<select name="reason" id="reason">');
+  	echo('<select name="reason" id="reason" class="form-select">');
   	echo('<option reason="Hacking">Hacking</option>');
   	echo('<option reason="Illegal activities">Illegal activities</option>');
   	echo('<option reason="Misuse of service">Misuse of service</option>');
@@ -197,7 +197,7 @@ function load_admin()
    									</div>
 										<div class="col">
 									  		<div class="d-flex justify-content-center">
-												<button type="submit" class="btn btn-danger">Send</button>
+												<button type="submit" class="btn btn-danger">Senden</button>
 									  		</div>
 										</div>
 									</div>
