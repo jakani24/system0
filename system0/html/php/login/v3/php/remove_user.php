@@ -259,8 +259,8 @@ function load_admin()
 				</div>
 			</div>
 		</form>
-	</div>');
-	<div id="footer"></div>
+	</div><div id="footer"></div>');
+	
     // Close connection
     mysqli_close($link);
 

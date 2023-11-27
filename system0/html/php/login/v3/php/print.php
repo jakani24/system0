@@ -150,31 +150,51 @@
 					}
 					else
 					{
-						if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
-							echo("<div class='alert alert-success' role='alert'>Erfolg! Die Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen.</div>");
-							echo("<div class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div>");
-							exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
-							//file is on printer and ready to be printed
-							$userid=$_SESSION["id"];
-							echo("<div class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div>");
-							sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
-							$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
-							$json=json_decode($fg,true);
-							if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
-							{
-								echo("<div class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgagn konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div>");
-								sys0_log("Could not start job for ".$_SESSION["username"]."with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
+						//check if print key is valid:
+						$print_key=htmlspecialchars($_POST["print_key"]);
+						$sql="SELECT id from print_key where print_key='$print_key'";
+						$stmt = mysqli_prepare($link, $sql);
+						mysqli_stmt_execute($stmt);
+						mysqli_stmt_store_result($stmt);
+							
+						if(mysqli_stmt_num_rows($stmt) == 1){
+						mysqli_stmt_close($stmt);
+			
+						
+							if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
+								echo("<div class='alert alert-success' role='alert'>Erfolg! Die Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen.</div>");
+								echo("<div class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div>");
+								exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
+								//file is on printer and ready to be printed
+								$userid=$_SESSION["id"];
+								echo("<div class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div>");
+								sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
+								$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
+								$json=json_decode($fg,true);
+								if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
+								{
+									echo("<div class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgang konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div>");
+									sys0_log("Could not start job for ".$_SESSION["username"]."with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
+								}
+								else
+								{
+									$sql="update printer set free=0, printing=1, used_by_userid=$userid where id=$printer_id";
+									$stmt = mysqli_prepare($link, $sql);					
+									mysqli_stmt_execute($stmt);
+									//delete printer key:
+									$sql="DELETE from print_key where print_key='$print_key'";
+									$stmt = mysqli_prepare($link, $sql);
+									mysqli_stmt_execute($stmt);	
+									mysqli_stmt_close($stmt);	
+								}
 							}
 							else
 							{
-								$sql="update printer set free=0, printing=1, used_by_userid=$userid where id=$printer_id";
-								$stmt = mysqli_prepare($link, $sql);					
-								mysqli_stmt_execute($stmt);
+								echo("<div class='alert alert-danger' role='alert'>Ein Fehler beim Uploaden der Datei ist aufgetreten! Versuche es erneut! </div>");
 							}
 						}
-						else
-						{
-							echo("<div class='alert alert-danger' role='alert'>Ein Fehler beim Uploaden der Datei ist aufgetreten! Versuche es erneut! </div>");
+						else{
+							echo("<div class='alert alert-danger' role='alert'>Der Druckschlüssel ist nicht gültig. Evtl. wurde er bereits benutzt. Versuche es erneut! </div>");
 						}
 					}
 					unset($_FILES['file']);
@@ -237,6 +257,8 @@
 						</select>
 					</div>
 					<br><br>
+					<label class="my-3" for="print_key">Druckschlüssel (Kann im Sekretariat gekauft werden)</label>
+					<input type="text" class="form-control text" id="print_key" name="print_key" placeholder="z.B. A3Rg4Hujkief"><br>
 					<input type="submit" class="btn btn-dark mb-5" value="Datei drucken">
 				</form>
 			</div>
