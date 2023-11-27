@@ -106,21 +106,32 @@
             <div id="content"></div>
 
             <!-- Account things -->
-            <div class="container mt-5">
-              <div class="row justify-content-center">
+            <div class="container mt-2">
+              <div class="row justify-content-left">
                 <div class="col-md-6 p-4">
                   <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/reset-password.php" role="button">Passwort zurücksetzen</a><br>
-                  <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/delete-account.php" role="button">Account und alle dazugehörigen Daten löschen</a>
-                  <br><a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/privacy-policy.php" role="button">Unsere Privacy Policy</a>
+                  <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/delete-account.php" role="button">Account löschen</a>
+                  <br>
+                  <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/privacy-policy.php" role="button">Datenschutzrichtlinien</a>
                   <br>
                   <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/disclaimer.php" role="button">Dislcaimer</a>
                   <br><br>
                   <form method="POST" action="#">
-                    <div class="mb-3">
-                      <label for="color" class="form-label">Hintergrundfarbe</label>
-                      <input type="color" name="color" class="form-control form-control-color selector" id="color" value="<?php echo $color; ?>" title="Hintergrundfarbe wählen">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-sm">
+                          <label for="color" class="form-label">Hintergrundfarbe</label>
+                        </div>
+                        <div class="col-sm">
+                          <input type="color" name="color" class="form-control form-control-color selector" id="color" value="<?php echo $color; ?>" title="Hintergrundfarbe wählen">
+                        </div>
+                        <div class="col-sm">
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
                     </div>
-                    <button type="submit" class="btn btn-dark">Submit</button>
+
+                    
                   </form>
                 </div>
               </div>
@@ -128,7 +139,6 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success">Save changes</button>
           </div>
         </div>
       </div>
