@@ -157,7 +157,8 @@
 						mysqli_stmt_execute($stmt);
 						mysqli_stmt_store_result($stmt);
 							
-						if(mysqli_stmt_num_rows($stmt) == 1){
+						//if(mysqli_stmt_num_rows($stmt) == 1){ turned off because user does not need to have a printer key
+						if(true){
 						mysqli_stmt_close($stmt);
 			
 						
@@ -257,8 +258,8 @@
 						</select>
 					</div>
 					<br><br>
-					<label class="my-3" for="print_key">Druckschlüssel (Kann im Sekretariat gekauft werden)</label>
-					<input type="text" class="form-control text" id="print_key" name="print_key" placeholder="z.B. A3Rg4Hujkief"><br>
+					<!--<label class="my-3" for="print_key">Druckschlüssel (Kann im Sekretariat gekauft werden)</label>
+					<input type="text" class="form-control text" id="print_key" name="print_key" placeholder="z.B. A3Rg4Hujkief"><br>-->
 					<input type="submit" class="btn btn-dark mb-5" value="Datei drucken">
 				</form>
 			</div>

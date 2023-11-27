@@ -32,7 +32,7 @@ $id=$_SESSION["id"];
 		<div class="center">
 		      	<h1>Your running Jobs</h1>
 			<br>
-			<button type="button" class="btn btn-primary btn-lg" onclick="location.href = 'job_info_for_new_system.php';">Reload</button>
+			<button type="button" class="btn btn-dark btn-lg" onclick="location.href = 'job_info_for_new_system.php';">Reload</button>
 			<br>
 			<br>
 			<div class="container">
@@ -40,6 +40,7 @@ $id=$_SESSION["id"];
 					$cnt=0;
 					$url="";
 					$apikey="";
+					$printer_id=0;
 					$sql="select count(*) from printer where used_by_userid=$id";
 					$stmt = mysqli_prepare($link, $sql);					
 					mysqli_stmt_execute($stmt);
@@ -51,11 +52,11 @@ $id=$_SESSION["id"];
 					while($cnt!=0)
 					{
 						echo("<table class='table'><thead><tr><th>Keyword</th><th>value</th></tr><t/head></tbody>");
-						$sql="select id,printer_url,apikey from printer where used_by_userid=$id";
+						$sql="select id,printer_url,apikey from printer where used_by_userid=$id AND id>$printer_id order by id";
 						$stmt = mysqli_prepare($link, $sql);					
 						mysqli_stmt_execute($stmt);
 						mysqli_stmt_store_result($stmt);
-						mysqli_stmt_bind_result($stmt, $id,$url,$apikey);
+						mysqli_stmt_bind_result($stmt, $printer_id,$url,$apikey);
 						mysqli_stmt_fetch($stmt);
 						//echo("curl $url/api/job?apikey=$apikey > /var/www/html/system0/html/user_files/$username/json.json");
 						exec("curl --max-time 10 $url/api/job?apikey=$apikey > /var/www/html/system0/html/user_files/$username/json.json");
@@ -80,7 +81,7 @@ $id=$_SESSION["id"];
 			
 						$cnt--;
 						echo("</tbody></table>");
-						echo("<iframe height='135' width='240' src='$url/webcam/?action=stream'></iframe>");
+						echo("<iframe height='135' width='240' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id'></iframe>");
 						echo("<br><br>");
 					}
 					//echo("free your printer after you've taken out your print!</div>");
