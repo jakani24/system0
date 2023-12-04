@@ -7,7 +7,7 @@
   <script>
     function load_footer() {
       $(document).ready(function(){
-        $('#footer').load("/system0/html/php/system0/html/php/login/v3/html/footer.html");
+        $('#footer').load("/system0/html/php/login/v3/html/footer.html");
       });
     }
     load_footer();
@@ -27,10 +27,10 @@
                 <i class="fa-solid fa-bars" style="color: #2E6A2F;"></i>
               </a>
               <ul class="dropdown-menu dropdown-menu-dark">
-                <a class="dropdown-item" href="/system0/html/php/login/v3/php/new_main.php">Startseite</a>
-                <a class="dropdown-item" href="/system0/html/php/login/v3/php/bugreport.php">Fehler melden</a>
-                <a class="dropdown-item" href="/system0/html/php/login/v3/php/print.php">Datei drucken</a>
-                <!--<a class="dropdown-item" href="/system0/html/php/login/v3/php/job.php">Meine Druckvorgänge</a>-->
+   <a class="dropdown-item" href="/system0/html/php/login/v3/php/new_main.php">Startseite</a>
+		<a class="dropdown-item" href="/system0/html/php/login/v3/php/bugreport.php">Fehler melden</a>
+		<a class="dropdown-item" href="/system0/html/php/login/v3/php/print.php">Datei drucken</a>
+
               </ul>
             </li>
           </ul>
@@ -54,34 +54,9 @@
           <div class="modal-body">
             <?php 
               $color=$_SESSION["color"]; 
-              include "/var/www/html/system0/html/php/login/v3/components.php";
+              
             ?>
-            <?php echo(" <body style='background-color:$color'> ");?>
 
-            <script src="/system0/html/php/login/v3/js/load_page.js"></script>
-            <script>
-              function load_user() {
-                $(document).ready(function(){
-                  $('#content').load("/system0/html/php/login/v3/html/user_page.html");
-                });
-              }
-              function load_admin() {
-                $(document).ready(function(){
-                  $('#content').load("/system0/html/php/login/v3/html/admin_page.html");
-                });
-              }
-            </script>
-
-            <?php
-              $username=$_SESSION["username"];
-              $role=$_SESSION["role"];
-              if($role=="user") {
-                echo "<script type='text/javascript' >load_user()</script>";
-              }
-              if($role=="admin") {
-                echo "<script type='text/javascript' >load_admin()</script>";
-              }
-            ?>
 
             <?php
               if(isset($_POST["color"])) {
@@ -106,32 +81,21 @@
             <div id="content"></div>
 
             <!-- Account things -->
-            <div class="container mt-2">
-              <div class="row justify-content-left">
+            <div class="container mt-5">
+              <div class="row justify-content-center">
                 <div class="col-md-6 p-4">
                   <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/reset-password.php" role="button">Passwort zurücksetzen</a><br>
-                  <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/delete-account.php" role="button">Account löschen</a>
-                  <br>
-                  <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/privacy-policy.php" role="button">Datenschutzrichtlinien</a>
+                  <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/delete-account.php" role="button">Account und alle dazugehörigen Daten löschen</a>
+                  <br><a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/privacy-policy.php" role="button">Unsere Privacy Policy</a>
                   <br>
                   <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/disclaimer.php" role="button">Dislcaimer</a>
                   <br><br>
                   <form method="POST" action="#">
-                    <div class="container">
-                      <div class="row">
-                        <div class="col-sm">
-                          <label for="color" class="form-label">Hintergrundfarbe</label>
-                        </div>
-                        <div class="col-sm">
-                          <input type="color" name="color" class="form-control form-control-color selector" id="color" value="<?php echo $color; ?>" title="Hintergrundfarbe wählen">
-                        </div>
-                        <div class="col-sm">
-                          <button type="submit" class="btn btn-success">Submit</button>
-                        </div>
-                      </div>
+                    <div class="mb-3">
+                      <label for="color" class="form-label">Hintergrundfarbe</label>
+                      <input type="color" name="color" class="form-control form-control-color selector" id="color" value="<?php echo $color; ?>" title="Hintergrundfarbe wählen">
                     </div>
-
-                    
+                    <button type="submit" class="btn btn-dark">Submit</button>
                   </form>
                 </div>
               </div>
@@ -139,6 +103,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success">Save changes</button>
           </div>
         </div>
       </div>
@@ -146,4 +111,3 @@
   </div>
 </body>
 </html>
-
