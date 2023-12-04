@@ -52,6 +52,7 @@ else
         ?>
 
          <div id="content"></div>
+
 <div class="mt-2 ml-2">
 	<h1>Privacy Policy</h1>
 	<p>Last updated: March 30, 2023</p>
@@ -221,8 +222,8 @@ else
 	<ul>
 	<li>By email: <a href="mailto:info.jakach@gmail.com" >info.jakach@gmail.com</a></li>
 	</ul>
+
 </div>
-</div>
-</div>
+
 <br><br><br><br>
 <div id="footer"></div>div>

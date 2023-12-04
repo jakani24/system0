@@ -52,7 +52,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION[
 
 	<div id="content"></div>
     <!--Account things-->
-		<div class="container mt-5">
+		<div class="container mt-5" style="height: 95vh;">
 			<div class="row justify-content-center">
 				<div class="col-md-6 p-4">
 					<h1 class="mb-2">Druckschlüssel Generieren</h1>
