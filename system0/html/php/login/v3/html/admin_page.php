@@ -95,20 +95,10 @@
                   <br>
                   <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/disclaimer.php" role="button">Dislcaimer</a>
                   <br><br>
-                  <form method="POST" action="#">
-                    <div class="mb-3">
-                      <label for="color" class="form-label">Hintergrundfarbe</label>
-                      <input type="color" name="color" class="form-control form-control-color selector" id="color" value="<?php echo $color; ?>" title="Hintergrundfarbe wählen">
-                    </div>
-                    <button type="submit" class="btn btn-dark">Submit</button>
-                  </form>
+
                 </div>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success">Save changes</button>
           </div>
         </div>
       </div>
