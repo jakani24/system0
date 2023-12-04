@@ -22,13 +22,13 @@ else
             function load_user()
             {
                 $(document).ready(function(){
-                $('#content').load("/system0/html/php/login/v3/html/user_page.html");
+                $('#content').load("/system0/html/php/login/v3/html/user_page.php");
                 });
             }
             function load_admin()
             {
                 $(document).ready(function(){
-                $('#content').load("/system0/html/php/login/v3/html/admin_page.html");
+                $('#content').load("/system0/html/php/login/v3/html/admin_page.php");
                 });
             }
         </script>

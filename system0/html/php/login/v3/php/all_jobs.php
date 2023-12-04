@@ -21,13 +21,13 @@ $id=$_SESSION["id"];
 function load_admin()
 {
 	$(document).ready(function(){
-   	$('#content').load("/system0/html/php/login/v3/html/admin_page.html");
+   	$('#content').load("/system0/html/php/login/v3/html/admin_page.php");
 	});
 }
 function load_user()
 {
 	$(document).ready(function(){
-   	$('#content').load("/system0/html/php/login/v3/html/user_page.html");
+   	$('#content').load("/system0/html/php/login/v3/html/user_page.php");
 	});
 }
 </script>
@@ -55,7 +55,7 @@ function load_user()
   
 </head>
 <body>
-	<div class="container">
+	<div class="container mt-5">
 		<div class="row justify-content-center">
 	  	<div class="col-md-6">
 	      <h1>All running Jobs</h1>

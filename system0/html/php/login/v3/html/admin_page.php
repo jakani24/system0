@@ -7,7 +7,7 @@
   <script>
     function load_footer() {
       $(document).ready(function(){
-        $('#footer').load("/system0/html/php/system0/html/php/login/v3/html/footer.html");
+        $('#footer').load("/system0/html/php/login/v3/html/footer.html");
       });
     }
     load_footer();
@@ -59,34 +59,9 @@
           <div class="modal-body">
             <?php 
               $color=$_SESSION["color"]; 
-              include "/var/www/html/system0/html/php/login/v3/components.php";
+              
             ?>
-            <?php echo(" <body style='background-color:$color'> ");?>
 
-            <script src="/system0/html/php/login/v3/js/load_page.js"></script>
-            <script>
-              function load_user() {
-                $(document).ready(function(){
-                  $('#content').load("/system0/html/php/login/v3/html/user_page.html");
-                });
-              }
-              function load_admin() {
-                $(document).ready(function(){
-                  $('#content').load("/system0/html/php/login/v3/html/admin_page.html");
-                });
-              }
-            </script>
-
-            <?php
-              $username=$_SESSION["username"];
-              $role=$_SESSION["role"];
-              if($role=="user") {
-                echo "<script type='text/javascript' >load_user()</script>";
-              }
-              if($role=="admin") {
-                echo "<script type='text/javascript' >load_admin()</script>";
-              }
-            ?>
 
             <?php
               if(isset($_POST["color"])) {
