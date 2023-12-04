@@ -207,7 +207,7 @@ $id=$_SESSION["id"];
 							}
 							echo("</tbody></table>");
 							//echo("</div>");
-							echo("<div class='alert alert-dark' role='alert'>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde.</div>");
+							echo("<div class='alert alert-dark' role='alert'>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde. Und du deinen Druck abgeholt hast.</div>");
 						}
 						else
 						{
