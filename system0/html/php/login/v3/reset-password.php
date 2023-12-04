@@ -139,6 +139,39 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	include "/var/www/html/system0/html/php/login/v3/components.php";
 ?>
 <?php echo(" <body style='background-color:$color'> ");?>
+<script src="/system0/html/php/login/v3/js/load_page.js"></script>
+<script>
+	function load_admin()
+	{
+		$(document).ready(function(){
+		$('#content').load("/system0/html/php/login/v3/html/admin_page.php");
+		});
+		$(document).ready(function(){
+	$('#footer').load("/system0/html/php/login/v3/html/footer.html");
+	});
+	}
+	function load_user()
+	{
+		$(document).ready(function(){
+		$('#content').load("/system0/html/php/login/v3/html/user_page.php");
+		});
+		$(document).ready(function(){
+	$('#footer').load("/system0/html/php/login/v3/html/footer.html");
+	});
+	}
+</script>
+<?php
+    $username=$_SESSION["username"];
+    $role=$_SESSION["role"];
+    if($role=="user")
+    {
+	echo "<script type='text/javascript' >load_user()</script>";
+    }
+    if($role=="admin")
+    {
+	echo "<script type='text/javascript' >load_admin()</script>";
+    }
+?>
    
 <div class="container">
     <h3 class="text-center">Reset Password</h3>
@@ -175,5 +208,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }        
 ?>
   </div>
+<div id="footer"></div>div>
 </body>
 </html>
