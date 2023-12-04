@@ -7,7 +7,7 @@
   <script>
     function load_footer() {
       $(document).ready(function(){
-        $('#footer').load("/system0/html/php/system0/html/php/login/v3/html/footer.html");
+        $('#footer').load("/system0/html/php/login/v3/html/footer.html");
       });
     }
     load_footer();
@@ -59,13 +59,9 @@
           <div class="modal-body">
             <?php 
               $color=$_SESSION["color"]; 
+              
             ?>
 
-            <?php
-              $username=$_SESSION["username"];
-              $role=$_SESSION["role"];
-
-            ?>
 
             <?php
               if(isset($_POST["color"])) {
