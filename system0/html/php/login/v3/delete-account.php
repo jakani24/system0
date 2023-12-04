@@ -97,5 +97,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
              </div>
          </div>
      </div>
+    <div id="footer"></div>
     </body>
 </html>
