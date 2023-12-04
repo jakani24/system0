@@ -14,13 +14,16 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION[
 ?>
 <script src="/system0/html/php/login/v3/js/load_page.js"></script>
      <script>
-     	function load_user()
-        {
-            $(document).ready(function(){
-            $('#content').load("/system0/html/php/login/v3/html/admin_page.php");
-            });
-        }
-        load_user();
+     	function load_admin()
+		{
+			$(document).ready(function(){
+		   	$('#content').load("/system0/html/php/login/v3/html/admin_page.php");
+			});
+			$(document).ready(function(){
+   		$('#footer').load("/system0/html/php/login/v3/html/footer.html");
+		});
+		}
+        load_admin();
      </script>
 <?php
 // Include config file

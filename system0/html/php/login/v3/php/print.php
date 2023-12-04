@@ -205,7 +205,7 @@
 	
 	?>
 	
-		<div class="container d-flex align-items-center justify-content-center">
+		<div class="container d-flex align-items-center justify-content-center" style="height: 95vh;">
 			<div class="text-center mt-5">
 				
 				<h1>Datei drucken</h1>

@@ -55,7 +55,7 @@ function load_user()
   
 </head>
 <body>
-	<div class="container mt-5">
+	<div class="container mt-5" style="height: 95vh;">
 		<div class="row justify-content-center">
 	  	<div class="col-md-6">
 	      <h1>All running Jobs</h1>

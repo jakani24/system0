@@ -61,7 +61,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             }
         ?>
 
-        <div class="container mt-3">
+        <div class="container mt-3" style="height: 95vh;">
          <div class="row justify-content-center">
              <div class="col-md-8 text-center">
                  <p class="mt-4">When you delete your account, the following will happen:</p>
