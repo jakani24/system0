@@ -23,22 +23,31 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
  	include "/var/www/html/system0/html/php/login/v3/components.php";
  ?>
 <?php echo(" <body style='background-color:$color'> ");?>
+<div id="content"></div>
+
+
 
         <script src="/system0/html/php/login/v3/js/load_page.js"></script>
-        <script>
-        function load_user()
-        {
-            $(document).ready(function(){
-            $('#content').load("/system0/html/php/login/v3/html/user_page.php");
-            });
-        }
-        function load_admin()
-        {
-            $(document).ready(function(){
-            $('#content').load("/system0/html/php/login/v3/html/admin_page.php");
-            });
-        }
-        </script>
+       	<script>
+       		function load_admin()
+       		{
+       			$(document).ready(function(){
+       		   	$('#content').load("/system0/html/php/login/v3/html/admin_page.php");
+       			});
+       			$(document).ready(function(){
+          		$('#footer').load("/system0/html/php/login/v3/html/footer.html");
+       		});
+       		}
+       		function load_user()
+       		{
+       			$(document).ready(function(){
+       		   	$('#content').load("/system0/html/php/login/v3/html/user_page.php");
+       			});
+       			$(document).ready(function(){
+          		$('#footer').load("/system0/html/php/login/v3/html/footer.html");
+       		});
+       		}
+       	</script>
         <?php
             $username=$_SESSION["username"];
             $role=$_SESSION["role"];
@@ -52,17 +61,15 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             }
         ?>
 
-        <div class="container mt-5">
+        <div class="container mt-3">
          <div class="row justify-content-center">
              <div class="col-md-8 text-center">
-                 <div id="content">
-                     <p class="mt-4">When you delete your account, the following will happen:</p>
-                     <ul class="list-unstyled">
-                         <li>- We will delete all your data from our systems.</li>
-                         <li>- We will delete your cloud as well as your voctr files.</li>
-                         <li>- Your username will be freed. This means anyone can re-register with your username.</li>
-                     </ul>
-                 </div>
+                 <p class="mt-4">When you delete your account, the following will happen:</p>
+                 <ul class="list-unstyled">
+                     <li>- We will delete all your data from our systems.</li>
+                     <li>- We will delete your cloud as well as your voctr files.</li>
+                     <li>- Your username will be freed. This means anyone can re-register with your username.</li>
+                 </ul>
                  <form action="" method="post" class="mt-4">
                      <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
                      <div class="mb-3">
@@ -90,5 +97,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
              </div>
          </div>
      </div>
+    <div id="footer"></div>
     </body>
 </html>
