@@ -17,21 +17,27 @@ else
 ?>
 <?php $color=$_SESSION["color"]; ?>
 <?php echo(" <body style='background-color:$color'> ");?>
-	        <script src="/system0/html/php/login/v3/js/load_page.js"></script>
-        <script>
-            function load_user()
-            {
-                $(document).ready(function(){
-                $('#content').load("/system0/html/php/login/v3/html/user_page.php");
-                });
-            }
-            function load_admin()
-            {
-                $(document).ready(function(){
-                $('#content').load("/system0/html/php/login/v3/html/admin_page.php");
-                });
-            }
-        </script>
+        <script src="/system0/html/php/login/v3/js/load_page.js"></script>
+	<script>
+		function load_admin()
+		{
+			$(document).ready(function(){
+		   	$('#content').load("/system0/html/php/login/v3/html/admin_page.php");
+			});
+			$(document).ready(function(){
+   		$('#footer').load("/system0/html/php/login/v3/html/footer.html");
+		});
+		}
+		function load_user()
+		{
+			$(document).ready(function(){
+		   	$('#content').load("/system0/html/php/login/v3/html/user_page.php");
+			});
+			$(document).ready(function(){
+   		$('#footer').load("/system0/html/php/login/v3/html/footer.html");
+		});
+		}
+	</script>
         <?php
             $username=$_SESSION["username"];
             $role=$_SESSION["role"];
@@ -219,3 +225,4 @@ else
 </div>
 </div>
 <br><br><br><br>
+<div id="footer"></div>div>
