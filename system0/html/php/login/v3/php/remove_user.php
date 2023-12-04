@@ -21,7 +21,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION[
 function load_admin()
 {
 	$(document).ready(function(){
-   	$('#content').load("/system0/html/php/login/v3/html/admin_page.html");
+   	$('#content').load("/system0/html/php/login/v3/html/admin_page.php");
 	});
 }
 </script>
@@ -184,7 +184,7 @@ function load_admin()
 		}
   	echo('</select>');
   	//echo('<br><input type="text" value="ban reason" id="reason" name="reason" />');
-  	echo('<select name="reason" id="reason">');
+  	echo('<select name="reason" id="reason" class="form-select">');
   	echo('<option reason="Hacking">Hacking</option>');
   	echo('<option reason="Illegal activities">Illegal activities</option>');
   	echo('<option reason="Misuse of service">Misuse of service</option>');
@@ -197,7 +197,7 @@ function load_admin()
    									</div>
 										<div class="col">
 									  		<div class="d-flex justify-content-center">
-												<button type="submit" class="btn btn-danger">Send</button>
+												<button type="submit" class="btn btn-danger">Senden</button>
 									  		</div>
 										</div>
 									</div>

@@ -158,7 +158,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								<label for="pwd">Confirm New Password:</label>
 								<input type="password" class="form-control" id="pwd" name="confirm_password" required>
 						  	</div>
-							<button type="submit" name="submit" class="btn btn-primary">Create Account</button><br><br>
+							<button type="submit" name="submit" class="btn btn-dark">Create Account</button><br><br>
 						</form>
 						<div class="text-center mt-3">
 							<p class="mt-3">By creating an account you accept our <a href="/system0/html/php/login/v3/php/privacy-policy.php">Privacy Policy</a></p>
