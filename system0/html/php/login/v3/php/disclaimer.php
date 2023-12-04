@@ -53,7 +53,7 @@ else
 
          <div id="content"></div>
 
-<div class="mt-2 mx-2">
+<div class="mt-y mx-2">
 	<h1>Disclaimer</h1>
 	<p>Last updated: December 24, 2022</p>
 	<h1>Interpretation and Definitions</h1>
