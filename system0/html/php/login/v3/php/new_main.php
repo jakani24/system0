@@ -63,197 +63,199 @@ $id=$_SESSION["id"];
 		<div id="content"></div>
 		<!-- buttons for ctrl -->
 		<div class="container-fluid">
-			<div class="row" style="height: 50vh;">
-				<div class="col-md-12 d-flex justify-content-center align-items-center">
-					<button type="button" href="print.php" class="btn btn-dark btn-lg mx-5" onclick="location.href = 'print.php';">Datei drucken</button>
+			<div class="col-md-8" style="height: 100%;">
+				<div class="row" style="height: 50vh;">
+					<div class="col-md-12 d-flex justify-content-center align-items-center">
+						<button type="button" href="print.php" class="btn btn-dark btn-lg mx-5" onclick="location.href = 'print.php';">Datei drucken</button>
+					</div>
 				</div>
-			</div>
-			<div class="row" style="height: 50vh;">
-				<div class="col-md-8" style="height: 100%;">
-				<!-- your jobs -->
-
-					<?php
-						if(isset($_POST['free']))//free a printer
-						{
-							$printer_id=htmlspecialchars($_GET['free']);
-							$sql="select used_by_userid from printer where id=$printer_id";
+				<div class="row" style="height: 50vh;">
+					
+					<!-- your jobs -->
+	
+						<?php
+							if(isset($_POST['free']))//free a printer
+							{
+								$printer_id=htmlspecialchars($_GET['free']);
+								$sql="select used_by_userid from printer where id=$printer_id";
+								$stmt = mysqli_prepare($link, $sql);					
+								mysqli_stmt_execute($stmt);
+								mysqli_stmt_store_result($stmt);
+								mysqli_stmt_bind_result($stmt, $cnt);
+								mysqli_stmt_fetch($stmt);	
+								if($cnt!=$_SESSION['id'])
+								{
+									echo("<div class='alert alert-danger' role='alert'>Wrong userid!</div>");
+								}
+								else
+								{
+									$sql="update printer set free=1,printing=0,cancel=0 ,used_by_userid=0 where id=$printer_id";
+									$stmt = mysqli_prepare($link, $sql);					
+									mysqli_stmt_execute($stmt);
+									sys0_log("User ".$_SESSION["username"]." freed printer ".$_GET["free"]."",$_SESSION["username"],"JOB::PRINTERCTRL::FREE");//notes,username,type
+								}
+							}
+							if(isset($_POST['cancel']))//cancel a job
+							{
+								$apikey="";
+								$printer_url="";
+								$printer_id=htmlspecialchars($_GET['cancel']);
+								$sql="select used_by_userid,apikey,printer_url from printer where id=$printer_id";
+								$stmt = mysqli_prepare($link, $sql);					
+								mysqli_stmt_execute($stmt);
+								mysqli_stmt_store_result($stmt);
+								mysqli_stmt_bind_result($stmt, $cnt,$apikey,$printer_url);
+								mysqli_stmt_fetch($stmt);	
+								if($cnt!=$_SESSION['id'])
+								{
+									echo("<div class='alert alert-danger' role='alert'>Wrong userid!</div>");
+								}
+								else
+								{
+									exec("curl -k -H \"X-Api-Key: $apikey\" -H \"Content-Type: application/json\" --data '{\"command\":\"cancel\"}' \"$printer_url/api/job\" > /var/www/html/system0/html/user_files/$username/json.json");
+									$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
+									$json=json_decode($fg,true);
+									if($json["error"]!="")
+									{
+										echo("<div class='alert alert-danger' role='alert'>There was an error canceling the print job !<br>The error is on our machine or printer, so please wait and trie again in some time!<br></div>");
+										sys0_log("User ".$_SESSION["username"]." could not cancel job on printer; error: ".$json["error"]."".$_GET["free"]."",$_SESSION["username"],"JOB::PRINTERCTRL::CANCEL::FAILED");//notes,username,type
+									}
+									else
+									{
+										$sql="update printer set cancel=1 where id=$printer_id";
+										$stmt = mysqli_prepare($link, $sql);					
+										mysqli_stmt_execute($stmt);
+										sys0_log("User ".$_SESSION["username"]." canceled job on printer ".$_GET["free"]."",$_SESSION["username"],"JOB::PRINTERCTRL::CANCEL");//notes,username,type
+									}
+								}
+							}
+							if(isset($_POST["remove"]))//remove a job from queue
+							{
+								$quserid=0;
+								$userid=$_SESSION["id"];
+								$queueid=htmlspecialchars($_GET["remove"]);
+								$sql="select from_userid from queue where id=$queueid";
+								$stmt = mysqli_prepare($link, $sql);					
+								mysqli_stmt_execute($stmt);
+								mysqli_stmt_store_result($stmt);
+								mysqli_stmt_bind_result($stmt, $quserid);
+								mysqli_stmt_fetch($stmt);
+								if($quserid==$userid){
+								
+								$sql="delete from queue where id=$queueid";
+								$stmt = mysqli_prepare($link, $sql);				
+								mysqli_stmt_execute($stmt);
+								sys0_log("User ".$_SESSION["username"]." removed file #".$_GET["remove"]." from queue",$_SESSION["username"],"JOB::QUEUECTRL::REMOVE");//notes,username,type
+								}
+							
+							}
+							$cnt=0;
+							$url="";
+							$apikey="";
+							$sql="select count(*) from printer where used_by_userid=$id";//how many jobs does the user have? show all running jobs of the user
 							$stmt = mysqli_prepare($link, $sql);					
 							mysqli_stmt_execute($stmt);
 							mysqli_stmt_store_result($stmt);
 							mysqli_stmt_bind_result($stmt, $cnt);
 							mysqli_stmt_fetch($stmt);	
-							if($cnt!=$_SESSION['id'])
-							{
-								echo("<div class='alert alert-danger' role='alert'>Wrong userid!</div>");
-							}
-							else
-							{
-								$sql="update printer set free=1,printing=0,cancel=0 ,used_by_userid=0 where id=$printer_id";
-								$stmt = mysqli_prepare($link, $sql);					
-								mysqli_stmt_execute($stmt);
-								sys0_log("User ".$_SESSION["username"]." freed printer ".$_GET["free"]."",$_SESSION["username"],"JOB::PRINTERCTRL::FREE");//notes,username,type
-							}
-						}
-						if(isset($_POST['cancel']))//cancel a job
-						{
-							$apikey="";
-							$printer_url="";
-							$printer_id=htmlspecialchars($_GET['cancel']);
-							$sql="select used_by_userid,apikey,printer_url from printer where id=$printer_id";
-							$stmt = mysqli_prepare($link, $sql);					
-							mysqli_stmt_execute($stmt);
-							mysqli_stmt_store_result($stmt);
-							mysqli_stmt_bind_result($stmt, $cnt,$apikey,$printer_url);
-							mysqli_stmt_fetch($stmt);	
-							if($cnt!=$_SESSION['id'])
-							{
-								echo("<div class='alert alert-danger' role='alert'>Wrong userid!</div>");
-							}
-							else
-							{
-								exec("curl -k -H \"X-Api-Key: $apikey\" -H \"Content-Type: application/json\" --data '{\"command\":\"cancel\"}' \"$printer_url/api/job\" > /var/www/html/system0/html/user_files/$username/json.json");
-								$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
-								$json=json_decode($fg,true);
-								if($json["error"]!="")
+							$cnt_of_job=$cnt;
+							//echo($cnt);
+							//echo '<div style="overflow-x: auto;">';
+							if($cnt!=0){
+								echo(
+									"<table class='table'>
+										<thead>
+										<tr>
+											<th scope='col'>Printer</th>
+											<th scope='col'>File</th>
+											<th scope='col'>Completion</th>
+											<th scope='col'>Free</th>
+											<th scope='col'>Cancel Print</th>
+											<th scope='col'>Details</th>
+										</tr>
+										</thead>
+										<tbody>");
+								$last_id=0;
+								while($cnt!=0)
 								{
-									echo("<div class='alert alert-danger' role='alert'>There was an error canceling the print job !<br>The error is on our machine or printer, so please wait and trie again in some time!<br></div>");
-									sys0_log("User ".$_SESSION["username"]." could not cancel job on printer; error: ".$json["error"]."".$_GET["free"]."",$_SESSION["username"],"JOB::PRINTERCTRL::CANCEL::FAILED");//notes,username,type
-								}
-								else
-								{
-									$sql="update printer set cancel=1 where id=$printer_id";
+									$sql="select id,printer_url,apikey,cancel from printer where used_by_userid=$id AND id>$last_id ORDER BY id";
+									$cancel=0;
 									$stmt = mysqli_prepare($link, $sql);					
 									mysqli_stmt_execute($stmt);
-									sys0_log("User ".$_SESSION["username"]." canceled job on printer ".$_GET["free"]."",$_SESSION["username"],"JOB::PRINTERCTRL::CANCEL");//notes,username,type
+									mysqli_stmt_store_result($stmt);
+									mysqli_stmt_bind_result($stmt, $printer_id,$url,$apikey,$cancel);
+									mysqli_stmt_fetch($stmt);
+									//echo("curl $url/api/job?apikey=$apikey > /var/www/html/system0/html/user_files/$username/json.json");
+									exec("curl --max-time 10 $url/api/job?apikey=$apikey > /var/www/html/system0/html/user_files/$username/json.json");
+									$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
+									$json=json_decode($fg,true);
+									$last_id=$printer_id;
+									//var_dump($json);
+									//echo($fg);
+									
+									$progress=(int) $json['progress']['completion'];
+									if($progress<0)
+										$progress=-$progress;
+									$file=$json['job']['file']['name'];
+									if($progress==100)
+										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><input type='submit' value='free'  name='free'> </form></td><td>Job already finished</td><td><form method='POST' action='new_main.php'><input type='submit' value='detailes'> </form></td></tr>");
+									else if($cancel==1)
+										echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><input type='submit' value='free'  name='free'> </form></td><td>Job cancelled</td><td><form method='POST' action='new_main.php'><input type='submit' value='detailes'> </form></td></tr>");
+									else
+										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><input type='submit' value='cancel'  name='cancel'> </form></td><td><form method='POST' action='new_main.php'><input type='submit' value='detailes'> </form></td></tr>");
+									
+									$cnt--;
 								}
+								echo("</tbody></table>");
+								//echo("</div>");
+								echo("<div class='alert alert-dark' role='alert'>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde. Und du deinen Druck abgeholt hast.</div>");
 							}
-						}
-						if(isset($_POST["remove"]))//remove a job from queue
-						{
-							$quserid=0;
-							$userid=$_SESSION["id"];
-							$queueid=htmlspecialchars($_GET["remove"]);
-							$sql="select from_userid from queue where id=$queueid";
+							else
+							{
+								echo("<div class='alert alert-dark' role='alert'>Laufende Vorgänge werden hier aufgelistet.</div>");
+							}
+						?>	
+						<!-- list queue -->
+						<?php
+							$userid=$_SESSION["id"];	//show users job in queue
+							$cnt=0;
+							$filepath="";
+							$sql="select count(*) from queue where from_userid=$userid";
 							$stmt = mysqli_prepare($link, $sql);					
 							mysqli_stmt_execute($stmt);
 							mysqli_stmt_store_result($stmt);
-							mysqli_stmt_bind_result($stmt, $quserid);
-							mysqli_stmt_fetch($stmt);
-							if($quserid==$userid){
-							
-							$sql="delete from queue where id=$queueid";
-							$stmt = mysqli_prepare($link, $sql);				
-							mysqli_stmt_execute($stmt);
-							sys0_log("User ".$_SESSION["username"]." removed file #".$_GET["remove"]." from queue",$_SESSION["username"],"JOB::QUEUECTRL::REMOVE");//notes,username,type
-							}
-						
-						}
-						$cnt=0;
-						$url="";
-						$apikey="";
-						$sql="select count(*) from printer where used_by_userid=$id";//how many jobs does the user have? show all running jobs of the user
-						$stmt = mysqli_prepare($link, $sql);					
-						mysqli_stmt_execute($stmt);
-						mysqli_stmt_store_result($stmt);
-						mysqli_stmt_bind_result($stmt, $cnt);
-						mysqli_stmt_fetch($stmt);	
-						$cnt_of_job=$cnt;
-						//echo($cnt);
-						//echo '<div style="overflow-x: auto;">';
-						if($cnt!=0){
-							echo(
-								"<table class='table'>
-					 				<thead>
-		    							<tr>
-			      							<th scope='col'>Printer</th>
-			      							<th scope='col'>File</th>
-			      							<th scope='col'>Completion</th>
-			      							<th scope='col'>Free</th>
-									 	<th scope='col'>Cancel Print</th>
-								 		<th scope='col'>Details</th>
-		    							</tr>
-		  							</thead>
-						 			<tbody>");
+							mysqli_stmt_bind_result($stmt, $cnt);
+							mysqli_stmt_fetch($stmt);	
+							//echo($cnt);
+							//echo '<div style="overflow-x: auto;">';
 							$last_id=0;
-							while($cnt!=0)
-							{
-								$sql="select id,printer_url,apikey,cancel from printer where used_by_userid=$id AND id>$last_id ORDER BY id";
-								$cancel=0;
-								$stmt = mysqli_prepare($link, $sql);					
-								mysqli_stmt_execute($stmt);
-								mysqli_stmt_store_result($stmt);
-								mysqli_stmt_bind_result($stmt, $printer_id,$url,$apikey,$cancel);
-								mysqli_stmt_fetch($stmt);
-								//echo("curl $url/api/job?apikey=$apikey > /var/www/html/system0/html/user_files/$username/json.json");
-								exec("curl --max-time 10 $url/api/job?apikey=$apikey > /var/www/html/system0/html/user_files/$username/json.json");
-								$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
-								$json=json_decode($fg,true);
-								$last_id=$printer_id;
-								//var_dump($json);
-								//echo($fg);
-								
-								$progress=(int) $json['progress']['completion'];
-								if($progress<0)
-									$progress=-$progress;
-								$file=$json['job']['file']['name'];
-								if($progress==100)
-									echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><input type='submit' value='free'  name='free'> </form></td><td>Job already finished</td><td><form method='POST' action='new_main.php'><input type='submit' value='detailes'> </form></td></tr>");
-								else if($cancel==1)
-									echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><input type='submit' value='free'  name='free'> </form></td><td>Job cancelled</td><td><form method='POST' action='new_main.php'><input type='submit' value='detailes'> </form></td></tr>");
-								else
-									echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><input type='submit' value='cancel'  name='cancel'> </form></td><td><form method='POST' action='new_main.php'><input type='submit' value='detailes'> </form></td></tr>");
-					 			
-								$cnt--;
+							if($cnt!=0){
+								echo("<table class='table'><thead><tr><th>Datei</th><th>Aus der Warteschlange entfernen</th></tr></thead><tbody>");
+								while($cnt!=0)
+								{
+									$sql="select id,filepath from queue where from_userid=$userid AND id>$last_id ORDER BY id";
+									$cancel=0;
+									$stmt = mysqli_prepare($link, $sql);	
+									echo mysqli_error($link);				
+									mysqli_stmt_execute($stmt);
+									mysqli_stmt_store_result($stmt);
+									mysqli_stmt_bind_result($stmt, $queue_id,$filepath);
+									mysqli_stmt_fetch($stmt);
+									$filepath=basename($filepath);
+									$last_id=$queue_id;
+									echo("<tr><td>$filepath</td><td><form method='POST' action='?remove=$queue_id'><input type='submit' value='remove'  name='remove'> </form></td></tr>");
+									
+									$cnt--;
+								}
+								echo("</tbody></table>");	
+								//echo("</div>");
+								echo("<div class='alert alert-dark' role='alert'>Es kann einen Moment dauern bis der Druckvorgang startet, da der Drucker nach jedem Druck abkühlen muss.</div>");
 							}
-							echo("</tbody></table>");
-							//echo("</div>");
-							echo("<div class='alert alert-dark' role='alert'>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde. Und du deinen Druck abgeholt hast.</div>");
-						}
-						else
-						{
-							echo("<div class='alert alert-dark' role='alert'>Laufende Vorgänge werden hier aufgelistet.</div>");
-						}
-					?>	
-					<!-- list queue -->
-					<?php
-						$userid=$_SESSION["id"];	//show users job in queue
-						$cnt=0;
-						$filepath="";
-						$sql="select count(*) from queue where from_userid=$userid";
-						$stmt = mysqli_prepare($link, $sql);					
-						mysqli_stmt_execute($stmt);
-						mysqli_stmt_store_result($stmt);
-						mysqli_stmt_bind_result($stmt, $cnt);
-						mysqli_stmt_fetch($stmt);	
-						//echo($cnt);
-						//echo '<div style="overflow-x: auto;">';
-						$last_id=0;
-						if($cnt!=0){
-							echo("<table class='table'><thead><tr><th>Datei</th><th>Aus der Warteschlange entfernen</th></tr></thead><tbody>");
-							while($cnt!=0)
-							{
-								$sql="select id,filepath from queue where from_userid=$userid AND id>$last_id ORDER BY id";
-								$cancel=0;
-								$stmt = mysqli_prepare($link, $sql);	
-								echo mysqli_error($link);				
-								mysqli_stmt_execute($stmt);
-								mysqli_stmt_store_result($stmt);
-								mysqli_stmt_bind_result($stmt, $queue_id,$filepath);
-								mysqli_stmt_fetch($stmt);
-								$filepath=basename($filepath);
-								$last_id=$queue_id;
-								echo("<tr><td>$filepath</td><td><form method='POST' action='?remove=$queue_id'><input type='submit' value='remove'  name='remove'> </form></td></tr>");
-					 			
-								$cnt--;
-							}
-							echo("</tbody></table>");	
-							//echo("</div>");
-							echo("<div class='alert alert-dark' role='alert'>Es kann einen Moment dauern bis der Druckvorgang startet, da der Drucker nach jedem Druck abkühlen muss.</div>");
-						}
-					?>
-					<?php
-						test_queue($link); //test for a free printer. If any printe ris free and there are jobs in queue, push job to printer
-					?>		
+						?>
+						<?php
+							test_queue($link); //test for a free printer. If any printe ris free and there are jobs in queue, push job to printer
+						?>		
+					</div>
 				</div>
 				<div class="col-md-4" style="height: 100%;">
 			<!-- job detailes -->
@@ -270,7 +272,6 @@ $id=$_SESSION["id"];
 					?>				
 				</div>
 			</div>
-		</div>
 	<br>
 		<div id="footer"></div>
 	</body>
