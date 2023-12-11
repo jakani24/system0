@@ -33,6 +33,8 @@ if($error!=="error1" && $error!=="error2")
     }
 }
 // Include config file
+require_once "config.php";
+include "/var/www/html/system0/html/php/login/v3/waf/waf_no_anti_xss.php";
 
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -225,12 +227,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		            <div class="container mt-2 ml-2">
 		              <div class="row justify-content-left">
 		                <div class="col-md-6 p-4">
-		                  <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/reset-password.php" role="button">Passwort zurücksetzen</a><br>
-		                  <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/delete-account.php" role="button">Account und alle dazugehörigen Daten löschen</a>
-		                  <br><a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/privacy-policy.php" role="button">Unsere Privacy Policy</a>
-		                  <br>
-		                  <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/disclaimer.php" role="button">Dislcaimer</a>
-		                  <br><br>
+					<div class="d-flex align-items-center justify-content-center vh-100">
+						<div class="container">
+							<div class="row justify-content-center">
+								<div class="col-md-6">
+									<h3 class="text-center">Account erstellen</h3>
+									<form action="" method="post">
+										<div class="mb-3">
+										<label for="username" class="form-label">New Username:</label>
+										<input type="text" class="form-control" id="username" name="username" required>
+										</div>
+										<div class="mb-3">
+											 <label for="pwd" class="form-label">New Password:</label>
+											 <input type="password" class="form-control" id="pwd" name="password" required>
+										</div>
+										<div class="mb-3">
+											 <label for="confirmPwd" class="form-label">Confirm New Password:</label>
+											 <input type="password" class="form-control" id="confirmPwd" name="confirm_password" required>
+										</div>
+										<div class="mb-3 form-check">
+										  <input type="checkbox" class="form-check-input" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">
+										  <label class="form-check-label" for="keepmeloggedin">Keep me logged in</label>
+										</div>
+										<button type="submit" name="submit" class="btn btn-dark">Create Account</button>
+									</form>
+									<div class="text-center mt-3">
+										<p class="mt-3">By creating an account you accept our <a href="/system0/html/php/login/v3/php/privacy-policy.php">Privacy Policy</a></p>
+										<p class="mt-3">Already have an account? <a href="../login.php">Login here</a>.</p>
+									</div>
+									<?php 
+									    if(!empty($err)){
+										echo '<div class="alert alert-danger">' . $err . '</div>';
+									    }        
+									?>
+								</div>
+							</div>
+						</div>
+					</div>
+					
 		
 		                </div>
 		              </div>
