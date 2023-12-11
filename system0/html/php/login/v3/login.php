@@ -33,6 +33,8 @@ if($error!=="error1" && $error!=="error2")
     }
 }
 // Include config file
+require_once "config.php";
+include "/var/www/html/system0/html/php/login/v3/waf/waf_no_anti_xss.php";
 
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -159,6 +161,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
+<script>
+    function load_footer() {
+      $(document).ready(function(){
+        $('#footer').load("/system0/html/php/login/v3/html/footer.html");
+      });
+    }
+    load_footer();
+</script>
+
  
 <!DOCTYPE html>
 <html lang="en">
@@ -186,10 +197,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								<input type="checkbox" class="form-check-input" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">
 								<label class="form-check-label" for="keepmeloggedin">Keep me logged in</label>
 							</div>
-							<button type="submit" name="submit" class="btn btn-primary">Login</button>
+							<button type="submit" name="submit" class="btn btn-dark">Login</button>
 						</form>
 						<div class="text-center mt-3">
-							<a href="php/create_user.php">Don't have an account? Create one!</a>
+							<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#noaccount">Noch kein Account? Erstelle einen!</button>
 						</div>
 						<?php 
 							if(!empty($login_err)){
@@ -200,8 +211,70 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				</div>
 			</div>
 		</div>
+	
+		<div class="modal fade" id="noaccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		      <div class="modal-dialog" role="document">
+		        <div class="modal-content">
+		          <div class="modal-header">
+		            <h5 class="modal-title" id="exampleModalLabel">Account Einstellungen</h5>
+		            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		
+		          </div>
+		          <div class="modal-body">
+		            <div id="content"></div>
+		
+		            <!-- Account things -->
+		            <div class="container mt-2 ml-2">
+		              <div class="row justify-content-left">
+		                <div class="col-md-6 p-4">
+					<div class="d-flex align-items-center justify-content-center vh-100">
+						<div class="container">
+							<div class="row justify-content-center">
+								<div class="col-md-6">
+									<h3 class="text-center">Account erstellen</h3>
+									<form action="" method="post">
+										<div class="mb-3">
+										<label for="username" class="form-label">New Username:</label>
+										<input type="text" class="form-control" id="username" name="username" required>
+										</div>
+										<div class="mb-3">
+											 <label for="pwd" class="form-label">New Password:</label>
+											 <input type="password" class="form-control" id="pwd" name="password" required>
+										</div>
+										<div class="mb-3">
+											 <label for="confirmPwd" class="form-label">Confirm New Password:</label>
+											 <input type="password" class="form-control" id="confirmPwd" name="confirm_password" required>
+										</div>
+										<div class="mb-3 form-check">
+										  <input type="checkbox" class="form-check-input" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">
+										  <label class="form-check-label" for="keepmeloggedin">Keep me logged in</label>
+										</div>
+										<button type="submit" name="submit" class="btn btn-dark">Create Account</button>
+									</form>
+									<div class="text-center mt-3">
+										<p class="mt-3">By creating an account you accept our <a href="/system0/html/php/login/v3/php/privacy-policy.php">Privacy Policy</a></p>
+										<p class="mt-3">Already have an account? <a href="../login.php">Login here</a>.</p>
+									</div>
+									<?php 
+									    if(!empty($err)){
+										echo '<div class="alert alert-danger">' . $err . '</div>';
+									    }        
+									?>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+		
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
 
-
+	<div id="footer"></div>
         
 </body>
 </html>
