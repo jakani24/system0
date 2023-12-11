@@ -32,9 +32,6 @@ if($error!=="error1" && $error!=="error2")
         header("LOCATION: php/new_main.php");
     }
 }
-// Include config file
-require_once "config.php";
-include "/var/www/html/system0/html/php/login/v3/waf/waf_no_anti_xss.php";
 
 // Define variables and initialize with empty values
 $username = $password = "";
