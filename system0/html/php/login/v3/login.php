@@ -159,6 +159,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_close($link);
 }
 ?>
+<script>
+    function load_footer() {
+      $(document).ready(function(){
+        $('#footer').load("/system0/html/php/login/v3/html/footer.html");
+      });
+    }
+    load_footer();
+</script>
+
  
 <!DOCTYPE html>
 <html lang="en">
@@ -186,10 +195,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								<input type="checkbox" class="form-check-input" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">
 								<label class="form-check-label" for="keepmeloggedin">Keep me logged in</label>
 							</div>
-							<button type="submit" name="submit" class="btn btn-primary">Login</button>
+							<button type="submit" name="submit" class="btn btn-dark">Login</button>
 						</form>
 						<div class="text-center mt-3">
-							<a href="php/create_user.php">Don't have an account? Create one!</a>
+							<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#noaccount">Noch kein Account? Erstelle einen!</button>
 						</div>
 						<?php 
 							if(!empty($login_err)){
@@ -200,8 +209,38 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				</div>
 			</div>
 		</div>
+	
+		<div class="modal fade" id="noaccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		      <div class="modal-dialog" role="document">
+		        <div class="modal-content">
+		          <div class="modal-header">
+		            <h5 class="modal-title" id="exampleModalLabel">Account Einstellungen</h5>
+		            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		
+		          </div>
+		          <div class="modal-body">
+		            <div id="content"></div>
+		
+		            <!-- Account things -->
+		            <div class="container mt-2 ml-2">
+		              <div class="row justify-content-left">
+		                <div class="col-md-6 p-4">
+		                  <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/reset-password.php" role="button">Passwort zurücksetzen</a><br>
+		                  <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/delete-account.php" role="button">Account und alle dazugehörigen Daten löschen</a>
+		                  <br><a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/privacy-policy.php" role="button">Unsere Privacy Policy</a>
+		                  <br>
+		                  <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/php/disclaimer.php" role="button">Dislcaimer</a>
+		                  <br><br>
+		
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
 
-
+	<div id="footer"></div>
         
 </body>
 </html>
