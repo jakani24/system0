@@ -78,7 +78,7 @@ function load_admin()
 					$email = htmlspecialchars($_POST["email"]);
 					$bug = htmlspecialchars($_POST["bug"]);
 					$text = urlencode("JWAF INFORMATION:\nuser: $username;\nemail: $email\nbug: $bug\nEND");
-					exec("https://api.telegram.org/$api/sendMessage?chat_id=$chat_id&text=$text");
+					exec("curl \"https://api.telegram.org/$api/sendMessage?chat_id=$chat_id&text=$text\"");
 					  echo '<div class="alert alert-success" role="alert">Vielen Dank, deine Fehlermeldung ist bei uns angekommen und wir kümmern uns darum.</div>';
 				  }
 				?>
