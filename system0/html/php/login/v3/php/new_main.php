@@ -198,7 +198,7 @@ $id=$_SESSION["id"];
 										$progress=-$progress;
 									$file=$json['job']['file']['name'];
 									if($progress==100)
-										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Befreien</button> </form></td><td>Job already finished</td><td><form method='POST' action='new_main.php'></form></td></tr>");
+										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Aufräumen</button> </form></td><td>Job already finished</td><td><form method='POST' action='new_main.php'><button type='submit' name='detailes' value='detailes' class='btn btn-dark'>Details</button></form></td></tr>");
 									else if($cancel==1)
 										echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Befreien</button> </form></td><td>Job cancelled</td><td><form method='POST' action='new_main.php'></form></td></tr>");
 									else
