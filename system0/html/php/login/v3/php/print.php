@@ -214,7 +214,7 @@
 						<div class="custom-file">
 
 							<label for="file_upload" class="form-label">Zu druckende Datei</label>
-							<input type="file" class="form-control" type="file" name="file_upload" required>  
+							<input type="file" class="form-control" type="file" name="file_upload" required accept=".gcode">  
 						</div>
 					</div>
 					<br><br>
