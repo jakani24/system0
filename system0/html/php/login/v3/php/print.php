@@ -225,7 +225,7 @@
 							<?php
 							//get number of printers
 							$num_of_printers=0;
-							$sql="select count(*) from printer";
+							$sql="select count(*) from printer where free=1";
 							$stmt = mysqli_prepare($link, $sql);
 							mysqli_stmt_execute($stmt);
 							mysqli_stmt_store_result($stmt);
