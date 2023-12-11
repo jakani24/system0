@@ -166,12 +166,12 @@ $id=$_SESSION["id"];
 									"<table class='table'>
 										<thead>
 										<tr>
-											<th scope='col'>Printer</th>
-											<th scope='col'>File</th>
-											<th scope='col'>Completion</th>
-											<th scope='col'>Free</th>
-											<th scope='col'>Cancel Print</th>
-											<th scope='col'>Details</th>
+											<th scope='col'>Drucker</th>
+											<th scope='col'>Datei</th>
+											<th scope='col'>Fortschritt</th>
+											<th scope='col'>Freigeben</th>
+											<th scope='col'>Druck abbrechen</th>
+											
 										</tr>
 										</thead>
 										<tbody>");
@@ -200,9 +200,9 @@ $id=$_SESSION["id"];
 									if($progress==100)
 										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Aufräumen</button> </form></td><td>Job already finished</td><td><form method='POST' action='new_main.php'><button type='submit' name='detailes' value='detailes' class='btn btn-dark'>Details</button></form></td></tr>");
 									else if($cancel==1)
-										echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Befreien</button> </form></td><td>Job cancelled</td><td><form method='POST' action='new_main.php'><input type='submit' value='detailes' name='detailes'> </form></td></tr>");
+										echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Befreien</button> </form></td><td>Job cancelled</td><td><form method='POST' action='new_main.php'></form></td></tr>");
 									else
-										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><button type='submit' value='cancel' name='cancel' class='btn btn-dark'>Abbruch</button></form></td><td><form method='POST' action='new_main.php'><button type='submit' value='detailes' name='detailes' class='btn btn-dark'>Details</button> </form></td></tr>");
+										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><button type='submit' value='cancel' name='cancel' class='btn btn-dark'>Abbruch</button></form></td><td><form method='POST' action='new_main.php'></form></td></tr>");
 									
 									$cnt--;
 								}

@@ -3,6 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 $block=false;
+include "config.php";
 if($_SESSION["username"]!="janis" &&$block===true)
 {
     echo("<p>We are sorry but jakach is currently down for maintenance</p>");

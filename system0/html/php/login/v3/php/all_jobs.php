@@ -128,7 +128,7 @@ function load_user()
 					mysqli_stmt_bind_result($stmt, $cnt);
 					mysqli_stmt_fetch($stmt);	
 					//echo($cnt);
-					echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Printer</th><th>file</th><th>completion</th><th>free</th><th>cancel print</th><th>detailes</th></tr></thead><tbody>");
+					echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Printer</th><th>file</th><th>completion</th><th>free</th><th>cancel print</th>></tr></thead><tbody>");
 					$last_id=0;					
 					while($cnt!=0)
 					{
@@ -152,11 +152,11 @@ function load_user()
 							$progress=-$progress;
 						$file=$json['job']['file']['name'];
 						if($progress==100)
-							echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><input type='submit' value='free'  name='free'> </form></td><td>Job already finished</td><td><form method='POST' action='job_info_all.php'><input type='submit' value='detailes'> </form></td></tr>");
+							echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><input type='submit' value='free'  name='free'> </form></td></form></tr>");
 						else if($cancel==1)
-							echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><input type='submit' value='free'  name='free'> </form></td><td>Job cancelled</td><td><form method='POST' action='job_info_all.php'><input type='submit' value='detailes'> </form></td></tr>");
+							echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><input type='submit' value='free'  name='free'> </form></td><td>Job cancelled</td></form></tr>");
 						else
-							echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><input type='submit' value='cancel'  name='cancel'> </form></td><td><form method='POST' action='job_info_all.php'><input type='submit' value='detailes'> </form></td></tr>");
+							echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><input type='submit' value='cancel'  name='cancel'> </form></td></form></tr>");
 			 			
 						$cnt--;
 					}

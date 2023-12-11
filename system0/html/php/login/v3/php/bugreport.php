@@ -3,6 +3,7 @@
 <?php
 // Initialize the session
 session_start();
+include "config.php";
 include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
@@ -77,8 +78,8 @@ function load_admin()
 					$email = htmlspecialchars($_POST["email"]);
 					$bug = htmlspecialchars($_POST["bug"]);
 					$text = urlencode("JWAF INFORMATION:\nuser: $username;\nemail: $email\nbug: $bug\nEND");
-					exec("curl 'https://api.callmebot.com/whatsapp.php?phone=41775252026&text=$text&apikey=6002955'");
-					echo '<div class="alert alert-success" role="alert">Vielen Dank, deine Fehlermeldung ist bei uns angekommen und wir kümmern uns darum.</div>';
+					exec("curl \"https://api.telegram.org/$api/sendMessage?chat_id=$chat_id&text=$text\"");
+					  echo '<div class="alert alert-success" role="alert">Vielen Dank, deine Fehlermeldung ist bei uns angekommen und wir kümmern uns darum.</div>';
 				  }
 				?>
 			  </div>
