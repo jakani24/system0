@@ -62,7 +62,7 @@ $id=$_SESSION["id"];
 	?>
 		<div id="content"></div>
 		<!-- buttons for ctrl -->
-		<div class="container-fluid">
+		<div class="container-fluid d-flex flex-nowrap">
 			<div class="col-md-8" style="height: 100%;">
 				<div class="row" style="height: 50vh;">
 					<div class="col-md-12 d-flex justify-content-center align-items-center">
@@ -257,7 +257,7 @@ $id=$_SESSION["id"];
 						?>		
 					</div>
 				</div>
-				<div class="col-md-4" style="height: 100%;">
+				<div class="col-md-4" style="height: 100vh;">
 			<!-- job detailes -->
 	
 					<?php
