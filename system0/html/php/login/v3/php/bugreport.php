@@ -3,6 +3,7 @@
 <?php
 // Initialize the session
 session_start();
+include "config.php";
 include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
