@@ -62,7 +62,7 @@ $id=$_SESSION["id"];
 	?>
 		<div id="content"></div>
 		<!-- buttons for ctrl -->
-		<div class="container-fluid d-flex flex-nowrap m-3">
+		<div class="container-fluid d-flex flex-nowrap mt-3">
 			<div class="col-md-8" style="height: 100%;">
 				<div class="row" style="height: 50vh;">
 					<div class="col-md-12 d-flex justify-content-center align-items-center">
