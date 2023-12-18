@@ -88,7 +88,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                          //echo($sql);
                          $stmt = mysqli_prepare($link, $sql);
                          mysqli_stmt_execute($stmt);
-                         header("LOCATION:/php/login/v3/logout.php");
+                         header("LOCATION:/system0/html/php/login/v3/logout.php");
                      } else {
                          echo '<div class="alert alert-danger mt-4">Usernames did not match!</div>';
                      }
