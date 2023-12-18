@@ -55,7 +55,7 @@ else
 
 <div class="m-2">
 	<h1>Disclaimer</h1>
-	<p>Last updated: December 24, 2022</p>
+	<p>Last updated: December 18, 2023</p>
 	<h1>Interpretation and Definitions</h1>
 	<h2>Interpretation</h2>
 	<p>The words of which the initial letter is capitalized have meanings defined under the following conditions.
@@ -66,7 +66,7 @@ else
 	<li><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Disclaimer) refers to jakach.</li>
 	<li><strong>Service</strong> refers to the Website.</li>
 	<li><strong>You</strong> means the individual accessing the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
-	<li><strong>Website</strong> refers to jakach, accessible from <a href="https://jakach.duckdns.org" rel="external nofollow noopener" target="_blank">jakach.duckdns.org</a></li>
+	<li><strong>Website</strong> refers to system0, accessible from <a href="https://3dprint.ksw-informatik.ch" rel="external nofollow noopener" target="_blank">3dprint.ksw-informatik.ch</a></li>
 	</ul>
 	<h1>Disclaimer</h1>
 	<p>The information contained on the Service is for general information purposes only.</p>
