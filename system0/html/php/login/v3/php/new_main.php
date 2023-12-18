@@ -62,7 +62,7 @@ $id=$_SESSION["id"];
 	?>
 		<div id="content"></div>
 		<!-- buttons for ctrl -->
-		<div class="container-fluid d-flex flex-nowrap m-3">
+		<div class="container-fluid d-flex flex-nowrap mt-3">
 			<div class="col-md-8" style="height: 100%;">
 				<div class="row" style="height: 50vh;">
 					<div class="col-md-12 d-flex justify-content-center align-items-center">
@@ -208,11 +208,11 @@ $id=$_SESSION["id"];
 								}
 								echo("</tbody></table>");
 								//echo("</div>");
-								echo("<div class='alert alert-dark' role='alert'>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde. Und du deinen Druck abgeholt hast.</div>");
+								echo("<div class='alert alert-dark' role='alert' style='height: 100px;>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde. Und du deinen Druck abgeholt hast.</div>");
 							}
 							else
 							{
-								echo("<div class='alert alert-dark' role='alert'>Laufende Vorgänge werden hier aufgelistet.</div>");
+								echo("<div class='alert alert-dark' role='alert' style='height: 100px;'>Laufende Vorgänge werden hier aufgelistet.</div>");
 							}
 						?>	
 						<!-- list queue -->
