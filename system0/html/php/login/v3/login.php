@@ -32,9 +32,6 @@ if($error!=="error1" && $error!=="error2")
         header("LOCATION: php/new_main.php");
     }
 }
-// Include config file
-require_once "config.php";
-include "/var/www/html/system0/html/php/login/v3/waf/waf_no_anti_xss.php";
 
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -212,7 +209,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			</div>
 		</div>
 	
-		<div class="modal fade" id="noaccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal modal-lg fade" id="noaccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		      <div class="modal-dialog" role="document">
 		        <div class="modal-content">
 		          <div class="modal-header">
