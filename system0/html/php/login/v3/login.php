@@ -209,61 +209,56 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				</div>
 			</div>
 		</div>
-	
-		<div class="modal modal-xl fade" id="noaccount" tabindex="-1" role="dialog" aria-labelledby="Account" aria-hidden="true">
+
+
+
+		<div class="modal fade" id="noaccount" tabindex="-1" role="dialog" aria-labelledby="Account" aria-hidden="true">
 		      <div class="modal-dialog" role="document">
 		        <div class="modal-content">
 		          <div class="modal-header">
-		            <h5 class="modal-title" id="exampleModalLabel">Account Erstellen</h5>
+		            <h5 class="modal-title" id="exampleModalLabel">Account Erstelle </h5>
 		            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		
 		          </div>
-		          <div class="modal-body">
+				<div class="modal-body">
 				  
-		            <!-- Account things -->
-		            <div class="container mt-2 ml-2">
-		              <div class="row justify-content-left">
-										<div class="col-md-6">
-											<h3 class="text-center">Account erstellen</h3>
-											<form action="php/create_user.php" method="post">
-												<div class="mb-3">
-												<label for="username" class="form-label">New Username:</label>
-												<input type="text" class="form-control" id="username" name="username" required>
-												</div>
-												<div class="mb-3">
-													 <label for="pwd" class="form-label">New Password:</label>
-													 <input type="password" class="form-control" id="pwd" name="password" required>
-												</div>
-												<div class="mb-3">
-													 <label for="confirmPwd" class="form-label">Confirm New Password:</label>
-													 <input type="password" class="form-control" id="confirmPwd" name="confirm_password" required>
-												</div>
-												<div class="mb-3 form-check">
-												  <input type="checkbox" class="form-check-input" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">
-												  <label class="form-check-label" for="keepmeloggedin">Keep me logged in</label>
-												</div>
-												<button type="submit" name="submit" class="btn btn-dark">Create Account</button>
-											</form>
-											<div class="text-center mt-3">
-												<p class="mt-3">By creating an account you accept our <a href="/system0/html/php/login/v3/php/privacy-policy.php">Privacy Policy</a></p>
-												<p class="mt-3">Already have an account? <a href="/">Login here</a>.</p>
-											</div>
-											<?php 
-											    if(!empty($err)){
-												echo '<div class="alert alert-danger">' . $err . '</div>';
-											    }        
-											?>
-							
-											</div>
-			      					</div>
+		            <!-- Account things-->
+					<form action="php/create_user.php" method="post">
+						<div class="form-group mb-3">
+							<label for="username" class="form-label">Email:</label>
+							<input type="text" class="form-control" id="username" name="username" required>
+					  	</div>
+						<div class="form-group mb-3">
+							<label for="pwd" class="form-label">Passwort:</label>
+							<input type="password" class="form-control" id="pwd" name="password" required>
+					  	</div>
+						<div class="form-group mb-3">
+							<label for="confirmPwd" class="form-label">Passwort bestätigen:</label>
+							<input type="password" class="form-control" id="confirmPwd" name="confirm_password" required>
+					  	</div>
+					</form>
+					<?php 
+					    if(!empty($err)){
+						echo '<div class="alert alert-danger">' . $err . '</div>';
+					    }        
+					?>
+				</div>
+				<div class="modal-footer">
+					<div class="form-check mx-auto">
+						<input type="checkbox" class="form-check-input" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">
+						<label class="form-check-label" for="keepmeloggedin">Login speichern</label>
+					</div>
+        			<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+					<button type="submit" name="submit" class="btn btn-dark">Account erstellen</button>
+					<div class="text-center mt-3">
+						<p class="mt-3">Durch erstellen des Accounts stimmst du unseren <a href="/system0/html/php/login/v3/php/privacy-policy.php">Datenschutzrichtlinien</a> zu</p>
+					</div>
+				</div>
+				  </div>
+			</div>
+		</div>
+	
 
-		                </div>
-		              </div>
-		            </div>
-		          </div>
-		        </div>
-		      </div>
-		    </div>
 
 	<div id="footer"></div>
         
