@@ -208,11 +208,11 @@ $id=$_SESSION["id"];
 								}
 								echo("</tbody></table>");
 								//echo("</div>");
-								echo("<div class='alert alert-dark' role='alert'>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde. Und du deinen Druck abgeholt hast.</div>");
+								echo("<div class='alert alert-dark' role='alert' style='height: 100px;>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde. Und du deinen Druck abgeholt hast.</div>");
 							}
 							else
 							{
-								echo("<div class='alert alert-dark' role='alert'>Laufende Vorgänge werden hier aufgelistet.</div>");
+								echo("<div class='alert alert-dark' role='alert' style='height: 100px;'>Laufende Vorgänge werden hier aufgelistet.</div>");
 							}
 						?>	
 						<!-- list queue -->
