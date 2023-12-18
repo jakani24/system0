@@ -18,7 +18,7 @@
 	{
 	
 		$id=htmlspecialchars($_GET["id"]);
-		$sql="update printer set free=1 where id=$id";
+		$sql="update printer set free=1,printing=0,cancel=0 ,used_by_userid=0 where id=$id";
 		$stmt = mysqli_prepare($link, $sql);					
 		mysqli_stmt_execute($stmt);
 	}
