@@ -18,6 +18,7 @@ require_once "php/config.php";
 require_once "log/log.php";
 require_once "waf/salt.php";
 require_once "keepmeloggedin.php";
+include "components.php";
 $error=logmein($link);
 //echo($error);
 //die();
