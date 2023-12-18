@@ -230,7 +230,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							<div class="row justify-content-center">
 								<div class="col-md-6">
 									<h3 class="text-center">Account erstellen</h3>
-									<form action="" method="post">
+									<form action="php/create_user.php" method="post">
 										<div class="mb-3">
 										<label for="username" class="form-label">New Username:</label>
 										<input type="text" class="form-control" id="username" name="username" required>
