@@ -3,7 +3,7 @@ Frontend system for octoprint<br>
 This repo contains the code from system0 a frontend user controll system for octoprint<br>
 The goal of system0 is to be a system that can controll multiple octoprint 3d printers at the same time.<br>
 The system has to be able to register users (students) and must have the functionallity to upload files etc. for printing.
-Additionally it should be able to have something like a queue so even if no printer is "free" users can upload theyr files and the system will automaticli send it to a printer as soon as a printer is "free".
+Additionally it should be able to have something like a queue so even if no printer is "free" users can upload theyr files and the system will automaticly send it to a printer as soon as a printer is "free".
 
 <br>
 System0 is mainly written for ksw (Kantonsschule Wattwil ST. Gallen CH-switzerland)
