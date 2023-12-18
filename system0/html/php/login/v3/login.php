@@ -212,7 +212,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			</div>
 		</div>
 	
-		<div class="modal fade" id="noaccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal modal-lg fade" id="noaccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		      <div class="modal-dialog" role="document">
 		        <div class="modal-content">
 		          <div class="modal-header">
