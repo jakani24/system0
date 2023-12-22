@@ -216,7 +216,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		      <div class="modal-dialog" role="document">
 		        <div class="modal-content">
 		          <div class="modal-header">
-		            <h5 class="modal-title" id="exampleModalLabel">Account Erstelle </h5>
+		            <h5 class="modal-title" id="exampleModalLabel">Account Erstellen</h5>
 		            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		
 		          </div>
@@ -245,8 +245,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				</div>
 				<div class="modal-footer">
 					<div class="form-check mx-auto">
-						<input type="checkbox" class="form-check-input" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">
-						<label class="form-check-label" for="keepmeloggedin">Login speichern</label>
+						<!--<input type="checkbox" class="form-check-input" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">-->
+						<!--<label class="form-check-label" for="keepmeloggedin">Login speichern</label>-->
 					</div>
         			<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
 					<button type="submit" name="submit" class="btn btn-dark">Account erstellen</button>
