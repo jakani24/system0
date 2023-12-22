@@ -236,7 +236,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							<label for="confirmPwd" class="form-label">Passwort bestätigen:</label>
 							<input type="password" class="form-control" id="confirmPwd" name="confirm_password" required>
 					  	</div>
-					</form>
+					
 					<?php 
 					    if(!empty($err)){
 						echo '<div class="alert alert-danger">' . $err . '</div>';
@@ -255,6 +255,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					</div>
 				</div>
 				  </div>
+				</form>
 			</div>
 		</div>
 	
