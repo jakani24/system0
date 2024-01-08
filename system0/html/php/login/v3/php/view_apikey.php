@@ -57,7 +57,7 @@ function load_user()
 <div class="container m-5" style="height: 95vh;">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <h1>Your system0 APIkey:</h1>
+      <h1>Dein system0 APIkey:</h1>
 			<?php
 				$apikey_fromdb="";
 				$sql="select apikey from api where id=1";
@@ -67,7 +67,7 @@ function load_user()
 				mysqli_stmt_bind_result($stmt, $apikey_fromdb);
 				mysqli_stmt_fetch($stmt);	
 				echo("<b>".$apikey_fromdb."</b>");
-				echo("<br><br>Please treat this key like a password.<br>It is essential to not let anyone know this key!");	
+				echo("<br><br>Behandle diesen Schlüssel wie ein Passwort.<br>Es ist wichtig, dass niemand diesen Schlüssel erfährt!");	
 			?>
     </div>
   </div>
