@@ -86,7 +86,7 @@
 
             <!-- Account things -->
             <div class="container mt-2 ml-2">
-              <div class="row justify-content-left">
+              <div class="row justify-content-center">
                 <div class="col-md-6 p-4">
                   <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/reset-password.php" role="button">Passwort zurücksetzen</a><br>
                   <a class="btn btn-dark btn-block m-2" href="/system0/html/php/login/v3/delete-account.php" role="button">Account und alle dazugehörigen Daten löschen</a>

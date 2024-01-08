@@ -19,7 +19,7 @@
 	{
 		$url=htmlspecialchars($_GET["url"]);
 		$id=htmlspecialchars($_GET["id"]);
-		$sql="insert into printer (id, printer_url,printing,free,used_by_userid,system_status,apikey) values ($id,'$url',0,1,0,0,$octoapikey) on duplicate key update printer_url='$url'";
+		$sql="insert into printer (id, printer_url,printing,free,used_by_userid,system_status,apikey) values ($id,'$url',0,1,0,0,'$octoapikey') on duplicate key update printer_url='$url', apikey='$octoapikey'";
 		$stmt = mysqli_prepare($link, $sql);					
 		mysqli_stmt_execute($stmt);
 	}

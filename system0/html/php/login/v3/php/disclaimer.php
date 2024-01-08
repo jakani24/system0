@@ -53,7 +53,7 @@ else
 
          <div id="content"></div>
 
-<div class="m-2">
+<div class="m-3">
 	<h1>Disclaimer</h1>
 	<p>Last updated: December 18, 2023</p>
 	<h1>Interpretation and Definitions</h1>

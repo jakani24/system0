@@ -177,7 +177,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Login</title>
 </head>
 <body>
-	<div class="d-flex align-items-center justify-content-center vh-100">
+	<div class="d-flex align-items-center justify-content-left bg-dark" style="height:8vh;">
+		<img src="/system0/html/php/login/v3/css/MicrosoftTeams-image (16).png" width="auto" height="30" alt="Logo" class="img-thumbnail">
+	</div>
+	<div class="d-flex align-items-center justify-content-center"style="height:92vh;">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-6">
@@ -216,7 +219,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		      <div class="modal-dialog" role="document">
 		        <div class="modal-content">
 		          <div class="modal-header">
-		            <h5 class="modal-title" id="exampleModalLabel">Account Erstelle </h5>
+		            <h5 class="modal-title" id="exampleModalLabel">Account Erstellen</h5>
 		            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		
 		          </div>
@@ -236,7 +239,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							<label for="confirmPwd" class="form-label">Passwort bestätigen:</label>
 							<input type="password" class="form-control" id="confirmPwd" name="confirm_password" required>
 					  	</div>
-					</form>
+					
 					<?php 
 					    if(!empty($err)){
 						echo '<div class="alert alert-danger">' . $err . '</div>';
@@ -245,8 +248,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				</div>
 				<div class="modal-footer">
 					<div class="form-check mx-auto">
-						<input type="checkbox" class="form-check-input" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">
-						<label class="form-check-label" for="keepmeloggedin">Login speichern</label>
+						<!--<input type="checkbox" class="form-check-input" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">-->
+						<!--<label class="form-check-label" for="keepmeloggedin">Login speichern</label>-->
 					</div>
         			<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
 					<button type="submit" name="submit" class="btn btn-dark">Account erstellen</button>
@@ -255,6 +258,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					</div>
 				</div>
 				  </div>
+				</form>
 			</div>
 		</div>
 	
