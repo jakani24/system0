@@ -51,14 +51,14 @@ function load_user()
 <div id="content"></div>
 
 <head>
-  <title>All jobs</title>
+  <title>Alle Augaben</title>
   
 </head>
 <body>
 	<div class="container mt-5" style="height: 95vh;">
 		<div class="row justify-content-center">
 	  	<div style="width: 90vh">
-	      <h1>All running Jobs</h1>
+	      <h1>alle laufenden Aufträge</h1>
 				<?php
 					if(isset($_POST['free']))
 					{
@@ -128,7 +128,7 @@ function load_user()
 					mysqli_stmt_bind_result($stmt, $cnt);
 					mysqli_stmt_fetch($stmt);	
 					//echo($cnt);
-					echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Printer</th><th>file</th><th>completion</th><th>free</th><th>cancel print</th></tr></thead><tbody>");
+					echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Drucker</th><th>Datei</th><th>Fortschritt</th><th>Freigeben</th><th>Druck abbrechen</th></tr></thead><tbody>");
 					$last_id=0;					
 					while($cnt!=0)
 					{
@@ -161,7 +161,7 @@ function load_user()
 						$cnt--;
 					}
 					echo("</tbody></table></div></div></div></div>");
-					echo("free your printer after you've taken out your print!");
+					echo("Geben Sie Ihren Drucker frei, nachdem Sie Ihren Druck entnommen haben!");
 				?>
 				<br><br>
 				<h1>All jobs in queue</h1>
@@ -176,7 +176,7 @@ function load_user()
 					mysqli_stmt_bind_result($stmt, $cnt);
 					mysqli_stmt_fetch($stmt);	
 					//echo($cnt);
-					echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>file</th><th>remove from queue</th></tr></thead><tbody>");
+					echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Datei</th><th>aus der Warteschlange entfernen</th></tr></thead><tbody>");
 					$last_id=0;
 					while($cnt!=0)
 					{
