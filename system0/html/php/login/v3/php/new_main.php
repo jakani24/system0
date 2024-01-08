@@ -229,6 +229,7 @@ $id=$_SESSION["id"];
 							//echo($cnt);
 							//echo '<div style="overflow-x: auto;">';
 							$last_id=0;
+							$cnt_of_job=$cnt;
 							if($cnt!=0){
 								echo("<table class='table'><thead><tr><th>Datei</th><th>Aus der Warteschlange entfernen</th></tr></thead><tbody>");
 								while($cnt!=0)
