@@ -57,7 +57,7 @@ function load_user()
 <body>
 	<div class="container mt-5" style="height: 95vh;">
 		<div class="row justify-content-center">
-	  	<div class="col-md-6">
+	  	<div style="width: 90vh">
 	      <h1>All running Jobs</h1>
 				<?php
 					if(isset($_POST['free']))
