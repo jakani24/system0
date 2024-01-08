@@ -189,7 +189,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <label for="pwd">Neues Passwort bestätigen:</label>
         <input type="password" class="form-control" id="pwd" name="confirm_password" required>
       </div>
-      <button type="submit" name="submit" class="btn btn-default">Bestätigen</button>
+      <button type="submit" name="submit" class="btn btn-default m-t-3">Bestätigen</button>
         <?php
         $role=$_SESSION["role"];
         if($role==="user")
