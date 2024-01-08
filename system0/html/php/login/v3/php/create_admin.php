@@ -147,25 +147,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-6">
-						<h3 class="text-center">Create Account</h3>
+						<h3 class="text-center">Account erstellen</h3>
 						<form action="" method="post">
 							<div class="form-group mb-3">
-								<label for="username">New Username:</label>
+								<label for="username">Neuer Benutzername:</label>
 								<input type="text" class="form-control" id="username" name="username" required>
 						  	</div>
 						  	<div class="form-group mb-3">
-								<label for="pwd">New Password:</label>
+								<label for="pwd">Neues Passwort:</label>
 								<input type="password" class="form-control" id="pwd" name="password" required>
 						  	</div>
 						  	<div class="form-group mb-3">
-								<label for="pwd">Confirm New Password:</label>
+								<label for="pwd">Neues Passwort bestätigen:</label>
 								<input type="password" class="form-control" id="pwd" name="confirm_password" required>
 						  	</div>
 							<button type="submit" name="submit" class="btn btn-dark">Create Account</button><br><br>
 						</form>
 						<div class="text-center mt-3">
-							<p class="mt-3">By creating an account you accept our <a href="/system0/html/php/login/v3/php/privacy-policy.php">Privacy Policy</a></p>
-							<p class="mt-3">Already have an account? <a href="../login.php">Login here</a>.</p>
+							<p class="mt-3">Beim Erstellen eines Accounts akzeptierst du unsere <a href="/system0/html/php/login/v3/php/privacy-policy.php">Privacy Policy</a></p>
+							<p class="mt-3">Account bereits vorhanden? <a href="../login.php">Hier einlogen</a>.</p>
 						</div>
 						<?php 
 						    if(!empty($err)){

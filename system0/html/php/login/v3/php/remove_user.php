@@ -81,10 +81,10 @@ function load_admin()
             // Close statement
             mysqli_stmt_close($stmt);
         }
-	echo('<div class="style="height: 95vh;">');
+	echo('<div style="height: 95vh;">');
 	echo('<div class="container mt-5" >
 			<div class="d-flex justify-content-center mb-3">
-				<h3>Please select a user to delete:</h3>
+				<h3>Benutzer zum löschen auswählen:</h3>
 			</div>
 			
 			
@@ -92,7 +92,7 @@ function load_admin()
 				<div class="mb-3">
 					<div class="row">
 						<div class="col">
-					  		<label for="lang">Username:</label>
+					  		<label for="lang">Benutzer:</label>
 						</div>
 						<div class="col">
 					  		<select name="username" id="username" class="form-select">
@@ -132,7 +132,7 @@ function load_admin()
 					 </div>
 										<div class="col">
 									  		<div class="d-flex justify-content-center">
-												<button type="submit" class="btn btn-danger" id="ban" ban="ban">Delete User</button>
+												<button type="submit" class="btn btn-danger" id="ban" ban="ban">Benutzer löschen</button>
 									  		</div>
 										</div>
 									</div>
@@ -142,7 +142,7 @@ function load_admin()
 	echo('<br><br>
  		<div class="container mt-5">
 			<div class="d-flex justify-content-center mb-3">
-				<h3>Please select a user to ban:</h3>
+				<h3>User zumm Bannen auswählen:</h3>
 			</div>
 			
 			
@@ -150,7 +150,7 @@ function load_admin()
 				<div class="mb-3">
 					<div class="row">
 						<div class="col">
-					  		<label for="lang">Username:</label>
+					  		<label for="lang">Benutzername:</label>
 						</div>
 						<div class="col">
 					  		<select name="ban" id="ban" class="form-select">');
@@ -186,14 +186,14 @@ function load_admin()
   	echo('</select>');
   	//echo('<br><input type="text" value="ban reason" id="reason" name="reason" />');
   	echo('<select name="reason" id="reason" class="form-select">');
-  	echo('<option reason="Hacking">Hacking</option>');
-  	echo('<option reason="Illegal activities">Illegal activities</option>');
-  	echo('<option reason="Misuse of service">Misuse of service</option>');
-  	echo('<option reason="Bad behaviour>Bad behaviour</option>');
-  	echo('<option reason="inappropriate behaviour">inappropriate behaviour</option>');
-  	echo('<option reason="inappropriate username">inappropriate username</option>');
-  	echo('<option reason="Illegal files">Illegal files</option>');
-  	echo('<option reason="Unspecified">Other</option>');
+  	echo('<option reason="Hacking">Hacken</option>');
+  	echo('<option reason="Illegal activities">Illegale aktivitäten</option>');
+  	echo('<option reason="Misuse of service">Missbrauch der Website</option>');
+  	echo('<option reason="Bad behaviour>Schlechtes Verhalten</option>');
+  	echo('<option reason="inappropriate behaviour">Unangemessenes Verhalten</option>');
+  	echo('<option reason="inappropriate username">Unangemessener Benutzername</option>');
+  	echo('<option reason="Illegal files">Illegale Dateien</option>');
+  	echo('<option reason="Unspecified">Andere</option>');
   	echo('</select>
    									</div>
 										<div class="col">
@@ -217,7 +217,7 @@ function load_admin()
 				<div class="mb-3">
 					<div class="row">
 						<div class="col">
-					  		<label for="lang">Username:</label>
+					  		<label for="lang">Benutzer:</label>
 						</div>
 						<div class="col">
 					  		<select name="unban" id="unban" class="form-select">');     

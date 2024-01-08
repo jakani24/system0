@@ -57,7 +57,7 @@ function load_user()
 <body>
 	<div class="container mt-5" style="height: 95vh;">
 		<div class="row justify-content-center">
-	  	<div class="col-md-6">
+	  	<div style="width: 90vh">
 	      <h1>All running Jobs</h1>
 				<?php
 					if(isset($_POST['free']))
@@ -128,7 +128,7 @@ function load_user()
 					mysqli_stmt_bind_result($stmt, $cnt);
 					mysqli_stmt_fetch($stmt);	
 					//echo($cnt);
-					echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Printer</th><th>file</th><th>completion</th><th>free</th><th>cancel print</th>></tr></thead><tbody>");
+					echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Printer</th><th>file</th><th>completion</th><th>free</th><th>cancel print</th></tr></thead><tbody>");
 					$last_id=0;					
 					while($cnt!=0)
 					{

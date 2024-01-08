@@ -177,7 +177,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Login</title>
 </head>
 <body>
-	<div class="d-flex align-items-center justify-content-center vh-100">
+	<div class="d-flex align-items-center justify-content-left bg-dark" style="height:8vh;">
+		<img src="/system0/html/php/login/v3/css/MicrosoftTeams-image (16).png" width="auto" height="30" alt="Logo" class="img-thumbnail">
+	</div>
+	<div class="d-flex align-items-center justify-content-center"style="height:92vh;">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-6">

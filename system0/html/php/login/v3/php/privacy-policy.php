@@ -53,7 +53,7 @@ else
 
          <div id="content"></div>
 
-<div class="mt-2 ml-2">
+<div class="m-3">
 	<h1>Privacy Policy</h1>
 	<p>Last updated: December 18, 2023</p>
 	<p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>

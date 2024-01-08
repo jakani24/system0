@@ -53,7 +53,7 @@ function load_user()
   
 </head>
 <body>
-<div class="container">
+<div class="container m-3">
   <div class="row justify-content-center">
     <div class="col-md-auto">
       <h1>All entries</h1>
