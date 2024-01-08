@@ -208,7 +208,7 @@ $id=$_SESSION["id"];
 								}
 								echo("</tbody></table>");
 								//echo("</div>");
-								echo("<div class='alert alert-dark' role='alert' style='height: 100px;>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde. Und du deinen Druck abgeholt hast.</div>");
+								echo("<div class='alert alert-dark' role='alert' style='height: 100px;'>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde. Und du deinen Druck abgeholt hast.</div>");
 							}
 							else
 							{
@@ -229,7 +229,6 @@ $id=$_SESSION["id"];
 							//echo($cnt);
 							//echo '<div style="overflow-x: auto;">';
 							$last_id=0;
-							$cnt_of_job=$cnt;
 							if($cnt!=0){
 								echo("<table class='table'><thead><tr><th>Datei</th><th>Aus der Warteschlange entfernen</th></tr></thead><tbody>");
 								while($cnt!=0)
