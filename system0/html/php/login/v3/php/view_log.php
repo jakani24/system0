@@ -56,16 +56,16 @@ function load_user()
 <div class="container m-3">
   <div class="row justify-content-center">
     <div class="col-md-auto">
-      <h1>All entries</h1>
+      <h1>Alle Einträge</h1>
 			<div class="overflow-auto">
 			<table class="table">
   			<thead>
 					<tr>
-						<th>Date & Time</th>
-						<th>IP Adress</th>
-						<th>Type</th>
-						<th>Username</th>
-						<th>Notes</th>
+						<th>Datum & Zeit</th>
+						<th>IP Adresse</th>
+						<th>Typ</th>
+						<th>Benutzername</th>
+						<th>Info</th>
 					</tr>
 					<form method="GET" action="?search=true">
 					<tr>

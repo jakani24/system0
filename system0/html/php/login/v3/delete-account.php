@@ -64,19 +64,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div class="container mt-3" style="height: 95vh;">
          <div class="row justify-content-center">
              <div class="col-md-8 text-center">
-                 <p class="mt-4">When you delete your account, the following will happen:</p>
+                <h3>Account löschen</h3>
+                 <p class="mt-4">Wenn Sie Ihr Konto löschen, geschieht Folgendes:</p>
                  <ul class="list-unstyled">
-                     <li>- We will delete all your data from our systems.</li>
-                     <li>- We will delete your cloud as well as your voctr files.</li>
-                     <li>- Your username will be freed. This means anyone can re-register with your username.</li>
+                     <li>Wir werden alle Ihre Daten aus unseren Systemen löschen.</li>
+                     <li>Wir werden sowohl Ihre Cloud als auch Ihre voctr-Dateien löschen.</li>
+                     <li>Ihr Benutzername wird freigegeben. Das bedeutet, dass sich jeder mit Ihrem Benutzernamen neu registrieren kann.</li>
                  </ul>
                  <form action="" method="post" class="mt-4">
                      <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
                      <div class="mb-3">
-                         <label for="username" class="form-label">To continue, please type in your username:</label>
+                         <label for="username" class="form-label">Um fortzufahren, geben Sie bitte Ihren Benutzernamen ein:</label>
                          <input type="text" id="username" name="username" class="form-control" required>
                      </div>
-                     <button type="submit" class="btn btn-primary">Submit</button>
+                     <button type="submit" class="btn btn-primary">Bestätigen</button>
                  </form>
  
                  <?php
