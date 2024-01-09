@@ -19,7 +19,7 @@ $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = "";
 $old_password="";
 $old_passwort_err="";
- 
+ echo("<div id='content'></div>");
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $login_err="";

@@ -29,7 +29,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION[
 // Include config file
 require_once "config.php";
 include "../log/log.php";
- 
+echo("<div id='content'></div>");
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
 $role="admin";
@@ -176,6 +176,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				</div>
 			</div>
 		</div>
+</div>
 		<div id="footer"></div>
 </body>
 </html>
