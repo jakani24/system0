@@ -68,7 +68,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $err = "Password did not match.";
         }
     }
-    
+// Validate kantimail
+    if(strpos($_POST["username"],"@kantiwattwil.ch")===false){
+        $err = "Only members of KSW can access this site. (prename.name@kantiwattwil.ch).";     
+    } 
     // Check input errors before inserting in database
     if(empty($err)){
         

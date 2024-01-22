@@ -30,6 +30,7 @@
    <a class="dropdown-item" href="/system0/html/php/login/v3/php/new_main.php">Startseite</a>
 		<a class="dropdown-item" href="/system0/html/php/login/v3/php/bugreport.php">Fehler melden</a>
 		<a class="dropdown-item" href="/system0/html/php/login/v3/php/print.php">Datei drucken</a>
+		<a class="dropdown-item" href="/system0/html/php/login/v3/php/cloud.php">Deine Dateien</a>
 
               </ul>
             </li>
