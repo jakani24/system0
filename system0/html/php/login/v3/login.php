@@ -177,6 +177,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Login</title>
 </head>
 <body>
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content bg-warning">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body m-3" style="height: 80px;">
+	       	Bitte vergrössern Sie das Browserfenster für den optimalen Gebrauch der Website!
+	      </div>
+	    </div>
+	  </div>
+	</div>
+		
+	<p id="window"></p>
+	
+	<script>
+	var windowWidth = window.innerWidth;
+	var galleryModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+	  keyboard: false
+	});
+	
+	if (windowWidth < 700){
+	  galleryModal.toggle();
+	}
+	
+	</script>
 	<div class="d-flex align-items-center justify-content-left bg-dark" style="height:8vh;">
 		<img src="/system0/html/php/login/v3/css/MicrosoftTeams-image (16).png" alt="Logo" class="img-fluid p-2" style="height:40px; width:auto;">
 	</div>
