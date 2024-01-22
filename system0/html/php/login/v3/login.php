@@ -282,18 +282,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content bg-warning">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+	      <div class="modal-body m-3">
+		<h5 class="modal-title" id="exampleModalLabel">Error</h5>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	      </div>
-	      <div class="modal-body m-3" style="height: 80px;">
-	       	Bitte vergrössern Sie das Browserfenster für den optimalen Gebrauch der Website!
+	       	Vergrössere bitte das Browserfenster für den optimalen gebrauch der Website!
 	      </div>
 	    </div>
 	  </div>
 	</div>
-		
-	<p id="window"></p>
 	
 	<script>
 	var windowWidth = window.innerWidth;
@@ -316,16 +312,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 						<h3 class="text-center">Login</h3>
 						<form action="login.php?action=login" method="post">
 							<div class="mb-3">
-								<label for="username" class="form-label">Username:</label>
+								<label for="username" class="form-label">Benutzername:</label>
 								<input type="text" class="form-control" id="username" name="username" required>
 							</div>
 							<div class="mb-3">
-								<label for="pwd" class="form-label">Password:</label>
+								<label for="pwd" class="form-label">Passwort:</label>
 								<input type="password" class="form-control" id="pwd" name="password" required>
 							</div>
 							<div class="mb-3 form-check">
 								<input type="checkbox" class="form-check-input" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">
-								<label class="form-check-label" for="keepmeloggedin">Keep me logged in</label>
+								<label class="form-check-label" for="keepmeloggedin">Angemeldet bleiben</label>
 							</div>
 							<button type="submit" name="submit" class="btn btn-dark">Login</button>
 						</form>
@@ -344,7 +340,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 		</div>
 
 
-		'<div class="modal fade" id="noaccount" tabindex="1" role="dialog" aria-labelledby="Account" aria-hidden="false">'
+		<div class="modal fade" id="noaccount" tabindex="1" role="dialog" aria-labelledby="Account" aria-hidden="false">
 		      <div class="modal-dialog" role="document">
 		        <div class="modal-content">
 		          <div class="modal-header">
