@@ -36,6 +36,7 @@
 		<a class="dropdown-item" href="/system0/html/php/login/v3/php/view_log.php">View system0 Log</a>
 		<a class="dropdown-item" href="/system0/html/php/login/v3/php/view_apikey.php">View the system0 API Key</a>
 		 <a class="dropdown-item" href="/system0/html/php/login/v3/php/create_key.php">Druckschlüssel erstellen</a>
+		<a class="dropdown-item" href="/system0/html/php/login/v3/php/cloud.php">Deine Dateien</a>
               </ul>
             </li>
           </ul>
