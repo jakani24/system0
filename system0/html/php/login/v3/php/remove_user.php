@@ -142,7 +142,7 @@ function load_admin()
 	echo('<br><br>
  		<div class="container mt-5">
 			<div class="d-flex justify-content-center mb-3">
-				<h3>User zumm Bannen auswählen:</h3>
+				<h3>User zum Bannen auswählen:</h3>
 			</div>
 			
 			
