@@ -292,8 +292,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 	    </div>
 	  </div>
 	</div>
-		
-	<p id="window"></p>
 	
 	<script>
 	var windowWidth = window.innerWidth;
