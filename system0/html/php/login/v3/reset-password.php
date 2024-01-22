@@ -196,7 +196,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	        $role=$_SESSION["role"];
 	        if($role==="user")
 	        {
-	            echo ('<a class="btn btn-link ml-2" href="php/new_main.php">Abbrechen</a>');
+	            echo ('<a class="btn btn-dark ml-2" href="php/new_main.php">Abbrechen</a>');
 	        }
 	        else if($role==="admin")
 	        {
