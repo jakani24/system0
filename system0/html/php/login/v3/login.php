@@ -314,16 +314,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 						<h3 class="text-center">Login</h3>
 						<form action="login.php?action=login" method="post">
 							<div class="mb-3">
-								<label for="username" class="form-label">Username:</label>
+								<label for="username" class="form-label">Benutzername:</label>
 								<input type="text" class="form-control" id="username" name="username" required>
 							</div>
 							<div class="mb-3">
-								<label for="pwd" class="form-label">Password:</label>
+								<label for="pwd" class="form-label">Passwort:</label>
 								<input type="password" class="form-control" id="pwd" name="password" required>
 							</div>
 							<div class="mb-3 form-check">
 								<input type="checkbox" class="form-check-input" id="keepmeloggedin" name="keepmeloggedin" value="keepmeloggedin">
-								<label class="form-check-label" for="keepmeloggedin">Keep me logged in</label>
+								<label class="form-check-label" for="keepmeloggedin">Angemeldet bleiben</label>
 							</div>
 							<button type="submit" name="submit" class="btn btn-dark">Login</button>
 						</form>
