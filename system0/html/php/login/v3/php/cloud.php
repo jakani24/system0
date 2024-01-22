@@ -48,6 +48,25 @@ function load_user()
 <?php 
 	$color=$_SESSION["color"]; 
 	include "/var/www/html/system0/html/php/login/v3/components.php";
+
+	function get_base64_preview($filename){
+		$base64="";
+		$file=fopen($filename,"r");
+		$start=0;
+		while(!feof($file)){
+			$buf=fgets($file);
+			if(stripos($buf,"thumbnail end")!==false)
+				$start=0;
+			if($start==1)
+				$base64.=$buf;
+			if(stripos($buf,"thumbnail begin")!==false)
+				$start=1;
+		}
+		fclose($file);
+		$base64=str_replace(";","",$base64);
+		$base64=str_replace(" ","",$base64);
+		return $base64;
+	}
 ?>
 <div id="content"></div>
 
@@ -64,7 +83,7 @@ function load_user()
 				  <table class="table">
 				    <thead>
 				      <tr>
-					<th>#</th>
+					<th>Preview</th>
 					<th>File Name</th>
 					<th>Download File</th>
 				      </tr>
@@ -81,7 +100,7 @@ function load_user()
 					  $count = 1;
 					  foreach ($files as $file) {
 					      echo '<tr>';
-					      echo '<td>' . $count++ . '</td>';
+					      echo '<td><img  style="display:block; width:100px;height:100px;" id="base64image" src="data:image;base64,' . get_base64_preview($file) . '"/></td>';
 					      echo '<td>' . basename($file) . '</td>';
 					      echo "<td><a href='/system0/html/user_files/$username/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
 					      echo '</tr>';
