@@ -28,12 +28,12 @@ $id=$_SESSION["id"];
   
 </head>
 <body>
-	<div class="d-flex justify-content-center align-items-center vh-100">
+	<div class="d-flex justify-content-center align-items-center">
 		<div class="center">
-		      	<h1>Your running Jobs</h1>
-			<br>
-			<button type="button" class="btn btn-dark btn-lg" onclick="location.href = 'job_info_for_new_system.php';">Reload</button>
-			<br>
+		      	
+
+			<!-- <button type="button" class="btn btn-dark btn-lg" onclick="location.href = 'job_info_for_new_system.php';">Reload</button>-->
+
 			<br>
 			<div class="container">
 				<?php
@@ -70,18 +70,19 @@ $id=$_SESSION["id"];
 							$progress=-$progress;
 						$file=$json['job']['file']['name'];
 						//echo($file);
-						echo("<tr><td>average print time</td><td>".$json["job"]["averagePrintTime"]." Seconds</td></tr>");
-						echo("<tr><td>estimated print time</td><td>".round($json["job"]["estimatedPrintTime"],0)." Seconds</td></tr>");
-						echo("<tr><td>filament</td><td>".$json["job"]["filament"]."</td></tr>");
-						echo("<tr><td>file</td><td>".$json["job"]["file"]["name"]."</td></tr>");
-						echo("<tr><td>file size</td><td>".$json["job"]["file"]["size"]." Bytes</td></tr>");
-						echo("<tr><td>progress</td><td>".round($json["progress"]["completion"],2)."%</td></tr>");
-						echo("<tr><td>print time</td><td>".$json["progress"]["printTime"]." Seconds</td></tr>");
-						echo("<tr><td>print time left</td><td>".$json["progress"]["printTimeLeft"]." Seconds</td></tr>");
-			
+						echo("<tr><td>Drucker</td><td>$printer_id</td></tr>");
+						echo("<tr><td>Durchschnittliche Druckzeit</td><td>".$json["job"]["averagePrintTime"]." Sekunden</td></tr>");
+						echo("<tr><td>Erwartete Druckzeit</td><td>".round($json["job"]["estimatedPrintTime"],0)." Sekunden</td></tr>");
+						echo("<tr><td>Druckzeit</td><td>".$json["progress"]["printTime"]." Seconds</td></tr>");
+						echo("<tr><td>Verbleibende Druckzeit</td><td>".$json["progress"]["printTimeLeft"]." Sekunden</td></tr>");
+						echo("<tr><td>Filament</td><td>".$json["job"]["filament"]."</td></tr>");
+						echo("<tr><td>Datei</td><td>".$json["job"]["file"]["name"]."</td></tr>");
+						echo("<tr><td>Dateigrösse</td><td>".$json["job"]["file"]["size"]." Bytes</td></tr>");
+						echo("<tr><td>Vortschritt</td><td>".round($json["progress"]["completion"],2)."%</td></tr>");
+
 						$cnt--;
 						echo("</tbody></table>");
-						echo("<iframe height='135' width='240' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id'></iframe>");
+						echo("<iframe height='auto' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id'></iframe>");
 						echo("<br><br>");
 					}
 					//echo("free your printer after you've taken out your print!</div>");
