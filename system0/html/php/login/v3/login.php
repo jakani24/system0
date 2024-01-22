@@ -282,12 +282,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content bg-warning">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+	      <div class="modal-body m-3">
+		<h5 class="modal-title" id="exampleModalLabel">Error</h5>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	      </div>
-	      <div class="modal-body m-3" style="height: 80px;">
-	       	Bitte vergrössern Sie das Browserfenster für den optimalen Gebrauch der Website!
+	       	Vergrössere bitte das Browserfenster für den optimalen gebrauch der Website!
 	      </div>
 	    </div>
 	  </div>
