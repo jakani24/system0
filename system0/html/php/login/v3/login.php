@@ -200,7 +200,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	  keyboard: false
 	});
 	
-	if (windowWidth < 700){
+	if (windowWidth < 1000){
 	  galleryModal.toggle();
 	}
 	
