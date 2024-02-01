@@ -75,7 +75,7 @@ function load_user()
   
 </head>
 <body>
-	<div class="container mt-10" style="height: 95vh;">
+	<div class="container mt-10" style="height: 100%;">
 		<div class="row justify-content-center">
 			<!--<div style="width: 90vh">-->
 			      <h1>Deine Dateien</h1>
