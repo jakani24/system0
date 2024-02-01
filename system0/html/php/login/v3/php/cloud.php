@@ -76,7 +76,7 @@ function load_user()
 <div id="content"></div>
 
 <head>
-  <title>Alle Augaben</title>
+  <title>Alle Dateien</title>
   
 </head>
 <body>
