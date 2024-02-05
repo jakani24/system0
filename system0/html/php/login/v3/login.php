@@ -283,8 +283,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 	  <div class="modal-dialog">
 	    <div class="modal-content bg-warning">
 	      <div class="modal-body m-3">
-		<h5 class="modal-title" id="exampleModalLabel">Error</h5>
-	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		<div class="d-flex flex-row">
+		  <div class="p-10"><h5 class="modal-title" id="exampleModalLabel">Error</h5></div>
+		  <div class="p-2"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+		</div>
 	       	Vergrössere bitte das Browserfenster für den optimalen gebrauch der Website!
 	      </div>
 	    </div>
