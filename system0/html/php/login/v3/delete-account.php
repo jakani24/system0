@@ -61,7 +61,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             }
         ?>
 
-        <div class="container m-3" style="height: 95vh;">
+        <div class="container m-5" style="height: 95vh;">
          <div class="row justify-content-center">
              <div class="col-md-8 m-3">
                 <h3>Account löschen</h3>
