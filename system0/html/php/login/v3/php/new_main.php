@@ -257,7 +257,7 @@ $id=$_SESSION["id"];
 						?>		
 					</div>
 				</div>
-				<div class="col-md-4" style="height: 100vh;">
+				<div class="col-md-4" style="height: 100vh;overflow-y:auto">
 			<!-- job detailes -->
 	
 					<?php
