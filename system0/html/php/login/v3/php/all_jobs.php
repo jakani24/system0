@@ -57,7 +57,7 @@ function load_user()
 <body>
 	<div class="container mt-5" style="height: 95vh;">
 		<div class="row justify-content-center">
-	  	<div style="width: 90vh">
+	  	<div style="width: 100hh">
 	      <h1>alle laufenden Aufträge</h1>
 				<?php
 					if(isset($_POST['free']))
@@ -128,35 +128,42 @@ function load_user()
 					mysqli_stmt_bind_result($stmt, $cnt);
 					mysqli_stmt_fetch($stmt);	
 					//echo($cnt);
-					echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Drucker</th><th>Datei</th><th>Fortschritt</th><th>Freigeben</th><th>Druck abbrechen</th></tr></thead><tbody>");
+					echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Drucker</th><th>Benutzer</th><th>Datei</th><th>Fortschritt</th><th>Freigeben</th><th>Druck abbrechen</th></tr></thead><tbody>");
 					$last_id=0;					
 					while($cnt!=0)
 					{
-						$sql="select id,printer_url,apikey,cancel from printer where free=0 and id>$last_id ORDER BY id";
+						$userid=0;
+						$sql="select id,printer_url,apikey,cancel,used_by_userid from printer where free=0 and id>$last_id ORDER BY id";
 						$cancel=0;
 						$stmt = mysqli_prepare($link, $sql);					
 						mysqli_stmt_execute($stmt);
 						mysqli_stmt_store_result($stmt);
-						mysqli_stmt_bind_result($stmt, $printer_id,$url,$apikey,$cancel);
+						mysqli_stmt_bind_result($stmt, $printer_id,$url,$apikey,$cancel,$userid);
 						mysqli_stmt_fetch($stmt);
-						//echo("curl $url/api/job?apikey=$apikey > /var/www/html/system0/html/user_files/$username/json.json");
+	
 						exec("curl --max-time 10 $url/api/job?apikey=$apikey > /var/www/html/system0/html/user_files/$username/json.json");
 						$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
 						$json=json_decode($fg,true);
 						$last_id=$printer_id;
-						//var_dump($json);
-						//echo($fg);
 						
+						$used_by_user="";
+						$sql="select username from users where id=$userid";
+						$stmt = mysqli_prepare($link, $sql);					
+						mysqli_stmt_execute($stmt);
+						mysqli_stmt_store_result($stmt);
+						mysqli_stmt_bind_result($stmt, $used_by_user);
+						mysqli_stmt_fetch($stmt);
+
 						$progress=(int) $json['progress']['completion'];
 						if($progress<0)
 							$progress=-$progress;
 						$file=$json['job']['file']['name'];
 						if($progress==100)
-							echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free'  name='free' class='btn btn-dark'>Free</button></form></td></form></tr>");
+							echo("<tr><td>$printer_id</td><td>$used_by_user</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free'  name='free' class='btn btn-dark'>Free</button></form></td></form></tr>");
 						else if($cancel==1)
-							echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free'  name='free' class='btn btn-dark'>Free</button></form></td><td>Job cancelled</td></form></tr>");
+							echo("<tr><td>$printer_id</td><td>$used_by_user</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free'  name='free' class='btn btn-dark'>Free</button></form></td><td>Job cancelled</td></form></tr>");
 						else
-							echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><button type='submit' value='cancel'  name='cancel' class='btn btn-danger'>Abbrechen</button></form></td></form></tr>");
+							echo("<tr><td>$printer_id</td><td>$used_by_user</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><button type='submit' value='cancel'  name='cancel' class='btn btn-danger'>Abbrechen</button></form></td></form></tr>");
 			 			
 						$cnt--;
 					}
