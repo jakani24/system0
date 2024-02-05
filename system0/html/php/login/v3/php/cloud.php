@@ -72,6 +72,11 @@ function load_user()
 		unlink($path);
 	
 	}
+	if(isset($_GET["public"])){
+		$path="/var/www/html/system0/html/user_files/$username/".str_replace("..","",htmlspecialchars($_GET["public"]));
+		$public_path="/var/www/html/system0/html/user_files/public/".str_replace("..","",htmlspecialchars($_GET["public"]));
+		copy($path,$public_path);
+	}
 ?>
 <div id="content"></div>
 
@@ -93,6 +98,7 @@ function load_user()
 					<th>Print File</th>
 					<th>Delete File</th>
 					<th>Download File</th>
+					<th>Make Public</th>
 				      </tr>
 				    </thead>
 				    <tbody>
@@ -112,6 +118,7 @@ function load_user()
 					      echo '<td><a href="print.php?cloudprint='.basename($file).'">Drucken</a></td>';
 					      echo "<td><a href='cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
 					      echo "<td><a href='/system0/html/user_files/$username/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
+					      echo "<td><a href='cloud.php?public=".basename($file)."'>Öffentlich verfügbar machen</a></td>";
 					      echo '</tr>';
 					  }
 				      } else {
