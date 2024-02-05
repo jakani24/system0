@@ -115,7 +115,10 @@
 					unset($_FILES['file']);
 				}
 				if(isset($_GET["cloudprint"])){
-					$path = "/var/www/html/system0/html/user_files/$username/".$_GET["cloudprint"];
+					if(!isset($_GET["pc"]))
+						$path = "/var/www/html/system0/html/user_files/$username/".$_GET["cloudprint"];
+					else
+						$path = "/var/www/html/system0/html/user_files/public/".$_GET["cloudprint"];
 					$stmt = mysqli_prepare($link, $sql);	
 					mysqli_stmt_bind_param($stmt, "is", $userid,$path);				
 					mysqli_stmt_execute($stmt);
@@ -209,7 +212,10 @@
 					unset($_FILES['file']);
 				}
 				if(isset($_GET["cloudprint"])){
-					$path = "/var/www/html/system0/html/user_files/$username/".$_GET["cloudprint"];
+					if(!isset($_GET["pc"]))
+						$path = "/var/www/html/system0/html/user_files/$username/".$_GET["cloudprint"];
+					else
+						$path = "/var/www/html/system0/html/user_files/public/".$_GET["cloudprint"];
 					//check if print key is valid:
 					$print_key=htmlspecialchars($_POST["print_key"]);
 					$sql="SELECT id from print_key where print_key='$print_key'";
