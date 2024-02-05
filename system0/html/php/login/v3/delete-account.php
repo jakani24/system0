@@ -61,9 +61,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             }
         ?>
 
-        <div class="container mt-3" style="height: 95vh;">
+        <div class="container m-3" style="height: 95vh;">
          <div class="row justify-content-center">
-             <div class="col-md-8 text-center">
+             <div class="col-md-8 m-3">
                 <h3>Account löschen</h3>
                  <p class="mt-4">Wenn Sie Ihr Konto löschen, geschieht Folgendes:</p>
                  <ul class="list-unstyled">
