@@ -321,13 +321,28 @@
 					<br><br>
 					<!--<label class="my-3" for="print_key">Druckschlüssel (Kann im Sekretariat gekauft werden)</label>
 					<input type="text" class="form-control text" id="print_key" name="print_key" placeholder="z.B. A3Rg4Hujkief"><br>-->
-					<input type="submit" class="btn btn-dark mb-5" value="Datei drucken">
+					<input type="submit" class="btn btn-dark mb-5" value="Datei drucken" onclick="show_loader();" id="button">
+					<div class="d-flex align-items-center">
+ 					 <strong role="status" style="display:none" id="spinner">Hochladen...</strong>
+ 					 <div class="spinner-border ms-auto" aria-hidden="true" style="display:none" id="spinner2"></div>
+					</div>
+					
 				</form>
 			</div>
 		</div>
 		<br>
 	<div id="footer"></div>
+<script>
+	function show_loader(){
+		var spinner=document.getElementById("spinner");
+		spinner.style.display="block";
+		var spinner=document.getElementById("spinner2");
+		spinner.style.display="block";
+		var spinner=document.getElementById("button");
+		spinner.style.display="none";
 
+	}
+</script>
 </body>
 
 </html>
