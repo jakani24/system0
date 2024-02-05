@@ -71,14 +71,12 @@ $id=$_SESSION["id"];
 						$file=$json['job']['file']['name'];
 						//echo($file);
 						echo("<tr><td>Drucker</td><td>$printer_id</td></tr>");
-						echo("<tr><td>Durchschnittliche Druckzeit</td><td>".$json["job"]["averagePrintTime"]." Sekunden</td></tr>");
 						echo("<tr><td>Erwartete Druckzeit</td><td>".round($json["job"]["estimatedPrintTime"],0)." Sekunden</td></tr>");
 						echo("<tr><td>Druckzeit</td><td>".$json["progress"]["printTime"]." Seconds</td></tr>");
 						echo("<tr><td>Verbleibende Druckzeit</td><td>".$json["progress"]["printTimeLeft"]." Sekunden</td></tr>");
-						echo("<tr><td>Filament</td><td>".$json["job"]["filament"]."</td></tr>");
 						echo("<tr><td>Datei</td><td>".$json["job"]["file"]["name"]."</td></tr>");
 						echo("<tr><td>Dateigrösse</td><td>".$json["job"]["file"]["size"]." Bytes</td></tr>");
-						echo("<tr><td>Vortschritt</td><td>".round($json["progress"]["completion"],2)."%</td></tr>");
+						echo("<tr><td>Fortschritt</td><td>".round($json["progress"]["completion"],2)."%</td></tr>");
 
 						$cnt--;
 						echo("</tbody></table>");
