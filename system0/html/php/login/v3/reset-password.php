@@ -174,36 +174,38 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
    
 
-<div style="height:95vh;">
-	<div class="container m-3">
+<div style="height:95vh; width:50vw;">
+	<div class="container m-3 row justify-content-center align-items-center">
 	    <h3 class="text-center">Passwort zurücksetzen</h3>
-	    <form action="" method="post">
-	      <div class="form-group">
-	        <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-	        <label for="username">Altes Passwort:</label>
-	        <input type="password" class="form-control" id="username" name="old_password" required>
-	      </div>
-	      <div class="form-group">
-	        <label for="pwd">Neues Passwort:</label>
-	        <input type="password" class="form-control" id="pwd" name="new_password" required>
-	      </div>
-	      <div class="form-group">
-	        <label for="pwd">Neues Passwort bestätigen:</label>
-	        <input type="password" class="form-control" id="pwd" name="confirm_password" required>
-	      </div>
-	      <button type="submit" name="submit" class="btn btn-dark m-t-3">Bestätigen</button>
-	        <?php
-	        $role=$_SESSION["role"];
-	        if($role==="user")
-	        {
-	            echo ('<a class="btn btn-dark ml-2" href="php/new_main.php">Abbrechen</a>');
-	        }
-	        else if($role==="admin")
-	        {
-	            echo ('<a class="btn btn-link ml-2" href="php/new_main.php">Abbrechen</a>');
-	        }
-	        ?>
-	    </form>
+		<div class="m-3">
+		    <form action="" method="post">
+		      <div class="form-group">
+		        <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
+		        <label for="username">Altes Passwort:</label>
+		        <input type="password" class="form-control" id="username" name="old_password" required>
+		      </div>
+		      <div class="form-group">
+		        <label for="pwd">Neues Passwort:</label>
+		        <input type="password" class="form-control" id="pwd" name="new_password" required>
+		      </div>
+		      <div class="form-group">
+		        <label for="pwd">Neues Passwort bestätigen:</label>
+		        <input type="password" class="form-control" id="pwd" name="confirm_password" required>
+		      </div>
+		      <button type="submit" name="submit" class="btn btn-dark m-t-3">Bestätigen</button>
+		        <?php
+		        $role=$_SESSION["role"];
+		        if($role==="user")
+		        {
+		            echo ('<a class="btn btn-dark ml-2" href="php/new_main.php">Abbrechen</a>');
+		        }
+		        else if($role==="admin")
+		        {
+		            echo ('<a class="btn btn-link ml-2" href="php/new_main.php">Abbrechen</a>');
+		        }
+		        ?>
+		    </form>
+		</div>
 	<?php
 	        if(!empty($login_err)){
 	            echo '<div class="alert alert-danger">' . $login_err . '</div>';
