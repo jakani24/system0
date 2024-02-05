@@ -67,11 +67,7 @@ function load_user()
 		$base64=str_replace(" ","",$base64);
 		return $base64;
 	}
-	if(isset($_GET["delete"])){
-		$path="/var/www/html/system0/html/user_files/$username/".str_replace("..","",htmlspecialchars($_GET["delete"]));
-		unlink($path);
-	
-	}
+
 ?>
 <div id="content"></div>
 
@@ -109,8 +105,8 @@ function load_user()
 					      echo '<tr>';
 					      echo '<td><img  style="display:block; width:100px;height:100px;" id="base64image" src="data:image;base64,' . get_base64_preview($file) . '"/></td>';
 					      echo '<td>' . basename($file) . '</td>';
-					      echo '<td><a href="print.php?cloudprint='.basename($file).'">Drucken</a></td>';
-					      echo "<td><a href='/system0/html/user_files/$username/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
+					      echo '<td><a href="print.php?pc=1&cloudprint='.basename($file).'">Drucken</a></td>';
+					      echo "<td><a href='/system0/html/user_files/public/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
 					      echo '</tr>';
 					  }
 				      } else {
