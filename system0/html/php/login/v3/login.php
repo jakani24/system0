@@ -278,30 +278,46 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
     <title>Login</title>
 </head>
 <body>
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content bg-warning">
-	      <div class="modal-body m-3">
-		<h5 class="modal-title" id="exampleModalLabel">Error</h5>
-	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	       	Vergrössere bitte das Browserfenster für den optimalen gebrauch der Website!
-	      </div>
-	    </div>
-	  </div>
-	</div>
+	<!-- Modal Fehler -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-warning">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body m-3" style="height: 80px;">
+        Bitte vergrössern Sie das Browserfenster für den optimalen Gebrauch der Website!
+      </div>
+    </div>
+  </div>
+</div>
 	
-	<script>
-	var windowWidth = window.innerWidth;
+<!--<p id="window"></p>-->
+
+<script>
 	var galleryModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
 	  keyboard: false
 	});
+
+	// Funktion zur Überprüfung der Fenstergröße
+	function checkWindowSize() {
+	  var windowWidth = window.innerWidth;
 	
-	if (windowWidth < 1000){
-	  galleryModal.toggle();
+	  if (windowWidth < 1000) {
+	    galleryModal.show();  
+	  } else {
+	    galleryModal.hide();
+	  }
 	}
+
+	// Initialer Aufruf beim Laden der Seite
+	checkWindowSize();
+
+	// Ereignislistener für das Ändern der Fenstergröße
+	window.addEventListener('resize', checkWindowSize);
+</script>
 	
-	</script>
 	<div class="d-flex align-items-center justify-content-left bg-dark" style="height:8vh;">
 		<img src="/system0/html/php/login/v3/css/MicrosoftTeams-image (16).png" alt="Logo" class="img-fluid p-2" style="height:40px; width:auto;">
 	</div>

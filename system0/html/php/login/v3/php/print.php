@@ -66,7 +66,7 @@
 		<?php
 		if(isset($_POST["printer"]))
 		{
-			//echo($_POST["printer"]);
+			
 			$status=0;
 			$free=0;
 			$url="";
@@ -88,8 +88,6 @@
 					$filename=basename( $_FILES['file_upload']['name']);
 					$filename=str_replace($unwanted_chr,"_",$filename);
 					$path = $path . $filename;
-
-					//if(in_array($filetype,$unwanted_ft))
 					if(!in_array($filetype,$ok_ft))
 					{
 						echo "Sorry, this file extensions is not allowed!";
@@ -115,6 +113,16 @@
 						}
 					}
 					unset($_FILES['file']);
+				}
+				if(isset($_GET["cloudprint"])){
+					$path = "/var/www/html/system0/html/user_files/$username/".$_GET["cloudprint"];
+					$stmt = mysqli_prepare($link, $sql);	
+					mysqli_stmt_bind_param($stmt, "is", $userid,$path);				
+					mysqli_stmt_execute($stmt);
+
+					echo("<center>File sent to queue.<br>system0 uploader done. Thank you!</center>");
+					sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to the queue",$_SESSION["username"],"PRINT::UPLOAD::QUEUE");
+
 				}				 	
 			}
 			else
@@ -199,6 +207,48 @@
 						}
 					}
 					unset($_FILES['file']);
+				}
+				if(isset($_GET["cloudprint"])){
+					$path = "/var/www/html/system0/html/user_files/$username/".$_GET["cloudprint"];
+					//check if print key is valid:
+					$print_key=htmlspecialchars($_POST["print_key"]);
+					$sql="SELECT id from print_key where print_key='$print_key'";
+					$stmt = mysqli_prepare($link, $sql);
+					mysqli_stmt_execute($stmt);
+					mysqli_stmt_store_result($stmt);
+						
+					//if(mysqli_stmt_num_rows($stmt) == 1){ turned off because user does not need to have a printer key
+					if(true){
+					mysqli_stmt_close($stmt);
+	
+							echo("<div class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div>");
+							exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
+							//file is on printer and ready to be printed
+							$userid=$_SESSION["id"];
+							echo("<div class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div>");
+							sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
+							$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
+							$json=json_decode($fg,true);
+							if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
+							{
+								echo("<div class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgang konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div>");
+								sys0_log("Could not start job for ".$_SESSION["username"]."with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
+							}
+							else
+							{
+								$sql="update printer set free=0, printing=1, used_by_userid=$userid where id=$printer_id";
+								$stmt = mysqli_prepare($link, $sql);					
+								mysqli_stmt_execute($stmt);
+								//delete printer key:
+								$sql="DELETE from print_key where print_key='$print_key'";
+								$stmt = mysqli_prepare($link, $sql);
+								mysqli_stmt_execute($stmt);	
+								mysqli_stmt_close($stmt);	
+							}
+					}
+					else{
+						echo("<div class='alert alert-danger' role='alert'>Der Druckschlüssel ist nicht gültig. Evtl. wurde er bereits benutzt. Versuche es erneut! </div>");
+					}
 				}	
 			}
 		}
@@ -210,13 +260,24 @@
 				
 				<h1>Datei drucken</h1>
 				<form class="mt-5" enctype="multipart/form-data" method="POST" action="">
-					<div class="form-group">
-						<div class="custom-file">
+					<?php if(!isset($_GET["cloudprint"])){
+						echo ('<div class="form-group">');
+							echo('<div class="custom-file">');
 
-							<label for="file_upload" class="form-label">Zu druckende Datei</label>
-							<input type="file" class="form-control" type="file" name="file_upload" required accept=".gcode">  
-						</div>
-					</div>
+								echo('<label for="file_upload" class="form-label">Zu druckende Datei</label>');
+								echo('<input type="file" class="form-control" type="file" name="file_upload" required accept=".gcode">  ');
+							echo('</div>');
+						echo('</div>');
+					}
+					else{
+						echo ('<div class="form-group">');
+							echo('<div class="custom-file">');
+
+								echo("<p>Cloudfile: ".$_GET["cloudprint"]."</p>");
+							echo('</div>');
+						echo('</div>');
+					}
+					?>
 					<br><br>
 					<div class="form-group">
 						<label class="my-3" for="printer">Druckerauswahl</label>
@@ -260,13 +321,28 @@
 					<br><br>
 					<!--<label class="my-3" for="print_key">Druckschlüssel (Kann im Sekretariat gekauft werden)</label>
 					<input type="text" class="form-control text" id="print_key" name="print_key" placeholder="z.B. A3Rg4Hujkief"><br>-->
-					<input type="submit" class="btn btn-dark mb-5" value="Datei drucken">
+					<input type="submit" class="btn btn-dark mb-5" value="Datei drucken" onclick="show_loader();" id="button">
+					<div class="d-flex align-items-center">
+ 					 <strong role="status" style="display:none" id="spinner">Hochladen...</strong>
+ 					 <div class="spinner-border ms-auto" aria-hidden="true" style="display:none" id="spinner2"></div>
+					</div>
+					
 				</form>
 			</div>
 		</div>
 		<br>
 	<div id="footer"></div>
+<script>
+	function show_loader(){
+		var spinner=document.getElementById("spinner");
+		spinner.style.display="block";
+		var spinner=document.getElementById("spinner2");
+		spinner.style.display="block";
+		var spinner=document.getElementById("button");
+		spinner.style.display="none";
 
+	}
+</script>
 </body>
 
 </html>
