@@ -28,7 +28,7 @@ $id=$_SESSION["id"];
   
 </head>
 <body>
-	<div class="d-flex justify-content-center align-items-center">
+	<div class="justify-content-center align-items-center">
 		<div class="center">
 		      	
 
