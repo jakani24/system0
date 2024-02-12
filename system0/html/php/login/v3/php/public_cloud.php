@@ -67,21 +67,12 @@ function load_user()
 		$base64=str_replace(" ","",$base64);
 		return $base64;
 	}
-	if(isset($_GET["delete"])){
-		$path="/var/www/html/system0/html/user_files/$username/".str_replace("..","",htmlspecialchars($_GET["delete"]));
-		unlink($path);
-	
-	}
-	if(isset($_GET["public"])){
-		$path="/var/www/html/system0/html/user_files/$username/".str_replace("..","",htmlspecialchars($_GET["public"]));
-		$public_path="/var/www/html/system0/html/user_files/public/".str_replace("..","",htmlspecialchars($_GET["public"]));
-		copy($path,$public_path);
-	}
+
 ?>
 <div id="content"></div>
 
 <head>
-  <title>Alle Dateien</title>
+  <title>Alle öffentlichen Dateien</title>
   
 </head>
 <body>
@@ -96,14 +87,13 @@ function load_user()
 					<th>Preview</th>
 					<th>File Name</th>
 					<th>Print File</th>
-					<th>Delete File</th>
+					
 					<th>Download File</th>
-					<th>Make Public</th>
 				      </tr>
 				    </thead>
 				    <tbody>
 				      <?php
-				      $directory = "/var/www/html/system0/html/user_files/$username/"; // Replace with the actual path to your directory
+				      $directory = "/var/www/html/system0/html/user_files/public/"; // Replace with the actual path to your directory
 
 				      // Check if the directory exists
 				      if (is_dir($directory)) {
@@ -115,10 +105,8 @@ function load_user()
 					      echo '<tr>';
 					      echo '<td><img  style="display:block; width:100px;height:100px;" id="base64image" src="data:image;base64,' . get_base64_preview($file) . '"/></td>';
 					      echo '<td>' . basename($file) . '</td>';
-					      echo '<td><a href="print.php?cloudprint='.basename($file).'">Drucken</a></td>';
-					      echo "<td><a href='cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
-					      echo "<td><a href='/system0/html/user_files/$username/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
-					      echo "<td><a href='cloud.php?public=".basename($file)."'>Öffentlich verfügbar machen</a></td>";
+					      echo '<td><a href="print.php?pc=1&cloudprint='.basename($file).'">Drucken</a></td>';
+					      echo "<td><a href='/system0/html/user_files/public/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
 					      echo '</tr>';
 					  }
 				      } else {
