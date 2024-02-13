@@ -204,7 +204,7 @@ $id=$_SESSION["id"];
 									else if($cancel==1)
 										echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Freigeben</button> </form></td><td>Job cancelled</td></tr>");
 									else
-										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><button type='submit' value='cancel' name='cancel' class='btn btn-dark'>Abbruch</button></form></td></tr>");
+										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><button type='submit' value='cancel' name='cancel' class='btn btn-danger'>Abbruch</button></form></td></tr>");
 									
 									$cnt--;
 								}
