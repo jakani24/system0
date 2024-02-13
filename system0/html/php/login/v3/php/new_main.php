@@ -198,11 +198,11 @@ $id=$_SESSION["id"];
 										$progress=-$progress;
 									$file=$json['job']['file']['name'];
 									if($progress==100)
-										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Aufräumen</button> </form></td><td>Job already finished</td><td><form method='POST' action='new_main.php'><button type='submit' name='detailes' value='detailes' class='btn btn-dark'>Details</button></form></td></tr>");
+										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Freigeben</button> </form></td><td>Job already finished</td></tr>");
 									else if($cancel==1)
-										echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Befreien</button> </form></td><td>Job cancelled</td><td><form method='POST' action='new_main.php'></form></td></tr>");
+										echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Freigeben</button> </form></td><td>Job cancelled</td></tr>");
 									else
-										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><button type='submit' value='cancel' name='cancel' class='btn btn-dark'>Abbruch</button></form></td><td><form method='POST' action='new_main.php'></form></td></tr>");
+										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><button type='submit' value='cancel' name='cancel' class='btn btn-dark'>Abbruch</button></form></td></tr>");
 									
 									$cnt--;
 								}
@@ -253,7 +253,7 @@ $id=$_SESSION["id"];
 							}
 						?>
 						<?php
-							test_queue($link); //test for a free printer. If any printe ris free and there are jobs in queue, push job to printer
+							test_queue($link); //test for a free printer. If any printer is free and there are jobs in queue, push job to printer
 						?>		
 					</div>
 				</div>
