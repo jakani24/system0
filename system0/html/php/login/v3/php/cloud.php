@@ -52,8 +52,8 @@ function load_user()
 	function get_base64_preview($filename){
 		$base64="";
 		$file=fopen($filename,"r");
-		$start=0;
-		while(!feof($file)){
+		$start=-1;
+		while(!feof($file)&&$start!=0){
 			$buf=fgets($file);
 			if(stripos($buf,"thumbnail end")!==false)
 				$start=0;
