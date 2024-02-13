@@ -64,12 +64,14 @@ $id=$_SESSION["id"];
 		<!-- buttons for ctrl -->
 		<div class="container-fluid d-flex flex-nowrap mt-3">
 			<div class="col-md-8" style="height: 100%;overflow-y:auto">
-				<div class="row" style="height: 50vh;">
+				<div class="row" style="height: 30vh;">
 					<div class="col-md-12 d-flex justify-content-center align-items-center">
 						<button type="button" href="print.php" class="btn btn-dark btn-lg mx-5" onclick="location.href = 'print.php';">Datei drucken</button>
+						<!--<button type="button" href="print.php" class="btn btn-dark btn-lg mx-5" onclick="location.href = 'cloud.php';">Deine Dateien</button>-->
+						<!--<button type="button" href="print.php" class="btn btn-dark btn-lg mx-5" onclick="location.href = 'cloud.php';">Öffentliche Dateien</button>-->
 					</div>
 				</div>
-				<div class="row" style="height: 50vh;">
+				<div  style="height: 70vh;">
 					
 					<!-- your jobs -->
 	
