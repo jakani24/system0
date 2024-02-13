@@ -90,6 +90,10 @@ function load_user()
 			<!--<div style="width: 90vh">-->
 			      <h1>Deine Dateien</h1>
 				<div class="container">
+					<form action="cloud.php" method="POST">
+						<input type="text" name="search" placeholder="Suchbegriff">
+						<button type="submit" class="btn btn-dark my-5">Suchen</button>
+					</form>
 				  <table class="table">
 				    <thead>
 				      <tr>
@@ -112,14 +116,27 @@ function load_user()
 					  // Iterate through the files and display them in the table
 					  $count = 1;
 					  foreach ($files as $file) {
-					      echo '<tr>';
-					      echo '<td><img  style="display:block; width:100px;height:100px;" id="base64image" src="data:image;base64,' . get_base64_preview($file) . '"/></td>';
-					      echo '<td>' . basename($file) . '</td>';
-					      echo '<td><a href="print.php?cloudprint='.basename($file).'">Drucken</a></td>';
-					      echo "<td><a href='cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
-					      echo "<td><a href='/system0/html/user_files/$username/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
-					      echo "<td><a href='cloud.php?public=".basename($file)."'>Öffentlich verfügbar machen</a></td>";
-					      echo '</tr>';
+						if(isset($_POST["search"])){
+							if (stripos(basename($file), $_POST["search"]) !== false) {
+							      echo '<tr>';
+							      echo '<td><img  style="display:block; width:100px;height:100px;" id="base64image" src="data:image;base64,' . get_base64_preview($file) . '"/></td>';
+							      echo '<td>' . basename($file) . '</td>';
+							      echo '<td><a href="print.php?cloudprint='.basename($file).'">Drucken</a></td>';
+							      echo "<td><a href='cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
+							      echo "<td><a href='/system0/html/user_files/$username/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
+							      echo "<td><a href='cloud.php?public=".basename($file)."'>Öffentlich verfügbar machen</a></td>";
+							      echo '</tr>';
+							}
+						}else{
+							echo '<tr>';
+							echo '<td><img  style="display:block; width:100px;height:100px;" id="base64image" src="data:image;base64,' . get_base64_preview($file) . '"/></td>';
+							echo '<td>' . basename($file) . '</td>';
+							echo '<td><a href="print.php?cloudprint='.basename($file).'">Drucken</a></td>';
+							echo "<td><a href='cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
+							echo "<td><a href='/system0/html/user_files/$username/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
+							echo "<td><a href='cloud.php?public=".basename($file)."'>Öffentlich verfügbar machen</a></td>";
+							echo '</tr>';
+						}
 					  }
 				      } else {
 					  echo '<tr><td colspan="2">Directory not found</td></tr>';
