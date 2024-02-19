@@ -67,7 +67,7 @@ function load_user()
 		$base64=str_replace(" ","",$base64);
 		return $base64;
 	}
-		if(isset($_GET["delete"])){
+	if(isset($_GET["delete"]) && $role=="admin"){
 		$path="/var/www/html/system0/html/user_files/public/".str_replace("..","",htmlspecialchars($_GET["delete"]));
 		unlink($path);
 	
@@ -97,11 +97,8 @@ function load_user()
 					<th>Preview</th>
 					<th>File Name</th>
 					<th>Print File</th>
-					<?php
-						if($role=="admin"){
-							echo("<th>Delete File</th>");
-						}
-					?>
+
+					<th>Delete File</th>
 					<th>Download File</th>
 				      </tr>
 				    </thead>
@@ -124,6 +121,8 @@ function load_user()
 							      echo '<td><a href="print.php?pc=1&cloudprint='.basename($file).'">Drucken</a></td>';
 								if($role=="admin"){
 									echo "<td><a href='public_cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
+								}else{
+									echo "<td></td>"
 								}
 							      echo "<td><a href='/system0/html/user_files/public/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
 							      echo '</tr>';
@@ -135,6 +134,8 @@ function load_user()
 							echo '<td><a href="print.php?pc=1&cloudprint='.basename($file).'">Drucken</a></td>';
 							if($role=="admin"){
 									echo "<td><a href='public_cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
+							}else{
+									echo "<td></td>"
 							}
 							echo "<td><a href='/system0/html/user_files/public/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
 							
