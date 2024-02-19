@@ -72,7 +72,7 @@ function load_user()
 						<td>---</td>
 						<td>---</td>
 						<td>
-							<select name="type_">
+							<select class="form-select" name="type_">
 								<option type_="All_types">All_types</option>
 								<option type_="PRINT::UPLOAD::PRINTER">PRINT::UPLOAD::PRINTER</option>
 								<option type_="PRINT:JOB:START:FAILED">PRINT:JOB:START:FAILED</option>
