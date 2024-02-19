@@ -67,6 +67,11 @@ function load_user()
 		$base64=str_replace(" ","",$base64);
 		return $base64;
 	}
+		if(isset($_GET["delete"])){
+		$path="/var/www/html/system0/html/user_files/public/".str_replace("..","",htmlspecialchars($_GET["delete"]));
+		unlink($path);
+	
+	}
 
 ?>
 <div id="content"></div>
@@ -92,7 +97,11 @@ function load_user()
 					<th>Preview</th>
 					<th>File Name</th>
 					<th>Print File</th>
-					
+					<?php
+						if($role=="admin"){
+							echo("<th>Delete File</th>");
+						}
+					?>
 					<th>Download File</th>
 				      </tr>
 				    </thead>
@@ -113,6 +122,9 @@ function load_user()
 							      echo '<td><img  style="display:block; width:100px;height:100px;" id="base64image" src="data:image;base64,' . get_base64_preview($file) . '"/></td>';
 							      echo '<td>' . basename($file) . '</td>';
 							      echo '<td><a href="print.php?pc=1&cloudprint='.basename($file).'">Drucken</a></td>';
+								if($role=="admin"){
+									echo "<td><a href='public_cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
+								}
 							      echo "<td><a href='/system0/html/user_files/public/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
 							      echo '</tr>';
 							}
@@ -121,7 +133,11 @@ function load_user()
 							echo '<td><img  style="display:block; width:100px;height:100px;" id="base64image" src="data:image;base64,' . get_base64_preview($file) . '"/></td>';
 							echo '<td>' . basename($file) . '</td>';
 							echo '<td><a href="print.php?pc=1&cloudprint='.basename($file).'">Drucken</a></td>';
+							if($role=="admin"){
+									echo "<td><a href='public_cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
+							}
 							echo "<td><a href='/system0/html/user_files/public/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
+							
 							echo '</tr>';
 
 						}
