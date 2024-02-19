@@ -122,7 +122,7 @@ function load_user()
 								if($role=="admin"){
 									echo "<td><a href='public_cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
 								}else{
-									echo "<td></td>"
+									echo "<td></td>";
 								}
 							      echo "<td><a href='/system0/html/user_files/public/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
 							      echo '</tr>';
@@ -135,7 +135,7 @@ function load_user()
 							if($role=="admin"){
 									echo "<td><a href='public_cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
 							}else{
-									echo "<td></td>"
+									echo "<td></td>";
 							}
 							echo "<td><a href='/system0/html/user_files/public/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
 							
