@@ -77,7 +77,7 @@
 		<a class="dropdown-item" href="/system0/html/php/login/v3/php/view_apikey.php">View the system0 API Key</a>
 		 <a class="dropdown-item" href="/system0/html/php/login/v3/php/create_key.php">Druckschlüssel erstellen</a>
 		<a class="dropdown-item" href="/system0/html/php/login/v3/php/cloud.php">Deine Dateien</a>
-		<a class="dropdown-item" href="/system0/html/php/login/v3/php/public_cloud.php">Öffenltiche Dateien</a>
+		<a class="dropdown-item" href="/system0/html/php/login/v3/php/public_cloud.php">Öffentliche Dateien</a>
               </ul>
             </li>
           </ul>
