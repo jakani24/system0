@@ -315,7 +315,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 	checkWindowSize();
 
 	// Ereignislistener für das Ändern der Fenstergröße
-	window.addEventListener('resize', checkWindowSize);
+	//window.addEventListener('resize', checkWindowSize);
 </script>
 	
 	<div class="d-flex align-items-center justify-content-left bg-dark" style="height:8vh;">

@@ -48,10 +48,10 @@
 		}
 	
 		// Initialer Aufruf beim Laden der Seite
-		checkWindowSize();
+		//checkWindowSize();
 	
 		// Ereignislistener für das Ändern der Fenstergröße
-		window.addEventListener('resize', checkWindowSize);
+		//window.addEventListener('resize', checkWindowSize);
 	</script>
 
 	

@@ -52,8 +52,8 @@ function load_user()
 	function get_base64_preview($filename){
 		$base64="";
 		$file=fopen($filename,"r");
-		$start=0;
-		while(!feof($file)){
+		$start=-1;
+		while(!feof($file)&&$start!=0){
 			$buf=fgets($file);
 			if(stripos($buf,"thumbnail end")!==false)
 				$start=0;
@@ -67,6 +67,11 @@ function load_user()
 		$base64=str_replace(" ","",$base64);
 		return $base64;
 	}
+	if(isset($_GET["delete"]) && $role=="admin"){
+		$path="/var/www/html/system0/html/user_files/public/".str_replace("..","",htmlspecialchars($_GET["delete"]));
+		unlink($path);
+	
+	}
 
 ?>
 <div id="content"></div>
@@ -76,18 +81,24 @@ function load_user()
   
 </head>
 <body>
-	<div class="container mt-10" style="height: 100vh;overflow-y:auto">
+	<div class="container mt-4" style="height: 100vh;overflow-y:auto">
 		<div class="row justify-content-center">
 			<!--<div style="width: 90vh">-->
-			      <h1>Deine Dateien</h1>
+
+			      <h1>Alle Dateien</h1>
 				<div class="container">
+				<form action="public_cloud.php" method="POST">
+					<input type="text" name="search" placeholder="Suchbegriff">
+					<button type="submit" class="btn btn-dark my-5">Suchen</button>
+				</form>
 				  <table class="table">
 				    <thead>
 				      <tr>
 					<th>Preview</th>
 					<th>File Name</th>
 					<th>Print File</th>
-					
+
+					<th>Delete File</th>
 					<th>Download File</th>
 				      </tr>
 				    </thead>
@@ -102,12 +113,35 @@ function load_user()
 					  // Iterate through the files and display them in the table
 					  $count = 1;
 					  foreach ($files as $file) {
-					      echo '<tr>';
-					      echo '<td><img  style="display:block; width:100px;height:100px;" id="base64image" src="data:image;base64,' . get_base64_preview($file) . '"/></td>';
-					      echo '<td>' . basename($file) . '</td>';
-					      echo '<td><a href="print.php?pc=1&cloudprint='.basename($file).'">Drucken</a></td>';
-					      echo "<td><a href='/system0/html/user_files/public/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
-					      echo '</tr>';
+						if(isset($_POST["search"])){
+							if (stripos(basename($file), $_POST["search"]) !== false) {
+							      echo '<tr>';
+							      echo '<td><img  style="display:block; width:100px;height:100px;" id="base64image" src="data:image;base64,' . get_base64_preview($file) . '"/></td>';
+							      echo '<td>' . basename($file) . '</td>';
+							      echo '<td><a href="print.php?pc=1&cloudprint='.basename($file).'">Drucken</a></td>';
+								if($role=="admin"){
+									echo "<td><a href='public_cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
+								}else{
+									echo "<td></td>";
+								}
+							      echo "<td><a href='/system0/html/user_files/public/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
+							      echo '</tr>';
+							}
+						}else{
+							echo '<tr>';
+							echo '<td><img  style="display:block; width:100px;height:100px;" id="base64image" src="data:image;base64,' . get_base64_preview($file) . '"/></td>';
+							echo '<td>' . basename($file) . '</td>';
+							echo '<td><a href="print.php?pc=1&cloudprint='.basename($file).'">Drucken</a></td>';
+							if($role=="admin"){
+									echo "<td><a href='public_cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
+							}else{
+									echo "<td></td>";
+							}
+							echo "<td><a href='/system0/html/user_files/public/".basename($file)."' download>" . "Herunterladen" . '</a></td>';
+							
+							echo '</tr>';
+
+						}
 					  }
 				      } else {
 					  echo '<tr><td colspan="2">Directory not found</td></tr>';

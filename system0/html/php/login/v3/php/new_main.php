@@ -64,12 +64,14 @@ $id=$_SESSION["id"];
 		<!-- buttons for ctrl -->
 		<div class="container-fluid d-flex flex-nowrap mt-3">
 			<div class="col-md-8" style="height: 100%;overflow-y:auto">
-				<div class="row" style="height: 50vh;">
+				<div class="row" style="height: 30vh;">
 					<div class="col-md-12 d-flex justify-content-center align-items-center">
 						<button type="button" href="print.php" class="btn btn-dark btn-lg mx-5" onclick="location.href = 'print.php';">Datei drucken</button>
+						<!--<button type="button" href="print.php" class="btn btn-dark btn-lg mx-5" onclick="location.href = 'cloud.php';">Deine Dateien</button>-->
+						<!--<button type="button" href="print.php" class="btn btn-dark btn-lg mx-5" onclick="location.href = 'cloud.php';">Öffentliche Dateien</button>-->
 					</div>
 				</div>
-				<div class="row" style="height: 50vh;">
+				<div  style="height: 70vh;">
 					
 					<!-- your jobs -->
 	
@@ -198,21 +200,21 @@ $id=$_SESSION["id"];
 										$progress=-$progress;
 									$file=$json['job']['file']['name'];
 									if($progress==100)
-										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Aufräumen</button> </form></td><td>Job already finished</td><td><form method='POST' action='new_main.php'><button type='submit' name='detailes' value='detailes' class='btn btn-dark'>Details</button></form></td></tr>");
+										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Freigeben</button> </form></td><td>Job already finished</td></tr>");
 									else if($cancel==1)
-										echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Befreien</button> </form></td><td>Job cancelled</td><td><form method='POST' action='new_main.php'></form></td></tr>");
+										echo("<tr><td>$printer_id</td><td>$file</td><td>cancelled</td><td><form method='POST' action='?free=$printer_id'><button type='submit' value='free' name='free' class='btn btn-dark'>Freigeben</button> </form></td><td>Job cancelled</td></tr>");
 									else
-										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><button type='submit' value='cancel' name='cancel' class='btn btn-dark'>Abbruch</button></form></td><td><form method='POST' action='new_main.php'></form></td></tr>");
+										echo("<tr><td>$printer_id</td><td>$file</td><td>$progress%</td><td>Job still running</td><td><form method='POST' action='?cancel=$printer_id'><button type='submit' value='cancel' name='cancel' class='btn btn-danger'>Abbruch</button></form></td></tr>");
 									
 									$cnt--;
 								}
 								echo("</tbody></table>");
 								//echo("</div>");
-								echo("<div class='alert alert-dark' role='alert' style='height: 100px;'>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde. Und du deinen Druck abgeholt hast.</div>");
+								echo("<div class='alert alert-dark' role='alert' style='height: auto;'>Gib den Drucker frei, nachdem der Druckvorgang abgeschlossen wurde. Und du deinen Druck abgeholt hast.</div>");
 							}
 							else
 							{
-								echo("<div class='alert alert-dark' role='alert' style='height: 100px;'>Laufende Vorgänge werden hier aufgelistet.</div>");
+								echo("<div class='alert alert-dark' role='alert' style='height: auto;'>Laufende Vorgänge werden hier aufgelistet.</div>");
 							}
 						?>	
 						<!-- list queue -->
@@ -253,7 +255,7 @@ $id=$_SESSION["id"];
 							}
 						?>
 						<?php
-							test_queue($link); //test for a free printer. If any printe ris free and there are jobs in queue, push job to printer
+							test_queue($link); //test for a free printer. If any printer is free and there are jobs in queue, push job to printer
 						?>		
 					</div>
 				</div>
