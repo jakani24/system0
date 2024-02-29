@@ -14,7 +14,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     }
     if($_SESSION["role"]==="admin")
     {
-         header("location: php/new_main.php");
+         header("location: https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/all_jobs.php");
     }
     exit;
 }
@@ -30,7 +30,7 @@ if($error!=="error1" && $error!=="error2")
 {
     if($_SESSION["role"]==="admin")
     {
-        header("LOCATION: php/new_main.php");
+        header("LOCATION: https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/all_jobs.php");
     }
     else if($_SESSION["role"]==="user")
     {
@@ -126,7 +126,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="login"){
 		                    if($role=="admin")
 		                    {
 		                        log_("$username logged in as admin","LOGIN:SUCCESS");
-		                        header("location:php/new_main.php");
+		                        header("location:https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/all_jobs.php");
 		                    }
 		                    else
 		                    {
