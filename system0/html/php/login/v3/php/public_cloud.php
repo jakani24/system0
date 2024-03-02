@@ -81,7 +81,7 @@ function load_user()
   
 </head>
 <body>
-	<div class="container mt-4" style="height: auto;min_height:100vh">
+	<div class="container mt-4" style="height: auto;min-height:100vh">
 		<div class="row justify-content-center">
 			<!--<div style="width: 90vh">-->
 
