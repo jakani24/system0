@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<head>
 <?php
 // Initialize the session
 session_start();
@@ -48,16 +49,20 @@ function load_user()
 	$color=$_SESSION["color"]; 
 	include "/var/www/html/system0/html/php/login/v3/components.php";
 ?>
-<div id="content"></div>
 
-<head>
   <title>Alle Drucker</title>
   
 </head>
 <body>
+	<div id="content"></div>
 	<div class="container mt-5">
 		<div class="row justify-content-center">
-	  	<div style="width: 100hh">
+		<?php
+			if(isset($_GET["private"]))		
+				echo('<div style="width: 100hh;height:95vh">');
+			else
+				echo('<div style="width: 100hh">');
+		?>
 	    <!--  <h1>Alle Drucker</h1> -->
 				<?php
 					if(isset($_GET['free']))
@@ -104,7 +109,10 @@ function load_user()
 					$cnt=0;
 					$url="";
 					$apikey="";
-					$sql="select count(*) from printer";
+					if(isset($_GET["private"]))
+						$sql="select count(*) from printer where used_by_userid=".$_SESSION["id"];
+					else
+						$sql="select count(*) from printer";
 					$stmt = mysqli_prepare($link, $sql);					
 					mysqli_stmt_execute($stmt);
 					mysqli_stmt_store_result($stmt);
@@ -112,14 +120,25 @@ function load_user()
 					mysqli_stmt_fetch($stmt);	
 					//echo($cnt);
 					$is_free=0;
-					//echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Drucker</th><th>Benutzer</th><th>Datei</th><th>Fortschritt</th><th>Freigeben</th><th>Druck abbrechen</th></tr></thead><tbody>");
-					echo("<div class='container'><div class='row'>");					
+					echo("<div class='container'><div class='row'>");
+					echo("<div style='padding:5px'>");
+						if(isset($_GET["private"]))
+							echo("<a class='btn btn-dark' href='overview.php'>Alle Drucker anzeigen</a>");
+						else
+							echo("<a class='btn btn-dark' href='overview.php?private'>Nur deine Drucker anzeigen</a>");
+					echo("</div>");					
 					$last_id=0;					
 					while($cnt!=0)
 					{	
-						echo("<div class='col-4' style='padding:5px'>");
+						if(isset($_SESSION["mobile_view"]))
+							echo("<div class='col-12' style='padding:5px'>");
+						else
+							echo("<div class='col-4' style='padding:5px'>");
 						$userid=0;
-						$sql="select free,id,printer_url,apikey,cancel,used_by_userid from printer where id>$last_id ORDER BY id";
+						if(isset($_GET["private"]))
+							$sql="select free,id,printer_url,apikey,cancel,used_by_userid from printer where id>$last_id and used_by_userid=".$_SESSION["id"]." ORDER BY id";
+						else
+							$sql="select free,id,printer_url,apikey,cancel,used_by_userid from printer where id>$last_id ORDER BY id";
 						$cancel=0;
 						$stmt = mysqli_prepare($link, $sql);					
 						mysqli_stmt_execute($stmt);
@@ -254,9 +273,44 @@ function load_user()
 					test_queue($link);
 				?>
 				</div>
-	    </div>
-	  </div>
+	    </div> 
 	</div>
+	<!-- We currently do not show the queue -->
+	<!-- <div style="width: 100hh">
+	<center><h3>Warteschlange</h3></center>
+	<?php
+		$userid=$_SESSION["id"];
+		$cnt=0;
+		$filepath="";
+		$sql="select count(*) from queue";
+		$stmt = mysqli_prepare($link, $sql);					
+		mysqli_stmt_execute($stmt);
+		mysqli_stmt_store_result($stmt);
+		mysqli_stmt_bind_result($stmt, $cnt);
+		mysqli_stmt_fetch($stmt);	
+		//echo($cnt);
+		echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Datei</th><th>aus der Warteschlange entfernen</th></tr></thead><tbody>");
+		$last_id=0;
+		while($cnt!=0)
+		{
+			$sql="select id,filepath from queue where id>$last_id order by id";
+			$cancel=0;
+			$stmt = mysqli_prepare($link, $sql);	
+			echo mysqli_error($link);				
+			mysqli_stmt_execute($stmt);
+			mysqli_stmt_store_result($stmt);
+			mysqli_stmt_bind_result($stmt, $queue_id,$filepath);
+			mysqli_stmt_fetch($stmt);
+			$filepath=basename($filepath);
+			$last_id=$queue_id;
+			echo("<tr><td>$filepath</td><td><form method='POST' action='?remove=$queue_id'><input type='submit' value='remove'  name='remove'> </form></td></tr>");
+ 			
+			$cnt--;
+		}
+		echo("</tbody></table></div></div></div></div>");	
+	
+	?>
+	</div> -->
 	<div id="footer"></div>
 </body>
 
