@@ -78,7 +78,7 @@
 			$path = "/var/www/html/system0/html/user_files/$username/$printer_url.jpeg";
 			exec("rm $path");
 			exec("wget \"http://$printer_url/webcam/?action=snapshot\" -O $path");
-			echo("<img style='transform: rotate(180deg);' height='135' width='240' src='/system0/html/user_files/$username/$printer_url.jpeg'>");
+			echo("<img style='transform: rotate(180deg);'  width='100%' src='/system0/html/user_files/$username/$printer_url.jpeg'>");
 		?>
 		<script>
 			setInterval(function() {
