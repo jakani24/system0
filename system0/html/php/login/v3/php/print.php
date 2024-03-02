@@ -301,6 +301,11 @@
 							//echo("test1:".$num_of_printers);
 							$last_id=0;
 							$printers_av=0;
+							if(isset($_GET["preselect"])){
+								$preselect=$_GET["preselect"];
+							}else{
+								$preselect=1;							
+							}
 							while($num_of_printers!=0)
 							{
 								$id=0;
@@ -313,7 +318,10 @@
 								mysqli_stmt_fetch($stmt);
 								if($id!=0 && $id!=$last_id)
 								{
-									echo("<option printer='$id' value='$id'>Printer $id</option>");
+									if($id==$preselect)
+										echo("<option printer='$id' value='$id' selected>Printer $id</option>");
+									else
+										echo("<option printer='$id' value='$id'>Printer $id</option>");
 									$printers_av++;
 								}
 								$last_id=$id;
