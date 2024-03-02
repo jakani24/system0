@@ -60,12 +60,7 @@ function load_user()
 	<div id="content"></div>
 	<div class="container mt-5">
 		<div class="row justify-content-center">
-		<?php
-			if(isset($_GET["private"]))		
-				echo('<div style="width: 100hh;height:95vh">');
-			else
-				echo('<div style="width: 100hh">');
-		?>
+		<div style="width: 100hh;min-height:95vh">
 	    <!--  <h1>Alle Drucker</h1> -->
 				<?php
 					if(isset($_GET['free'])&&$_GET["rid"]==($_SESSION["rid"]-1))
