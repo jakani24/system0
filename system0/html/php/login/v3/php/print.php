@@ -63,6 +63,7 @@
 	</head>
 
 	<body>
+		<br><br>
 		<?php
 		if(isset($_POST["printer"]))
 		{
@@ -90,26 +91,23 @@
 					$path = $path . $filename;
 					if(!in_array($filetype,$ok_ft))
 					{
-						echo "Sorry, this file extensions is not allowed!";
+						echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Dieser Dateityp wird nicht unterstüzt.</div></center>");
 						sys0_log("Could not upload file for ".$_SESSION["username"]." because of unknown file extension",$_SESSION["username"],"PRINT::UPLOAD::FILE::FAILED");//notes,username,type
 					}
 					else
 					{
-						if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
-							echo "<center>Success! The file ".  basename( $_FILES['file_upload']['name']). " has been uploaded</center>";
-							echo("<center>Sending file to queue...</center>");
-							
+						if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {		
 							$stmt = mysqli_prepare($link, $sql);	
 							//echo ("test".mysqli_error($link));
 							mysqli_stmt_bind_param($stmt, "is", $userid,$path);				
 							mysqli_stmt_execute($stmt);
 
-							echo("<center>File sent to queue.<br>system0 uploader done. Thank you!</center>");
+							echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen und an die Warteschlange gesendet</div></center>");
 							sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to the queue",$_SESSION["username"],"PRINT::UPLOAD::QUEUE");//notes,username,type
 						}   
 						else
 						{
-							echo "There was an error uploading the file, please try again! path:".$path;
+							echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Datei ".  basename( $_FILES['file_upload']['name']). " konnte hochgeladen werden</div></center>");
 						}
 					}
 					unset($_FILES['file']);
@@ -123,7 +121,7 @@
 					mysqli_stmt_bind_param($stmt, "is", $userid,$path);				
 					mysqli_stmt_execute($stmt);
 
-					echo("<center>File sent to queue.<br>system0 uploader done. Thank you!</center>");
+					echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen und an die Warteschlange gesendet</div></center>");
 					sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to the queue",$_SESSION["username"],"PRINT::UPLOAD::QUEUE");
 
 				}				 	
@@ -139,7 +137,8 @@
 				mysqli_stmt_fetch($stmt);	
 				if($free!=1 or $status!=0)
 				{
-					echo("<center>Fehler! Der Drucker ist zur Zeit nicht verfügbar. Warte einen Moment oder versuche es mit einem anderen Drucker erneut. </center>");
+
+					echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Der Drucker ist zur Zeit nicht verfügbar. Warte einen Moment oder versuche es mit einem anderen Drucker erneut.</div></center>");
 					sys0_log("Could not start job for ".$_SESSION["username"]." with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
 					exit;
 				}	
@@ -156,7 +155,7 @@
 					//if(in_array($filetype,$unwanted_ft))
 					if(!in_array($filetype,$ok_ft))
 					{
-						echo "Das Dateiformat wird nicht unterstüzt. ";
+						echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Dieser Dateityp wird nicht unterstüzt.</div></center>");
 						sys0_log("Could not upload file for ".$_SESSION["username"]." because of unknown file extension",$_SESSION["username"],"PRINT::UPLOAD::FILE::FAILED");//notes,username,type
 					}
 					else
@@ -179,13 +178,13 @@
 								exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
 								//file is on printer and ready to be printed
 								$userid=$_SESSION["id"];
-								echo("<div class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div>");
+								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div></center>");
 								sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
 								$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
 								$json=json_decode($fg,true);
 								if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
 								{
-									echo("<div class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgang konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div>");
+									echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgang konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div></center>");
 									sys0_log("Could not start job for ".$_SESSION["username"]."with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
 								}
 								else
@@ -202,11 +201,11 @@
 							}
 							else
 							{
-								echo("<div class='alert alert-danger' role='alert'>Ein Fehler beim Uploaden der Datei ist aufgetreten! Versuche es erneut! </div>");
+								echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Ein Fehler beim Uploaden der Datei ist aufgetreten! Versuche es erneut! </div></center>");
 							}
 						}
 						else{
-							echo("<div class='alert alert-danger' role='alert'>Der Druckschlüssel ist nicht gültig. Evtl. wurde er bereits benutzt. Versuche es erneut! </div>");
+							echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Der Druckschlüssel ist nicht gültig. Evtl. wurde er bereits benutzt. Versuche es erneut! </div></center>");
 						}
 					}
 					unset($_FILES['file']);
@@ -227,17 +226,17 @@
 					if(true){
 					mysqli_stmt_close($stmt);
 	
-							echo("<div class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div>");
+							echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div></center>");
 							exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
 							//file is on printer and ready to be printed
 							$userid=$_SESSION["id"];
-							echo("<div class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div>");
+							echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div></center>");
 							sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
 							$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
 							$json=json_decode($fg,true);
 							if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
 							{
-								echo("<div class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgang konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div>");
+								echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgang konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div></center>");
 								sys0_log("Could not start job for ".$_SESSION["username"]."with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
 							}
 							else
@@ -253,7 +252,7 @@
 							}
 					}
 					else{
-						echo("<div class='alert alert-danger' role='alert'>Der Druckschlüssel ist nicht gültig. Evtl. wurde er bereits benutzt. Versuche es erneut! </div>");
+						echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Der Druckschlüssel ist nicht gültig. Evtl. wurde er bereits benutzt. Versuche es erneut! </div></center>");
 					}
 				}	
 			}
@@ -261,10 +260,10 @@
 	
 	?>
 	
-		<div class="container d-flex align-items-center justify-content-center" style="height: 95vh;">
-			<div class="text-center mt-5">
-				
+			<div class="text-center mt-5" style="min-height: 95vh">
 				<h1>Datei drucken</h1>
+				<div class="container d-flex align-items-center justify-content-center" >
+				
 				<form class="mt-5" enctype="multipart/form-data" method="POST" action="">
 					<?php if(!isset($_GET["cloudprint"])){
 						echo ('<div class="form-group">');
@@ -301,6 +300,11 @@
 							//echo("test1:".$num_of_printers);
 							$last_id=0;
 							$printers_av=0;
+							if(isset($_GET["preselect"])){
+								$preselect=$_GET["preselect"];
+							}else{
+								$preselect=1;							
+							}
 							while($num_of_printers!=0)
 							{
 								$id=0;
@@ -313,7 +317,10 @@
 								mysqli_stmt_fetch($stmt);
 								if($id!=0 && $id!=$last_id)
 								{
-									echo("<option printer='$id' value='$id'>Printer $id</option>");
+									if($id==$preselect)
+										echo("<option printer='$id' value='$id' selected>Printer $id</option>");
+									else
+										echo("<option printer='$id' value='$id'>Printer $id</option>");
 									$printers_av++;
 								}
 								$last_id=$id;

@@ -81,7 +81,7 @@ function load_user()
   
 </head>
 <body>
-	<div class="container mt-4" style="height: 100vh;overflow-y:auto">
+	<div class="container mt-4" style="height: auto;min-height:100vh">
 		<div class="row justify-content-center">
 			<!--<div style="width: 90vh">-->
 
@@ -91,6 +91,7 @@ function load_user()
 					<input type="text" name="search" placeholder="Suchbegriff">
 					<button type="submit" class="btn btn-dark my-5">Suchen</button>
 				</form>
+				<div style="overflow-y:auto;overflow-x:auto">
 				  <table class="table">
 				    <thead>
 				      <tr>
@@ -150,7 +151,7 @@ function load_user()
 				    </tbody>
 				  </table>
 				</div>	
-			    <!--</div>-->
+			    </div>
 		</div>
 	</div>
 	<div id="footer"></div>
