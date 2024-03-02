@@ -10,11 +10,11 @@ $err="";
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     if($_SESSION["role"]==="user")
     {
-         header("location: php/new_main.php");
+         header("location: https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php");
     }
     if($_SESSION["role"]==="admin")
     {
-         header("location: https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/all_jobs.php");
+         header("location: https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php");
     }
     exit;
 }
@@ -30,11 +30,11 @@ if($error!=="error1" && $error!=="error2")
 {
     if($_SESSION["role"]==="admin")
     {
-        header("LOCATION: https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/all_jobs.php");
+        header("LOCATION: https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php");
     }
     else if($_SESSION["role"]==="user")
     {
-        header("LOCATION: php/new_main.php");
+        header("LOCATION: https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php");
     }
 }
 
@@ -126,12 +126,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="login"){
 		                    if($role=="admin")
 		                    {
 		                        log_("$username logged in as admin","LOGIN:SUCCESS");
-		                        header("location:https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/all_jobs.php");
+		                        header("location:https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php");
 		                    }
 		                    else
 		                    {
 		                        log_("$username logged in as user","LOGIN:SUCCESS");
-		                        header("location:php/new_main.php");
+		                        header("location:https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php");
 		                    }
 		                }
 		                else
@@ -281,13 +281,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 	<!-- Modal Fehler -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content bg-warning">
+    <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Error</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body m-3" style="height: 80px;">
-        Bitte vergrössern Sie das Browserfenster für den optimalen Gebrauch der Website!
+      <div class="modal-body m-3" style="height: auto;">
+        <!-- Bitte vergrössern Sie das Browserfenster für den optimalen Gebrauch der Website! -->
+		Das System hat Ihr Gerät als Mobile erkannt. Das Interface wurde zu "mobile_view" geändert.<br>
+		Achtung "mobile_view" ist noch in Entwicklung.
       </div>
     </div>
   </div>
@@ -305,6 +307,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 	  var windowWidth = window.innerWidth;
 	
 	  if (windowWidth < 1000) {
+	    fetch("/system0/html/php/login/v3/php/init_mobile_view.php")
 	    galleryModal.show();  
 	  } else {
 	    galleryModal.hide();
