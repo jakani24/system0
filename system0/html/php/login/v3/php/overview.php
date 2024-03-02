@@ -48,6 +48,9 @@ function load_user()
 <?php 
 	$color=$_SESSION["color"]; 
 	include "/var/www/html/system0/html/php/login/v3/components.php";
+	if(!isset($_SESSION["rid"]))
+		$_SESSION["rid"]=0;
+	$_SESSION["rid"]++;
 ?>
 
   <title>Alle Drucker</title>
@@ -65,7 +68,7 @@ function load_user()
 		?>
 	    <!--  <h1>Alle Drucker</h1> -->
 				<?php
-					if(isset($_GET['free']))
+					if(isset($_GET['free'])&&$_GET["rid"]==($_SESSION["rid"]-1))
 					{
 						$printer_id=htmlspecialchars($_GET['free']);
 						$sql="select used_by_userid from printer where id=$printer_id";
@@ -78,7 +81,7 @@ function load_user()
 						$stmt = mysqli_prepare($link, $sql);					
 						mysqli_stmt_execute($stmt);
 					}
-					if(isset($_GET['cancel']))
+					if(isset($_GET['cancel'])&&$_GET["rid"]==($_SESSION["rid"]-1))
 					{
 						$apikey="";
 						$printer_url="";
@@ -186,7 +189,7 @@ function load_user()
 									echo("<tr><td>Vergangene Druckzeit</td><td>".round((intval($json["progress"]["printTime"])/60),0)." Minuten</td></tr>");
 									echo("<tr><td>Datei</td><td>".substr($json["job"]["file"]["name"],0,20)."...</td></tr>");
 									if($userid==$_SESSION["id"] or $_SESSION["role"]==="admin"){
-										echo("<tr><td><a class='btn btn-success' href='overview.php?free=$printer_id'>Freigeben</a></td></tr>");
+										echo("<tr><td><a class='btn btn-success' href='overview.php?free=$printer_id&rid=".$_SESSION["rid"]."'>Freigeben</a></td></tr>");
 									}
 									echo("</thead>");
 									echo("</table>");
@@ -212,7 +215,7 @@ function load_user()
 									echo("<tr><td>Vergangene Druckzeit</td><td>".round((intval($json["progress"]["printTime"])/60),0)." Minuten</td></tr>");
 									echo("<tr><td>Datei</td><td>".substr($json["job"]["file"]["name"],0,20)."...</td></tr>");
 									if($useuserid==$_SESSION["id"] or $_SESSION["role"]==="admin"){
-										echo("<tr><td><a class='btn btn-success' href='overview.php?free=$printer_id'>Freigeben</a></td></tr>");
+										echo("<tr><td><a class='btn btn-success' href='overview.php?free=$printer_id&rid=".$_SESSION["rid"]."'>Freigeben</a></td></tr>");
 									}
 									echo("</thead>");
 									echo("</table>");
@@ -238,7 +241,7 @@ function load_user()
 									echo("<tr><td>Vergangene Druckzeit</td><td>".round((intval($json["progress"]["printTime"])/60),0)." Minuten</td></tr>");
 									echo("<tr><td>Datei</td><td>".substr($json["job"]["file"]["name"],0,20)."...</td></tr>");
 									if($userid==$_SESSION["id"] or $_SESSION["role"]==="admin"){								
-										echo("<tr><td><a class='btn btn-danger' href='overview.php?cancel=$printer_id'>Abbrechen</a></td></tr>");
+										echo("<tr><td><a class='btn btn-danger' href='overview.php?cancel=$printer_id&rid=".$_SESSION["rid"]."'>Abbrechen</a></td></tr>");
 									}
 									echo("</thead>");
 									echo("</table>");
