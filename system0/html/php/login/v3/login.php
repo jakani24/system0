@@ -260,7 +260,7 @@ curl --request POST \
   --url https://api.sendgrid.com/v3/mail/send \
   --header "Authorization: Bearer $SENDGRID_API_KEY" \
   --header 'Content-Type: application/json' \
-  --data '{"personalizations": [{"to": [{"email": "$username"}]}],"from": {"email": "janis.steiner@kantiwattwil.ch"},"subject": "System0 Account Validation","content": [{"type": "text/html", "value": "Hallo $username<br>Hier ist dein System0 Account verifikations Link. Bitte klicke drauf. Sollte dies nicht funktionieren, kopiere bitte den Link und öffne Ihn in deinem Browser.<br><a href='https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token'>https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token</a><br><br>Vielen dank für dein Vertrauen in uns!<br>Jakach Software 2024<br>https://jakach.duckdns.org"}]}'
+  --data '{"personalizations": [{"to": [{"email": "$username"}]}],"from": {"email": "janis.steiner@kantiwattwil.ch"},"subject": "System0 Account Validation","content": [{"type": "text/html", "value": "Hallo $username<br>Hier ist dein System0 Account verifikations Link. Bitte klicke drauf. Sollte dies nicht funktionieren, kopiere bitte den Link und öffne Ihn in deinem Browser.<br><a href='https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token'>https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token</a><br>Achtung: der Link funktioniert nur in dem gleichen Browser und Gerät, auf dem du deinen Account erstellt hast.<br><br>Vielen dank für dein Vertrauen in uns!<br>Jakach Software 2024<br>https://jakach.duckdns.org"}]}'
 
 EOF;
 
