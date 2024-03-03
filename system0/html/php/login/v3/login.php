@@ -230,29 +230,52 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
     if(empty($err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, role,banned) VALUES (?, ?, ?,?)";
+        $sql = "INSERT INTO users (username, password, role,banned,banned_reason) VALUES (?, ?, ?,?,?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            $banned=0;
-            mysqli_stmt_bind_param($stmt, "sssi", $param_username, $param_password, $role,$banned);
+            $banned=1;
+	    $banned_reason="Account muss zuerst verifiziert werden (Link in Mail)";
+            mysqli_stmt_bind_param($stmt, "sssis", $param_username, $param_password, $role,$banned,$banned_reason);
             
             // Set parameters
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             $role="user";
-            $banned=0;
+            $banned=1;
+	    $banned_reason="Account muss zuerst verifiziert werden (Link in Mail)";
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
-                mkdir("/var/www/html/system0/html/user_files/$username");
-                header("location: /system0/html/php/login/v3/login.php");
+		if(!is_dir("/var/www/html/system0/html/user_files/$username"))
+                	mkdir("/var/www/html/system0/html/user_files/$username");
+	    //create session token, which has account creation token inisde it.
+	    $_SESSION["creation_token"]=rand(1000, 9999);
+	    $token=$_SESSION["creation_token"];
+	    $_SESSION["verify"]=$username;
+	    //send the mail:
+	    $mail=<<<EOF
+
+curl --request POST \
+  --url https://api.sendgrid.com/v3/mail/send \
+  --header "Authorization: Bearer $SENDGRID_API_KEY" \
+  --header 'Content-Type: application/json' \
+  --data '{"personalizations": [{"to": [{"email": "$username"}]}],"from": {"email": "janis.steiner@kantiwattwil.ch"},"subject": "System0 Account Validation","content": [{"type": "text/html", "value": "Hallo $username<br>Hier ist dein System0 Account verifikations Link. Bitte klicke drauf. Sollte dies nicht funktionieren, kopiere bitte den Link und öffne Ihn in deinem Browser.<br><a href='https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token'>https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token</a><br><br>Vielen dank für dein Vertrauen in uns!<br>Jakach Software 2024<br>https://jakach.duckdns.org"}]}'
+
+EOF;
+
+	    exec($mail);
+
+                //header("location: /system0/html/php/login/v3/login.php");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
             // Close statement
             mysqli_stmt_close($stmt);
+
+		
+
         }
     }
     
