@@ -81,7 +81,7 @@ function load_admin()
             // Close statement
             mysqli_stmt_close($stmt);
         }
-	echo('<div style="height: 95vh;">');
+	echo('<div style="min-height: 95vh;">');
 	echo('<div class="container mt-5" >
 			<div class="d-flex justify-content-center mb-3">
 				<h3>Benutzer zum löschen auswählen:</h3>
