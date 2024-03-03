@@ -38,7 +38,6 @@
                         <li><a class="dropdown-item" href="/system0/html/php/login/v3/php/cloud.php">Deine Dateien</a></li>
                         <li><a class="dropdown-item" href="/system0/html/php/login/v3/php/public_cloud.php">Öffentliche Dateien</a></li>
                         <li><a class="dropdown-item" href="/system0/html/php/login/v3/php/debug.php">Debug</a></li>
-                        <li><a class="dropdown-item" href="/system0/html/php/login/v3/php/new_main.php">Hauptseite</a></li>
                     </ul>
                 </li>
             </ul>

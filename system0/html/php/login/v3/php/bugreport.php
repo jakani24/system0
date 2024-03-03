@@ -56,7 +56,7 @@ function load_admin()
   <title>Bug report</title>
 </head>
 <body>
-	<div class="center-container" style="height: 95vh;">
+	<div class="center-container" style="min-height: 95vh;">
 			<div class="container">
 			  <div class="container mt-5 text-center">
 				<h1>Fehler melden</h1>

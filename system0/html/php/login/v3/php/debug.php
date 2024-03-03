@@ -55,7 +55,7 @@ function load_user()
   
 </head>
 <body>
-	<div class="container mt-5" style="height: 95vh;">
+	<div class="container mt-5" style="min-height: 95vh;">
 		<div class="row justify-content-center">
 	  	<div style="width: 100hh">
 	      <h1>Druckerfreigabe erzwingen (falls beim freigeben Fehlermeldungen angezeigt werden)</h1>
