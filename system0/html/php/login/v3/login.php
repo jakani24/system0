@@ -282,6 +282,22 @@ EOF;
     // Close connection
     mysqli_close($link);
 }
+if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="reset_pw"){
+	$email=htmlspecialchars($_POST["username"]);
+	$_SESSION["pw_reset_token"]= urlencode(bin2hex(random_bytes(24 / 2)));
+	$token=$_SESSION["pw_reset_token"];
+	$_SESSION["verify"]=$email;
+	$mail=<<<EOF
+curl --request POST \
+  --url https://api.sendgrid.com/v3/mail/send \
+  --header "Authorization: Bearer $SENDGRID_API_KEY" \
+  --header 'Content-Type: application/json' \
+  --data '{"personalizations": [{"to": [{"email": "$email"}]}],"from": {"email": "janis.steiner@kantiwattwil.ch"},"subject": "System0 Password reset","content": [{"type": "text/html", "value": "Hallo $email<br>Hier ist dein System0 Passwort Zurücksetzungs Link. Bitte klicke drauf. Sollte dies nicht funktionieren, kopiere bitte den Link und öffne Ihn in deinem Browser.<br><a href='https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/reset_pw.php?token=$token'>https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/reset_pw.php?token=$token</a><br>Achtung: der Link funktioniert nur in dem gleichen Browser und Gerät, auf dem du deinen Account erstellt hast.<br><br>Vielen dank für dein Vertrauen in uns!<br>Jakach Software 2024<br>https://jakach.duckdns.org"}]}'
+
+EOF;
+
+	    exec($mail);
+}
 ?>
 <script>
     function load_footer() {
@@ -369,6 +385,7 @@ EOF;
 						</form>
 						<div class="text-center mt-3">
 							<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#noaccount" id="lnk_1">Noch kein Account? Erstelle einen!</button>
+							<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#reset_pw" id="lnk_1">Passwort vergessen?</button>
 						</div>
 						<?php 
 							if(!empty($login_err)){
@@ -428,7 +445,28 @@ EOF;
 				</form>
 			</div>
 		</div>
-	
+	<div class="modal fade" id="reset_pw" tabindex="1" role="dialog" aria-labelledby="Account" aria-hidden="false">
+		      <div class="modal-dialog" role="document">
+		        <div class="modal-content">
+		          <div class="modal-header">
+		            <h5 class="modal-title" id="exampleModalLabel">Passwort Zurücksetzen</h5>
+		            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		
+		          </div>
+				<div class="modal-body">
+					<form action="login.php?action=reset_pw" method="post">
+						<div class="form-group mb-3">
+							<label for="username" class="form-label">Deine Account Email:</label>
+							<input type="text" class="form-control" id="username" name="username" required>
+					  	</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" name="submit" class="btn btn-dark">Passwort zurücksetzlink senden</button>
+				</div>
+				  </div>
+				</form>
+			</div>
+		</div>
 <?php
 		if(!empty($err)){
 			echo("<script>");
