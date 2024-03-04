@@ -22,7 +22,8 @@
 	//echo($cnt);
 	$is_free=0;					
 	$last_id=0;	
-	$mail_sent=1;				
+	$mail_sent=1;	
+	$used_by_userid=0;			
 	while($cnt!=0)
 	{	
 
@@ -31,7 +32,7 @@
 		$stmt = mysqli_prepare($link, $sql);					
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_store_result($stmt);
-		mysqli_stmt_bind_result($stmt, $is_free,$printer_id,$url,$apikey,$cancel,$userid,$mail_sent);
+		mysqli_stmt_bind_result($stmt, $is_free,$printer_id,$url,$apikey,$cancel,$used_by_userid,$mail_sent);
 		mysqli_stmt_fetch($stmt);
 		$last_id=$printer_id;
 
@@ -42,7 +43,7 @@
 		
 		
 		$used_by_user="";
-		$sql="select username from users where id=$userid";
+		$sql="select username from users where id=$used_by_userid";
 		$stmt = mysqli_prepare($link, $sql);					
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_store_result($stmt);
@@ -60,17 +61,16 @@
 				if($mail_sent==0)
 				{
 
-					echo("sending mail for $printer_id<br>");
+					echo("sending mail for printer $printer_id to $used_by_user<br>");
 					$mail=<<<EOF
-
 curl --request POST \
   --url https://api.sendgrid.com/v3/mail/send \
   --header "Authorization: Bearer $SENDGRID_API_KEY" \
   --header 'Content-Type: application/json' \
   --data '{"personalizations": [{"to": [{"email": "$used_by_user"}]}],"from": {"email": "janis.steiner@kantiwattwil.ch"},"subject": "Dein 3D-Druck ist fertig","content": [{"type": "text/html", "value": "Hallo $username2<br>Dein 3D-Druck auf Drucker $printer_id ist fertig.<br>Bitte hole diesen ab und vergiss nicht den Drucker danach freizugeben!<br><br>Vielen dank für dein Vertrauen in uns!<br>Jakach Software 2024<br>https://jakach.duckdns.org"}]}'
-
 EOF;
-					exec($mail);
+					$out="";
+					exec($mail,$out);
 					$sql="update printer set mail_sent=1 where id=$printer_id";
 					$stmt = mysqli_prepare($link, $sql);					
 					mysqli_stmt_execute($stmt);
