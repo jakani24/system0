@@ -173,8 +173,8 @@
 			
 						
 							if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
-								echo("<div class='alert alert-success' role='alert'>Erfolg! Die Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen.</div>");
-								echo("<div class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div>");
+								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Erfolg! Die Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen.</div></center>");
+								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div></center>");
 								exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
 								//file is on printer and ready to be printed
 								$userid=$_SESSION["id"];
@@ -189,7 +189,7 @@
 								}
 								else
 								{
-									$sql="update printer set free=0, printing=1, used_by_userid=$userid where id=$printer_id";
+									$sql="update printer set free=0, printing=1,mail_sent=0, used_by_userid=$userid where id=$printer_id";
 									$stmt = mysqli_prepare($link, $sql);					
 									mysqli_stmt_execute($stmt);
 									//delete printer key:
@@ -241,7 +241,7 @@
 							}
 							else
 							{
-								$sql="update printer set free=0, printing=1, used_by_userid=$userid where id=$printer_id";
+								$sql="update printer set free=0, printing=1,mail_sent=0, used_by_userid=$userid where id=$printer_id";
 								$stmt = mysqli_prepare($link, $sql);					
 								mysqli_stmt_execute($stmt);
 								//delete printer key:

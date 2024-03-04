@@ -67,7 +67,7 @@ function load_admin()
 				  </div>
 				  <div class="form-group">
 					<label class="my-3" for="email">Deine Email für weitere Nachfragen (optional)</label>
-					<input type="text" class="form-control mx-auto" id="email" name="email" style="width:50%;">
+					<input type="text" class="form-control mx-auto" id="email" name="email" style="width:50%;" value="<?php echo($_SESSION["username"]); ?>">
 				  </div>
 				  <button type="submit" class="btn btn-dark my-5">abschicken</button>
 				</form>

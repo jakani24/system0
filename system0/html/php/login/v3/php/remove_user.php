@@ -29,6 +29,34 @@ function load_admin()
 <?php echo(" <body style='background-color:$color'> ");?>
 <div id="content"></div>
 <?php
+	function deleteDirectory($dir) {
+	    if (!is_dir($dir)) {
+		return;
+	    }
+
+	    // Get list of files and directories inside the directory
+	    $files = scandir($dir);
+
+	    foreach ($files as $file) {
+		// Skip current and parent directory links
+		if ($file == '.' || $file == '..') {
+		    continue;
+		}
+
+		$path = $dir . '/' . $file;
+
+		if (is_dir($path)) {
+		    // Recursively delete sub-directory
+		    deleteDirectory($path);
+		} else {
+		    // Delete file
+		    unlink($path);
+		}
+	    }
+
+	    // Delete the empty directory
+	    rmdir($dir);
+	}
 	echo ("<script type='text/javascript' >load_admin()</script>");
 	require_once "config.php"; 
 	if(isset($_POST['username']))
@@ -39,6 +67,7 @@ function load_admin()
 		//echo($sql);
 		$stmt = mysqli_prepare($link, $sql);
 		mysqli_stmt_execute($stmt);
+		deleteDirectory("/var/www/html/system0/html/user_files/$username_td/");
 		log_("Deleted $username_td","BAN:DELETION");
 	}
 	else if(isset($_POST["ban"]))

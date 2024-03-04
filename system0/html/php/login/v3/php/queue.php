@@ -46,7 +46,7 @@
 				$json=json_decode($fg,true);
 				if($json['effectivePrint']==true and $json["effectiveSelect"]==true)
 				{
-					$sql="update printer set free=0, printing=1, used_by_userid=$quserid where id=$id";
+					$sql="update printer set free=0, printing=1,mail_sent=0, used_by_userid=$quserid where id=$id";
 					$stmt = mysqli_prepare($link, $sql);				
 					mysqli_stmt_execute($stmt);
 					

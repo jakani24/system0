@@ -136,7 +136,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="login"){
 		                }
 		                else
 		                {
-		                	$login_err = "Sorry your account got banned. Reason: $banned_reason";
+		                	$login_err = "Dein Account wurde noch nicht aktiviert: $banned_reason";
 		                }
                         } else{
                             // Password is not valid, display a generic error message
@@ -230,34 +230,74 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
     if(empty($err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, role,banned) VALUES (?, ?, ?,?)";
+        $sql = "INSERT INTO users (username, password, role,banned,banned_reason) VALUES (?, ?, ?,?,?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            $banned=0;
-            mysqli_stmt_bind_param($stmt, "sssi", $param_username, $param_password, $role,$banned);
+            $banned=1;
+	    $banned_reason="Account muss zuerst verifiziert werden (Link in Mail)";
+            mysqli_stmt_bind_param($stmt, "sssis", $param_username, $param_password, $role,$banned,$banned_reason);
             
             // Set parameters
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             $role="user";
-            $banned=0;
+            $banned=1;
+	    $banned_reason="Account muss zuerst verifiziert werden (Link in Mail)";
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
-                mkdir("/var/www/html/system0/html/user_files/$username");
-                header("location: /system0/html/php/login/v3/login.php");
+		if(!is_dir("/var/www/html/system0/html/user_files/$username"))
+                	mkdir("/var/www/html/system0/html/user_files/$username");
+	    //create session token, which has account creation token inisde it.
+	    $_SESSION["creation_token"]= urlencode(bin2hex(random_bytes(24/2)));
+	    $token=$_SESSION["creation_token"];
+	    $_SESSION["verify"]=$username;
+	    //send the mail:
+	    $mail=<<<EOF
+
+curl --request POST \
+  --url https://api.sendgrid.com/v3/mail/send \
+  --header "Authorization: Bearer $SENDGRID_API_KEY" \
+  --header 'Content-Type: application/json' \
+  --data '{"personalizations": [{"to": [{"email": "$username"}]}],"from": {"email": "janis.steiner@kantiwattwil.ch"},"subject": "System0 Account Validation","content": [{"type": "text/html", "value": "Hallo $username<br>Hier ist dein System0 Account verifikations Link. Bitte klicke drauf. Sollte dies nicht funktionieren, kopiere bitte den Link und öffne Ihn in deinem Browser.<br><a href='https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token'>https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token</a><br>Achtung: der Link funktioniert nur in dem gleichen Browser und Gerät, auf dem du deinen Account erstellt hast.<br><br>Vielen dank für dein Vertrauen in uns!<br>Jakach Software 2024<br>https://jakach.duckdns.org"}]}'
+
+EOF;
+
+	    exec($mail);
+
+                header("location: /system0/html/php/login/v3/login.php?mail_sent1");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
 
             // Close statement
             mysqli_stmt_close($stmt);
+
+		
+
         }
     }
     
     // Close connection
     mysqli_close($link);
+}
+if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="reset_pw"){
+	$email=htmlspecialchars($_POST["username"]);
+	$_SESSION["pw_reset_token"]= urlencode(bin2hex(random_bytes(24 / 2)));
+	$token=$_SESSION["pw_reset_token"];
+	$_SESSION["verify"]=$email;
+	$mail=<<<EOF
+curl --request POST \
+  --url https://api.sendgrid.com/v3/mail/send \
+  --header "Authorization: Bearer $SENDGRID_API_KEY" \
+  --header 'Content-Type: application/json' \
+  --data '{"personalizations": [{"to": [{"email": "$email"}]}],"from": {"email": "janis.steiner@kantiwattwil.ch"},"subject": "System0 Password reset","content": [{"type": "text/html", "value": "Hallo $email<br>Hier ist dein System0 Passwort Zurücksetzungs Link. Bitte klicke drauf. Sollte dies nicht funktionieren, kopiere bitte den Link und öffne Ihn in deinem Browser.<br><a href='https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/reset_pw.php?token=$token'>https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/reset_pw.php?token=$token</a><br>Achtung: der Link funktioniert nur in dem gleichen Browser und Gerät, auf dem du deinen Account erstellt hast.<br><br>Vielen dank für dein Vertrauen in uns!<br>Jakach Software 2024<br>https://jakach.duckdns.org"}]}'
+
+EOF;
+
+	    exec($mail);
+		header("location: /system0/html/php/login/v3/login.php?mail_sent2");
 }
 ?>
 <script>
@@ -346,11 +386,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 						</form>
 						<div class="text-center mt-3">
 							<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#noaccount" id="lnk_1">Noch kein Account? Erstelle einen!</button>
+							<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#reset_pw" id="lnk_1">Passwort vergessen?</button>
 						</div>
 						<?php 
 							if(!empty($login_err)){
 							echo '<div class="alert alert-danger">' . $login_err . '</div>';
-							}         
+							}   
+							if(isset($_GET["mail_sent1"]))
+							echo '<div class="alert alert-success">Eine Mail mit einem Aktivierungslink wurde an deine Mailadresse gesendet.</div>';
+							if(isset($_GET["mail_sent2"]))
+							echo '<div class="alert alert-success">Eine Mail mit einem Passwort zurücksetzungslink wurde an deine Mailadresse gesendet.</div>';
+						       
 				    
 						?>
 					</div>
@@ -387,7 +433,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 					<?php 
 					    if(!empty($err)){
 						echo '<div class="alert alert-danger">' . $err . '</div>';
-					    }      
+					    }
+						  
 					?>
 				</div>
 				<div class="modal-footer">
@@ -405,7 +452,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 				</form>
 			</div>
 		</div>
-	
+	<div class="modal fade" id="reset_pw" tabindex="1" role="dialog" aria-labelledby="Account" aria-hidden="false">
+		      <div class="modal-dialog" role="document">
+		        <div class="modal-content">
+		          <div class="modal-header">
+		            <h5 class="modal-title" id="exampleModalLabel">Passwort Zurücksetzen</h5>
+		            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		
+		          </div>
+				<div class="modal-body">
+					<form action="login.php?action=reset_pw" method="post">
+						<div class="form-group mb-3">
+							<label for="username" class="form-label">Deine Account Email:</label>
+							<input type="text" class="form-control" id="username" name="username" required>
+					  	</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" name="submit" class="btn btn-dark">Passwort zurücksetzlink senden</button>
+				</div>
+				  </div>
+				</form>
+			</div>
+		</div>
 <?php
 		if(!empty($err)){
 			echo("<script>");

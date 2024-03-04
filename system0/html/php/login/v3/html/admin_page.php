@@ -31,7 +31,6 @@
                         <li><a class="dropdown-item" href="/system0/html/php/login/v3/php/create_admin.php">Neue Admin erstellen</a></li>
                         <li><a class="dropdown-item" href="/system0/html/php/login/v3/php/remove_user.php">User entfernen</a></li>
                         <li><a class="dropdown-item" href="/system0/html/php/login/v3/php/print.php">Datei drucken</a></li>
-                        <li><a class="dropdown-item" href="/system0/html/php/login/v3/php/all_jobs.php">Alle Druckvorgänge</a></li>
                         <li><a class="dropdown-item" href="/system0/html/php/login/v3/php/view_log.php">View system0 Log</a></li>
                         <li><a class="dropdown-item" href="/system0/html/php/login/v3/php/view_apikey.php">View the system0 API Key</a></li>
                         <li><a class="dropdown-item" href="/system0/html/php/login/v3/php/create_key.php">Druckschlüssel erstellen</a></li>
