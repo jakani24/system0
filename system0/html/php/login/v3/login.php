@@ -136,7 +136,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="login"){
 		                }
 		                else
 		                {
-		                	$login_err = "Sorry your account got banned. Reason: $banned_reason";
+		                	$login_err = "Dein Account wurde noch nicht aktiviert: $banned_reason";
 		                }
                         } else{
                             // Password is not valid, display a generic error message
@@ -250,7 +250,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 		if(!is_dir("/var/www/html/system0/html/user_files/$username"))
                 	mkdir("/var/www/html/system0/html/user_files/$username");
 	    //create session token, which has account creation token inisde it.
-	    $_SESSION["creation_token"]=rand(1000, 9999);
+	    $_SESSION["creation_token"]= urlencode(bin2hex(random_bytes(24/2)));
 	    $token=$_SESSION["creation_token"];
 	    $_SESSION["verify"]=$username;
 	    //send the mail:
@@ -266,7 +266,7 @@ EOF;
 
 	    exec($mail);
 
-                //header("location: /system0/html/php/login/v3/login.php");
+                header("location: /system0/html/php/login/v3/login.php?mail_sent1");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -297,6 +297,7 @@ curl --request POST \
 EOF;
 
 	    exec($mail);
+		header("location: /system0/html/php/login/v3/login.php?mail_sent2");
 }
 ?>
 <script>
@@ -390,7 +391,12 @@ EOF;
 						<?php 
 							if(!empty($login_err)){
 							echo '<div class="alert alert-danger">' . $login_err . '</div>';
-							}         
+							}   
+							if(isset($_GET["mail_sent1"]))
+							echo '<div class="alert alert-success">Eine Mail mit einem Aktivierungslink wurde an deine Mailadresse gesendet.</div>';
+							if(isset($_GET["mail_sent2"]))
+							echo '<div class="alert alert-success">Eine Mail mit einem Passwort zurücksetzungslink wurde an deine Mailadresse gesendet.</div>';
+						       
 				    
 						?>
 					</div>
@@ -427,7 +433,8 @@ EOF;
 					<?php 
 					    if(!empty($err)){
 						echo '<div class="alert alert-danger">' . $err . '</div>';
-					    }      
+					    }
+						  
 					?>
 				</div>
 				<div class="modal-footer">
