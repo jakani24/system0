@@ -123,7 +123,7 @@ function load_user()
 						if(isset($_GET["private"]))
 							echo("<a class='btn btn-dark' href='overview.php'>Alle Drucker anzeigen</a>");
 						else
-							echo("<a class='btn btn-dark' href='overview.php?private'>Nur deine Drucker anzeigen</a>");
+							echo("<a class='btn btn-dark' href='overview.php?private'>Nur eigene Aufträge anzeigen</a>");
 					echo("</div>");					
 					$last_id=0;					
 					while($cnt!=0)
