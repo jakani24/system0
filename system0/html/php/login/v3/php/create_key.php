@@ -4,7 +4,7 @@ session_start();
 include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
 require_once "config.php";
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["role"]!=="admin"){
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["role"][8]!=="1"){
     header("location: login.php");
     exit;
 }
@@ -40,14 +40,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION[
     <?php
         $username=$_SESSION["username"];
         $role=$_SESSION["role"];
-        if($role=="user")
-        {
-            echo "<script type='text/javascript' >load_user()</script>";
-        }
-        if($role=="admin")
-        {
-            echo "<script type='text/javascript' >load_admin()</script>";
-        }
+        echo "<script type='text/javascript' >load_user()</script>";
+
     ?>
 	<?php
 	require_once "config.php";

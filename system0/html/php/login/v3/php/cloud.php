@@ -7,13 +7,14 @@ include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
 include "config.php";
 include "queue.php";
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true or $_SESSION["role"][1]!="1"){
     header("location: login.php");
     exit;
 }
 $username=htmlspecialchars($_SESSION["username"]);
 $id=$_SESSION["id"];
 $username=$_SESSION["username"];
+$file_upload_err="nan";
 ?>
 
 
@@ -34,14 +35,9 @@ function load_user()
 </script>
 <?php
 	$role=$_SESSION["role"];
-	if($role=="user")
-	{
-		echo "<script type='text/javascript' >load_user()</script>";
-	}
-	if($role=="admin")
-	{
-		echo "<script type='text/javascript' >load_admin()</script>";
-	}
+
+	echo "<script type='text/javascript' >load_user()</script>";
+
 
 ?>
 <?php $color=$_SESSION["color"]; ?>
@@ -77,6 +73,37 @@ function load_user()
 		$public_path="/var/www/html/system0/html/user_files/public/".str_replace("..","",htmlspecialchars($_GET["public"]));
 		copy($path,$public_path);
 	}
+	if(!empty($_FILES['file']))
+	{
+		$ok_ft=array("gcode","");
+		$unwanted_chr=[' ','(',')','/','\\','<','>',':',';','?','*','"','|','%'];
+		$filetype = strtolower(pathinfo($_FILES['file']['name'],PATHINFO_EXTENSION));
+		$path = "/var/www/html/system0/html/user_files/$username/";
+		$filename=basename( $_FILES['file']['name']);
+		$filename=str_replace($unwanted_chr,"_",$filename);
+		$path = $path . $filename;
+
+		//if(in_array($filetype,$unwanted_ft))
+		if(!in_array($filetype,$ok_ft))
+		{
+			//echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Dieser Dateityp wird nicht unterstüzt.</div></center>");
+			$file_upload_err="Dieser Dateityp wird nicht unterstüzt.";
+		}
+		else
+		{
+	
+			if(move_uploaded_file($_FILES['file']['tmp_name'], $path)) {
+				//echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Erfolg! Die Datei ".  basename( $_FILES['file']['name']). " wurde hochgeladen.</div></center>");
+				$file_upload_err="ok";
+			}
+			else
+			{
+				//echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Ein Fehler beim Uploaden der Datei ist aufgetreten! Versuche es erneut! </div></center>");
+				$file_upload_err="Ein Fehler beim Uploaden der Datei ist aufgetreten! Versuche es erneut!";
+			}
+		}
+		unset($_FILES['file']);
+	}
 ?>
 <div id="content"></div>
 
@@ -88,8 +115,16 @@ function load_user()
 	<div class="container mt-4" style="height: auto;min-height:100vh">
 		<div class="row justify-content-center">
 			<!--<div style="width: 90vh">-->
+				<?php
+					if(!empty($file_upload_err)&&$file_upload_err!="nan"&&$file_upload_err!="ok")
+						echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>$file_upload_err</div></center>");	
+					else if($file_upload_err!="nan")
+						echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei wurde hochgeladen</div></center>");
+			
+				?>
 			      <h1>Deine Dateien</h1>
 				<div class="container">
+					<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#upoload_file" id="lnk_1">Datei Hochladen</button>
 					<form action="cloud.php" method="POST">
 						<input type="text" name="search" placeholder="Suchbegriff">
 						<button type="submit" class="btn btn-dark my-5">Suchen</button>
@@ -148,6 +183,28 @@ function load_user()
 				</div>	
 			    </div>
 		</div>
+	</div>
+	<div class="modal fade" id="upoload_file" tabindex="1" role="dialog" aria-labelledby="upoload_file" aria-hidden="false">
+		      <div class="modal-dialog" role="document">
+		        <div class="modal-content">
+		          <div class="modal-header">
+		            <h5 class="modal-title" id="exampleModalLabel">Datei Hochladen</h5>
+		            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		
+		          </div>
+				<div class="modal-body">
+					<form action="cloud.php" method="post" enctype="multipart/form-data">
+						<div class="mb-3">
+						    <label for="file" class="form-label">Datei wählen:</label>
+						    <input type="file" class="form-control" id="file" name="file" required accept=".gcode">
+						</div>
+						<button type="submit" class="btn btn-dark">Upload</button>	<br>
+
+					</form>
+				</div>
+				  </div>
+				</form>
+			</div>
 	</div>
 	<div id="footer"></div>
 </body>

@@ -11,12 +11,19 @@ $new_password_err = $confirm_password_err = "";
 $old_password="";
 $old_passwort_err="";
 $username=$_SESSION["verify"];
- echo("<div id='content'></div>");
+echo("<div id='content'></div>");
+if($_GET["token"]!=$_SESSION["pw_reset_token"]){
+	$login_err = "Dein Link ist entweder abgelaufen oder ungültig. Erzeuge einen neuen, in dem du auf <a href='/system0/html/php/login/v3/login.php?resend_pw_reset'>diesen Link</a> klickst.";
+	echo '<div class="alert alert-danger">' . $login_err . '</div>';
+	
+	//die();
+}
+ 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $login_err="";
     //first: validate old password
-    if(isset($_GET["token"])){
+    if(isset($_GET["token"])&&isset($_SESSION["pw_reset_token"])){
 	if($_GET["token"]==$_SESSION["pw_reset_token"]){
 		$auth=true;
 	}
@@ -67,6 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Attempt to execute the prepared statement
                 if(mysqli_stmt_execute($stmt)){
                     // Password updated successfully. Destroy the session, and redirect to login page
+			$_SESSION["pw_reset_token"]=urlencode(bin2hex(random_bytes(24)));
                     session_destroy();
                     header("location: login.php");
                     exit();
@@ -80,7 +88,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 	else{
-		$login_err = "Invalid reset link.";
+		$login_err = "Dein Link ist entweder abgelaufen oder ungültig. Erzeuge einen neuen, in dem du auf <a href='/system0/html/php/login/v3/login.php?resend_pw_reset'>diesen Link</a> klickst.";
 	}
         // Close connection
         mysqli_close($link);

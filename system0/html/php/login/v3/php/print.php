@@ -8,7 +8,7 @@
 	require_once "/var/www/html/system0/html/php/login/v3/log/log.php";
 	include "queue.php";
 	// Check if the user is logged in, if not then redirect him to login page
-	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true or $_SESSION["role"][0]!=="1"){
 	    header("location: login.php");
 	    exit;
 	}
@@ -21,15 +21,6 @@
 	?>
 	<script src="/system0/html/php/login/v3/js/load_page.js"></script>
 	<script>
-		function load_admin()
-		{
-			$(document).ready(function(){
-		   	$('#content').load("/system0/html/php/login/v3/html/admin_page.php");
-			});
-			$(document).ready(function(){
-   		$('#footer').load("/system0/html/php/login/v3/html/footer.html");
-		});
-		}
 		function load_user()
 		{
 			$(document).ready(function(){
@@ -42,14 +33,8 @@
 	</script>
 	<?php
 		$role=$_SESSION["role"];
-		if($role=="user")
-		{
-			echo "<script type='text/javascript' >load_user()</script>";
-		}
-		if($role=="admin")
-		{
-			echo "<script type='text/javascript' >load_admin()</script>";
-		}
+		echo "<script type='text/javascript' >load_user()</script>";
+		
 		test_queue($link);
 	?>
 
@@ -77,7 +62,6 @@
 			if($printer_id=="queue")
 			{
 			 //send file to queue because no printer is ready!
-			 	$sql="INSERT INTO queue (from_userid,filepath) VALUES (?,?)";
 				//echo $sql;
 		
 				if(!empty($_FILES['file_upload']))
@@ -86,6 +70,7 @@
 					$unwanted_chr=[' ','(',')','/','\\','<','>',':',';','?','*','"','|','%'];
 					$filetype = strtolower(pathinfo($_FILES['file_upload']['name'],PATHINFO_EXTENSION));
 					$path = "/var/www/html/system0/html/user_files/$username/";
+					$print_on=$_POST["queue_printer"];
 					$filename=basename( $_FILES['file_upload']['name']);
 					$filename=str_replace($unwanted_chr,"_",$filename);
 					$path = $path . $filename;
@@ -96,10 +81,10 @@
 					}
 					else
 					{
-						if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {		
+						if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
+							$sql="INSERT INTO queue (from_userid,filepath,print_on) VALUES (?,?,?)";		
 							$stmt = mysqli_prepare($link, $sql);	
-							//echo ("test".mysqli_error($link));
-							mysqli_stmt_bind_param($stmt, "is", $userid,$path);				
+							mysqli_stmt_bind_param($stmt, "isi", $userid,$path,$print_on);				
 							mysqli_stmt_execute($stmt);
 
 							echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen und an die Warteschlange gesendet</div></center>");
@@ -113,13 +98,16 @@
 					unset($_FILES['file']);
 				}
 				if(isset($_GET["cloudprint"])){
+					$print_on=$_POST["queue_printer"];
 					if(!isset($_GET["pc"]))
 						$path = "/var/www/html/system0/html/user_files/$username/".$_GET["cloudprint"];
 					else
 						$path = "/var/www/html/system0/html/user_files/public/".$_GET["cloudprint"];
+					$sql="INSERT INTO queue (from_userid,filepath,print_on) VALUES (?,?,?)";		
 					$stmt = mysqli_prepare($link, $sql);	
-					mysqli_stmt_bind_param($stmt, "is", $userid,$path);				
+					mysqli_stmt_bind_param($stmt, "isi", $userid,$path,$print_on);				
 					mysqli_stmt_execute($stmt);
+
 
 					echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen und an die Warteschlange gesendet</div></center>");
 					sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to the queue",$_SESSION["username"],"PRINT::UPLOAD::QUEUE");
@@ -326,11 +314,65 @@
 								$last_id=$id;
 								$num_of_printers--;
 							}
-							if($printers_av==0)
-								echo("<option printer='queue' value='queue'>No printer available (send to queue)</option>");
+							if($printers_av==0){
+								echo("<option printer='queue' value='queue'>An warteschlange Senden</option>");
+
+							}	
 							?>
 						</select>
 					</div>
+					<!-- if we send to queue, the user should be able to choose which printer prints it afterwards -->
+					<?php
+					if($printers_av==0){
+						echo('<div class="form-group">');
+							echo('<label class="my-3" for="printer">Auf diesem Drucker wird deine Datei gedruckt, sobald er frei ist.</label>');
+							echo('<select class="form-control selector" name="queue_printer" required>');
+								
+								
+								//get number of printers
+								$num_of_printers=0;
+								$sql="select count(*) from printer";
+								$stmt = mysqli_prepare($link, $sql);
+								mysqli_stmt_execute($stmt);
+								mysqli_stmt_store_result($stmt);
+								mysqli_stmt_bind_result($stmt, $num_of_printers);
+								mysqli_stmt_fetch($stmt);
+								$last_id=0;
+								$printers_av=0;
+								if(isset($_GET["preselect"])){
+									$preselect=$_GET["preselect"];
+								}else{
+									$preselect=-1;							
+								}
+								echo("<option printer='-1' value='-1' selected selected>erster verfügbarer Drucker</option>");
+								while($num_of_printers!=0)
+								{
+									$id=0;
+									$sql="Select id from printer where id>$last_id order by id";
+									//echo $sql;
+									$stmt = mysqli_prepare($link, $sql);
+									mysqli_stmt_execute($stmt);
+									mysqli_stmt_store_result($stmt);
+									mysqli_stmt_bind_result($stmt, $id);
+									mysqli_stmt_fetch($stmt);
+									if($id!=0 && $id!=$last_id)
+									{
+										if($id==$preselect)
+											echo("<option printer='$id' value='$id' selected>Drucker $id</option>");
+										else
+											echo("<option printer='$id' value='$id'>Drucker $id</option>");
+										$printers_av++;
+									}
+									$last_id=$id;
+									$num_of_printers--;
+								}	
+							
+							echo('</select>');
+						echo('</div>');
+					}
+					?>
+
+				
 					<br><br>
 					<!--<label class="my-3" for="print_key">Druckschlüssel (Kann im Sekretariat gekauft werden)</label>
 					<input type="text" class="form-control text" id="print_key" name="print_key" placeholder="z.B. A3Rg4Hujkief"><br>-->

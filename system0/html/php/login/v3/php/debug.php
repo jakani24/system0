@@ -7,7 +7,7 @@ include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
 include "config.php";
 include "queue.php";
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["role"]!=="admin"){
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["role"][9]!=="1"){
     header("location: login.php");
     exit;
 }
@@ -33,14 +33,8 @@ function load_user()
 </script>
 <?php
 	$role=$_SESSION["role"];
-	if($role=="user")
-	{
-		echo "<script type='text/javascript' >load_user()</script>";
-	}
-	if($role=="admin")
-	{
-		echo "<script type='text/javascript' >load_admin()</script>";
-	}
+	echo "<script type='text/javascript' >load_user()</script>";
+
 
 ?>
 <?php $color=$_SESSION["color"]; ?>

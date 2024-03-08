@@ -36,14 +36,7 @@ function load_admin()
 </script>
 <?php
 	$role=$_SESSION["role"];
-	if($role=="user")
-	{
-		echo "<script type='text/javascript' >load_user()</script>";
-	}
-	if($role=="admin")
-	{
-		echo "<script type='text/javascript' >load_admin()</script>";
-	}
+	echo "<script type='text/javascript' >load_user()</script>";
 ?>
 <?php 
 	$color=$_SESSION["color"]; 

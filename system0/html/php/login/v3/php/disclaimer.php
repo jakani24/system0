@@ -41,14 +41,8 @@ else
         <?php
             $username=$_SESSION["username"];
             $role=$_SESSION["role"];
-            if($role=="user")
-            {
-                echo "<script type='text/javascript' >load_user()</script>";
-            }
-            if($role=="admin")
-            {
-                echo "<script type='text/javascript' >load_admin()</script>";
-            }
+            echo "<script type='text/javascript' >load_user()</script>";
+
         ?>
 
          <div id="content"></div>

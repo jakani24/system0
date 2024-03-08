@@ -7,7 +7,7 @@ include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
 include "config.php";
 include "queue.php";
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true ){
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true or$_SESSION["role"][2]!="1"){
     header("location: login.php");
     exit;
 }
@@ -34,14 +34,9 @@ function load_user()
 </script>
 <?php
 	$role=$_SESSION["role"];
-	if($role=="user")
-	{
-		echo "<script type='text/javascript' >load_user()</script>";
-	}
-	if($role=="admin")
-	{
-		echo "<script type='text/javascript' >load_admin()</script>";
-	}
+	echo "<script type='text/javascript' >load_user()</script>";
+	
+
 
 ?>
 <?php $color=$_SESSION["color"]; ?>
@@ -120,7 +115,7 @@ function load_user()
 							      echo '<td><img  style="display:block; width:100px;height:100px;" id="base64image" src="data:image;base64,' . get_base64_preview($file) . '"/></td>';
 							      echo '<td>' . basename($file) . '</td>';
 							      echo '<td><a href="print.php?pc=1&cloudprint='.basename($file).'">Drucken</a></td>';
-								if($role=="admin"){
+								if($role[10]=="1"){
 									echo "<td><a href='public_cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
 								}else{
 									echo "<td></td>";
@@ -133,7 +128,7 @@ function load_user()
 							echo '<td><img  style="display:block; width:100px;height:100px;" id="base64image" src="data:image;base64,' . get_base64_preview($file) . '"/></td>';
 							echo '<td>' . basename($file) . '</td>';
 							echo '<td><a href="print.php?pc=1&cloudprint='.basename($file).'">Drucken</a></td>';
-							if($role=="admin"){
+							if($role[10]=="1"){
 									echo "<td><a href='public_cloud.php?delete=".basename($file)."' >" . "Löschen" . '</a></td>';
 							}else{
 									echo "<td></td>";

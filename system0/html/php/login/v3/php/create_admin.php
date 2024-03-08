@@ -3,7 +3,7 @@
 session_start();
   include "/var/www/html/system0/html/php/login/v3/waf/waf_no_anti_xss.php";
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["role"]!== "admin"){
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["role"][5]!== "1"){
     header("location: login.php");
     exit;
 }
@@ -17,7 +17,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION[
      	function load_admin()
 		{
 			$(document).ready(function(){
-		   	$('#content').load("/system0/html/php/login/v3/html/admin_page.php");
+		   	$('#content').load("/system0/html/php/login/v3/html/user_page.php");
 			});
 			$(document).ready(function(){
    		$('#footer').load("/system0/html/php/login/v3/html/footer.html");
@@ -29,13 +29,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION[
 // Include config file
 require_once "config.php";
 include "../log/log.php";
+include "permission_functions.php";
 echo("<div id='content'></div>");
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
 $role="admin";
 $username_err = $password_err = $confirm_password_err = "";
 $err="";
- 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
@@ -106,21 +106,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO users (username, password, role,notification_telegram,notification_mail) VALUES (?, ?, ?,?,?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $role);
+		$tel=0;
+		$mail=1;	
+            mysqli_stmt_bind_param($stmt, "sssii", $param_username, $param_password, $role,$tel,$mail);
             
             // Set parameters
+		$tel=0;
+		$mail=1;
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-            $role="admin";
+            $role=get_perm_string();
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
                 mkdir("/var/www/html/system0/html/user_files/$username");
-                header("location: /system0/html/php/login/v3/admin.php");
+                header("location: /");
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -161,6 +165,58 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								<label for="pwd">Neues Passwort bestätigen:</label>
 								<input type="password" class="form-control" id="pwd" name="confirm_password" required>
 						  	</div>
+							<div class="form-group mb-3">
+								<h5>Berechtigungen</h5>
+								<table class="table">
+									<thead><tr><td>Berechtigung</td><td>Berechtigung erteilen</td></tr></thead>
+									<tbody>
+										<tr>
+											<td>Datei Drucken</td>
+											<td><input class="form-check-input" type="checkbox" value="" name="print"></td>
+										</tr>
+										<tr>
+											<td>Private Cloud</td>
+											<td><input class="form-check-input" type="checkbox" value="" name="private_cloud"></td>
+										</tr>
+										<tr>
+											<td>Öffentliche Cloud</td>
+											<td><input class="form-check-input" type="checkbox" value="" name="public_cloud"></td>
+										</tr>
+										<tr>
+											<td>Alle Drucker abbrechen / freigeben</td>
+											<td><input class="form-check-input" type="checkbox" value="" name="printer_ctr_all"></td>
+										</tr>
+										<tr>
+											<td>Benutzereinstellungen ändern</td>
+											<td><input class="form-check-input" type="checkbox" value="" name="change_user_perm"></td>
+										</tr>
+										<tr>
+											<td>Administratoren erstellen</td>
+											<td><input class="form-check-input" type="checkbox" value="" name="create_admin"></td>
+										</tr>
+										<tr>
+											<td>Log ansehen</td>
+											<td><input class="form-check-input" type="checkbox" value="" name="view_log"></td>
+										</tr>
+										<tr>
+											<td>System0 APIkey ansehen</td>
+											<td><input class="form-check-input" type="checkbox" value="" name="view_apikey"></td>
+										</tr>
+										<tr>
+											<td>Druckschlüssel erstellen</td>
+											<td><input class="form-check-input" type="checkbox" value="" name="create_key"></td>
+										</tr>
+										<tr>
+											<td>Debug</td>
+											<td><input class="form-check-input" type="checkbox" value="" name="debug"></td>
+										</tr>
+										<tr>
+											<td>Alle Dateien von Öffentlicher Cloud Löschen</td>
+											<td><input class="form-check-input" type="checkbox" value="" name="delete_from_public_cloud"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 							<button type="submit" name="submit" class="btn btn-dark">Create Account</button><br><br>
 						</form>
 						<div class="text-center mt-3">

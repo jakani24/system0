@@ -8,14 +8,7 @@ $username_err = $password_err = $confirm_password_err = "";
 $err="";
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    if($_SESSION["role"]==="user")
-    {
-         header("location: https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php");
-    }
-    if($_SESSION["role"]==="admin")
-    {
-         header("location: https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php");
-    }
+	header("location: https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php");
     exit;
 }
 require_once "php/config.php";
@@ -26,16 +19,10 @@ include "components.php";
 $error=logmein($link);
 //echo($error);
 //die();
-if($error!=="error1" && $error!=="error2")
+if($error==="success")
 {
-    if($_SESSION["role"]==="admin")
-    {
         header("LOCATION: https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php");
-    }
-    else if($_SESSION["role"]==="user")
-    {
-        header("LOCATION: https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php");
-    }
+
 }
 
 // Define variables and initialize with empty values
@@ -44,7 +31,33 @@ $username_err = $password_err = $login_err = "";
 $color="";
 $banned=0;
 $banned_reason="";
- 
+$telegram_id="";
+$notification_telegram=0;
+$notification_mail=0;
+//resend account verify mail
+if(isset($_GET["resend_acc_verify"])){
+			//we need to resend the accont verification lin
+			$_SESSION["creation_token"]= urlencode(bin2hex(random_bytes(24/2)));
+			$token=$_SESSION["creation_token"];
+			if(isset($_SESSION["verify"])){
+				$username=$_SESSION["verify"];
+				//send the mail:
+				$mail=<<<EOF
+
+curl --request POST \
+  --url https://api.sendgrid.com/v3/mail/send \
+  --header "Authorization: Bearer $SENDGRID_API_KEY" \
+  --header 'Content-Type: application/json' \
+  --data '{"personalizations": [{"to": [{"email": "$username"}]}],"from": {"email": "$sendgrid_email"},"subject": "System0 Account Validation","content": [{"type": "text/html", "value": "Hallo $username<br>Hier ist dein System0 Account verifikations Link. Bitte klicke drauf. Sollte dies nicht funktionieren, kopiere bitte den Link und öffne Ihn in deinem Browser.<br><a href='https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token'>https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token</a><br>Achtung: der Link funktioniert nur in dem gleichen Browser und Gerät, auf dem du deinen Account erstellt hast.<br><br>Vielen dank für dein Vertrauen in uns!<br>Code Camp 2024<br>"}]}'
+
+EOF;
+				exec($mail);
+				header("location: /system0/html/php/login/v3/login.php?mail_sent1");	
+			}
+			else{
+				header("location: /system0/html/php/login/v3/login.php?mail_sent3");
+			}
+		}
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="login"){
  
@@ -65,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="login"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, username, password, role, color,banned,banned_reason  FROM users WHERE username = ?";
+        $sql = "SELECT id, username, password, role, color,banned,banned_reason ,telegram_id,notification_telegram,notification_mail FROM users WHERE username = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -82,7 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="login"){
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $role,$color,$banned,$banned_reason);
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $role,$color,$banned,$banned_reason,$telegram_id,$notification_telegram,$notification_mail);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
 		                if($banned!=1)
@@ -122,17 +135,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="login"){
 		                    $_SESSION["role"] = $role;
 		                    $_SESSION["token"]=bin2hex(random_bytes(32));
 		                    $_SESSION["color"]=$color;
+				    $_SESSION["creation_token"]= urlencode(bin2hex(random_bytes(24/2)));
+					$_SESSION["telegram_id"]=$telegram_id;
+					$_SESSION["notification_telegram"]=$notification_telegram;
+					$_SESSION["notification_mail"]=$notification_mail;
 		                    // Redirect user to welcome page
-		                    if($role=="admin")
-		                    {
-		                        log_("$username logged in as admin","LOGIN:SUCCESS");
+		                        log_("$username logged in","LOGIN:SUCCESS");
 		                        header("location:https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php");
-		                    }
-		                    else
-		                    {
-		                        log_("$username logged in as user","LOGIN:SUCCESS");
-		                        header("location:https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php");
-		                    }
 		                }
 		                else
 		                {
@@ -230,19 +239,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
     if(empty($err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, role,banned,banned_reason) VALUES (?, ?, ?,?,?)";
+        $sql = "INSERT INTO users (username, password, role,banned,banned_reason,notification_telegram,notification_mail) VALUES (?, ?, ?,?,?,?,?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             $banned=1;
 	    $banned_reason="Account muss zuerst verifiziert werden (Link in Mail)";
-            mysqli_stmt_bind_param($stmt, "sssis", $param_username, $param_password, $role,$banned,$banned_reason);
+		$tel=0;
+		$mail=1;
+            mysqli_stmt_bind_param($stmt, "sssisii", $param_username, $param_password, $role,$banned,$banned_reason,$tel,$mail);
             
             // Set parameters
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-            $role="user";
+            $role="11100000000";
             $banned=1;
+		$tel=0;
+		$mail=1;
 	    $banned_reason="Account muss zuerst verifiziert werden (Link in Mail)";
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -253,6 +266,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="create_user"){
 	    $_SESSION["creation_token"]= urlencode(bin2hex(random_bytes(24/2)));
 	    $token=$_SESSION["creation_token"];
 	    $_SESSION["verify"]=$username;
+	    $_SESSION["email"]=$username;
 	    //send the mail:
 	    $mail=<<<EOF
 
@@ -260,7 +274,7 @@ curl --request POST \
   --url https://api.sendgrid.com/v3/mail/send \
   --header "Authorization: Bearer $SENDGRID_API_KEY" \
   --header 'Content-Type: application/json' \
-  --data '{"personalizations": [{"to": [{"email": "$username"}]}],"from": {"email": "janis.steiner@kantiwattwil.ch"},"subject": "System0 Account Validation","content": [{"type": "text/html", "value": "Hallo $username<br>Hier ist dein System0 Account verifikations Link. Bitte klicke drauf. Sollte dies nicht funktionieren, kopiere bitte den Link und öffne Ihn in deinem Browser.<br><a href='https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token'>https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token</a><br>Achtung: der Link funktioniert nur in dem gleichen Browser und Gerät, auf dem du deinen Account erstellt hast.<br><br>Vielen dank für dein Vertrauen in uns!<br>Jakach Software 2024<br>https://jakach.duckdns.org"}]}'
+  --data '{"personalizations": [{"to": [{"email": "$username"}]}],"from": {"email": "$sendgrid_email"},"subject": "System0 Account Validation","content": [{"type": "text/html", "value": "Hallo $username<br>Hier ist dein System0 Account verifikations Link. Bitte klicke drauf. Sollte dies nicht funktionieren, kopiere bitte den Link und öffne Ihn in deinem Browser.<br><a href='https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token'>https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/verify_account.php?token=$token</a><br>Achtung: der Link funktioniert nur in dem gleichen Browser und Gerät, auf dem du deinen Account erstellt hast.<br><br>Vielen dank für dein Vertrauen in uns!<br>Code Camp 2024<br>"}]}'
 
 EOF;
 
@@ -284,6 +298,7 @@ EOF;
 }
 if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="reset_pw"){
 	$email=htmlspecialchars($_POST["username"]);
+	$_SESSION["email"]=$email;
 	$_SESSION["pw_reset_token"]= urlencode(bin2hex(random_bytes(24 / 2)));
 	$token=$_SESSION["pw_reset_token"];
 	$_SESSION["verify"]=$email;
@@ -292,7 +307,7 @@ curl --request POST \
   --url https://api.sendgrid.com/v3/mail/send \
   --header "Authorization: Bearer $SENDGRID_API_KEY" \
   --header 'Content-Type: application/json' \
-  --data '{"personalizations": [{"to": [{"email": "$email"}]}],"from": {"email": "janis.steiner@kantiwattwil.ch"},"subject": "System0 Password reset","content": [{"type": "text/html", "value": "Hallo $email<br>Hier ist dein System0 Passwort Zurücksetzungs Link. Bitte klicke drauf. Sollte dies nicht funktionieren, kopiere bitte den Link und öffne Ihn in deinem Browser.<br><a href='https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/reset_pw.php?token=$token'>https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/reset_pw.php?token=$token</a><br>Achtung: der Link funktioniert nur in dem gleichen Browser und Gerät, auf dem du deinen Account erstellt hast.<br><br>Vielen dank für dein Vertrauen in uns!<br>Jakach Software 2024<br>https://jakach.duckdns.org"}]}'
+  --data '{"personalizations": [{"to": [{"email": "$email"}]}],"from": {"email": "$sendgrid_email"},"subject": "System0 Password reset","content": [{"type": "text/html", "value": "Hallo $email<br>Hier ist dein System0 Passwort Zurücksetzungs Link. Bitte klicke drauf. Sollte dies nicht funktionieren, kopiere bitte den Link und öffne Ihn in deinem Browser.<br><a href='https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/reset_pw.php?token=$token'>https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/reset_pw.php?token=$token</a><br>Achtung: der Link funktioniert nur in dem gleichen Browser und Gerät, auf dem du deinen Account erstellt hast.<br><br>Vielen dank für dein Vertrauen in uns!<br>Code Camp 2024<br>"}]}'
 
 EOF;
 
@@ -372,7 +387,7 @@ EOF;
 						<form action="login.php?action=login" method="post">
 							<div class="mb-3">
 								<label for="username" class="form-label">Benutzername:</label>
-								<input type="text" class="form-control" id="username" name="username" required>
+								<input type="text" class="form-control" id="username" name="username" value="<?php echo($username); ?>" required>
 							</div>
 							<div class="mb-3">
 								<label for="pwd" class="form-label">Passwort:</label>
@@ -386,7 +401,7 @@ EOF;
 						</form>
 						<div class="text-center mt-3">
 							<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#noaccount" id="lnk_1">Noch kein Account? Erstelle einen!</button>
-							<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#reset_pw" id="lnk_1">Passwort vergessen?</button>
+							<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#reset_pw" id="lnk_2">Passwort vergessen?</button>
 						</div>
 						<?php 
 							if(!empty($login_err)){
@@ -396,6 +411,10 @@ EOF;
 							echo '<div class="alert alert-success">Eine Mail mit einem Aktivierungslink wurde an deine Mailadresse gesendet.</div>';
 							if(isset($_GET["mail_sent2"]))
 							echo '<div class="alert alert-success">Eine Mail mit einem Passwort zurücksetzungslink wurde an deine Mailadresse gesendet.</div>';
+							if(isset($_GET["acc_verify_ok"]))
+							echo '<div class="alert alert-success">Email erfolgreich Verifiziert.</div>';
+							if(isset($_GET["mail_sent3"]))
+							echo '<div class="alert alert-danger">Eine Mail mit einem Passwort zurücksetzungslink konnte nich gesendet werden. Bitte melde dich beim Support <a href="mailto:info.jakach@gmail.com">hier.</a></div>';
 						       
 				    
 						?>
@@ -419,7 +438,7 @@ EOF;
 					<form action="login.php?action=create_user" method="post">
 						<div class="form-group mb-3">
 							<label for="username" class="form-label">Email:</label>
-							<input type="text" class="form-control" id="username" name="username" required>
+							<input type="text" class="form-control" id="username" name="username" value="<?php echo($username) ?>" required>
 					  	</div>
 						<div class="form-group mb-3">
 							<label for="pwd" class="form-label">Passwort:</label>
@@ -464,7 +483,7 @@ EOF;
 					<form action="login.php?action=reset_pw" method="post">
 						<div class="form-group mb-3">
 							<label for="username" class="form-label">Deine Account Email:</label>
-							<input type="text" class="form-control" id="username" name="username" required>
+							<input type="text" class="form-control" id="username" name="username" value='<?php echo($_SESSION["email"]); ?>' required>
 					  	</div>
 				</div>
 				<div class="modal-footer">
@@ -481,8 +500,12 @@ EOF;
 				echo('a.click();');
 			echo("</script>");
 		}
-		
-		
+		if(isset($_GET["resend_pw_reset"])){
+			echo("<script>");
+				echo('const a=document.getElementById("lnk_2");');
+				echo('a.click();');
+			echo("</script>");
+		}
 
 		?>
 
