@@ -1,8 +1,8 @@
 <?php
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'fisch');
-define('DB_PASSWORD', 'tinte');
-define('DB_NAME', 'system0');
+define('DB_SERVER', '');
+define('DB_USERNAME', '');
+define('DB_PASSWORD', '');
+define('DB_NAME', '');
 $api="";
 $SENDGRID_API_KEY="";
 $sendgrid_email="";
