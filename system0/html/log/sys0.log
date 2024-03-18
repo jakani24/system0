@@ -1,0 +1,560 @@
+Thu, 23 Nov 2023 19:00:46 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode to printer 1
+Thu, 23 Nov 2023 19:00:47 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode
+Thu, 23 Nov 2023 19:02:32 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode to printer 2
+Thu, 23 Nov 2023 19:02:33 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode
+Thu, 23 Nov 2023 19:03:05 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode to printer 5
+Thu, 23 Nov 2023 19:03:05 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode
+Thu, 23 Nov 2023 19:04:15 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode to printer 1
+Thu, 23 Nov 2023 19:04:15 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode
+Thu, 23 Nov 2023 19:04:45 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode to printer 3
+Mon, 27 Nov 2023 16:30:56 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 3
+Mon, 27 Nov 2023 16:39:59 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode to printer 1
+Mon, 27 Nov 2023 16:51:08 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Mon, 27 Nov 2023 17:24:20 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode to printer 1
+Mon, 27 Nov 2023 17:29:04 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode to printer 2
+Mon, 27 Nov 2023 17:29:04 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode
+Mon, 27 Nov 2023 17:29:27 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode to printer 3
+Mon, 27 Nov 2023 17:38:57 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Mon, 27 Nov 2023 17:39:44 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 3
+Mon, 27 Nov 2023 18:02:13 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode to printer 1
+Mon, 27 Nov 2023 18:02:13 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode
+Mon, 27 Nov 2023 18:02:31 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 27 Nov 2023 18:02:31 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode
+Mon, 27 Nov 2023 18:03:12 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 27 Nov 2023 18:03:12 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode
+Mon, 27 Nov 2023 18:03:29 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Clip-Classic_0.4n_0.15mm_PLA_MK3S_8m.gcode to printer 5
+Mon, 27 Nov 2023 18:04:17 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Mon, 27 Nov 2023 18:04:20 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 5
+Mon, 04 Dec 2023 16:30:16 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode to printer 1
+Mon, 04 Dec 2023 16:30:27 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Mon, 04 Dec 2023 16:30:31 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Mon, 04 Dec 2023 16:53:56 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode to printer 1
+Mon, 04 Dec 2023 16:55:28 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode to printer 4
+Mon, 04 Dec 2023 16:55:28 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode
+Mon, 04 Dec 2023 17:36:10 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Mon, 04 Dec 2023 18:02:15 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;ueli;user ueli uploaded Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode to printer 1
+Mon, 04 Dec 2023 18:02:20 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;ueli;User ueli canceled job on printer 
+Mon, 04 Dec 2023 18:02:22 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;ueli;User ueli freed printer 1
+Mon, 04 Dec 2023 18:02:41 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;ueli;user ueli uploaded Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode to printer 5
+Mon, 04 Dec 2023 18:09:45 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode to printer 1
+Mon, 04 Dec 2023 18:10:42 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Mon, 04 Dec 2023 18:10:45 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Mon, 04 Dec 2023 18:11:17 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;ueli;user ueli uploaded Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode to printer 1
+Mon, 04 Dec 2023 18:11:17 +0100;213.196.183.53;PRINT::JOB::START::FAILED;ueli;Could not start job for ueliwith file Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode
+Mon, 04 Dec 2023 18:11:32 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;ueli;user ueli uploaded Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode to printer 3
+Mon, 04 Dec 2023 18:11:42 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;ueli;user ueli uploaded Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode to printer 1
+Mon, 04 Dec 2023 18:11:42 +0100;213.196.183.53;PRINT::JOB::START::FAILED;ueli;Could not start job for ueliwith file Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode
+Mon, 04 Dec 2023 18:17:01 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;michael;user michael uploaded Rosestiel_0.2mm_PLA_MK3S_4h37m.gcode to printer 1
+Tue, 05 Dec 2023 11:14:26 +0100;213.196.183.54;PRINT::UPLOAD::FILE::FAILED;michael;Could not upload file for michael because of unknown file extension
+Tue, 05 Dec 2023 11:15:35 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode to printer 2
+Tue, 05 Dec 2023 11:15:42 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode to printer 4
+Tue, 05 Dec 2023 11:15:42 +0100;213.196.183.54;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m__1_.gcode
+Tue, 05 Dec 2023 12:44:20 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;michael;User michael freed printer 1
+Wed, 06 Dec 2023 09:59:34 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL::FAILED;janis;User janis could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Mon, 11 Dec 2023 16:29:13 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 2
+Mon, 11 Dec 2023 17:13:36 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Test_Kirchturm_0.4n_0.2mm_PLA_MK3S_11m.gcode to printer 1
+Mon, 11 Dec 2023 17:15:25 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Mon, 11 Dec 2023 17:18:42 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 3
+Mon, 11 Dec 2023 17:36:46 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 2
+Mon, 11 Dec 2023 17:36:48 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 3
+Mon, 11 Dec 2023 17:58:50 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;haha;user haha uploaded PI3MK3M_it_is_wednesday.gcode to printer 3
+Mon, 11 Dec 2023 18:01:34 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Mon, 11 Dec 2023 18:02:25 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Mon, 11 Dec 2023 18:02:33 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 2
+Mon, 11 Dec 2023 18:02:38 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL;haha;User haha canceled job on printer 
+Mon, 11 Dec 2023 18:07:53 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;haha;User haha freed printer 3
+Mon, 11 Dec 2023 18:08:06 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;haha;user haha uploaded Lego__1__0.2mm_PLA_MK3S_19m.gcode to printer 3
+Mon, 11 Dec 2023 18:10:04 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 1
+Mon, 11 Dec 2023 18:10:13 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Mon, 11 Dec 2023 18:10:18 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Mon, 18 Dec 2023 16:01:48 +0100;2a02:1210:901b:d200:5da0:bebb:e6ae:f609;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirche_2.Versuch_Dach_0.2mm_ABS_MK3_3h7m.gcode to printer 1
+Mon, 18 Dec 2023 16:02:52 +0100;2a02:1210:901b:d200:5da0:bebb:e6ae:f609;JOB::PRINTERCTRL::CANCEL;mylene;User mylene canceled job on printer 
+Mon, 18 Dec 2023 16:03:17 +0100;2a02:1210:901b:d200:5da0:bebb:e6ae:f609;JOB::PRINTERCTRL::FREE;mylene;User mylene freed printer 1
+Mon, 18 Dec 2023 16:06:00 +0100;2a02:1210:901b:d200:5da0:bebb:e6ae:f609;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirche_2.Versuch_Dach_0.2mm_ABS_MK3_3h7m.gcode to printer 2
+Mon, 18 Dec 2023 17:34:48 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Dach10cm.gcode to printer 1
+Mon, 18 Dec 2023 17:46:03 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;mylene;User mylene freed printer 2
+Mon, 08 Jan 2024 17:09:23 +0100;178.197.215.10;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirche_Kirchenturm.gcode to printer 2
+Mon, 08 Jan 2024 17:11:01 +0100;178.197.215.10;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirche_Dach.gcode to printer 3
+Mon, 08 Jan 2024 17:11:35 +0100;178.197.215.10;JOB::PRINTERCTRL::CANCEL;mylene;User mylene canceled job on printer 
+Mon, 08 Jan 2024 17:12:38 +0100;178.197.215.10;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirche_Dach.gcode to printer 1
+Mon, 08 Jan 2024 17:14:10 +0100;178.197.215.10;PRINT::JOB::START::FAILED;mylene;Could not start job for mylene with file 
+Mon, 08 Jan 2024 17:14:51 +0100;178.197.215.10;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirche_Haupteil_10cm_Gcode.gcode to printer 3
+Mon, 08 Jan 2024 17:19:37 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 08 Jan 2024 17:19:37 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Mon, 08 Jan 2024 17:19:49 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 08 Jan 2024 17:19:49 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Mon, 08 Jan 2024 17:26:40 +0100;178.197.215.10;JOB::PRINTERCTRL::CANCEL;mylene;User mylene canceled job on printer 
+Mon, 08 Jan 2024 17:26:55 +0100;178.197.215.10;JOB::PRINTERCTRL::FREE;mylene;User mylene freed printer 2
+Mon, 08 Jan 2024 17:29:58 +0100;178.197.215.10;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirche_Kirchenturm.gcode to printer 2
+Mon, 08 Jan 2024 17:31:23 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 08 Jan 2024 17:31:23 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Mon, 08 Jan 2024 17:41:03 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 08 Jan 2024 17:41:03 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Mon, 08 Jan 2024 17:41:52 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 08 Jan 2024 17:41:52 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Mon, 08 Jan 2024 17:43:14 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 08 Jan 2024 17:43:14 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Mon, 08 Jan 2024 17:44:08 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 08 Jan 2024 17:44:08 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Mon, 08 Jan 2024 17:45:34 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 08 Jan 2024 17:45:34 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Mon, 08 Jan 2024 17:46:58 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 08 Jan 2024 17:46:58 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Mon, 08 Jan 2024 17:47:48 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 08 Jan 2024 17:47:48 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Mon, 08 Jan 2024 17:50:21 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 08 Jan 2024 17:50:29 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Mon, 08 Jan 2024 17:54:54 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 4
+Mon, 08 Jan 2024 17:55:03 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Thu, 11 Jan 2024 08:31:07 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;hans_muster;user hans_muster uploaded SuperClipv3.3_0.2mm_PLA__8m.gcode to printer 1
+Thu, 11 Jan 2024 08:31:33 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;hans_muster;user hans_muster uploaded SuperClipv3.3_0.2mm_PLA__8m.gcode to printer 2
+Thu, 11 Jan 2024 08:33:17 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;hans_muster;User hans_muster canceled job on printer 
+Thu, 11 Jan 2024 08:33:20 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;hans_muster;User hans_muster canceled job on printer 
+Thu, 11 Jan 2024 08:33:22 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;hans_muster;User hans_muster freed printer 1
+Thu, 11 Jan 2024 08:33:24 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;hans_muster;User hans_muster freed printer 2
+Thu, 11 Jan 2024 08:34:52 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;hans_muster;user hans_muster uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 1
+Thu, 11 Jan 2024 08:35:03 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;hans_muster;user hans_muster uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Thu, 11 Jan 2024 08:35:14 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;hans_muster;user hans_muster uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 3
+Thu, 11 Jan 2024 08:35:28 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;hans_muster;user hans_muster uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Thu, 11 Jan 2024 08:35:40 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;hans_muster;user hans_muster uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 5
+Thu, 11 Jan 2024 08:44:21 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;hans_muster;User hans_muster canceled job on printer 
+Thu, 11 Jan 2024 08:45:04 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;hans_muster;User hans_muster freed printer 3
+Thu, 11 Jan 2024 09:29:08 +0100;178.197.218.59;JOB::PRINTERCTRL::FREE;hans_muster;User hans_muster freed printer 1
+Thu, 11 Jan 2024 09:29:11 +0100;178.197.218.59;JOB::PRINTERCTRL::FREE;hans_muster;User hans_muster freed printer 2
+Thu, 11 Jan 2024 09:29:14 +0100;178.197.218.59;JOB::PRINTERCTRL::FREE;hans_muster;User hans_muster freed printer 4
+Thu, 11 Jan 2024 09:29:18 +0100;178.197.218.59;JOB::PRINTERCTRL::FREE;hans_muster;User hans_muster freed printer 5
+Thu, 11 Jan 2024 09:29:35 +0100;178.197.218.59;PRINT::UPLOAD::PRINTER;hans_muster;user hans_muster uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 3
+Thu, 11 Jan 2024 13:58:27 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 1
+Thu, 11 Jan 2024 14:04:45 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 5
+Thu, 11 Jan 2024 14:04:45 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Thu, 11 Jan 2024 14:05:19 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 5
+Thu, 11 Jan 2024 14:05:19 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Thu, 11 Jan 2024 14:05:36 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Thu, 11 Jan 2024 14:05:46 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Thu, 11 Jan 2024 14:06:03 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 5
+Thu, 11 Jan 2024 14:06:03 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Thu, 11 Jan 2024 14:10:49 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 1
+Thu, 11 Jan 2024 14:11:15 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Thu, 11 Jan 2024 14:14:54 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Thu, 11 Jan 2024 14:14:59 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 3
+Thu, 11 Jan 2024 14:15:04 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Thu, 11 Jan 2024 14:15:09 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Thu, 11 Jan 2024 14:15:11 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Thu, 11 Jan 2024 14:15:13 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Thu, 11 Jan 2024 14:18:12 +0100;193.72.36.209;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 2
+Thu, 11 Jan 2024 14:18:13 +0100;193.72.36.209;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 3
+Thu, 11 Jan 2024 14:18:15 +0100;193.72.36.209;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 4
+Thu, 11 Jan 2024 14:18:45 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Thu, 11 Jan 2024 14:18:49 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 3
+Thu, 11 Jan 2024 14:19:05 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Thu, 11 Jan 2024 14:19:07 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Thu, 11 Jan 2024 14:22:34 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Thu, 11 Jan 2024 14:22:38 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Thu, 11 Jan 2024 14:26:12 +0100;193.72.36.209;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Thu, 11 Jan 2024 14:26:14 +0100;193.72.36.209;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 2
+Thu, 11 Jan 2024 14:26:15 +0100;193.72.36.209;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 3
+Thu, 11 Jan 2024 14:26:16 +0100;193.72.36.209;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 4
+Thu, 11 Jan 2024 14:33:57 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 1
+Thu, 11 Jan 2024 14:34:00 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis.steiner@kantiwattwil.ch;User janis.steiner@kantiwattwil.ch canceled job on printer 
+Thu, 11 Jan 2024 14:34:02 +0100;193.72.36.209;JOB::PRINTERCTRL::FREE;janis.steiner@kantiwattwil.ch;User janis.steiner@kantiwattwil.ch freed printer 1
+Mon, 15 Jan 2024 17:58:28 +0100;178.197.203.3;PRINT::UPLOAD::PRINTER;Christoph@kantiwattwil.ch;user Christoph@kantiwattwil.ch uploaded NerfKanone_Teil_1_0.2mm_PLA_MK3S_3h20m.gcode to printer 1
+Thu, 18 Jan 2024 10:34:00 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;michael.straessle@kantiwattwil.ch;user michael.straessle@kantiwattwil.ch uploaded hoffentlich_guter_kleinerer_rucksack1_0.25n_0.1mm_ABS_MK3_4h24m.gcode to printer 2
+Thu, 18 Jan 2024 10:34:00 +0100;213.196.183.54;PRINT::JOB::START::FAILED;michael.straessle@kantiwattwil.ch;Could not start job for michael.straessle@kantiwattwil.chwith file hoffentlich_guter_kleinerer_rucksack1_0.25n_0.1mm_ABS_MK3_4h24m.gcode
+Thu, 18 Jan 2024 10:45:41 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;michael.straessle@kantiwattwil.ch;user michael.straessle@kantiwattwil.ch uploaded hoffentlich_guter_kleinerer_rucksack1_0.25n_0.1mm_ABS_MK3_4h24m.gcode to printer 2
+Thu, 18 Jan 2024 10:45:41 +0100;213.196.183.54;PRINT::JOB::START::FAILED;michael.straessle@kantiwattwil.ch;Could not start job for michael.straessle@kantiwattwil.chwith file hoffentlich_guter_kleinerer_rucksack1_0.25n_0.1mm_ABS_MK3_4h24m.gcode
+Thu, 18 Jan 2024 10:46:31 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;michael.straessle@kantiwattwil.ch;user michael.straessle@kantiwattwil.ch uploaded hoffentlich_guter_kleinerer_rucksack1_0.25n_0.1mm_ABS_MK3_4h24m.gcode to printer 2
+Thu, 18 Jan 2024 10:46:31 +0100;213.196.183.54;PRINT::JOB::START::FAILED;michael.straessle@kantiwattwil.ch;Could not start job for michael.straessle@kantiwattwil.chwith file hoffentlich_guter_kleinerer_rucksack1_0.25n_0.1mm_ABS_MK3_4h24m.gcode
+Thu, 18 Jan 2024 10:47:06 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;michael.straessle@kantiwattwil.ch;user michael.straessle@kantiwattwil.ch uploaded hoffentlich_guter_kleinerer_rucksack1_0.25n_0.1mm_ABS_MK3_4h24m.gcode to printer 2
+Thu, 18 Jan 2024 10:47:06 +0100;213.196.183.54;PRINT::JOB::START::FAILED;michael.straessle@kantiwattwil.ch;Could not start job for michael.straessle@kantiwattwil.chwith file hoffentlich_guter_kleinerer_rucksack1_0.25n_0.1mm_ABS_MK3_4h24m.gcode
+Thu, 18 Jan 2024 11:24:26 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;michael.straessle@kantiwattwil.ch;user michael.straessle@kantiwattwil.ch uploaded hoffentlich_guter_kleinerer_rucksack1_0.25n_0.1mm_ABS_MK3_4h24m.gcode to printer 3
+Sun, 21 Jan 2024 16:39:10 +0100;2a02:1210:901b:d200:f49e:5a13:7e38:7a8e;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirche_Kirchenturm_Dach_10cm_0.15mm_PLA_MK3_1h11m.gcode to printer 2
+Sun, 21 Jan 2024 16:39:48 +0100;2a02:1210:901b:d200:f49e:5a13:7e38:7a8e;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirche_Haupteil_10cm_0.15mm_PLA_MK3_9h50m.gcode to printer 4
+Mon, 22 Jan 2024 17:07:59 +0100;178.197.207.52;JOB::PRINTERCTRL::FREE;mylene;User mylene freed printer 2
+Mon, 22 Jan 2024 17:13:16 +0100;178.197.207.52;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded b.gcode to printer 4
+Mon, 22 Jan 2024 22:41:06 +0100;37.203.252.255;PRINT::UPLOAD::PRINTER;hans_muster;user hans_muster uploaded super-clip-v3.3_0.2mm_PLA_MK3S_10m.gcode to printer 2
+Mon, 22 Jan 2024 22:46:32 +0100;37.203.252.255;JOB::PRINTERCTRL::CANCEL;hans_muster;User hans_muster canceled job on printer 
+Mon, 22 Jan 2024 22:46:37 +0100;37.203.252.255;JOB::PRINTERCTRL::FREE;hans_muster;User hans_muster freed printer 2
+Mon, 22 Jan 2024 22:47:55 +0100;37.203.252.255;PRINT::UPLOAD::PRINTER;hans_muster;user hans_muster uploaded super-clip-v3.3_0.2mm_PLA_MK3S_10m.gcode to printer 2
+Mon, 22 Jan 2024 23:01:38 +0100;37.203.252.255;PRINT::UPLOAD::PRINTER;hans_muster;user hans_muster uploaded super-clip-v3.3_0.2mm_PLA_MK3S_8m.gcode to printer 3
+Mon, 22 Jan 2024 23:06:38 +0100;37.203.252.255;JOB::PRINTERCTRL::CANCEL::FAILED;hans_muster;User hans_muster could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Mon, 22 Jan 2024 23:07:16 +0100;37.203.252.255;JOB::PRINTERCTRL::CANCEL::FAILED;hans_muster;User hans_muster could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Tue, 23 Jan 2024 16:51:11 +0100;2a02:1210:901b:d200:d8fa:1dc0:5708:5f77;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirche_Kirchenturm_Dach_10cm_0.15mm_PLA_MK3_1h11m.gcode to printer 4
+Wed, 24 Jan 2024 18:32:11 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;michael.straessle@kantiwattwil.ch;user michael.straessle@kantiwattwil.ch uploaded hoffentlich_genug_kleiner_rucksack_test_0.25n_0.1mm_ABS_MK3_4h45m.gcode to printer 1
+Fri, 26 Jan 2024 08:27:06 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded TTmotor-to-Lego-Axel-Adapter_0.4n_0.15mm_PLA_MK3S_23m.gcode to printer 5
+Fri, 26 Jan 2024 10:03:43 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 5
+Fri, 26 Jan 2024 10:04:17 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded TTmotor-to-Lego-Axel-Adapter_0.4n_0.15mm_PLA_MK3S_23m.gcode to printer 1
+Fri, 26 Jan 2024 10:09:35 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded DC_Motor_To_Lego_Axle_Adapter_0.4n_0.15mm_PLA_MK3S_1h27m.gcode to printer 5
+Fri, 26 Jan 2024 10:09:51 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Fri, 26 Jan 2024 10:11:34 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Fri, 26 Jan 2024 10:20:39 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded technic_20170902-24784-1kc2lfd-0_0.4n_0.15mm_PLA_MK3S_42m.gcode to printer 1
+Fri, 26 Jan 2024 10:47:14 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded rose_open_printable_0.4n_0.15mm_PLA_MK3S_1h27m.gcode to printer 2
+Fri, 26 Jan 2024 10:47:23 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Fri, 26 Jan 2024 10:47:27 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 2
+Fri, 26 Jan 2024 12:54:40 +0100;194.230.148.108;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Fri, 26 Jan 2024 12:54:42 +0100;194.230.148.108;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 5
+Fri, 26 Jan 2024 13:19:54 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded hanger_0.15mm_PLA_MK3S_1h9m.gcode to printer 1
+Fri, 26 Jan 2024 13:26:40 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded TTmotor-to-Lego-Axel-Adapter_0.4n_0.15mm_PLA_MK3S_23m_1_.gcode to printer 2
+Fri, 26 Jan 2024 13:27:00 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Fri, 26 Jan 2024 13:27:02 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 2
+Fri, 26 Jan 2024 14:30:32 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded climbing_carabiner_0.15mm_PLA_MK3S_1h18m.gcode to printer 2
+Fri, 26 Jan 2024 14:30:32 +0100;213.196.183.54;PRINT::JOB::START::FAILED;nils.luethi@kantiwattwil.ch;Could not start job for nils.luethi@kantiwattwil.chwith file climbing_carabiner_0.15mm_PLA_MK3S_1h18m.gcode
+Fri, 26 Jan 2024 14:30:52 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded climbing_carabiner_0.15mm_PLA_MK3S_1h18m.gcode to printer 4
+Fri, 26 Jan 2024 14:30:52 +0100;213.196.183.54;PRINT::JOB::START::FAILED;nils.luethi@kantiwattwil.ch;Could not start job for nils.luethi@kantiwattwil.chwith file climbing_carabiner_0.15mm_PLA_MK3S_1h18m.gcode
+Fri, 26 Jan 2024 14:31:07 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded climbing_carabiner_0.15mm_PLA_MK3S_1h18m.gcode to printer 5
+Fri, 26 Jan 2024 15:24:07 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch canceled job on printer 
+Fri, 26 Jan 2024 20:18:03 +0100;213.196.160.168;JOB::PRINTERCTRL::FREE;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch freed printer 5
+Thu, 01 Feb 2024 20:57:30 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded TTmotor-to-Lego-Axel-Adapter_0.4n_0.15mm_PLA_MK3S_23m_1_.gcode to printer 2
+Thu, 01 Feb 2024 20:57:30 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file TTmotor-to-Lego-Axel-Adapter_0.4n_0.15mm_PLA_MK3S_23m_1_.gcode
+Thu, 01 Feb 2024 20:57:50 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded TTmotor-to-Lego-Axel-Adapter_0.4n_0.15mm_PLA_MK3S_23m_1_.gcode to printer 4
+Thu, 01 Feb 2024 20:58:07 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded TTmotor-to-Lego-Axel-Adapter_0.4n_0.15mm_PLA_MK3S_23m_1_.gcode to printer 5
+Sat, 03 Feb 2024 14:40:32 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded TTmotor-to-Lego-Axel-Adapter_0.4n_0.15mm_PLA_MK3S_23m_1__1_.gcode to printer 2
+Sat, 03 Feb 2024 14:40:32 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file TTmotor-to-Lego-Axel-Adapter_0.4n_0.15mm_PLA_MK3S_23m_1__1_.gcode
+Mon, 05 Feb 2024 11:57:24 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded Lego_Technic_Forklift_Arm_0.15mm_PLA_MK3S_2h38m.gcode to printer 2
+Mon, 05 Feb 2024 12:04:01 +0100;213.196.183.54;PRINT::UPLOAD::QUEUE;janis;user janis uploaded TTmotor-to-Lego-Axel-Adapter_0.4n_0.15mm_PLA_MK3S_23m_1__1_.gcode to the queue
+Mon, 05 Feb 2024 13:01:40 +0100;213.196.183.54;PRINT::UPLOAD::QUEUE;janis;user janis uploaded TTmotor-to-Lego-Axel-Adapter_0.4n_0.15mm_PLA_MK3S_23m_1__1_.gcode to the queue
+Mon, 05 Feb 2024 13:15:40 +0100;213.196.183.54;PRINT::UPLOAD::QUEUE;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded hanger_0.15mm_PLA_MK3S_1h9m.gcode to the queue
+Mon, 05 Feb 2024 13:16:28 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch freed printer 1
+Mon, 05 Feb 2024 13:18:55 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Mon, 05 Feb 2024 13:18:57 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Mon, 05 Feb 2024 13:48:07 +0100;213.196.183.54;PRINT::UPLOAD::QUEUE;janis;user janis uploaded 1_FUCK_TO_GIVE_v2_2x6_magnet_0.15mm_PLA_MK3S_1h40m.gcode to the queue
+Mon, 05 Feb 2024 13:54:17 +0100;213.196.183.54;JOB::QUEUECTRL::REMOVE;janis;User janis removed file #5 from queue
+Mon, 05 Feb 2024 14:25:39 +0100;213.196.183.54;PRINT::UPLOAD::QUEUE;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to the queue
+Mon, 05 Feb 2024 14:40:33 +0100;194.230.161.8;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 4
+Mon, 05 Feb 2024 14:40:41 +0100;194.230.161.8;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 5
+Mon, 05 Feb 2024 16:31:48 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 4
+Mon, 05 Feb 2024 16:35:15 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 1
+Mon, 05 Feb 2024 16:48:57 +0100;178.197.215.168;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirchenturm_neu_mit_stützen.gcode to printer 3
+Mon, 05 Feb 2024 16:51:19 +0100;213.196.183.53;PRINT::UPLOAD::QUEUE;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to the queue
+Mon, 05 Feb 2024 16:51:36 +0100;213.196.183.53;JOB::QUEUECTRL::REMOVE;janis;User janis removed file #7 from queue
+Mon, 05 Feb 2024 16:56:09 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 2
+Mon, 05 Feb 2024 17:03:44 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Untitled1.gcode to printer 4
+Mon, 05 Feb 2024 17:03:59 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded TTmotor-to-Lego-Axel-Adapter_0.4n_0.15mm_PLA_MK3S_23m_1_.gcode to printer 5
+Mon, 05 Feb 2024 17:04:06 +0100;213.196.183.53;PRINT::UPLOAD::QUEUE;janis;user janis uploaded TTmotor-to-Lego-Axel-Adapter_0.4n_0.15mm_PLA_MK3S_23m_1__1_.gcode to the queue
+Mon, 05 Feb 2024 17:04:26 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL::FAILED;janis;User janis could not cancel job on printer; error: Printer is not operational
+Mon, 05 Feb 2024 17:04:31 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Mon, 05 Feb 2024 17:04:35 +0100;213.196.183.53;JOB::QUEUECTRL::REMOVE;janis;User janis removed file #8 from queue
+Mon, 05 Feb 2024 17:04:41 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 5
+Mon, 05 Feb 2024 17:04:43 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL::FAILED;janis;User janis could not cancel job on printer; error: Printer is not operational
+Mon, 05 Feb 2024 17:10:06 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 5
+Mon, 05 Feb 2024 17:13:30 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 4
+Mon, 05 Feb 2024 17:13:30 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode
+Mon, 05 Feb 2024 17:16:06 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 3
+Mon, 05 Feb 2024 17:16:13 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Mon, 05 Feb 2024 17:16:18 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 3
+Mon, 05 Feb 2024 17:17:07 +0100;178.197.215.168;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirchenturm_neu_mit_stützen.gcode to printer 3
+Mon, 05 Feb 2024 17:19:06 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 4
+Mon, 05 Feb 2024 17:19:06 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode
+Mon, 05 Feb 2024 17:19:49 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 4
+Mon, 05 Feb 2024 17:19:49 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode
+Mon, 05 Feb 2024 17:20:54 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 4
+Mon, 05 Feb 2024 17:20:54 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode
+Mon, 05 Feb 2024 17:21:19 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 4
+Mon, 05 Feb 2024 17:21:19 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode
+Mon, 05 Feb 2024 17:23:01 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 4
+Mon, 05 Feb 2024 17:23:01 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode
+Mon, 05 Feb 2024 17:23:35 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 4
+Mon, 05 Feb 2024 17:23:35 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode
+Mon, 05 Feb 2024 17:24:08 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 4
+Mon, 05 Feb 2024 17:24:08 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode
+Mon, 05 Feb 2024 17:24:19 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 4
+Mon, 05 Feb 2024 17:24:19 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode
+Mon, 05 Feb 2024 17:34:18 +0100;178.197.215.168;JOB::PRINTERCTRL::CANCEL::FAILED;mylene;User mylene could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Mon, 05 Feb 2024 17:34:25 +0100;178.197.215.168;JOB::PRINTERCTRL::CANCEL::FAILED;mylene;User mylene could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Mon, 05 Feb 2024 17:34:27 +0100;178.197.215.168;JOB::PRINTERCTRL::CANCEL::FAILED;mylene;User mylene could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Mon, 05 Feb 2024 17:34:39 +0100;178.197.215.168;JOB::PRINTERCTRL::CANCEL::FAILED;mylene;User mylene could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Mon, 05 Feb 2024 17:34:40 +0100;178.197.215.168;JOB::PRINTERCTRL::CANCEL::FAILED;mylene;User mylene could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Mon, 05 Feb 2024 17:35:02 +0100;178.197.215.168;JOB::PRINTERCTRL::CANCEL::FAILED;mylene;User mylene could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Mon, 05 Feb 2024 17:35:36 +0100;178.197.215.168;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirchenturm_neu_mit_stützen.gcode to printer 4
+Mon, 05 Feb 2024 17:35:36 +0100;178.197.215.168;PRINT::JOB::START::FAILED;mylene;Could not start job for mylenewith file Kirchenturm_neu_mit_stützen.gcode
+Mon, 05 Feb 2024 17:36:09 +0100;178.197.215.168;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirchenturm_neu_mit_stützen.gcode to printer 4
+Mon, 05 Feb 2024 17:36:09 +0100;178.197.215.168;PRINT::JOB::START::FAILED;mylene;Could not start job for mylenewith file Kirchenturm_neu_mit_stützen.gcode
+Mon, 05 Feb 2024 17:37:36 +0100;178.197.215.168;JOB::PRINTERCTRL::CANCEL::FAILED;mylene;User mylene could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Mon, 05 Feb 2024 17:37:49 +0100;178.197.215.168;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirchenturm_neu_mit_stützen.gcode to printer 4
+Mon, 05 Feb 2024 17:37:49 +0100;178.197.215.168;PRINT::JOB::START::FAILED;mylene;Could not start job for mylenewith file Kirchenturm_neu_mit_stützen.gcode
+Mon, 05 Feb 2024 17:38:37 +0100;178.197.215.168;JOB::PRINTERCTRL::CANCEL::FAILED;mylene;User mylene could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Mon, 05 Feb 2024 17:39:13 +0100;178.197.215.168;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirchenturm_neu_mit_stützen.gcode to printer 3
+Mon, 05 Feb 2024 17:55:19 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 4
+Mon, 05 Feb 2024 17:55:19 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode
+Mon, 05 Feb 2024 17:55:49 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 4
+Mon, 05 Feb 2024 17:55:49 +0100;213.196.183.53;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode
+Mon, 05 Feb 2024 17:57:52 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 4
+Mon, 05 Feb 2024 18:14:30 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Mon, 05 Feb 2024 19:42:53 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded TTmotor-to-Lego-Axel-Adapter_0.15mm_PLA_MK3S_1h45m.gcode to printer 1
+Mon, 05 Feb 2024 19:51:30 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis;user janis uploaded HC-SR04v03_0.15mm_PLA_MK3S_5h11m.gcode to the queue
+Mon, 05 Feb 2024 19:56:51 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis;user janis uploaded lego_technic_n20_mount_0.15mm_PLA_MK3S_59m.gcode to the queue
+Mon, 05 Feb 2024 20:07:29 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis;user janis uploaded final-battery-holder_0.15mm_PLA_MK3S_2h54m.gcode to the queue
+Tue, 06 Feb 2024 08:00:32 +0100;213.196.183.54;PRINT::UPLOAD::QUEUE;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded 2.0_hanger1h39m.gcode to the queue
+Tue, 06 Feb 2024 08:01:53 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 2
+Tue, 06 Feb 2024 08:02:21 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 4
+Tue, 06 Feb 2024 08:02:29 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 5
+Tue, 06 Feb 2024 08:03:24 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL::FAILED;janis;User janis could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Tue, 06 Feb 2024 08:25:10 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded harry_potter_keychain_0.15mm_PLA_MK3S_1h18m.gcode to printer 3
+Tue, 06 Feb 2024 09:00:26 +0100;213.196.183.54;PRINT::UPLOAD::QUEUE;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded Bottle_Opener_0.15mm_PLA_MK3S_3h48m.gcode to the queue
+Tue, 06 Feb 2024 09:35:47 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Tue, 06 Feb 2024 09:36:14 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 2
+Tue, 06 Feb 2024 10:16:27 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded mountain2_kc_0.15mm_PLA_MK3S_2h3m.gcode to printer 2
+Tue, 06 Feb 2024 10:38:27 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch freed printer 3
+Tue, 06 Feb 2024 10:38:29 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch freed printer 5
+Tue, 06 Feb 2024 13:49:05 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch freed printer 1
+Tue, 06 Feb 2024 13:49:06 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch freed printer 2
+Tue, 06 Feb 2024 13:50:39 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 4
+Tue, 06 Feb 2024 13:56:09 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded DC_Motor_To_Lego_Axle_Adapter_0.15mm_PLA_MK3S_1h42m.gcode to printer 1
+Tue, 06 Feb 2024 14:28:51 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded HC-SR04v03_0.15mm_PLA_MK3S_5h11m.gcode to printer 3
+Tue, 06 Feb 2024 15:49:14 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded gear_12_0.15mm_PLA_MK3S_4h20m.gcode to printer 5
+Tue, 06 Feb 2024 17:17:53 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded final-battery-holder_0.15mm_PLA_MK3S_7h45m.gcode to printer 4
+Tue, 06 Feb 2024 18:18:55 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Tue, 06 Feb 2024 22:22:29 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Tue, 06 Feb 2024 22:22:31 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Wed, 07 Feb 2024 10:01:38 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Wed, 07 Feb 2024 10:01:39 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 3
+Wed, 07 Feb 2024 10:01:40 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 4
+Wed, 07 Feb 2024 10:26:27 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded HC-SR04v03_0.15mm_PLA_MK3S_5h11m.gcode to printer 1
+Wed, 07 Feb 2024 10:27:03 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded final-battery-holder_0.15mm_PLA_MK3S_7h45m.gcode to printer 3
+Wed, 07 Feb 2024 10:27:22 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded DC_Motor_To_Lego_Axle_Adapter_0.15mm_PLA_MK3S_1h42m.gcode to printer 2
+Wed, 07 Feb 2024 10:41:15 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL::FAILED;janis;User janis could not cancel job on printer; error: Printer is not operational
+Wed, 07 Feb 2024 10:53:15 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;tymur.haivoronskyi@kantiwattwil.ch;user tymur.haivoronskyi@kantiwattwil.ch uploaded Puzzle_cube_3x3_1_0.15mm_PLA_MK3S_1h49m.gcode to printer 4
+Wed, 07 Feb 2024 10:57:34 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch freed printer 5
+Wed, 07 Feb 2024 11:01:26 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL::FAILED;janis;User janis could not cancel job on printer; error: Printer is not operational
+Wed, 07 Feb 2024 11:35:46 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded Book_paradise_6h8m.gcode to printer 5
+Wed, 07 Feb 2024 13:01:05 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL::FAILED;janis;User janis could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Wed, 07 Feb 2024 13:44:03 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL::FAILED;janis;User janis could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Wed, 07 Feb 2024 14:10:48 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;tymur.haivoronskyi@kantiwattwil.ch;User tymur.haivoronskyi@kantiwattwil.ch freed printer 4
+Wed, 07 Feb 2024 15:06:57 +0100;178.197.215.168;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kirchenturm_neu_mit_stützen.gcode to printer 4
+Wed, 07 Feb 2024 19:10:27 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch freed printer 5
+Wed, 07 Feb 2024 19:10:28 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL::FAILED;janis;User janis could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Wed, 07 Feb 2024 19:10:30 +0100;193.72.36.209;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 3
+Wed, 07 Feb 2024 19:10:51 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded pages.gcode to printer 5
+Wed, 07 Feb 2024 19:13:12 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded bookcover.gcode to printer 1
+Wed, 07 Feb 2024 19:28:08 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded DC_Motor_To_Lego_Axle_Adapter_0.4n_0.15mm_PLA_MK3S_1h27m.gcode to printer 3
+Wed, 07 Feb 2024 19:32:18 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded HC-SR04v03_0.15mm_PLA_MK3S_1h29m.gcode to printer 4
+Wed, 07 Feb 2024 21:12:20 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded HC-SR04v03_0.15mm_PLA_MK3S_1h34m.gcode to printer 2
+Wed, 07 Feb 2024 22:22:43 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis;user janis uploaded adapter_TTmotor_lego_v5_fixed_0.15mm_PLA_MK3S_2h12m.gcode to the queue
+Thu, 08 Feb 2024 08:14:22 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 3
+Thu, 08 Feb 2024 08:14:47 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 4
+Thu, 08 Feb 2024 11:16:48 +0100;194.230.161.173;JOB::PRINTERCTRL::FREE;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch freed printer 5
+Thu, 08 Feb 2024 11:22:46 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL::FAILED;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Thu, 08 Feb 2024 11:22:54 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL::FAILED;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Thu, 08 Feb 2024 11:25:32 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL::FAILED;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Thu, 08 Feb 2024 11:25:35 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL::FAILED;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Thu, 08 Feb 2024 12:02:15 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL::FAILED;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Thu, 08 Feb 2024 12:40:45 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL::FAILED;nils.luethi@kantiwattwil.ch;User nils.luethi@kantiwattwil.ch could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Fri, 09 Feb 2024 08:09:49 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 2
+Fri, 09 Feb 2024 08:09:53 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 3
+Fri, 09 Feb 2024 08:13:10 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded final-battery-holder_0.15mm_PLA_MK3S_9h29m.gcode to printer 1
+Fri, 09 Feb 2024 08:59:40 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded BookCover-4x.gcode to printer 2
+Fri, 09 Feb 2024 09:03:53 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded Lego_Technic_Forklift_Arm_0.15mm_PLA_MK3S_6h9m.gcode to printer 3
+Fri, 09 Feb 2024 12:21:05 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;hans.muster@kantiwattwil.ch;user hans.muster@kantiwattwil.ch uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Fri, 09 Feb 2024 12:21:05 +0100;213.196.183.53;PRINT::JOB::START::FAILED;hans.muster@kantiwattwil.ch;Could not start job for hans.muster@kantiwattwil.chwith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Fri, 09 Feb 2024 12:21:27 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;hans.muster@kantiwattwil.ch;user hans.muster@kantiwattwil.ch uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 5
+Fri, 09 Feb 2024 16:34:14 +0100;37.203.252.255;JOB::PRINTERCTRL::FREE;hans.muster@kantiwattwil.ch;User hans.muster@kantiwattwil.ch freed printer 5
+Fri, 09 Feb 2024 17:52:55 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded 92to60_0.15mm_PLA_MK3S_3h25m.gcode to printer 4
+Fri, 09 Feb 2024 17:57:29 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded motorMountMirrored_0.15mm_PLA_MK3S_2h16m.gcode to printer 5
+Fri, 09 Feb 2024 19:12:26 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Mon, 12 Feb 2024 10:06:51 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 4
+Mon, 12 Feb 2024 11:23:02 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded motorMountMirrored_0.15mm_PLA_MK3S_2h16m.gcode to printer 1
+Mon, 12 Feb 2024 12:00:58 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Technic_15L_Beam_0.15mm_PLA_MK3S_4h34m.gcode to printer 2
+Mon, 12 Feb 2024 13:04:53 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded motorMountMirrored_0.15mm_PLA_MK3S_2h16m.gcode to printer 3
+Mon, 12 Feb 2024 13:05:14 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded motorMountMirrored_0.15mm_PLA_MK3S_2h16m.gcode to printer 4
+Tue, 13 Feb 2024 09:00:01 +0100;213.196.183.54;JOB::PRINTERCTRL::CANCEL::FAILED;janis;User janis could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Tue, 13 Feb 2024 14:45:15 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Tue, 13 Feb 2024 14:45:17 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 3
+Tue, 13 Feb 2024 14:45:21 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 4
+Tue, 13 Feb 2024 21:45:28 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded arduino_uno_case-r02-release-2018.09.08_0.15mm_PLA_MK3S_2h37m.gcode to printer 1
+Tue, 13 Feb 2024 22:11:00 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Tue, 13 Feb 2024 22:15:27 +0100;193.72.36.209;PRINT::UPLOAD::FILE::FAILED;janis;Could not upload file for janis because of unknown file extension
+Wed, 14 Feb 2024 08:57:30 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 2
+Wed, 14 Feb 2024 13:36:40 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Fri, 16 Feb 2024 11:00:13 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded motorMountMirrored_0.15mm_PLA_MK3S_2h16m.gcode to printer 1
+Mon, 19 Feb 2024 16:24:26 +0100;178.197.198.118;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Mon, 19 Feb 2024 17:41:58 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 1
+Mon, 19 Feb 2024 17:55:07 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Mon, 19 Feb 2024 18:04:28 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 1
+Mon, 19 Feb 2024 18:04:32 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Mon, 19 Feb 2024 18:04:35 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 1
+Mon, 19 Feb 2024 18:12:29 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 1
+Mon, 19 Feb 2024 18:13:05 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;janis.steiner@kantiwattwil.ch;User janis.steiner@kantiwattwil.ch canceled job on printer 
+Mon, 19 Feb 2024 18:13:07 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;janis.steiner@kantiwattwil.ch;User janis.steiner@kantiwattwil.ch freed printer 1
+Tue, 20 Feb 2024 14:26:58 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded BEERTOKEN6_0.15mm_PLA_MK3S_7h33m.gcode to printer 2
+Tue, 20 Feb 2024 18:30:14 +0100;2a02:1210:901b:d200:3d5e:3ae6:e062:bf5;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded HelferFurIpad_VS2_v4_0.15mm_PLA_MK3_2h22m.gcode to printer 1
+Thu, 22 Feb 2024 13:16:57 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Gewinde.gcode to printer 5
+Thu, 22 Feb 2024 15:52:17 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL;christoph.kendel@kantiwattwil.ch;User christoph.kendel@kantiwattwil.ch canceled job on printer 
+Thu, 22 Feb 2024 15:56:53 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Waage_für_SimonsMaturarbeiterin44.gcode to printer 1
+Thu, 22 Feb 2024 16:06:48 +0100;213.196.183.53;JOB::PRINTERCTRL::FREE;christoph.kendel@kantiwattwil.ch;User christoph.kendel@kantiwattwil.ch freed printer 5
+Thu, 22 Feb 2024 16:07:23 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Rolle.gcode to printer 5
+Sun, 25 Feb 2024 21:07:01 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded 92to60_0.15mm_PLA_MK3S_3h25m_1_.gcode to printer 2
+Sun, 25 Feb 2024 21:07:13 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Mon, 26 Feb 2024 17:01:21 +0100;178.197.198.118;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded HelferFurIpad_VS2_v4_0.15mm_PLA_MK3_2h22m.gcode to printer 5
+Tue, 27 Feb 2024 14:55:29 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis;user janis uploaded ESP32-Bottom_cover_0.15mm_PLA_MK3S_2h9m.gcode to printer 1
+Tue, 27 Feb 2024 15:12:34 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Finger_seitlich.gcode to printer 3
+Tue, 27 Feb 2024 18:29:03 +0100;2a02:1210:901b:d200:440a:e731:9b84:df69;JOB::PRINTERCTRL::FREE;mylene;User mylene freed printer 5
+Tue, 27 Feb 2024 20:52:00 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Scar-Plane_0.15mm_PLA_MK3S_8m.gcode to printer 2
+Tue, 27 Feb 2024 20:56:02 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Vertical_nano_0.15mm_PLA_MK3S_1h15m.gcode to printer 4
+Tue, 27 Feb 2024 20:58:31 +0100;2a02:1210:901b:d200:d003:1f08:bc08:c186;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded Kanti_Gehäuse_Musik.gcode to printer 5
+Wed, 28 Feb 2024 07:19:00 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Handflaeche_seitlich.gcode to printer 3
+Wed, 28 Feb 2024 07:22:21 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Zahnrad_mit_Riemenscheibe.gcode to printer 1
+Wed, 28 Feb 2024 11:34:05 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;christoph.kendel@kantiwattwil.ch;User christoph.kendel@kantiwattwil.ch freed printer 1
+Wed, 28 Feb 2024 11:34:33 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded MotorHalter_02mm_30prozent.gcode to printer 1
+Wed, 28 Feb 2024 15:12:58 +0100;213.196.156.4;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded Technic_to_Omni_Hub_0.15mm_PLA_MK3S_2h16m.gcode to printer 2
+Wed, 28 Feb 2024 17:13:03 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;christoph.kendel@kantiwattwil.ch;User christoph.kendel@kantiwattwil.ch freed printer 1
+Wed, 28 Feb 2024 17:13:05 +0100;213.196.183.54;JOB::PRINTERCTRL::FREE;christoph.kendel@kantiwattwil.ch;User christoph.kendel@kantiwattwil.ch freed printer 3
+Wed, 28 Feb 2024 17:15:36 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Drei_Zahnstangen.gcode to printer 1
+Thu, 29 Feb 2024 13:36:43 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;beat.gasser@kantiwattwil.ch;user beat.gasser@kantiwattwil.ch uploaded Chaos-Schale_2_0.1mm_ABS_MK3SMMU3_10h12m.gcode to printer 3
+Thu, 29 Feb 2024 13:48:57 +0100;213.196.183.53;JOB::PRINTERCTRL::CANCEL::FAILED;beat.gasser@kantiwattwil.ch;User beat.gasser@kantiwattwil.ch could not cancel job on printer; error: Printer is neither printing nor paused, 'cancel' command cannot be performed
+Thu, 29 Feb 2024 14:37:12 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;beat.gasser@kantiwattwil.ch;user beat.gasser@kantiwattwil.ch uploaded Chaos-Schale_2_0.1mm_PLA_MK3SMMU3_10h12m.gcode to printer 2
+Thu, 29 Feb 2024 15:45:50 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Drei_Zahnstangen.gcode to printer 1
+Thu, 29 Feb 2024 22:19:12 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded LEGO_sprocket_5mm_Hex_0.15mm_PLA_MK3S_2h53m.gcode to printer 3
+Thu, 29 Feb 2024 22:23:38 +0100;193.72.36.209;JOB::PRINTERCTRL::CANCEL;janis;User janis canceled job on printer 
+Thu, 29 Feb 2024 22:23:40 +0100;193.72.36.209;JOB::PRINTERCTRL::FREE;janis;User janis freed printer 3
+Thu, 29 Feb 2024 22:24:04 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded LEGO_sprocket_5mm_Hex_0.15mm_PLA_MK3S_2h53m.gcode to printer 4
+Fri, 01 Mar 2024 06:05:18 +0100;185.110.184.179;JOB::PRINTERCTRL::FREE;christoph.kendel@kantiwattwil.ch;User christoph.kendel@kantiwattwil.ch freed printer 1
+Fri, 01 Mar 2024 06:06:08 +0100;185.110.184.179;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Zweifarbig.gcode to printer 3
+Fri, 01 Mar 2024 06:06:08 +0100;185.110.184.179;PRINT::JOB::START::FAILED;christoph.kendel@kantiwattwil.ch;Could not start job for christoph.kendel@kantiwattwil.chwith file Zweifarbig.gcode
+Fri, 01 Mar 2024 17:31:13 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Motor_Mount_Right_0.15mm_PLA_MK3S_1h31m.gcode to printer 1
+Fri, 01 Mar 2024 17:33:11 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Sat, 02 Mar 2024 09:59:24 +0100;194.230.161.158;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Vertical_nano_0.15mm_PLA_MK3S_1h15m.gcode to printer 1
+Sat, 02 Mar 2024 20:28:53 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 3
+Sat, 02 Mar 2024 20:47:35 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Sat, 02 Mar 2024 20:48:32 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Sat, 02 Mar 2024 20:48:32 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Sat, 02 Mar 2024 20:48:58 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Sat, 02 Mar 2024 20:48:58 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Sat, 02 Mar 2024 20:51:05 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Sat, 02 Mar 2024 20:51:34 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Sat, 02 Mar 2024 20:51:34 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Sat, 02 Mar 2024 20:51:56 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Sat, 02 Mar 2024 20:53:52 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Sat, 02 Mar 2024 20:54:16 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Sat, 02 Mar 2024 20:54:16 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Sat, 02 Mar 2024 20:55:40 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Sat, 02 Mar 2024 20:55:51 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Sat, 02 Mar 2024 20:55:51 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Sat, 02 Mar 2024 21:02:06 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Sat, 02 Mar 2024 21:02:24 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Sat, 02 Mar 2024 21:02:36 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 5
+Sat, 02 Mar 2024 21:02:47 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to the queue
+Sat, 02 Mar 2024 21:05:13 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded DC_Motor_To_Lego_Axle_Adapter_0.4n_0.15mm_PLA_MK3S_1h27m.gcode to printer 2
+Sat, 02 Mar 2024 21:05:13 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file DC_Motor_To_Lego_Axle_Adapter_0.4n_0.15mm_PLA_MK3S_1h27m.gcode
+Sat, 02 Mar 2024 21:15:39 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to the queue
+Sat, 02 Mar 2024 21:16:39 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to the queue
+Sat, 02 Mar 2024 21:25:46 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis;user janis uploaded ESP32-Bottom_cover_0.15mm_PLA_MK3S_2h9m.gcode to the queue
+Sun, 03 Mar 2024 08:11:10 +0100;193.72.36.209;PRINT::UPLOAD::FILE::FAILED;test@kantiwattwil.ch;Could not upload file for test@kantiwattwil.ch because of unknown file extension
+Sun, 03 Mar 2024 16:03:57 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 2
+Sun, 03 Mar 2024 18:35:43 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Sun, 03 Mar 2024 19:11:17 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Sun, 03 Mar 2024 19:11:17 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Sun, 03 Mar 2024 19:11:25 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Sun, 03 Mar 2024 19:11:25 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Sun, 03 Mar 2024 19:11:34 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Sun, 03 Mar 2024 19:11:34 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Sun, 03 Mar 2024 19:11:39 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Sun, 03 Mar 2024 19:11:39 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Sun, 03 Mar 2024 19:11:52 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Sun, 03 Mar 2024 19:11:52 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Sun, 03 Mar 2024 19:11:54 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Sun, 03 Mar 2024 19:11:54 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Sun, 03 Mar 2024 19:11:57 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 5
+Sun, 03 Mar 2024 19:11:57 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Sun, 03 Mar 2024 19:12:12 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis;user janis uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 5
+Sun, 03 Mar 2024 19:12:12 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis;Could not start job for janiswith file Super_Clip_0.2mm_PLA_MK3S_8m.gcode
+Sun, 03 Mar 2024 19:26:56 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 5
+Mon, 04 Mar 2024 10:41:58 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded Model_1_Normal_casing_0.2mm_PLA_MK3S_51m.gcode to printer 1
+Mon, 04 Mar 2024 10:42:20 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded Model_1_Normal_lid_0.2mm_PLA_MK3S_51m.gcode to printer 2
+Mon, 04 Mar 2024 10:42:40 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded Model_1_Normal_casing_0.2mm_PLA_MK3S_51m.gcode to printer 4
+Mon, 04 Mar 2024 10:42:55 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded Model_1_Normal_lid_0.2mm_PLA_MK3S_51m.gcode to printer 5
+Mon, 04 Mar 2024 10:57:11 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded iPad_Stand_4_larger_0.15mm_PLA_MK3S_5h35m.gcode to printer 3
+Mon, 04 Mar 2024 12:01:19 +0100;178.197.218.110;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded Model_1_Normal_lid_0.2mm_PLA_MK3S_51m.gcode to printer 2
+Mon, 04 Mar 2024 15:17:08 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded kp3s-spool-holder-ersatzteil-u-shape_0.2mm_PLA_MK3S_8m.gcode to printer 4
+Mon, 04 Mar 2024 17:03:07 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded HelferFurIpad_VS2_v6_0.2mm_PLA_MK3S_3h8m.gcode to printer 4
+Mon, 04 Mar 2024 18:12:04 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded ESP32-top_cover_0.2mm_PLA_MK3S_1h31m.gcode to printer 2
+Tue, 05 Mar 2024 10:15:37 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded top_0.15mm_PLA_MK3S_8h30m.gcode to printer 4
+Tue, 05 Mar 2024 10:48:42 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded rearfixed_0.15mm_PLA_MK3S_42m.gcode to printer 1
+Tue, 05 Mar 2024 12:16:43 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded Screwdriver_holder_Single_Multboard_2_Stk_0.2mm_PLA_MK3S_2h39m.gcode to printer 2
+Tue, 05 Mar 2024 12:17:25 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded Screwdriver_holder_Single_Multboard_4_Stk_0.2mm_PLA_MK3S_2h39m.gcode to printer 2
+Tue, 05 Mar 2024 12:17:25 +0100;213.196.183.53;PRINT::JOB::START::FAILED;simon.schaelli@kantiwattwil.ch;Could not start job for simon.schaelli@kantiwattwil.chwith file Screwdriver_holder_Single_Multboard_4_Stk_0.2mm_PLA_MK3S_2h39m.gcode
+Tue, 05 Mar 2024 12:17:50 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded Free-Standing_Foot_0.2mm_PLA_MK3S_43m.gcode to printer 2
+Tue, 05 Mar 2024 12:17:50 +0100;213.196.183.53;PRINT::JOB::START::FAILED;simon.schaelli@kantiwattwil.ch;Could not start job for simon.schaelli@kantiwattwil.chwith file Free-Standing_Foot_0.2mm_PLA_MK3S_43m.gcode
+Tue, 05 Mar 2024 12:18:54 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded 8x8_Multiboard_Corner_Tile_0.2mm_PLA_MK3S_8h14m.gcode to printer 2
+Tue, 05 Mar 2024 12:18:54 +0100;213.196.183.53;PRINT::JOB::START::FAILED;simon.schaelli@kantiwattwil.ch;Could not start job for simon.schaelli@kantiwattwil.chwith file 8x8_Multiboard_Corner_Tile_0.2mm_PLA_MK3S_8h14m.gcode
+Tue, 05 Mar 2024 12:28:56 +0100;178.197.218.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded 8x8_Multiboard_Corner_Tile_0.2mm_PLA_MK3S_8h14m.gcode to printer 2
+Tue, 05 Mar 2024 15:05:24 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;julia.strasser@kantiwattwil.ch;user julia.strasser@kantiwattwil.ch uploaded Screwdriver_holder_Single_Multboard_2_Stk_0.2mm_PLA_MK3S_2h39m.gcode to printer 3
+Tue, 05 Mar 2024 18:32:00 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 1
+Wed, 06 Mar 2024 06:58:35 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded LEGO_sprocket_5mm_Hex_0.15mm_PLA_MK3S_2h53m.gcode to printer 5
+Wed, 06 Mar 2024 07:17:12 +0100;213.196.183.53;PRINT::UPLOAD::QUEUE;beat.gasser@kantiwattwil.ch;user beat.gasser@kantiwattwil.ch uploaded Elektrische_Potential_fur_3d-Druck__3__0.1mm_PLA_MK3S_7h23m.gcode to the queue
+Wed, 06 Mar 2024 07:24:26 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;beat.gasser@kantiwattwil.ch;user beat.gasser@kantiwattwil.ch uploaded Chaos-Schale_3_0.1mm_PLA_MK3S_4h57m.gcode to printer 2
+Wed, 06 Mar 2024 08:41:53 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded fluegel-aufsatz-trafokern-Body_0.2mm_PLA_MK3S_9m.gcode to printer 4
+Wed, 06 Mar 2024 10:42:39 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded 1-UNO-Box.gcode to printer 4
+Wed, 06 Mar 2024 10:42:39 +0100;213.196.183.54;PRINT::JOB::START::FAILED;nils.luethi@kantiwattwil.ch;Could not start job for nils.luethi@kantiwattwil.chwith file 1-UNO-Box.gcode
+Wed, 06 Mar 2024 10:43:05 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded 1-UNO-Box.gcode to printer 4
+Wed, 06 Mar 2024 10:43:05 +0100;213.196.183.54;PRINT::JOB::START::FAILED;nils.luethi@kantiwattwil.ch;Could not start job for nils.luethi@kantiwattwil.chwith file 1-UNO-Box.gcode
+Wed, 06 Mar 2024 10:43:28 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded 2_UNO-Box.gcode to printer 5
+Wed, 06 Mar 2024 10:43:50 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded 1-UNO-Box.gcode to printer 4
+Wed, 06 Mar 2024 10:43:50 +0100;213.196.183.54;PRINT::JOB::START::FAILED;nils.luethi@kantiwattwil.ch;Could not start job for nils.luethi@kantiwattwil.chwith file 1-UNO-Box.gcode
+Wed, 06 Mar 2024 10:44:46 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded rearfixed_0.15mm_PLA_MK3S_42m.gcode to printer 3
+Wed, 06 Mar 2024 10:45:21 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded 1-UNO-Box.gcode to printer 4
+Wed, 06 Mar 2024 10:45:21 +0100;213.196.183.54;PRINT::JOB::START::FAILED;nils.luethi@kantiwattwil.ch;Could not start job for nils.luethi@kantiwattwil.chwith file 1-UNO-Box.gcode
+Wed, 06 Mar 2024 13:13:06 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded LEGO_Sprocket_10_cut_0.15mm_PLA_MK3S_3h3m.gcode to printer 2
+Wed, 06 Mar 2024 15:55:03 +0100;194.230.161.158;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded rearfixed_0.15mm_PLA_MK3S_42m.gcode to printer 1
+Wed, 06 Mar 2024 19:03:01 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded 92to60_0.15mm_PLA_MK3S_3h25m.gcode to the queue
+Wed, 06 Mar 2024 19:05:57 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded 92to60_0.15mm_PLA_MK3S_3h25m.gcode to the queue
+Wed, 06 Mar 2024 19:10:22 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded 92to60_0.15mm_PLA_MK3S_3h25m.gcode to the queue
+Wed, 06 Mar 2024 19:11:39 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded 92to60_0.15mm_PLA_MK3S_3h25m.gcode to the queue
+Wed, 06 Mar 2024 20:01:49 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded LEGO_Sprocket_10_cut_0.15mm_PLA_MK3S_3h3m.gcode to printer 1
+Wed, 06 Mar 2024 20:01:49 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis.steiner@kantiwattwil.ch;Could not start job for janis.steiner@kantiwattwil.chwith file LEGO_Sprocket_10_cut_0.15mm_PLA_MK3S_3h3m.gcode
+Wed, 06 Mar 2024 20:03:28 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded 8x8_Multiboard_Corner_Tile_0.2mm_PLA_MK3S_8h14m.gcode to printer 2
+Wed, 06 Mar 2024 20:14:21 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded 92to60_0.15mm_PLA_MK3S_3h25m.gcode to printer 2
+Wed, 06 Mar 2024 20:17:52 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded LEGO_Sprocket_10_cut_0.15mm_PLA_MK3S_3h3m.gcode to printer 1
+Wed, 06 Mar 2024 20:20:26 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded 92to60_0.15mm_PLA_MK3S_3h25m.gcode to printer 1
+Wed, 06 Mar 2024 21:41:35 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded 92to60_0.15mm_PLA_MK3S_3h25m.gcode to the queue
+Wed, 06 Mar 2024 21:46:55 +0100;193.72.36.209;PRINT::UPLOAD::QUEUE;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded 92to60_0.15mm_PLA_MK3S_3h25m.gcode to the queue
+Wed, 06 Mar 2024 22:08:40 +0100;213.196.156.4;PRINT::UPLOAD::PRINTER;nils.luethi@kantiwattwil.ch;user nils.luethi@kantiwattwil.ch uploaded 1-UNO-Box.gcode to printer 5
+Thu, 07 Mar 2024 20:53:12 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded 92to60_0.15mm_PLA_MK3S_3h25m.gcode to printer 1
+Thu, 07 Mar 2024 21:09:56 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded 92to60_0.15mm_PLA_MK3S_3h25m.gcode to printer 1
+Fri, 08 Mar 2024 11:09:21 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;beat.gasser@kantiwattwil.ch;user beat.gasser@kantiwattwil.ch uploaded Doppelspalt_3d_Druck_3_0.1mm_PLA_MK3S_2h53m.gcode to printer 2
+Fri, 08 Mar 2024 17:10:16 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 1
+Fri, 08 Mar 2024 17:32:08 +0100;37.203.252.255;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded Super_Clip_0.2mm_PLA_MK3S_8m.gcode to printer 5
+Fri, 08 Mar 2024 19:12:31 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded 92to60_0.15mm_PLA_MK3S_3h25m.gcode to printer 2
+Fri, 08 Mar 2024 19:12:55 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded HC-SR04v03_0.15mm_PLA_MK3S_1h34m.gcode to printer 2
+Fri, 08 Mar 2024 19:12:55 +0100;193.72.36.209;PRINT::JOB::START::FAILED;janis.steiner@kantiwattwil.ch;Could not start job for janis.steiner@kantiwattwil.chwith file HC-SR04v03_0.15mm_PLA_MK3S_1h34m.gcode
+Fri, 08 Mar 2024 19:13:05 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded HC-SR04v03_0.15mm_PLA_MK3S_1h34m.gcode to printer 3
+Fri, 08 Mar 2024 19:31:42 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded 92to60_0.15mm_PLA_MK3S_3h25m.gcode to printer 2
+Fri, 08 Mar 2024 23:14:28 +0100;193.72.36.209;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded DC_Motor_To_Lego_Axle_Adapter_0.4n_0.15mm_PLA_MK3S_1h27m.gcode to printer 2
+Sun, 10 Mar 2024 11:27:30 +0100;2a02:1210:2884:a600:ac8e:a85e:c6ee:fde8;PRINT::UPLOAD::PRINTER;beat.gasser@kantiwattwil.ch;user beat.gasser@kantiwattwil.ch uploaded Doppelspalt_3d_Druck_5_0.1mm_PLA_MK3S_13h27m.gcode to printer 2
+Sun, 10 Mar 2024 16:03:32 +0100;2a02:1210:2884:a600:ac8e:a85e:c6ee:fde8;PRINT::UPLOAD::PRINTER;beat.gasser@kantiwattwil.ch;user beat.gasser@kantiwattwil.ch uploaded Doppelspalt_3d_Druck_5_0.1mm_PLA_MK3S_13h27m.gcode to printer 3
+Sun, 10 Mar 2024 22:41:44 +0100;37.203.252.255;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded ikea-pax-stangenhalter-Body_0.2mm_PLA_MK3S_1h13m.gcode to printer 4
+Mon, 11 Mar 2024 10:11:09 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;beat.gasser@kantiwattwil.ch;user beat.gasser@kantiwattwil.ch uploaded Doppelspalt_3d_Druck_5_0.2mm_PLA_MK3S_7h58m.gcode to printer 3
+Mon, 11 Mar 2024 18:27:35 +0100;2a02:1210:2884:a600:e163:5da0:124a:44d9;PRINT::UPLOAD::PRINTER;beat.gasser@kantiwattwil.ch;user beat.gasser@kantiwattwil.ch uploaded Doppelspalt_3d_Druck_5_0.2mm_PLA_MK3S_7h58m.gcode to printer 3
+Tue, 12 Mar 2024 10:38:52 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Schraube.gcode to printer 1
+Tue, 12 Mar 2024 10:43:44 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Schraube22.gcode to printer 2
+Tue, 12 Mar 2024 11:07:17 +0100;213.196.183.53;PRINT::JOB::START::FAILED;christoph.kendel@kantiwattwil.ch;Could not start job for christoph.kendel@kantiwattwil.ch with file 
+Tue, 12 Mar 2024 13:04:47 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Schraube22.gcode to printer 1
+Tue, 12 Mar 2024 13:33:29 +0100;213.196.183.53;PRINT::JOB::START::FAILED;julia.strasser@kantiwattwil.ch;Could not start job for julia.strasser@kantiwattwil.ch with file 
+Tue, 12 Mar 2024 13:34:10 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;julia.strasser@kantiwattwil.ch;user julia.strasser@kantiwattwil.ch uploaded Free-Standing_Foot_0.2mm_PLA_MK3S_43m.gcode to printer 4
+Tue, 12 Mar 2024 13:34:50 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;julia.strasser@kantiwattwil.ch;user julia.strasser@kantiwattwil.ch uploaded Screwdriver_holder_Single_Multboard_2_Stk_0.2mm_PLA_MK3S_2h39m.gcode to printer 3
+Tue, 12 Mar 2024 16:05:37 +0100;185.110.184.179;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Gewinde_beide.gcode to printer 1
+Wed, 13 Mar 2024 07:23:15 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Gewinde_0.15.gcode to printer 1
+Wed, 13 Mar 2024 07:24:40 +0100;213.196.183.54;PRINT::JOB::START::FAILED;christoph.kendel@kantiwattwil.ch;Could not start job for christoph.kendel@kantiwattwil.ch with file 
+Wed, 13 Mar 2024 07:24:56 +0100;213.196.183.54;PRINT::JOB::START::FAILED;christoph.kendel@kantiwattwil.ch;Could not start job for christoph.kendel@kantiwattwil.ch with file 
+Wed, 13 Mar 2024 07:25:43 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded Mutter_0.20.gcode to printer 3
+Thu, 14 Mar 2024 07:21:26 +0100;2a02:1210:2884:a600:554c:2026:6809:420c;PRINT::UPLOAD::PRINTER;beat.gasser@kantiwattwil.ch;user beat.gasser@kantiwattwil.ch uploaded Doppelspalt_3d_Druck_10_0.2mm_PLA_MK3S_3h43m.gcode to printer 1
+Fri, 15 Mar 2024 06:09:49 +0100;185.110.184.179;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded 72T_Zahnrad_M05.gcode to printer 1
+Fri, 15 Mar 2024 06:24:57 +0100;185.110.184.179;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded 72T_Zahnrad_M05.gcode to printer 3
+Fri, 15 Mar 2024 11:08:47 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;nathalia.eberle@kantiwattwil.ch;user nathalia.eberle@kantiwattwil.ch uploaded Bit_Case_Bottom_0.2mm_PLA_MK3S_1h25m.gcode to printer 5
+Fri, 15 Mar 2024 11:10:40 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;nathalia.eberle@kantiwattwil.ch;user nathalia.eberle@kantiwattwil.ch uploaded Bit_Case_Bottom_0.2mm_PLA_MK3S_1h35m.gcode to printer 4
+Fri, 15 Mar 2024 11:24:04 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded 56T_M1.gcode to printer 1
+Fri, 15 Mar 2024 11:38:24 +0100;178.197.206.128;PRINT::JOB::START::FAILED;rainer.winkler@kantiwattwil.ch;Could not start job for rainer.winkler@kantiwattwil.ch with file 
+Fri, 15 Mar 2024 11:38:35 +0100;178.197.206.128;PRINT::UPLOAD::PRINTER;rainer.winkler@kantiwattwil.ch;user rainer.winkler@kantiwattwil.ch uploaded Ingenious_Amur-Turing_0.2mm_PLA_MK3S_12m.gcode to printer 3
+Fri, 15 Mar 2024 13:46:58 +0100;37.203.252.255;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded raspberry_camera_mount_0.2mm_PLA_MK3S_5h8m.gcode to printer 4
+Fri, 15 Mar 2024 13:47:27 +0100;37.203.252.255;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded raspberry_camera_mount_0.2mm_PLA_MK3S_5h8m.gcode to printer 5
+Fri, 15 Mar 2024 15:28:49 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded 80T_M07.gcode to printer 1
+Fri, 15 Mar 2024 15:59:27 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;christoph.kendel@kantiwattwil.ch;user christoph.kendel@kantiwattwil.ch uploaded 80T_M05___14T_M07.gcode to printer 3
+Fri, 15 Mar 2024 22:56:52 +0100;91.214.64.180;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded raspberry_camera_mount_0.2mm_PLA_MK3S_5h8m.gcode to printer 5
+Sun, 17 Mar 2024 20:00:21 +0100;2a02:1210:901b:d200:9517:ba8:c3ad:fb2;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded KantiMusikTaster+2_v3_0.15mm_PLA_MK3_7h51m.gcode to printer 1
+Sun, 17 Mar 2024 20:15:37 +0100;2a02:1210:901b:d200:9517:ba8:c3ad:fb2;PRINT::JOB::START::FAILED;mylene;Could not start job for mylene with file 
+Sun, 17 Mar 2024 20:16:05 +0100;2a02:1210:901b:d200:9517:ba8:c3ad:fb2;PRINT::UPLOAD::PRINTER;mylene;user mylene uploaded KantiMusikTaster+2_v3_0.15mm_PLA_MK3_7h51m.gcode to printer 3
+Mon, 18 Mar 2024 09:52:37 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded raspberry_camera_extender_6pcs_0.2mm_PLA_MK3S_2h22m.gcode to printer 4
+Mon, 18 Mar 2024 09:52:52 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded raspberry_camera_mount_clip_left_0.2mm_PLA_MK3S_1h13m.gcode to printer 5
+Mon, 18 Mar 2024 13:39:23 +0100;213.196.183.54;PRINT::UPLOAD::PRINTER;janis.steiner@kantiwattwil.ch;user janis.steiner@kantiwattwil.ch uploaded LEGO_Sprocket_10_cut_0.15mm_PLA_MK3S_3h3m.gcode to printer 1
+Mon, 18 Mar 2024 13:45:33 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded raspberry_camera_mount_clip_left_0.2mm_PLA_MK3S_1h13m.gcode to printer 4
+Mon, 18 Mar 2024 13:45:43 +0100;213.196.183.53;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded raspberry_camera_mount_clip_left_0.2mm_PLA_MK3S_1h13m.gcode to printer 5
+Mon, 18 Mar 2024 15:11:56 +0100;178.197.223.137;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded raspberry_camera_case_connector_4pcs__0.2mm_PLA_MK3S_1h11m.gcode to printer 4
+Mon, 18 Mar 2024 15:12:29 +0100;178.197.223.137;PRINT::UPLOAD::PRINTER;simon.schaelli@kantiwattwil.ch;user simon.schaelli@kantiwattwil.ch uploaded raspberry_camera_mount_connector_4pcs_0.2mm_PLA_MK3S_34m.gcode to printer 5
