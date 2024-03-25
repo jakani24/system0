@@ -113,9 +113,9 @@ function load_user()
 						$json=json_decode($fg,true);
 						if($json["error"]!="")
 						{
-							$sql="update printer set system_status=1 where id=$printer_id";
-							$stmt = mysqli_prepare($link, $sql);					
-							mysqli_stmt_execute($stmt);
+							//$sql="update printer set system_status=1 where id=$printer_id";
+							//$stmt = mysqli_prepare($link, $sql);					
+							//mysqli_stmt_execute($stmt);
 							echo("<div class='alert alert-danger' role='alert'>There was an error canceling the print job !<br>The error is on our machine or printer, so please wait and trie again in some time!</div>");
 						}
 						else

@@ -222,6 +222,9 @@
 							sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
 							$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
 							$json=json_decode($fg,true);
+							//echo('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
+							//echo("<br><br><br>");							
+							//var_dump($json);
 							if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
 							{
 								echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgang konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div></center>");
