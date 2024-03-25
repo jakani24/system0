@@ -1,0 +1,55 @@
+html, body {
+	font-size: 17px;
+	text-decoration: none;
+	font-family: arial;
+	height: 100%;
+	width: 100%;
+}
+
+.border {
+	width: 40%;
+}
+
+.selector {
+	width: 20%;
+	
+}
+
+/*Datei-Upload-Button in Print.php*/
+.custom-file-label::after {
+	content: "Durchsuchen"; /* Text auf dem Button */
+}
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+	content: "Durchsuchen";
+}
+
+.custom-file-input~.custom-file-label {
+	border: 1px solid #ccc; /*   Rahmen  */
+}
+
+.custom-file-input~.custom-file-label::after {
+	background-color: #007BFF; 
+	border: 1px solid #007BFF; 
+	color: #fff; 
+}
+
+.custom-file-input~.custom-file-label:hover::after {
+	background-color: #0056b3; 
+	border: 1px solid #0056b3; 
+}
+
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: green!important;
+}
+
+.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 255, 0, 0.25)
+}
+.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
+}
+.custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
+  background-color: #C8FFC8; 
+}
