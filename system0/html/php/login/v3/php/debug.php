@@ -67,6 +67,14 @@ function load_user()
 						$stmt = mysqli_prepare($link, $sql);					
 						mysqli_stmt_execute($stmt);
 					}
+					if(isset($_POST['update']))
+					{
+						$printer_id=htmlspecialchars($_GET['id']);
+						$rotation=htmlspecialchars($_POST["rotate"]);
+						$sql="update printer set rotation=$rotation where id=$printer_id";
+						$stmt = mysqli_prepare($link, $sql);					
+						mysqli_stmt_execute($stmt);
+					}
 					
 					$cnt=0;
 					$url="";
@@ -110,6 +118,48 @@ function load_user()
 					echo("</tbody></table></div></div></div></div>");
 				?>
 				<br><br>
+
+
+			<!-- Rotation der Druckerkameras: -->
+			<h1>Rotation der Druckerkameras</h1>
+			<?php
+				//list printers => form => action=rot&rot=180
+				$cnt=0;
+				$url="";
+				$apikey="";
+				$sql="select count(*) from printer";
+				$stmt = mysqli_prepare($link, $sql);					
+				mysqli_stmt_execute($stmt);
+				mysqli_stmt_store_result($stmt);
+				mysqli_stmt_bind_result($stmt, $cnt);
+				mysqli_stmt_fetch($stmt);	
+				//echo($cnt);
+				echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Druckerid</th><th>Freigeben</th></tr></thead><tbody>");
+				$last_id=0;	
+				$rotation=0;
+				while($cnt!=0)
+				{
+					$userid=0;
+					$sql="select rotation,id where id>$last_id ORDER BY id";
+					$cancel=0;
+					$stmt = mysqli_prepare($link, $sql);					
+					mysqli_stmt_execute($stmt);
+					mysqli_stmt_store_result($stmt);
+					mysqli_stmt_bind_result($stmt, $rotation,$printer_id);
+					mysqli_stmt_fetch($stmt);
+
+					
+					$last_id=$printer_id;
+					
+					$used_by_user="";
+
+					echo("<tr><td>$printer_id</td><td><form method='POST' action='?id=$printer_id'><input type='number' value='$rotation' name='rotation' placeholder='rotation (deg)'></input><button type='submit' value='update'  name='update' class='btn btn-dark'>Update</button></form></tr>");
+					
+					$cnt--;
+				}
+				echo("</tbody></table></div></div></div></div>");
+			?>
+			
 				<?php
 					test_queue($link);
 				?>
