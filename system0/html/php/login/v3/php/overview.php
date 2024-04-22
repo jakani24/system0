@@ -113,9 +113,9 @@ function load_user()
 						$json=json_decode($fg,true);
 						if($json["error"]!="")
 						{
-							$sql="update printer set system_status=1 where id=$printer_id";
-							$stmt = mysqli_prepare($link, $sql);					
-							mysqli_stmt_execute($stmt);
+							//$sql="update printer set system_status=1 where id=$printer_id";
+							//$stmt = mysqli_prepare($link, $sql);					
+							//mysqli_stmt_execute($stmt);
 							echo("<div class='alert alert-danger' role='alert'>There was an error canceling the print job !<br>The error is on our machine or printer, so please wait and trie again in some time!</div>");
 						}
 						else
@@ -149,7 +149,8 @@ function load_user()
 							echo("<a class='btn btn-dark' href='overview.php?private'>Nur eigene Aufträge anzeigen</a>");
 					echo("</div>");					
 					$last_id=0;		
-					$system_status=0;			
+					$system_status=0;	
+					$rotation=0;
 					while($cnt!=0)
 					{	
 						if(isset($_SESSION["mobile_view"]))
@@ -158,14 +159,14 @@ function load_user()
 							echo("<div class='col-4' style='padding:5px'>");
 						$userid=0;
 						if(isset($_GET["private"]))
-							$sql="select free,id,printer_url,apikey,cancel,used_by_userid,system_status from printer where id>$last_id and used_by_userid=".$_SESSION["id"]." ORDER BY id";
+							$sql="select rotation,free,id,printer_url,apikey,cancel,used_by_userid,system_status from printer where id>$last_id and used_by_userid=".$_SESSION["id"]." ORDER BY id";
 						else
-							$sql="select free,id,printer_url,apikey,cancel,used_by_userid,system_status from printer where id>$last_id ORDER BY id";
+							$sql="select rotation,free,id,printer_url,apikey,cancel,used_by_userid,system_status from printer where id>$last_id ORDER BY id";
 						$cancel=0;
 						$stmt = mysqli_prepare($link, $sql);					
 						mysqli_stmt_execute($stmt);
 						mysqli_stmt_store_result($stmt);
-						mysqli_stmt_bind_result($stmt, $is_free,$printer_id,$url,$apikey,$cancel,$userid,$system_status);
+						mysqli_stmt_bind_result($stmt, $rotation,$is_free,$printer_id,$url,$apikey,$cancel,$userid,$system_status);
 						mysqli_stmt_fetch($stmt);
 						$last_id=$printer_id;
 
@@ -199,7 +200,7 @@ function load_user()
 									echo("<h5 class='card-title'>Drucker $printer_id</h5>");
 									echo("</div>");
 									echo("<div class='card-body'>");
-									echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url'></iframe>");
+									echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url&rotation=$rotation'></iframe>");
 									echo("<div class='progress'>");
 									  echo("<div class='progress-bar' role='progressbar' style='width: $progress%' aria-valuenow='$progress' aria-valuemin='0' aria-valuemax='100'>$progress%</div>");
 									echo("</div>");
@@ -228,7 +229,7 @@ function load_user()
 									echo("<h5 class='card-title'>Drucker $printer_id</h5>");
 									echo("</div>");
 									echo("<div class='card-body'>");
-									echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url'></iframe>");
+									echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url&rotation=$rotation'></iframe>");
 									echo("<div class='progress'>");
 									  echo("<div class='progress-bar' role='progressbar' style='width: $progress%' aria-valuenow='$progress' aria-valuemin='0' aria-valuemax='100'>$progress%</div>");
 									echo("</div>");
@@ -261,7 +262,7 @@ function load_user()
 									echo("<h5 class='card-title'>Drucker $printer_id</h5>");
 									echo("</div>");
 									echo("<div class='card-body'>");
-									echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url'></iframe>");
+									echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url&rotation=$rotation'></iframe>");
 									echo("<div class='progress'>");
 									  echo("<div class='progress-bar' role='progressbar' style='width: $progress%' aria-valuenow='$progress' aria-valuemin='0' aria-valuemax='100'>$progress%</div>");
 									echo("</div>");
@@ -288,7 +289,7 @@ function load_user()
 							echo("<h5 class='card-title'>Drucker $printer_id</h5>");
 							echo("</div>");
 							echo("<div class='card-body'>");
-							echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url'></iframe>");
+							echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url&rotation=$rotation'></iframe>");
 							echo("<table class='table table-borderless'>");
 							echo("<thead>");
 							echo("<tr><td>Status</td><td style='color:green'>Bereit</td></tr>");

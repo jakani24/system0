@@ -62,7 +62,7 @@ function load_user()
 		$base64=str_replace(" ","",$base64);
 		return $base64;
 	}
-	if(isset($_GET["delete"]) && $role=="admin"){
+	if(isset($_GET["delete"]) && $role[10]=="1"){
 		$path="/var/www/html/system0/html/user_files/public/".str_replace("..","",htmlspecialchars($_GET["delete"]));
 		unlink($path);
 	
@@ -100,7 +100,7 @@ function load_user()
 				    </thead>
 				    <tbody>
 				      <?php
-				      $directory = "/var/www/html/system0/html/user_files/public/"; // Replace with the actual path to your directory
+				      $directory = "/var/www/html/system0/html/user_files/public/";
 
 				      // Check if the directory exists
 				      if (is_dir($directory)) {
