@@ -235,7 +235,7 @@
 								echo('
 									<div class="card m-2" style="width: 14em;" href="#">
 										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-											<i class="fa-solid fa-key fa-8x justify-content-center"></i>
+											<i class="fa-solid fa-jedi-order fa-8x justify-content-center"></i>
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">Debug</h5>
