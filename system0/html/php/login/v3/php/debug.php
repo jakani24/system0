@@ -3,7 +3,7 @@
 <?php
 // Initialize the session
 session_start();
-include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
+//include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
 include "config.php";
 include "queue.php";
 // Check if the user is logged in, if not then redirect him to login page
@@ -70,7 +70,7 @@ function load_user()
 					if(isset($_POST['update']))
 					{
 						$printer_id=htmlspecialchars($_GET['id']);
-						$rotation=htmlspecialchars($_POST["rotate"]);
+						$rotation=htmlspecialchars($_POST["rotation"]);
 						$sql="update printer set rotation=$rotation where id=$printer_id";
 						$stmt = mysqli_prepare($link, $sql);					
 						mysqli_stmt_execute($stmt);
@@ -140,7 +140,7 @@ function load_user()
 				while($cnt!=0)
 				{
 					$userid=0;
-					$sql="select rotation,id where id>$last_id ORDER BY id";
+					$sql="select rotation,id from printer where id>$last_id ORDER BY id";
 					$cancel=0;
 					$stmt = mysqli_prepare($link, $sql);					
 					mysqli_stmt_execute($stmt);
