@@ -146,7 +146,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <title>Sign Up</title>
 </head>
 <?php echo(" <body style='background-color:$color'> ");?>
-	<div class="container">
+	<div class="container vh-100">
 		<div class="d-flex align-items-center justify-content-center vh-100">
 			<div class="container">
 				<div class="row justify-content-center">
