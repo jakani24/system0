@@ -86,8 +86,8 @@
 								');
 						?>
 					<li class="nav-item">
-						<a class="btn green" role="button" data-bs-toggle="modal" data-bs-target="#account"><i class="fa-solid fa-gear" style="color: #2E6A2F;"></i></a>
-						<a href="/system0/html/php/login/v3/logout.php" class="btn me-2 green" role="button"><i class="fa-solid fa-right-from-bracket" style="color: #2E6A2F;"></i></a>
+						<a class="btn green" role="button" data-bs-toggle="modal" data-bs-target="#account"><i class="fa-solid fa-gear"></i></a>
+						<a href="/system0/html/php/login/v3/logout.php" class="btn me-2 green" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
 					</li>
 				</ul>
 			</div>
@@ -148,10 +148,10 @@
 
 									<div class="card m-2" style="width: 14em;" href="#">
 										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-											<i class="fa-solid fa-user-minus fa-6x justify-content-center"></i>
+											<i class="fa-solid fa-users fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
-											<h5 class="card-title">Benutzer entfernen</h5>
+											<h5 class="card-title">Benutzer verwalten</h5>
 											<p class="card-text">Entfernen Sie ein Benutzerkonto aus dem System.</p>
 											<a href="/system0/html/php/login/v3/php/remove_user.php" class="stretched-link">weiter</a>
 										</div>
@@ -235,7 +235,7 @@
 								echo('
 									<div class="card m-2" style="width: 14em;" href="#">
 										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-											<i class="fa-solid fa-jedi-order fa-6x justify-content-center"></i>
+											<i class="fa-solid fa-bug fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">Debug</h5>
