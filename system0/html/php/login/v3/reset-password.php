@@ -141,15 +141,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <script src="/system0/html/php/login/v3/js/load_page.js"></script>
 <script>
-	function load_admin()
-	{
-		$(document).ready(function(){
-		$('#content').load("/system0/html/php/login/v3/html/admin_page.php");
-		});
-		$(document).ready(function(){
-	$('#footer').load("/system0/html/php/login/v3/html/footer.html");
-	});
-	}
 	
 	function load_user()
 	{
@@ -164,14 +155,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <?php
     $username=$_SESSION["username"];
     $role=$_SESSION["role"];
-    if($role=="user")
-    {
-	echo "<script type='text/javascript' >load_user()</script>";
-    }
-    if($role=="admin")
-    {
-	echo "<script type='text/javascript' >load_admin()</script>";
-    }
+		echo "<script type='text/javascript' >load_user()</script>";
+    
 
 echo("<div id='content'></div>");?>	
 <div class="jumbotron d-flex align-items-center" style="height:95vh;">
