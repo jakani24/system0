@@ -30,7 +30,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION[
 require_once "config.php";
 include "../log/log.php";
 include "permission_functions.php";
-echo("<div id='content'></div>");
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
 $role="admin";
@@ -145,8 +144,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Sign Up</title>
 </head>
-<?php echo(" <body style='background-color:$color'> ");?>
-	<div class="container vh-100">
+<?php echo(" <body style='background-color:$color'> ");
+	echo("<div id='content'></div>");?>
+
+	<div class="container">
 		<div class="d-flex align-items-center justify-content-center vh-100">
 			<div class="container">
 				<div class="row justify-content-center">
