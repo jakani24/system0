@@ -235,11 +235,11 @@
 								echo('
 									<div class="card m-2" style="width: 14em;" href="#">
 										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-											<i class="fa-solid fa-bug fa-6x justify-content-center"></i>
+											<i class="fa-solid fa-print fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
-											<h5 class="card-title">Debug</h5>
-											<p class="card-text">Hier findest du das Debug-Tool.</p>
+											<h5 class="card-title">Drucker Einstellungen</h5>
+											<p class="card-text">Hier findest du das Debug-Tool und die Einstellungen.</p>
 											<a href="/system0/html/php/login/v3/php/debug.php" class="stretched-link">weiter</a>
 										</div>
 
