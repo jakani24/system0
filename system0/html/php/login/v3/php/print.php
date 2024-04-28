@@ -1,3 +1,40 @@
+<?php
+function exract_param($gcode) {
+    $matches = [];
+    $pattern = '/([A-Z])([0-9]+)/';
+    
+    if (preg_match($pattern, $gcode, $matches)) {
+        return $matches[2]; // Return the first match
+    } else {
+        return false; // No match found
+    }
+}
+
+function check_file($path){//check file for temperature which are toi high
+	$file = fopen($path, 'r');
+	$cnt=0;
+	while (!feof($file)&&$cnt!=2) {
+	    $line = fgets($file);
+	    
+	    // Extract parameter from lines with specific commands
+	    if (strpos($line, 'M104') !== false || strpos($line, 'M140') !== false) {
+		$cnt++;
+	        $parameter = exract_param($line);
+		if(strpos($line, 'M104') !== false){ //extruder_temp
+			$ex_temp=$parameter;
+		}
+		if(strpos($line, 'M140') !== false){ //bed temp
+			$bed_temp=$parameter;
+		}
+	    }
+	}
+	if($bed_temp>75 or $ex_temp>225){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+?>
 <!DOCTYPE html>
 <html>
 	<?php
@@ -163,28 +200,32 @@
 							if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
 								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Erfolg! Die Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen.</div></center>");
 								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div></center>");
-								exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
-								//file is on printer and ready to be printed
-								$userid=$_SESSION["id"];
-								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div></center>");
-								sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
-								$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
-								$json=json_decode($fg,true);
-								if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
-								{
-									echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgang konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div></center>");
-									sys0_log("Could not start job for ".$_SESSION["username"]."with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
-								}
-								else
-								{
-									$sql="update printer set free=0, printing=1,mail_sent=0, used_by_userid=$userid where id=$printer_id";
-									$stmt = mysqli_prepare($link, $sql);					
-									mysqli_stmt_execute($stmt);
-									//delete printer key:
-									$sql="DELETE from print_key where print_key='$print_key'";
-									$stmt = mysqli_prepare($link, $sql);
-									mysqli_stmt_execute($stmt);	
-									mysqli_stmt_close($stmt);	
+								if(check_file($path)!=0){
+									exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
+									//file is on printer and ready to be printed
+									$userid=$_SESSION["id"];
+									echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div></center>");
+									sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
+									$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
+									$json=json_decode($fg,true);
+									if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
+									{
+										echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgang konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div></center>");
+										sys0_log("Could not start job for ".$_SESSION["username"]."with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
+									}
+									else
+									{
+										$sql="update printer set free=0, printing=1,mail_sent=0, used_by_userid=$userid where id=$printer_id";
+										$stmt = mysqli_prepare($link, $sql);					
+										mysqli_stmt_execute($stmt);
+										//delete printer key:
+										$sql="DELETE from print_key where print_key='$print_key'";
+										$stmt = mysqli_prepare($link, $sql);
+										mysqli_stmt_execute($stmt);	
+										mysqli_stmt_close($stmt);	
+									}
+								}else{
+									echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Achtung, deinen Bett oder Extruder Temperatur ist sehr hoch eingestellt. Dies wird zur zerstörung des Druckes und somit zu Müll führen. Bitte setze diese Temperaturen tiefer in den Einstellungen deines Slicers.</div></center>");
 								}
 							}
 							else
@@ -215,31 +256,35 @@
 					mysqli_stmt_close($stmt);
 	
 							echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div></center>");
-							exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
-							//file is on printer and ready to be printed
-							$userid=$_SESSION["id"];
-							echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div></center>");
-							sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
-							$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
-							$json=json_decode($fg,true);
-							//echo('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
-							//echo("<br><br><br>");							
-							//var_dump($json);
-							if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
-							{
-								echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgang konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div></center>");
-								sys0_log("Could not start job for ".$_SESSION["username"]."with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
-							}
-							else
-							{
-								$sql="update printer set free=0, printing=1,mail_sent=0, used_by_userid=$userid where id=$printer_id";
-								$stmt = mysqli_prepare($link, $sql);					
-								mysqli_stmt_execute($stmt);
-								//delete printer key:
-								$sql="DELETE from print_key where print_key='$print_key'";
-								$stmt = mysqli_prepare($link, $sql);
-								mysqli_stmt_execute($stmt);	
-								mysqli_stmt_close($stmt);	
+							if(check_file($path)){
+								exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
+								//file is on printer and ready to be printed
+								$userid=$_SESSION["id"];
+								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div></center>");
+								sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
+								$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
+								$json=json_decode($fg,true);
+								//echo('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
+								//echo("<br><br><br>");							
+								//var_dump($json);
+								if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
+								{
+									echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgang konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div></center>");
+									sys0_log("Could not start job for ".$_SESSION["username"]."with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
+								}
+								else
+								{
+									$sql="update printer set free=0, printing=1,mail_sent=0, used_by_userid=$userid where id=$printer_id";
+									$stmt = mysqli_prepare($link, $sql);					
+									mysqli_stmt_execute($stmt);
+									//delete printer key:
+									$sql="DELETE from print_key where print_key='$print_key'";
+									$stmt = mysqli_prepare($link, $sql);
+									mysqli_stmt_execute($stmt);	
+									mysqli_stmt_close($stmt);	
+								}
+							}else{
+								echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Achtung, deinen Bett oder Extruder Temperatur ist sehr hoch eingestellt. Dies wird zur zerstörung des Druckes und somit zu Müll führen. Bitte setze diese Temperaturen tiefer in den Einstellungen deines Slicers.</div></center>");
 							}
 					}
 					else{
