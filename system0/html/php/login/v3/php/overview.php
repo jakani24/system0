@@ -195,6 +195,7 @@ function load_user()
 									$print_time_left=seconds_to_time(intval($json["progress"]["printTimeLeft"]));
 									$print_time_total=seconds_to_time(intval($json["job"]["estimatedPrintTime"]));
 
+									echo("div class='d-flex flex-wrap justify-content-center'>");
 									echo("<div class='card'>");
 									echo("<div class='card-body'>");
 									echo("<h5 class='card-title'>Drucker $printer_id</h5>");
@@ -202,7 +203,7 @@ function load_user()
 									echo("<div class='card-body'>");
 									echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url&rotation=$rotation'></iframe>");
 									echo("<div class='progress'>");
-									  echo("<div class='progress-bar' role='progressbar' style='width: $progress%' aria-valuenow='$progress' aria-valuemin='0' aria-valuemax='100'>$progress%</div>");
+									echo("<div class='progress-bar' role='progressbar' style='width: $progress%' aria-valuenow='$progress' aria-valuemin='0' aria-valuemax='100'>$progress%</div>");
 									echo("</div>");
 									echo("<table class='table table-borderless'>");
 									echo("<thead>");
@@ -264,7 +265,7 @@ function load_user()
 									echo("<div class='card-body'>");
 									echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url&rotation=$rotation'></iframe>");
 									echo("<div class='progress'>");
-									  echo("<div class='progress-bar' role='progressbar' style='width: $progress%' aria-valuenow='$progress' aria-valuemin='0' aria-valuemax='100'>$progress%</div>");
+									echo("<div class='progress-bar' role='progressbar' style='width: $progress%' aria-valuenow='$progress' aria-valuemin='0' aria-valuemax='100'>$progress%</div>");
 									echo("</div>");
 									echo("<table class='table table-borderless'>");
 									echo("<thead>");
@@ -300,6 +301,7 @@ function load_user()
 							echo("</div>");
 						}
 						$cnt--;
+						echo("</div>");
 						echo("</div>");
 					}
 					echo("</div></div>");
