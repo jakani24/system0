@@ -29,9 +29,9 @@ function check_file($path){//check file for temperature which are toi high
 	    }
 	}
 	if($bed_temp>75 or $ex_temp>225){
-		return 1;
-	}else{
 		return 0;
+	}else{
+		return 1;
 	}
 }
 ?>
