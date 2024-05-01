@@ -244,7 +244,7 @@ function load_user()
 									echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
 									echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
 									echo("<tr><td>Datei</td><td>".substr($json["job"]["file"]["name"],0,20)."...</td></tr>");
-									if($useuserid==$_SESSION["id"] or $role[3]=="1"){
+									if($userid==$_SESSION["id"] or $role[3]=="1"){
 										echo("<tr><td><a class='btn btn-success' href='overview.php?free=$printer_id&rid=".$_SESSION["rid"]."'>Freigeben</a></td></tr>");
 									}
 									echo("</thead>");
