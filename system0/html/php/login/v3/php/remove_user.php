@@ -327,7 +327,7 @@ function load_admin()
 							echo('<option unban="'.$username.'">'.$username.'</option>');
 						}
 				} else{
-					echo "<div class='alert alert-danger' role='alert'>Oops! Something went wrong. Please try again later.</div>";
+					echo "<div class='alert alert-danger' role='alert'>Huch! Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.</div>";
 				}
 
 				// Close statement
@@ -371,6 +371,7 @@ function load_admin()
 								echo("<td>Debug</td>");
 								echo("<td>Alle Dateien von Öffentlicher Cloud löschen</td>");
 								echo("<td>Aktualisieren</td>");
+								echo("<td>Benutzer löschen</td>");
 							echo("</tr>");
 						echo("</thead>");
 						echo("<tbody>");
@@ -446,6 +447,7 @@ function load_admin()
 									else
 										echo('<td><input class="form-check-input" type="checkbox" value="" name="delete_from_public_cloud" ></td>');
 									echo('<td><input type="submit" class="btn btn-dark mb-5" value="Aktualisieren"  id="button"></td>');
+									echo('<td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#accept">Benutzer löschen</button></td>');
 									echo("</form></tr>");
 									$last_id=$tid;
 									$cnt--;
@@ -457,6 +459,26 @@ function load_admin()
 				?>
 			</div
 		</div>
+	</div>
+	<div class="modal fade" id="accept" tabindex="-1" aria-labelledby="accept" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Benutzer wirklich löschen?</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        <div class="d-flex flex-row bd-highlight m-3">
+		  <div class="p-2 bd-highlight">
+			 <button type="button" class="btn-success">Bestätigen</button> 
+		  </div>
+		  <div class="p-2 bd-highlight">
+			<button type="button" class="btn-danger" data-bs-dismiss="modal" aria-label="Close">Nein</button> 
+		  </div>
+		</div>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 </div>	
 

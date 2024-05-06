@@ -25,12 +25,12 @@
 	
 	<style>
 		.green {
-			color: #2E6A2F;
+			color: #ffffff;
 			text-decoration: none;
 		} 
 		.green:hover,
 		.green:active {
-			color: #017D1A;
+			color: #e2e2e2;
 			text-decoration: none;
 		}
 	</style>
@@ -86,8 +86,8 @@
 								');
 						?>
 					<li class="nav-item">
-						<a class="btn green" role="button" data-bs-toggle="modal" data-bs-target="#account"><i class="fa-solid fa-gear" style="color: #2E6A2F;"></i></a>
-						<a href="/system0/html/php/login/v3/logout.php" class="btn me-2 green" role="button"><i class="fa-solid fa-right-from-bracket" style="color: #2E6A2F;"></i></a>
+						<a class="btn green" role="button" data-bs-toggle="modal" data-bs-target="#account"><i class="fa-solid fa-gear"></i></a>
+						<a href="/system0/html/php/login/v3/logout.php" class="btn me-2 green" role="button"><i class="fa-solid fa-right-from-bracket"></i></a>
 					</li>
 				</ul>
 			</div>
@@ -116,7 +116,7 @@
 							echo('
 								<div class="card m-2" style="width: 14em;" href="#">
 									<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-										<i class="fa-solid fa-lock fa-8x justify-content-center"></i>
+										<i class="fa-solid fa-lock fa-6x justify-content-center"></i>
 									</div>
 
 									<div class="card-body">
@@ -132,7 +132,7 @@
 								echo('
 									<div class="card m-2" style="width: 14em;" href="#">
 										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-											<i class="fa-solid fa-user-plus fa-8x justify-content-center"></i>
+											<i class="fa-solid fa-user-plus fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">Neuer Admin erstellen</h5>
@@ -148,10 +148,10 @@
 
 									<div class="card m-2" style="width: 14em;" href="#">
 										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-											<i class="fa-solid fa-user-minus fa-8x justify-content-center"></i>
+											<i class="fa-solid fa-users fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
-											<h5 class="card-title">Benutzer entfernen</h5>
+											<h5 class="card-title">Benutzer verwalten</h5>
 											<p class="card-text">Entfernen Sie ein Benutzerkonto aus dem System.</p>
 											<a href="/system0/html/php/login/v3/php/remove_user.php" class="stretched-link">weiter</a>
 										</div>
@@ -161,7 +161,7 @@
 							echo('
 								<div class="card m-2" style="width: 14em;" href="#">
 									<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-										<i class="fa-solid fa-trash fa-8x justify-content-center"></i>
+										<i class="fa-solid fa-trash fa-6x justify-content-center"></i>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title">Account löschen</h5>
@@ -175,7 +175,7 @@
 							echo('
 								<div class="card m-2" style="width: 14em;" href="#">
 									<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-										<i class="fa-solid fa-shield-halved fa-8x justify-content-center"></i>
+										<i class="fa-solid fa-shield-halved fa-6x justify-content-center"></i>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title">Datenschutzrichtlinie</h5>
@@ -189,7 +189,7 @@
 							echo('
 								<div class="card m-2" style="width: 14em;" href="#">
 									<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-										<i class="fa-solid fa-circle-info fa-8x justify-content-center"></i>
+										<i class="fa-solid fa-circle-info fa-6x justify-content-center"></i>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title">Disclaimer</h5>
@@ -205,7 +205,7 @@
 								echo('
 									<div class="card m-2" style="width: 14em;" href="#">
 										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-											<i class="fa-solid fa-file fa-8x justify-content-center"></i>
+											<i class="fa-solid fa-file fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">View system0 Log</h5>
@@ -220,7 +220,7 @@
 								echo('
 									<div class="card m-2" style="width: 14em;" href="#">
 										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-											<i class="fa-solid fa-key fa-8x justify-content-center"></i>
+											<i class="fa-solid fa-key fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">View the system0 API Key</h5>
@@ -235,11 +235,11 @@
 								echo('
 									<div class="card m-2" style="width: 14em;" href="#">
 										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-											<i class="fa-solid fa-jedi-order fa-8x justify-content-center"></i>
+											<i class="fa-solid fa-print fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
-											<h5 class="card-title">Debug</h5>
-											<p class="card-text">Hier findest du das Debug-Tool.</p>
+											<h5 class="card-title">Drucker Einstellungen</h5>
+											<p class="card-text">Hier findest du das Debug-Tool und die Einstellungen.</p>
 											<a href="/system0/html/php/login/v3/php/debug.php" class="stretched-link">weiter</a>
 										</div>
 
@@ -250,7 +250,7 @@
 								?>
 							<div class="card m-2" style="width: 14em;" href="#">
 								<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
-									<i class="fa-solid fa-message fa-8x justify-content-center"></i>
+									<i class="fa-solid fa-message fa-6x justify-content-center"></i>
 								</div>
 								<div class="card-body">
 									<input id="telegram_id" type="text" class="form-control mb-2" placeholder="Telegram Chat Id" value="<?php echo($_SESSION["telegram_id"]); ?>" oninput="update_telegram_id();">

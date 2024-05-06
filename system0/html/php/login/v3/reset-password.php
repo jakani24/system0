@@ -19,7 +19,6 @@ $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = "";
 $old_password="";
 $old_passwort_err="";
- echo("<div id='content'></div>");
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $login_err="";
@@ -138,18 +137,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$color=$_SESSION["color"]; 
 	include "/var/www/html/system0/html/php/login/v3/components.php";
 ?>
-<?php echo(" <body style='background-color:$color'> ");?>
+<?php echo(" <body style='background-color:$color'> ");
+
 <script src="/system0/html/php/login/v3/js/load_page.js"></script>
 <script>
-	function load_admin()
-	{
-		$(document).ready(function(){
-		$('#content').load("/system0/html/php/login/v3/html/admin_page.php");
-		});
-		$(document).ready(function(){
-	$('#footer').load("/system0/html/php/login/v3/html/footer.html");
-	});
-	}
+	
 	function load_user()
 	{
 		$(document).ready(function(){
@@ -163,17 +155,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <?php
     $username=$_SESSION["username"];
     $role=$_SESSION["role"];
-    if($role=="user")
-    {
-	echo "<script type='text/javascript' >load_user()</script>";
-    }
-    if($role=="admin")
-    {
-	echo "<script type='text/javascript' >load_admin()</script>";
-    }
-?>
+		echo "<script type='text/javascript' >load_user()</script>";
+    
 
-	
+echo("<div id='content'></div>");?>	
 <div class="jumbotron d-flex align-items-center" style="height:95vh;">
   <div class="container" style="width:50%;">
     <h3 class="text-center">Passwort zurücksetzen</h3>
