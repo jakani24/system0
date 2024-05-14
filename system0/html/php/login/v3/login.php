@@ -362,18 +362,18 @@ EOF;
 
 	// Funktion zur Überprüfung der Fenstergröße
 	function checkWindowSize() {
-	  var windowWidth = window.innerWidth;
+	  //var windowWidth = window.innerWidth;
 	
-	  if (windowWidth < 1000) {
-	    fetch("/system0/html/php/login/v3/php/init_mobile_view.php")
-	    galleryModal.show();  
-	  } else {
-	    galleryModal.hide();
-	  }
+	  //if (windowWidth < 1000) {
+	  //  fetch("/system0/html/php/login/v3/php/init_mobile_view.php")
+	  //  galleryModal.show();  
+	  //} else {
+	  //  galleryModal.hide();
+	  //}
 	}
 
 	// Initialer Aufruf beim Laden der Seite
-	checkWindowSize();
+	//checkWindowSize();
 
 	// Ereignislistener für das Ändern der Fenstergröße
 	//window.addEventListener('resize', checkWindowSize);
