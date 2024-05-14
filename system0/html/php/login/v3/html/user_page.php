@@ -54,6 +54,11 @@
 						session_start();
 						echo('
 							<li class="nav-item">
+								<a class="btn btn-link green" href="/system0/html/user_files/sys0_autonomous/anleitung.pdf">System0 / 3d-Druck Anleitung</a>
+							</li>
+							');
+						echo('
+							<li class="nav-item">
 								<a class="btn btn-link green" href="/system0/html/php/login/v3/php/bugreport.php">Fehler melden</a>
 							</li>
 							');
