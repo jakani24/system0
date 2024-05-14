@@ -137,7 +137,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$color=$_SESSION["color"]; 
 	include "/var/www/html/system0/html/php/login/v3/components.php";
 ?>
-<?php echo(" <body style='background-color:$color'> ");
+<?php echo(" <body style='background-color:$color'> "); ?>
 
 <script src="/system0/html/php/login/v3/js/load_page.js"></script>
 <script>
