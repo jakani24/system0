@@ -368,19 +368,20 @@ function check_file($path){//check file for temperature which are toi high
 							while($num_of_printers!=0)
 							{
 								$id=0;
-								$sql="Select id from printer where id>$last_id and free=1 order by id";
+								$sql="Select id,color from printer where id>$last_id and free=1 order by id";
 								//echo $sql;
+								$color="";
 								$stmt = mysqli_prepare($link, $sql);
 								mysqli_stmt_execute($stmt);
 								mysqli_stmt_store_result($stmt);
-								mysqli_stmt_bind_result($stmt, $id);
+								mysqli_stmt_bind_result($stmt, $id,$color);
 								mysqli_stmt_fetch($stmt);
 								if($id!=0 && $id!=$last_id)
 								{
 									if($id==$preselect)
-										echo("<option printer='$id' value='$id' selected>Printer $id</option>");
+										echo("<option printer='$id' value='$id' selected>Printer $id - $color</option>");
 									else
-										echo("<option printer='$id' value='$id'>Printer $id</option>");
+										echo("<option printer='$id' value='$id'>Printer $id - $color</option>");
 									$printers_av++;
 								}
 								$last_id=$id;
@@ -420,8 +421,9 @@ function check_file($path){//check file for temperature which are toi high
 								while($num_of_printers!=0)
 								{
 									$id=0;
-									$sql="Select id from printer where id>$last_id order by id";
+									$sql="Select id,color from printer where id>$last_id order by id";
 									//echo $sql;
+									$color="";
 									$stmt = mysqli_prepare($link, $sql);
 									mysqli_stmt_execute($stmt);
 									mysqli_stmt_store_result($stmt);
@@ -430,9 +432,9 @@ function check_file($path){//check file for temperature which are toi high
 									if($id!=0 && $id!=$last_id)
 									{
 										if($id==$preselect)
-											echo("<option printer='$id' value='$id' selected>Drucker $id</option>");
+											echo("<option printer='$id' value='$id' selected>Drucker $id - $color</option>");
 										else
-											echo("<option printer='$id' value='$id'>Drucker $id</option>");
+											echo("<option printer='$id' value='$id'>Drucker $id - $color</option>");
 										$printers_av++;
 									}
 									$last_id=$id;
