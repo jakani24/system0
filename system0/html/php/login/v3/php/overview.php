@@ -161,14 +161,15 @@ function load_user()
                                                         //echo("<div class='col-4' style='padding:5px'>");
                                                 $userid=0;
                                                 if(isset($_GET["private"]))
-                                                        $sql="select rotation,free,id,printer_url,apikey,cancel,used_by_userid,system_status from printer where id>$last_id and used_by_userid=".$_SESSION["id"]." ORDER BY id";
+                                                        $sql="select rotation,free,id,printer_url,apikey,cancel,used_by_userid,system_status,color from printer where id>$last_id and used_by_userid=".$_SESSION["id"]." ORDER BY id";
                                                 else
-                                                        $sql="select rotation,free,id,printer_url,apikey,cancel,used_by_userid,system_status from printer where id>$last_id ORDER BY id";
+                                                        $sql="select rotation,free,id,printer_url,apikey,cancel,used_by_userid,system_status,color from printer where id>$last_id ORDER BY id";
                                                 $cancel=0;
+                                                $filament_color="";
                                                 $stmt = mysqli_prepare($link, $sql);
                                                 mysqli_stmt_execute($stmt);
                                                 mysqli_stmt_store_result($stmt);
-                                                mysqli_stmt_bind_result($stmt, $rotation,$is_free,$printer_id,$url,$apikey,$cancel,$userid,$system_status);
+                                                mysqli_stmt_bind_result($stmt, $rotation,$is_free,$printer_id,$url,$apikey,$cancel,$userid,$system_status,$filament_color);
                                                 mysqli_stmt_fetch($stmt);
                                                 $last_id=$printer_id;
 
@@ -296,6 +297,8 @@ function load_user()
                                                         echo("<table class='table table-borderless'>");
                                                         echo("<thead>");
                                                         echo("<tr><td>Status</td><td style='color:green'>Bereit</td></tr>");
+                                                        if(!empty($filament_color) && $filament_color!=NULL)
+                                                        	echo("<tr><td>Filamentfarbe</td><td >$filament_color</td></tr>");
                                                         echo("<tr><td><a class='btn btn-dark' href='print.php?preselect=$printer_id'>Drucken</a></td></tr>");
                                                         echo("</thead>");
                                                         echo("</table>");
