@@ -65,7 +65,7 @@ The 'api' table:<br>
   c) start ngrok with the following command: `ngrok http 80`<br><br>
   d) Run the following command to register the printer to system0: `url=$(curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"https:..([^"]*).*/\1/p' )` <br>
    `echo $url`<br>
-   `curl --silent https://SYSTEM0_WEBSERVER_URL/system0/html/api/update_url.php?url=$url&id=ENTER_THE_ID_FOR_THIS_MACHINE_HERE&apikey=YOUR_SYSTEM0_APIKEY&octoapikey=OCTOPRINT_ADMIN_APIKEY`
+   `curl --silent "https://SYSTEM0_WEBSERVER_URL/system0/html/api/update_url.php?url=$url&id=ENTER_THE_ID_FOR_THIS_MACHINE_HERE&apikey=YOUR_SYSTEM0_APIKEY&octoapikey=OCTOPRINT_ADMIN_APIKEY"`
   <br><br>
   e) and replace the ENTER_THE_ID_FOR_THIS_MACHINE_HERE with a positive integer. This integer will be used to identifie the printer later on. <br><br>
   f) if you run the command with an id that is already taken it will overwrite/update the old entry!<br>So you can for example make a script that updates the octoprint url once a day or after every reboot, because ngrok will give you a new url after every restart<br><br>
@@ -74,4 +74,4 @@ The 'api' table:<br>
 <br><br>
 2) If you will only use system0 on a local network:<br> 
     just skip the ngrok part and execute the follwoing command with the ip of your device.<br>
-  `curl --silent https://SYSTEM0_WEBSERVER_URL/system0/html/api/update_url.php?url=IP_OF_YOUR_OCTOPRINT_MACHINE&id=ENTER_THE_ID_FOR_THIS_MACHINE_HERE&apikey=YOUR_SYSTEM0_APIKEY&octoapikey=OCTOPRINT_ADMIN_APIKEY`
+  `curl --silent "https://SYSTEM0_WEBSERVER_URL/system0/html/api/update_url.php?url=IP_OF_YOUR_OCTOPRINT_MACHINE&id=ENTER_THE_ID_FOR_THIS_MACHINE_HERE&apikey=YOUR_SYSTEM0_APIKEY&octoapikey=OCTOPRINT_ADMIN_APIKEY"`
