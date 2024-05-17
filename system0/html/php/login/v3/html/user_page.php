@@ -251,7 +251,20 @@
 									</div>
 	 								');
 
-	  				
+	  						if($_SESSION["role"][9]==="1")
+								echo('
+									<div class="card m-2" style="width: 14em;" href="#">
+										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
+											<i class="fa-solid fa-print fa-6x justify-content-center"></i>
+										</div>
+										<div class="card-body">
+											<h5 class="card-title">Drucker Reservieren</h5>
+											<p class="card-text">Hier kannst du Drucker Reservieren.</p>
+											<a href="/system0/html/php/login/v3/php/reservations.php" class="stretched-link">weiter</a>
+										</div>
+
+									</div>
+	 								');
 								?>
 							<div class="card m-2" style="width: 14em;" href="#">
 								<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
