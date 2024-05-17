@@ -57,8 +57,8 @@ The 'api' table:<br>
   <tr><th>Field</th><th>Type</th><th>NULL</th><th>Key</th><th>Default</th><th>Extra</th>  </tr>
   <tr><td>id</td><td>int</td><td>NO</td><td>PRI</td><td>NULL</td><td>auto_increment</td></tr>
   <tr><td>set_by_userid</td><td>INT</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
-  <tr><td>time_from</td><td>INT</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
-  <tr><td>time_to</td><td>INT</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
+  <tr><td>time_from</td><td>TEXT</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
+  <tr><td>time_to</td><td>TEXT</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
   <tr><td>day</td><td>TEXT</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
  </table>
  
