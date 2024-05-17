@@ -75,6 +75,14 @@ function load_user()
 						$stmt = mysqli_prepare($link, $sql);					
 						mysqli_stmt_execute($stmt);
 					}
+					if(isset($_POST['update_color']))
+					{
+						$printer_id=htmlspecialchars($_GET['id']);
+						$color=htmlspecialchars($_POST["color"]);
+						$sql="update printer set color='$color' where id=$printer_id";
+						$stmt = mysqli_prepare($link, $sql);					
+						mysqli_stmt_execute($stmt);
+					}
 					
 					$cnt=0;
 					$url="";
@@ -134,7 +142,7 @@ function load_user()
 				mysqli_stmt_bind_result($stmt, $cnt);
 				mysqli_stmt_fetch($stmt);	
 				//echo($cnt);
-				echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Druckerid</th><th>Rotation</th></tr></thead><tbody>");
+				echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Druckerid</th><th>Rotation</th><th>Aktualisieren</th></tr></thead><tbody>");
 				$last_id=0;	
 				$rotation=0;
 				while($cnt!=0)
@@ -153,12 +161,53 @@ function load_user()
 					
 					$used_by_user="";
 
-					echo("<tr><td>$printer_id</td><td><form method='POST' action='?id=$printer_id'><input type='number' value='$rotation' name='rotation' placeholder='rotation (deg)'></input><button type='submit' value='update'  name='update' class='btn btn-dark'>Update</button></form></tr>");
+					echo("<tr><td>$printer_id</td><td><form method='POST' action='?id=$printer_id'><input type='number' value='$rotation' name='rotation' placeholder='rotation (deg)'></input></td><td><button type='submit' value='update'  name='update' class='btn btn-dark'>Update</button></form></td></tr>");
 					
 					$cnt--;
 				}
-				echo("</tbody></table></div></div></div></div>");
+				echo("</tbody></table></div></div></div>");
 			?>
+				<br><br>
+				<h1>Filamentfarbe</h1>
+				<?php
+					//list printers => form => color
+					$cnt=0;
+					$url="";
+					$apikey="";
+					$sql="select count(*) from printer";
+					$stmt = mysqli_prepare($link, $sql);					
+					mysqli_stmt_execute($stmt);
+					mysqli_stmt_store_result($stmt);
+					mysqli_stmt_bind_result($stmt, $cnt);
+					mysqli_stmt_fetch($stmt);	
+					//echo($cnt);
+					echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Druckerid</th><th>Rotation</th><th>Aktualisieren</th></tr></thead><tbody>");
+					$last_id=0;	
+					$color="";
+					while($cnt!=0)
+					{
+						$userid=0;
+						$sql="select color,id from printer where id>$last_id ORDER BY id";
+						$cancel=0;
+						$stmt = mysqli_prepare($link, $sql);					
+						mysqli_stmt_execute($stmt);
+						mysqli_stmt_store_result($stmt);
+						mysqli_stmt_bind_result($stmt, $color,$printer_id);
+						mysqli_stmt_fetch($stmt);
+
+						
+						$last_id=$printer_id;
+						
+						$used_by_user="";
+
+						echo("<tr><td>$printer_id</td><td><form method='POST' action='?id=$printer_id'><input type='text' value='$color' name='color' placeholder='Filamentfarbe'></input></td><td><button type='submit' value='update_color'  name='update_color' class='btn btn-dark'>Update</button></form></td></tr>");
+						
+						$cnt--;
+					}
+					echo("</tbody></table></div></div></div>");
+					echo("</div>");
+				
+				?>
 			
 				<?php
 					test_queue($link);
