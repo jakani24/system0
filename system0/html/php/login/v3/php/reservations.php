@@ -66,8 +66,8 @@ if(isset($_GET["del"])){
 				<!-- Add reservation -->
 				<h4>Reservation hinzufügen</h4>
 				<form action="reservations.php?set_reservation" method="post">
-					<input type="text" placeholder="time from" name="time_from">
-					<input type="text" placeholder="time to" name="time_to">
+					<input type="text" placeholder="Von (z.B. 14:00)" name="time_from">
+					<input type="text" placeholder="Bis (z.B. 15:00)" name="time_to">
 					<input type="date" name="date">
 					<button type="submit" value="res" name ="res" class="btn btn-primary">Reservieren</button>
 				</form>
