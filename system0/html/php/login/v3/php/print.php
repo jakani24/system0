@@ -29,9 +29,9 @@ function check_file($path){//check file for temperature which are toi high
 	    }
 	}
 	if($bed_temp>75 or $ex_temp>225){
-		return 0;
-	}else{
 		return 1;
+	}else{
+		return 0;
 	}
 }
 ?>
@@ -298,7 +298,31 @@ function check_file($path){//check file for temperature which are toi high
 	
 			<div class="text-center mt-5" style="min-height: 95vh">
 				<h1>Datei drucken</h1>
+				<!-- Reservations notice -->
+				<?php
+					$today=date("Y-m-d");
+					$sql="select time_from, time_to from reservations where day='$today';";
+					$stmt = $link->prepare($sql);
+        				$stmt->execute();
+        				$result = $stmt->get_result();
+        				$row = $result->fetch_assoc();
+        				if(!empty($row)){
+						$time_now=date("h:i");
+						$hour_low=intval(explode(":",$row["time_from"])[0]);
+						$minute_low=intval(explode(":",$row["time_from"])[1]);
+						$hour_high=intval(explode(":",$row["time_to"])[0]);
+						$minute_high=intval(explode(":",$row["time_to"])[1]);
+						$hour_now=intval(explode(":",$time_now)[0])+2;
+						$minute_now=intval(explode(":",$time_now)[1]);
+						//implement logic to check if is currently reserved
+						if(intval($hour_now)<=intval($hour_high)&&intval($hour_now)>=intval($hour_low)){
+							echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Die Drucker sind zurzeit reserviert! Bitte drucke nur, wenn du gerade im Informatik Unterricht bist!</div></center>");
+						}
+					}
+				?>
 				<div class="container d-flex align-items-center justify-content-center" >
+				
+				
 				
 				<form class="mt-5" enctype="multipart/form-data" method="POST" action="">
 					<?php if(!isset($_GET["cloudprint"])){
