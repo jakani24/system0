@@ -318,30 +318,25 @@ function is_time_between($startTime, $endTime, $checkTime) {
 				<!-- Reservations notice -->
 				<?php
 					date_default_timezone_set('Europe/Zurich');
+					$reservation_conflict=false;
 					$today=date("Y-m-d");
 					$sql="select time_from, time_to from reservations where day='$today';";
 					$stmt = $link->prepare($sql);
         				$stmt->execute();
         				$result = $stmt->get_result();
         				$row = $result->fetch_assoc();
-        				if(!empty($row)){
-						$time_now=date("H:i");
-						$hour_low=intval(explode(":",$row["time_from"])[0]);
-						$minute_low=intval(explode(":",$row["time_from"])[1]);
-						$hour_high=intval(explode(":",$row["time_to"])[0]);
-						$minute_high=intval(explode(":",$row["time_to"])[1]);
-						$hour_now=intval(explode(":",$time_now)[0])+2;
-						$minute_now=intval(explode(":",$time_now)[1]);
-						//echo($time_now);
-						//echo(strtotime($row["time_from"])."::");
-						//echo(strtotime($time_now)."::");
-						//echo(strtotime($row["time_to"]));
-						//implement logic to check if is currently reserved
-						//if(intval($hour_now)<=intval($hour_high)&&intval($hour_now)>=intval($hour_low)){
-						if(is_time_between($row["time_from"],$row["time_to"],$time_now)){
-							echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Die Drucker sind zurzeit reserviert! Bitte drucke nur, wenn du gerade im Informatik Unterricht bist!</div></center>");
-						}
+        				$time_now=date("H:i");
+        				while ($row = $result->fetch_assoc()) {
+					    if (is_time_between($row["time_from"], $row["time_to"], $time_now)) {
+						$reservation_conflict = true;
+						break;
+					    }
 					}
+
+					if ($reservation_conflict) {
+					    echo "<center><div style='width:50%' class='alert alert-danger' role='alert'>Die Drucker sind zurzeit reserviert! Bitte drucke nur, wenn du gerade im Informatik Unterricht bist!</div></center>";
+					}
+
 				?>
 				<div class="container d-flex align-items-center justify-content-center" >
 				
