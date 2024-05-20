@@ -406,7 +406,7 @@ function is_time_between($startTime, $endTime, $checkTime) {
 								$num_of_printers--;
 							}
 							if($printers_av==0){
-								echo("<option printer='queue' value='queue'>An warteschlange Senden</option>");
+								echo("<option printer='queue' value='queue'>an Warteschlange Senden</option>");
 
 							}	
 							?>
