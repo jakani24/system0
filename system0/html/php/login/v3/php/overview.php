@@ -44,12 +44,6 @@ function load_user()
 
             // Convert remaining seconds to minutes
             $minutes = floor(($seconds % 3600) / 60);
-
-            // Return the result as an associative array
-            //return array(
-        //      "hours" => $hours,
-        //      "minutes" => $minutes
-         //   );
                 if($hours!=0){
                         if($hours==1)
                                 return sprintf("%d Stunde %d Minuten", $hours, $minutes);
@@ -71,10 +65,9 @@ function load_user()
 </head>
 <body>
         <div id="content"></div>
-        <div class="container mt-5">
+        <div>
                 <div class="row justify-content-center">
-                <div style="width: 100hh;min-height:95vh">
-            <!--  <h1>Alle Drucker</h1> -->
+                <div style="width: 100%;min-height:95vh">
                                 <?php
                                         if(isset($_GET['free'])&&$_GET["rid"]==($_SESSION["rid"]-1))
                                         {
@@ -141,24 +134,21 @@ function load_user()
                                         mysqli_stmt_fetch($stmt);
                                         //echo($cnt);
                                         $is_free=0;
-                                        //echo("<div class='d-flex flex-wrap justify-content-center'>");
-                                        echo("<div class='container'><div class='row'>");
-                                        echo("<div style='padding:5px'>");
-                                                if(isset($_GET["private"]))
-                                                        echo("<a class='btn btn-dark' href='overview.php'>Alle Drucker anzeigen</a>");
-                                                else
-                                                        echo("<a class='btn btn-dark' href='overview.php?private'>Nur eigene Aufträge anzeigen</a>");
-                                        echo("</div>");
+                                        echo("<div><div class='row'>");
                                         echo("<div class='d-flex flex-wrap justify-content-center align-items-stretch'>");
+                                        //echo("<div style='margin-left:20%'>");
+                                        echo("<div style='width:100%;margin-left:5px'>");
+                                                if(isset($_GET["private"]))
+                                                        echo("<br><a class='btn btn-dark' href='overview.php'>Alle Drucker anzeigen</a>");
+                                                else
+                                                        echo("<br><a class='btn btn-dark' href='overview.php?private'>Nur eigene Aufträge anzeigen</a>");
+                                        echo("</div>");
+                                        //echo("<div class='d-flex flex-wrap justify-content-center align-items-stretch'>");
                                         $last_id=0;
                                         $system_status=0;
                                         $rotation=0;
                                         while($cnt!=0)
                                         {
-                                                if(isset($_SESSION["mobile_view"]))
-                                                        echo("<div class='col-12' style='padding:5px'>");
-                                                //else
-                                                        //echo("<div class='col-4' style='padding:5px'>");
                                                 $userid=0;
                                                 if(isset($_GET["private"]))
                                                         $sql="select rotation,free,id,printer_url,apikey,cancel,used_by_userid,system_status,color from printer where id>$last_id and used_by_userid=".$_SESSION["id"]." ORDER BY id";
