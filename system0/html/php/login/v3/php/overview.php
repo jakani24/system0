@@ -61,7 +61,31 @@ function load_user()
 ?>
 
   <title>Alle Drucker</title>
+<style>
+ /* Style for the description */
+    .description {
+        display: none; /* Hide the description by default */
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        width: 200px;
+    }
+    
+    /* Style for the element to trigger hover */
+    .hover-element {
+        position: relative;
+        /* Add some space below the element */
+        
+    }
+    
+    /* Style for the element to trigger hover when hovered */
+    .hover-element:hover .description {
+        display: block; /* Show the description on hover */
+    }
 
+</style>
 </head>
 <body>
         <div id="content"></div>
@@ -207,7 +231,8 @@ function load_user()
                                                                         echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
                                                                         echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
                                                                         echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
-                                                                        echo("<tr><td>Datei</td><td>".substr($json["job"]["file"]["name"],0,20)."...</td></tr>");
+                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".substr($json["job"]["file"]["name"],0,20)."...<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
+                                                                        echo("</div>");
                                                                         if($userid==$_SESSION["id"] or $role[3]==="1"){
                                                                                 echo("<tr><td><a class='btn btn-success' href='overview.php?free=$printer_id&rid=".$_SESSION["rid"]."'>Freigeben</a></td></tr>");
                                                                         }
@@ -241,7 +266,7 @@ function load_user()
                                                                         echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
                                                                         echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
                                                                         echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
-                                                                        echo("<tr><td>Datei</td><td>".substr($json["job"]["file"]["name"],0,20)."...</td></tr>");
+                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".substr($json["job"]["file"]["name"],0,20)."...<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
                                                                         if($userid==$_SESSION["id"] or $role[3]=="1"){
                                                                                 echo("<tr><td><a class='btn btn-success' href='overview.php?free=$printer_id&rid=".$_SESSION["rid"]."'>Freigeben</a></td></tr>");
                                                                         }
@@ -273,7 +298,7 @@ function load_user()
                                                                         echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
                                                                         echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
                                                                         echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
-                                                                        echo("<tr><td>Datei</td><td>".substr($json["job"]["file"]["name"],0,20)."...</td></tr>");
+                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".substr($json["job"]["file"]["name"],0,20)."...<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
                                                                         if($userid==$_SESSION["id"] or $role[3]==="1"){
                                                                                 echo("<tr><td><a class='btn btn-danger' href='overview.php?cancel=$printer_id&rid=".$_SESSION["rid"]."'>Abbrechen</a></td></tr>");
                                                                         }
