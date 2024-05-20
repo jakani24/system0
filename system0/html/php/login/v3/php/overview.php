@@ -212,6 +212,8 @@ function load_user()
                                                                         echo("<thead>");
                                                                         echo("<tr><td>Status</td><td style='color:green'>Fertig</td></tr>");
                                                                         echo("<tr><td>Genutzt von</td><td>".$username2[0]."</td></tr>");
+                                                                        if(!empty($filament_color) && $filament_color!=NULL)
+                                                        			echo("<tr><td>Filamentfarbe</td><td >$filament_color</td></tr>");
                                                                         echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
                                                                         echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
                                                                         echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
@@ -244,6 +246,8 @@ function load_user()
                                                                         //else
                                                                         //      echo("<tr><td>Status</td><td style='color:red'>Fehler</td></tr>");
                                                                         echo("<tr><td>Genutzt von</td><td>".$username2[0]."</td></tr>");
+                                                                        if(!empty($filament_color) && $filament_color!=NULL)
+                                                        			echo("<tr><td>Filamentfarbe</td><td >$filament_color</td></tr>");
                                                                         echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
                                                                         echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
                                                                         echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
@@ -274,6 +278,8 @@ function load_user()
                                                                         echo("<thead>");
                                                                         echo("<tr><td>Status</td><td style='color:orange'>Drucken</td></tr>");
                                                                         echo("<tr><td>Genutzt von</td><td>".$username2[0]."</td></tr>");
+                                                                        if(!empty($filament_color) && $filament_color!=NULL)
+                                                        			echo("<tr><td>Filamentfarbe</td><td >$filament_color</td></tr>");
                                                                         echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
                                                                         echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
                                                                         echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
