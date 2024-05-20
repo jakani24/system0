@@ -120,14 +120,15 @@
 							session_start();
 							echo('
 								<div class="card m-2" style="width: 14em;" href="#">
-									<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
+									<br>
+									<div class="d-flex justify-content-center align-items-center card-img-top" style="height:auto;margin-top:20px">
 										<i class="fa-solid fa-lock fa-6x justify-content-center"></i>
 									</div>
-
+									
 									<div class="card-body">
 										<h5 class="card-title">Passwort zurücksetzen</h5>
 										<p class="card-text">Setzen Sie Ihr Passwort zurück, wenn Sie es vergessen haben oder wenn Sie es aus Sicherheitsgründen zurücksetzen möchten.</p>
-										<a href="/system0/html/php/login/v3/reset-password.php" class="stretched-link">weiter</a>
+										<a href="/system0/html/php/login/v3/reset-password.php" class="stretched-link"></a>
 									</div>
 
 								</div>
@@ -136,13 +137,13 @@
 							if($_SESSION["role"][5]==="1")
 								echo('
 									<div class="card m-2" style="width: 14em;" href="#">
-										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
+										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: auto;margin-top:20px">
 											<i class="fa-solid fa-user-plus fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">Neuer Admin erstellen</h5>
 											<p class="card-text">Erstellen Sie ein neues Administratorkonto, um Systemeinstellungen und Benutzer zu verwalten.</p>
-											<a href="/system0/html/php/login/v3/php/create_admin.php" class="stretched-link">weiter</a>
+											<a href="/system0/html/php/login/v3/php/create_admin.php" class="stretched-link"></a>
 										</div>
 
 									</div>
@@ -152,26 +153,26 @@
 								echo('
 
 									<div class="card m-2" style="width: 14em;" href="#">
-										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
+										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: auto;margin-top:20px">
 											<i class="fa-solid fa-users fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">Benutzer verwalten</h5>
 											<p class="card-text">Entfernen Sie ein Benutzerkonto aus dem System.</p>
-											<a href="/system0/html/php/login/v3/php/remove_user.php" class="stretched-link">weiter</a>
+											<a href="/system0/html/php/login/v3/php/remove_user.php" class="stretched-link"></a>
 										</div>
 
 									</div>
 									');
 							echo('
 								<div class="card m-2" style="width: 14em;" href="#">
-									<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
+									<div class="d-flex justify-content-center align-items-center card-img-top" style="height: auto;margin-top:20px">
 										<i class="fa-solid fa-trash fa-6x justify-content-center"></i>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title">Account löschen</h5>
 										<p class="card-text">Konto und alle damit verbundenen Daten dauerhaft löschen.</p>
-										<a href="/system0/html/php/login/v3/delete-account.php" class="stretched-link">weiter</a>
+										<a href="/system0/html/php/login/v3/delete-account.php" class="stretched-link"></a>
 									</div>
 
 								</div>
@@ -179,13 +180,13 @@
 						
 							echo('
 								<div class="card m-2" style="width: 14em;" href="#">
-									<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
+									<div class="d-flex justify-content-center align-items-center card-img-top" style="height: auto;margin-top:20px">
 										<i class="fa-solid fa-shield-halved fa-6x justify-content-center"></i>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title">Datenschutzrichtlinie</h5>
 										<p class="card-text">Lesen Sie unsere Datenschutzrichtlinie, um zu erfahren, wie wir mit Ihren Daten umgehen.</p>
-										<a href="/system0/html/php/login/v3/php/privacy-policy.php" class="stretched-link">weiter</a>
+										<a href="/system0/html/php/login/v3/php/privacy-policy.php" class="stretched-link"></a>
 									</div>
 
 								</div>
@@ -193,13 +194,13 @@
 						
 							echo('
 								<div class="card m-2" style="width: 14em;" href="#">
-									<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
+									<div class="d-flex justify-content-center align-items-center card-img-top" style="height: auto;margin-top:20px">
 										<i class="fa-solid fa-circle-info fa-6x justify-content-center"></i>
 									</div>
 									<div class="card-body">
 										<h5 class="card-title">Disclaimer</h5>
 										<p class="card-text">Lesen Sie unseren Haftungsausschluss für wichtige Informationen zur Nutzung unserer Dienste.</p>
-										<a href="/system0/html/php/login/v3/php/disclaimer.php" class="stretched-link">weiter</a>
+										<a href="/system0/html/php/login/v3/php/disclaimer.php" class="stretched-link"></a>
 									</div>
 
 								</div>
@@ -209,13 +210,13 @@
 
 								echo('
 									<div class="card m-2" style="width: 14em;" href="#">
-										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
+										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: auto;margin-top:20px">
 											<i class="fa-solid fa-file fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">View system0 Log</h5>
 											<p class="card-text">Zeigen Sie das Protokoll der Systemaktivitäten und -ereignisse an.</p>
-											<a href="/system0/html/php/login/v3/php/view_log.php" class="stretched-link">weiter</a>
+											<a href="/system0/html/php/login/v3/php/view_log.php" class="stretched-link"></a>
 										</div>
 
 									</div>
@@ -224,13 +225,13 @@
 							if($_SESSION["role"][7]==="1")                        	
 								echo('
 									<div class="card m-2" style="width: 14em;" href="#">
-										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
+										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: auto;margin-top:20px">
 											<i class="fa-solid fa-key fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">View the system0 API Key</h5>
 											<p class="card-text">Zeigen Sie den API-Schlüssel an, der für den Zugriff auf die Systemfunktionalitäten verwendet wird.</p>
-											<a href="/system0/html/php/login/v3/php/view_apikey.php" class="stretched-link">weiter</a>
+											<a href="/system0/html/php/login/v3/php/view_apikey.php" class="stretched-link"></a>
 										</div>
 
 									</div>
@@ -239,13 +240,13 @@
 							if($_SESSION["role"][9]==="1")
 								echo('
 									<div class="card m-2" style="width: 14em;" href="#">
-										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
+										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: auto;margin-top:20px">
 											<i class="fa-solid fa-print fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">Drucker Einstellungen</h5>
 											<p class="card-text">Hier findest du das Debug-Tool und die Einstellungen.</p>
-											<a href="/system0/html/php/login/v3/php/debug.php" class="stretched-link">weiter</a>
+											<a href="/system0/html/php/login/v3/php/debug.php" class="stretched-link"></a>
 										</div>
 
 									</div>
@@ -254,20 +255,20 @@
 	  						if($_SESSION["role"][9]==="1")
 								echo('
 									<div class="card m-2" style="width: 14em;" href="#">
-										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
+										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: auto;margin-top:20px">
 											<i class="fa-solid fa-print fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">Drucker Reservieren</h5>
 											<p class="card-text">Hier kannst du Drucker Reservieren.</p>
-											<a href="/system0/html/php/login/v3/php/reservations.php" class="stretched-link">weiter</a>
+											<a href="/system0/html/php/login/v3/php/reservations.php" class="stretched-link"></a>
 										</div>
 
 									</div>
 	 								');
 								?>
 							<div class="card m-2" style="width: 14em;" href="#">
-								<div class="d-flex justify-content-center align-items-center card-img-top" style="height: 35vh;">
+								<div class="d-flex justify-content-center align-items-center card-img-top" style="height: auto;margin-top:20px">
 									<i class="fa-solid fa-message fa-6x justify-content-center"></i>
 								</div>
 								<div class="card-body">
