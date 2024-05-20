@@ -53,6 +53,17 @@ function load_user()
                 else
                         return sprintf("%d Minuten", $minutes);
         }
+        function short_path($filePath, $firstCharsCount, $lastCharsCount) {
+	    // Get the first few characters of the path
+	    $filePath=str_replace(".gcode","",$filePath);
+	    $firstChars = substr($filePath, 0, $firstCharsCount);
+	    
+	    // Get the last few characters of the path
+	    $lastChars = substr($filePath, -$lastCharsCount);
+	    
+	    // Return the shortened path
+	    return $firstChars . "..." . $lastChars;
+	}
         $color=$_SESSION["color"];
         include "/var/www/html/system0/html/php/login/v3/components.php";
         if(!isset($_SESSION["rid"]))
@@ -231,7 +242,8 @@ function load_user()
                                                                         echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
                                                                         echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
                                                                         echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
-                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".substr($json["job"]["file"]["name"],0,20)."...<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
+                                                                        //echo("<tr><td>Datei</td><td><div class='hover-element'>".substr($json["job"]["file"]["name"],0,20)."...<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
+                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".short_path($json["job"]["file"]["name"],10,10)."<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
                                                                         echo("</div>");
                                                                         if($userid==$_SESSION["id"] or $role[3]==="1"){
                                                                                 echo("<tr><td><a class='btn btn-success' href='overview.php?free=$printer_id&rid=".$_SESSION["rid"]."'>Freigeben</a></td></tr>");
@@ -266,7 +278,7 @@ function load_user()
                                                                         echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
                                                                         echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
                                                                         echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
-                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".substr($json["job"]["file"]["name"],0,20)."...<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
+                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".short_path($json["job"]["file"]["name"],10,10)."<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
                                                                         if($userid==$_SESSION["id"] or $role[3]=="1"){
                                                                                 echo("<tr><td><a class='btn btn-success' href='overview.php?free=$printer_id&rid=".$_SESSION["rid"]."'>Freigeben</a></td></tr>");
                                                                         }
@@ -298,7 +310,7 @@ function load_user()
                                                                         echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
                                                                         echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
                                                                         echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
-                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".substr($json["job"]["file"]["name"],0,20)."...<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
+                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".short_path($json["job"]["file"]["name"],10,10)."<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
                                                                         if($userid==$_SESSION["id"] or $role[3]==="1"){
                                                                                 echo("<tr><td><a class='btn btn-danger' href='overview.php?cancel=$printer_id&rid=".$_SESSION["rid"]."'>Abbrechen</a></td></tr>");
                                                                         }
