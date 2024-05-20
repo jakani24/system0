@@ -256,7 +256,7 @@
 								echo('
 									<div class="card m-2" style="width: 14em;" href="#">
 										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: auto;margin-top:20px">
-											<i class="fa-solid fa-print fa-6x justify-content-center"></i>
+											<i class="fa-solid fa-calendar-days fa-6x justify-content-center"></i>
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">Drucker Reservieren</h5>
