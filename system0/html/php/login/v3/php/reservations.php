@@ -86,7 +86,7 @@ if(isset($_GET["del"])){
 				</form>
 				<br><br>
 				<!-- List reservations -->
-				<h4>Reservationen</h4>
+				<h4>Reservationen (Alte Reservationen werden automatisch gelöscht)</h4>
 				<?php
 					$sql="select * from reservations order by id desc;";
 				        $stmt = $link->prepare($sql);
