@@ -36,6 +36,19 @@ function load_user()
 	include "/var/www/html/system0/html/php/login/v3/components.php";
 ?>
 <?php
+//delete reservations that are not valid anymore.
+date_default_timezone_set('Europe/Zurich');
+$yesterday = new DateTime('yesterday');
+$formattedYesterday = $yesterday->format('Y-m-d');
+
+$sql = "DELETE FROM reservations WHERE day <= ?";
+$stmt = $link->prepare($sql);
+if ($stmt) {
+	$stmt->bind_param("s", $formattedYesterday);
+	$stmt->execute();
+	$stmt->close();
+}
+
 if(isset($_POST["res"])){
 	$time_from=htmlspecialchars($_POST["time_from"]);
 	$time_to=htmlspecialchars($_POST["time_to"]);
@@ -66,7 +79,7 @@ if(isset($_GET["del"])){
 				<!-- Add reservation -->
 				<h4>Reservation hinzufügen</h4>
 				<form action="reservations.php?set_reservation" method="post">
-					<input type="text" placeholder="Von (z.B. 14:00)" name="time_from">
+					<input type="text" placeholder="von (z.B. 14:00)" name="time_from">
 					<input type="text" placeholder="Bis (z.B. 15:00)" name="time_to">
 					<input type="date" name="date">
 					<button type="submit" value="res" name ="res" class="btn btn-primary">Reservieren</button>
