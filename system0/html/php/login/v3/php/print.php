@@ -427,7 +427,7 @@ function check_file($path){//check file for temperature which are toi high
 									$stmt = mysqli_prepare($link, $sql);
 									mysqli_stmt_execute($stmt);
 									mysqli_stmt_store_result($stmt);
-									mysqli_stmt_bind_result($stmt, $id);
+									mysqli_stmt_bind_result($stmt, $id,$color);
 									mysqli_stmt_fetch($stmt);
 									if($id!=0 && $id!=$last_id)
 									{
