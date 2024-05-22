@@ -324,7 +324,6 @@ function is_time_between($startTime, $endTime, $checkTime) {
 					$stmt = $link->prepare($sql);
         				$stmt->execute();
         				$result = $stmt->get_result();
-        				$row = $result->fetch_assoc();
         				$time_now=date("H:i");
         				while ($row = $result->fetch_assoc()) {
 					    if (is_time_between($row["time_from"], $row["time_to"], $time_now)) {
