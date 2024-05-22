@@ -1,16 +1,17 @@
 <?php
-function exract_param($gcode) {
+function extract_param($gcode) {
+    // Match the pattern S followed by digits, capturing the digits
     $matches = [];
-    $pattern = '/([A-Z])([0-9]+)/';
-    
+    $pattern = '/[S|T]([0-9]+)/';
+
     if (preg_match($pattern, $gcode, $matches)) {
-        return $matches[2]; // Return the first match
+        return (int)$matches[1]; // Return the first capture group as an integer
     } else {
         return false; // No match found
     }
 }
 
-function check_file($path){//check file for temperature which are toi high
+function check_file($path){//check file for temperature which are to high
 	$file = fopen($path, 'r');
 	$cnt=0;
 	while (!feof($file)&&$cnt!=2) {
@@ -19,7 +20,7 @@ function check_file($path){//check file for temperature which are toi high
 	    // Extract parameter from lines with specific commands
 	    if (strpos($line, 'M104') !== false || strpos($line, 'M140') !== false) {
 		$cnt++;
-	        $parameter = exract_param($line);
+	        $parameter = extract_param($line);
 		if(strpos($line, 'M104') !== false){ //extruder_temp
 			$ex_temp=$parameter;
 		}
@@ -28,10 +29,11 @@ function check_file($path){//check file for temperature which are toi high
 		}
 	    }
 	}
+	//echo("bed:$bed_temp;ex:$ex_temp");
 	if($bed_temp>75 or $ex_temp>225){
-		return 1;
-	}else{
 		return 0;
+	}else{
+		return 1;
 	}
 }
 
@@ -56,6 +58,7 @@ function is_time_between($startTime, $endTime, $checkTime) {
 <html>
 	<?php
 	// Initialize the session
+	$warning=false;
 	session_start();
 	include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
 	include "config.php";
@@ -217,7 +220,7 @@ function is_time_between($startTime, $endTime, $checkTime) {
 							if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
 								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Erfolg! Die Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen.</div></center>");
 								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div></center>");
-								if(check_file($path)!=0){
+								if(check_file($path) or isset($_POST["ignore_unsafe"])){
 									exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
 									//file is on printer and ready to be printed
 									$userid=$_SESSION["id"];
@@ -242,6 +245,7 @@ function is_time_between($startTime, $endTime, $checkTime) {
 										mysqli_stmt_close($stmt);	
 									}
 								}else{
+									$warning=true;
 									echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Achtung, deine Bett oder Extruder Temperatur ist sehr hoch eingestellt. Dies wird zur zerstörung des Druckes und somit zu Müll führen. Bitte setze diese Temperaturen tiefer in den Einstellungen deines Slicers.</div></center>");
 								}
 							}
@@ -273,7 +277,7 @@ function is_time_between($startTime, $endTime, $checkTime) {
 					mysqli_stmt_close($stmt);
 	
 							echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div></center>");
-							if(check_file($path)){
+							if(check_file($path)  or isset($_POST["ignore_unsafe"])){
 								exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
 								//file is on printer and ready to be printed
 								$userid=$_SESSION["id"];
@@ -301,6 +305,7 @@ function is_time_between($startTime, $endTime, $checkTime) {
 									mysqli_stmt_close($stmt);	
 								}
 							}else{
+								$warning=true;
 								echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Achtung, deinen Bett oder Extruder Temperatur ist sehr hoch eingestellt. Dies wird zur zerstörung des Druckes und somit zu Müll führen. Bitte setze diese Temperaturen tiefer in den Einstellungen deines Slicers.</div></center>");
 							}
 					}
@@ -324,6 +329,7 @@ function is_time_between($startTime, $endTime, $checkTime) {
 					$stmt = $link->prepare($sql);
         				$stmt->execute();
         				$result = $stmt->get_result();
+        				//$row = $result->fetch_assoc();
         				$time_now=date("H:i");
         				while ($row = $result->fetch_assoc()) {
 					    if (is_time_between($row["time_from"], $row["time_to"], $time_now)) {
@@ -338,7 +344,6 @@ function is_time_between($startTime, $endTime, $checkTime) {
 
 				?>
 				<div class="container d-flex align-items-center justify-content-center" >
-				
 				
 				
 				<form class="mt-5" enctype="multipart/form-data" method="POST" action="">
@@ -467,6 +472,13 @@ function is_time_between($startTime, $endTime, $checkTime) {
 					<br><br>
 					<!--<label class="my-3" for="print_key">Druckschlüssel (Kann im Sekretariat gekauft werden)</label>
 					<input type="text" class="form-control text" id="print_key" name="print_key" placeholder="z.B. A3Rg4Hujkief"><br>-->
+					<?php
+					if($warning==true){
+						echo("<input type='checkbox' id='ignore_unsafe' name='ignore_unsafe' value='true'>");
+						echo("<label for='ignore_unsafe'>Temperaturbeschränkungen Ignorieren und Drucken</label><br>");
+					}
+					
+					?>
 					<input type="submit" class="btn btn-dark mb-5" value="Datei drucken" onclick="show_loader();" id="button">
 					<div class="d-flex align-items-center">
  					 <strong role="status" style="display:none" id="spinner">Hochladen...</strong>
