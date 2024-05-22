@@ -52,30 +52,12 @@
 				<ul class="navbar-nav">
 					<?php
 						session_start();
-						echo('
-							<li class="nav-item">
-								<a class="btn btn-link green" href="/system0/html/user_files/sys0_autonomous/anleitung.pdf">System0 / 3d-Druck Anleitung</a>
-							</li>
-							');
-						echo('
-							<li class="nav-item">
-								<a class="btn btn-link green" href="/system0/html/php/login/v3/php/bugreport.php">Fehler melden</a>
-							</li>
-							');
-					
 						if($_SESSION["role"][0]==="1")
 							echo('
 								<li class="nav-item">
 									<a class="btn btn-link green" href="/system0/html/php/login/v3/php/print.php">Datei drucken</a>
 								</li>
 								');
-						if($_SESSION["role"][8]==="1")
-							echo('
-								<li class="nav-item">
-									<a class="btn btn-link green" href="/system0/html/php/login/v3/php/create_key.php">Druckschlüssel erstellen</a>
-								</li>
-								');
-		
 						if($_SESSION["role"][1]==="1")
 							echo('
 								<li class="nav-item">
@@ -89,6 +71,16 @@
 									<a class="btn btn-link green" href="/system0/html/php/login/v3/php/public_cloud.php">Öffentliche Dateien</a>
 								</li>
 								');
+						echo('
+							<li class="nav-item">
+								<a class="btn btn-link green" href="/system0/html/php/login/v3/php/bugreport.php">Fehler melden</a>
+							</li>
+							');
+						echo('
+							<li class="nav-item">
+								<a class="btn btn-link green" href="/system0/html/user_files/sys0_autonomous/anleitung.pdf">Anleitung</a>
+							</li>
+							');
 						?>
 					<li class="nav-item">
 						<a class="btn green" role="button" data-bs-toggle="modal" data-bs-target="#account"><i class="fa-solid fa-gear"></i></a>
@@ -127,7 +119,7 @@
 									
 									<div class="card-body">
 										<h5 class="card-title">Passwort zurücksetzen</h5>
-										<p class="card-text">Setzen Sie Ihr Passwort zurück, wenn Sie es vergessen haben oder wenn Sie es aus Sicherheitsgründen zurücksetzen möchten.</p>
+										<p class="card-text">Hier kannst du dein Passwort ändern</p>
 										<a href="/system0/html/php/login/v3/reset-password.php" class="stretched-link"></a>
 									</div>
 
@@ -158,7 +150,7 @@
 										</div>
 										<div class="card-body">
 											<h5 class="card-title">Benutzer verwalten</h5>
-											<p class="card-text">Entfernen Sie ein Benutzerkonto aus dem System.</p>
+											<p class="card-text">Entfernen/bearbeiten Sie ein Benutzerkonto aus dem System.</p>
 											<a href="/system0/html/php/login/v3/php/remove_user.php" class="stretched-link"></a>
 										</div>
 
@@ -262,6 +254,20 @@
 											<h5 class="card-title">Drucker Reservieren</h5>
 											<p class="card-text">Hier kannst du Drucker Reservieren.</p>
 											<a href="/system0/html/php/login/v3/php/reservations.php" class="stretched-link"></a>
+										</div>
+
+									</div>
+	 								');
+	 						if($_SESSION["role"][8]==="1")
+								echo('
+									<div class="card m-2" style="width: 14em;" href="#">
+										<div class="d-flex justify-content-center align-items-center card-img-top" style="height: auto;margin-top:20px">
+											<i class="fa-solid fa-key  fa-6x justify-content-center"></i>
+										</div>
+										<div class="card-body">
+											<h5 class="card-title">Druckschlüssel erstellen</h5>
+											<p class="card-text">Hier kannst du Druckschlüssel erstellen.</p>
+											<a href="/system0/html/php/login/v3/php/create_key.php" class="stretched-link"></a>
 										</div>
 
 									</div>
