@@ -37,6 +37,13 @@ function update_input(input,action,id){
 	fetch("/system0/html/api/printer_settings.php?action="+action+"&value="+selector.value+"&id="+id);
 
 }
+
+function delete_input(input,action,id,row){
+	var selector=document.getElementById(input);
+	var selector_value=selector.value;
+	fetch("/system0/html/api/printer_settings.php?action="+action+"&value="+selector.value+"&id="+id);
+	document.getElementById("table1").deleteRow(row);
+}
 </script>
 <?php
 	$role=$_SESSION["role"];
@@ -219,18 +226,19 @@ function update_input(input,action,id){
 					mysqli_stmt_bind_result($stmt, $cnt);
 					mysqli_stmt_fetch($stmt);	
 					//echo($cnt);
-					echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Filamente</th><th>Farbe</th><th>Hinzufügen/Löschen</th></tr></thead><tbody>");
+					echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table' id='table1'><thead><tr><th>Filamente</th><th>Farbe</th><th>Hinzufügen/Löschen</th></tr></thead><tbody>");
 					
 					//form to add a color
 					echo("<form action='debug.php?action=add_filament' method='post'>");
-						echo("<td><input type='number' placeholder='Filament id' name='filament_id'></input></td>");
-						echo("<td><input type='text' placeholder='filament  Farbe' name='filament_name'></input></td>");
+						echo("<td><input type='number' placeholder='Filament id' name='filament_id' required></input></td>");
+						echo("<td><input type='text' placeholder='filament  Farbe' name='filament_name' required></input></td>");
 						echo("<td><button type='submit' value='add' class='btn btn-primary'>Hinzufügen</button></td>");
 					echo("</form>");
 					
 					$last_id=0;	
 					$color="";
 					$id=0;
+					$row=1;
 					while($cnt!=0)
 					{
 						$userid=0;
@@ -246,9 +254,8 @@ function update_input(input,action,id){
 						$last_id=$id;
 						
 						$used_by_user="";
-
-						echo("<tr><td>$printer_id</td><td><form method='POST' action='?id=$printer_id'><input type='text' id='filament$printer_id' value='$color' name='color' placeholder='Filamentfarbe' oninput='update_input(\"filament$printer_id\",\"update_filament\",\"$printer_id\");'></input></td></form><td><button class='btn btn-danger' onclick='update_input(\"filament$printer_id\",\"delete_filament\",\"$printer_id\");'>Löschen</button></td></tr>");
-						
+						$row++;
+						echo("<tr><td>$printer_id</td><td><form method='POST' action='?id=$printer_id'><input type='text' id='filament$printer_id' value='$color' name='color' placeholder='Filamentfarbe' oninput='update_input(\"filament$printer_id\",\"update_filament\",\"$printer_id\");'></input></td></form><td><button class='btn btn-danger' onclick='delete_input(\"filament$printer_id\",\"delete_filament\",\"$printer_id\",$row);'>Löschen</button></td></tr>");
 						$cnt--;
 					}
 					echo("</tbody></table></div></div></div>");
