@@ -45,13 +45,13 @@ if(isset($_GET["resend_acc_verify"])){
 			if(isset($_SESSION["verify"])){
 				$username=$_SESSION["verify"];
 				//send the mail:
-				$mail=<<<EOF
+	    $mail=<<<EOF
 
 curl --request POST \
   --url https://api.sendgrid.com/v3/mail/send \
   --header "Authorization: Bearer $SENDGRID_API_KEY" \
   --header 'Content-Type: application/json' \
-  --data '{"personalizations": [{"to": [{"email": "$username"}]}],"from": {"email": "$sendgrid_email"},"subject": "System0 Account Validation","content": [{"type": "text/html", "value": $validation_mail}]}'
+  --data '{"personalizations": [{"to": [{"email": "$username"}]}],"from": {"email": "$sendgrid_email"},"subject": "System0 Account Validation","content": [{"type": "text/html", "value": "Hallo $username<br>Hier ist dein System0 Account verifikations Link. Bitte klicke drauf. Sollte dies nicht funktionieren, kopiere bitte den Link und öffne Ihn in deinem Browser.<br><a href='https://app.ksw3d.ch/system0/html/php/login/v3/php/verify_account.php?token=$token'>https://app.ksw3d.ch/system0/html/php/login/v3/php/verify_account.php?token=$token</a><br>Achtung: der Link funktioniert nur in dem gleichen Browser und Gerät, auf dem du deinen Account erstellt hast.<br><br>Vielen dank für dein Vertrauen in uns!<br>Code Camp 2024<br>"}]}'
 
 EOF;
 				exec($mail);
@@ -148,7 +148,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and $_GET["action"]=="login"){
 		                }
 		                else
 		                {
-		                	$login_err = "Dein Account wurde noch nicht aktiviert: $banned_reason";
+		                	$_SESSION["verify"]=$username;
+		                	$login_err = "Dein Account wurde noch nicht aktiviert. <a href='login.php?resend_acc_verify'>Neuen aktivierungslink anfordern</a>";
 		                }
                         } else{
                             // Password is not valid, display a generic error message
@@ -311,7 +312,6 @@ curl --request POST \
   --header "Authorization: Bearer $SENDGRID_API_KEY" \
   --header 'Content-Type: application/json' \
   --data '{"personalizations": [{"to": [{"email": "$email"}]}],"from": {"email": "$sendgrid_email"},"subject": "System0 Password reset","content": [{"type": "text/html", "value": "Hallo $email<br>Hier ist dein System0 Passwort Zurücksetzungs Link. Bitte klicke drauf. Sollte dies nicht funktionieren, kopiere bitte den Link und öffne Ihn in deinem Browser.<br><a href='https://app.ksw3d.ch/system0/html/php/login/v3/php/reset_pw.php?token=$token'>https://app.ksw3d.ch/system0/html/php/login/v3/php/reset_pw.php?token=$token</a><br>Achtung: der Link funktioniert nur in dem gleichen Browser und Gerät, auf dem du deinen Account erstellt hast.<br><br>Vielen dank für dein Vertrauen in uns!<br>Code Camp 2024<br>"}]}'
-
 EOF;
 
 	    exec($mail);
@@ -411,13 +411,13 @@ EOF;
 							echo '<div class="alert alert-danger">' . $login_err . '</div>';
 							}   
 							if(isset($_GET["mail_sent1"]))
-							echo '<div class="alert alert-success">Eine Mail mit einem Aktivierungslink wurde an deine Mailadresse gesendet.</div>';
+								echo '<div class="alert alert-success">Eine Mail mit einem Aktivierungslink wurde an deine Mailadresse gesendet.</div>';
 							if(isset($_GET["mail_sent2"]))
-							echo '<div class="alert alert-success">Eine Mail mit einem Passwort zurücksetzungslink wurde an deine Mailadresse gesendet.</div>';
+								echo '<div class="alert alert-success">Eine Mail mit einem Passwort zurücksetzungslink wurde an deine Mailadresse gesendet.</div>';
 							if(isset($_GET["acc_verify_ok"]))
-							echo '<div class="alert alert-success">Email erfolgreich Verifiziert.</div>';
+								echo '<div class="alert alert-success">Email erfolgreich Verifiziert.</div>';
 							if(isset($_GET["mail_sent3"]))
-							echo '<div class="alert alert-danger">Eine Mail mit einem Passwort zurücksetzungslink konnte nich gesendet werden. Bitte melde dich beim Support <a href="mailto:info.jakach@gmail.com">hier.</a></div>';
+								echo '<div class="alert alert-danger">Eine Mail mit einem Passwort zurücksetzungslink konnte nich gesendet werden. Bitte melde dich beim Support <a href="mailto:info.jakach@gmail.com">hier.</a></div>';
 						       
 				    
 						?>
