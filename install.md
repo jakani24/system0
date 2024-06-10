@@ -80,8 +80,9 @@ The 'api' table:<br>
 3) Install libapache2-mod-php<br>
 4) Git clone the project<br>
 5) Copy the system0 folder to the webroot<br>
-6) Create the sql tables and an sql user all permissions on your tables and add the credentials of this user in "system0/html/php/login/v3/php/config.php".<br>
-7) Add the apikeys to "system0/html/php/login/v3/php/config.php"
+6) Run `chown www-data:www-data system0/html/php/login/v3/log`
+7) Create the sql tables and an sql user all permissions on your tables and add the credentials of this user in "system0/html/php/login/v3/php/config.php".<br>
+8) Add the apikeys to "system0/html/php/login/v3/php/config.php"
 
 
 # Installation to your Octoprint machine<br>
