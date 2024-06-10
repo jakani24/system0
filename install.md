@@ -11,6 +11,9 @@ The 'users' table:<br>
   <tr><td>keepmeloggedin</td><td>varchar(255)</td><td>YES</td><td></td><td>NULL</td><td></td></tr>
   <tr><td>color</td><td>varchar(50)</td><td>YES</td><td></td><td>NULL</td><td></td></tr>
   <tr><td>banned</td><td>int</td><td>YES</td><td></td><td>NULL</td><td></td></tr>
+  <tr><td>notification_telegram</td><td>int</td><td>YES</td><td></td><td>NULL</td><td></td></tr>
+  <tr><td>notification_mail</td><td>int</td><td>YES</td><td></td><td>NULL</td><td></td></tr>
+  <tr><td>telegram_id</td><td>text</td><td>YES</td><td></td><td>NULL</td><td></td></tr>
   <tr><td>banned_reason</td><td>varchar(255)</td><td>YES</td><td></td><td>NULL</td><td></td></tr>
 </table>
 
