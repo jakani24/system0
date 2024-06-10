@@ -44,12 +44,6 @@ function load_user()
 
             // Convert remaining seconds to minutes
             $minutes = floor(($seconds % 3600) / 60);
-
-            // Return the result as an associative array
-            //return array(
-        //      "hours" => $hours,
-        //      "minutes" => $minutes
-         //   );
                 if($hours!=0){
                         if($hours==1)
                                 return sprintf("%d Stunde %d Minuten", $hours, $minutes);
@@ -59,6 +53,17 @@ function load_user()
                 else
                         return sprintf("%d Minuten", $minutes);
         }
+        function short_path($filePath, $firstCharsCount, $lastCharsCount) {
+	    // Get the first few characters of the path
+	    $filePath=str_replace(".gcode","",$filePath);
+	    $firstChars = substr($filePath, 0, $firstCharsCount);
+	    
+	    // Get the last few characters of the path
+	    $lastChars = substr($filePath, -$lastCharsCount);
+	    
+	    // Return the shortened path
+	    return $firstChars . "..." . $lastChars;
+	}
         $color=$_SESSION["color"];
         include "/var/www/html/system0/html/php/login/v3/components.php";
         if(!isset($_SESSION["rid"]))
@@ -67,14 +72,37 @@ function load_user()
 ?>
 
   <title>Alle Drucker</title>
+<style>
+ /* Style for the description */
+    .description {
+        display: none; /* Hide the description by default */
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        width: 200px;
+    }
+    
+    /* Style for the element to trigger hover */
+    .hover-element {
+        position: relative;
+        /* Add some space below the element */
+        
+    }
+    
+    /* Style for the element to trigger hover when hovered */
+    .hover-element:hover .description {
+        display: block; /* Show the description on hover */
+    }
 
+</style>
 </head>
 <body>
         <div id="content"></div>
-        <div class="container mt-5">
+        <div>
                 <div class="row justify-content-center">
-                <div style="width: 100hh;min-height:95vh">
-            <!--  <h1>Alle Drucker</h1> -->
+                <div style="width: 100%;min-height:95vh">
                                 <?php
                                         if(isset($_GET['free'])&&$_GET["rid"]==($_SESSION["rid"]-1))
                                         {
@@ -116,7 +144,7 @@ function load_user()
                                                         //$sql="update printer set system_status=1 where id=$printer_id";
                                                         //$stmt = mysqli_prepare($link, $sql);
                                                         //mysqli_stmt_execute($stmt);
-                                                        echo("<div class='alert alert-danger' role='alert'>There was an error canceling the print job !<br>The error is on our machine or printer, so please wait and trie again in some time!</div>");
+                                                        echo("<div class='alert alert-danger' role='alert'>Beim abbrechen ist es zu einem Fehler gekommen. Bitte versuche es später erneut.</div>");
                                                 }
                                                 else
                                                 {
@@ -141,34 +169,32 @@ function load_user()
                                         mysqli_stmt_fetch($stmt);
                                         //echo($cnt);
                                         $is_free=0;
-                                        //echo("<div class='d-flex flex-wrap justify-content-center'>");
-                                        echo("<div class='container'><div class='row'>");
-                                        echo("<div style='padding:5px'>");
-                                                if(isset($_GET["private"]))
-                                                        echo("<a class='btn btn-dark' href='overview.php'>Alle Drucker anzeigen</a>");
-                                                else
-                                                        echo("<a class='btn btn-dark' href='overview.php?private'>Nur eigene Aufträge anzeigen</a>");
-                                        echo("</div>");
+                                        echo("<div><div class='row'>");
                                         echo("<div class='d-flex flex-wrap justify-content-center align-items-stretch'>");
+                                        //echo("<div style='margin-left:20%'>");
+                                        echo("<div style='width:100%;margin-left:5px'>");
+                                                if(isset($_GET["private"]))
+                                                        echo("<br><a class='btn btn-dark' href='overview.php'>Alle Drucker anzeigen</a>");
+                                                else
+                                                        echo("<br><a class='btn btn-dark' href='overview.php?private'>Nur eigene Aufträge anzeigen</a>");
+                                        echo("</div>");
+                                        //echo("<div class='d-flex flex-wrap justify-content-center align-items-stretch'>");
                                         $last_id=0;
                                         $system_status=0;
                                         $rotation=0;
                                         while($cnt!=0)
                                         {
-                                                if(isset($_SESSION["mobile_view"]))
-                                                        echo("<div class='col-12' style='padding:5px'>");
-                                                //else
-                                                        //echo("<div class='col-4' style='padding:5px'>");
                                                 $userid=0;
                                                 if(isset($_GET["private"]))
-                                                        $sql="select rotation,free,id,printer_url,apikey,cancel,used_by_userid,system_status from printer where id>$last_id and used_by_userid=".$_SESSION["id"]." ORDER BY id";
+                                                        $sql="select rotation,free,id,printer_url,apikey,cancel,used_by_userid,system_status,color from printer where id>$last_id and used_by_userid=".$_SESSION["id"]." ORDER BY id";
                                                 else
-                                                        $sql="select rotation,free,id,printer_url,apikey,cancel,used_by_userid,system_status from printer where id>$last_id ORDER BY id";
+                                                        $sql="select rotation,free,id,printer_url,apikey,cancel,used_by_userid,system_status,color from printer where id>$last_id ORDER BY id";
                                                 $cancel=0;
+                                                $filament_color="";
                                                 $stmt = mysqli_prepare($link, $sql);
                                                 mysqli_stmt_execute($stmt);
                                                 mysqli_stmt_store_result($stmt);
-                                                mysqli_stmt_bind_result($stmt, $rotation,$is_free,$printer_id,$url,$apikey,$cancel,$userid,$system_status);
+                                                mysqli_stmt_bind_result($stmt, $rotation,$is_free,$printer_id,$url,$apikey,$cancel,$userid,$system_status,$filament_color);
                                                 mysqli_stmt_fetch($stmt);
                                                 $last_id=$printer_id;
 
@@ -211,10 +237,14 @@ function load_user()
                                                                         echo("<thead>");
                                                                         echo("<tr><td>Status</td><td style='color:green'>Fertig</td></tr>");
                                                                         echo("<tr><td>Genutzt von</td><td>".$username2[0]."</td></tr>");
+                                                                        if(!empty($filament_color) && $filament_color!=NULL)
+                                                        			echo("<tr><td>Filamentfarbe</td><td >$filament_color</td></tr>");
                                                                         echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
                                                                         echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
                                                                         echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
-                                                                        echo("<tr><td>Datei</td><td>".substr($json["job"]["file"]["name"],0,20)."...</td></tr>");
+                                                                        //echo("<tr><td>Datei</td><td><div class='hover-element'>".substr($json["job"]["file"]["name"],0,20)."...<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
+                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".short_path($json["job"]["file"]["name"],10,10)."<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
+                                                                        echo("</div>");
                                                                         if($userid==$_SESSION["id"] or $role[3]==="1"){
                                                                                 echo("<tr><td><a class='btn btn-success' href='overview.php?free=$printer_id&rid=".$_SESSION["rid"]."'>Freigeben</a></td></tr>");
                                                                         }
@@ -243,10 +273,12 @@ function load_user()
                                                                         //else
                                                                         //      echo("<tr><td>Status</td><td style='color:red'>Fehler</td></tr>");
                                                                         echo("<tr><td>Genutzt von</td><td>".$username2[0]."</td></tr>");
+                                                                        if(!empty($filament_color) && $filament_color!=NULL)
+                                                        			echo("<tr><td>Filamentfarbe</td><td >$filament_color</td></tr>");
                                                                         echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
                                                                         echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
                                                                         echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
-                                                                        echo("<tr><td>Datei</td><td>".substr($json["job"]["file"]["name"],0,20)."...</td></tr>");
+                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".short_path($json["job"]["file"]["name"],10,10)."<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
                                                                         if($userid==$_SESSION["id"] or $role[3]=="1"){
                                                                                 echo("<tr><td><a class='btn btn-success' href='overview.php?free=$printer_id&rid=".$_SESSION["rid"]."'>Freigeben</a></td></tr>");
                                                                         }
@@ -273,10 +305,12 @@ function load_user()
                                                                         echo("<thead>");
                                                                         echo("<tr><td>Status</td><td style='color:orange'>Drucken</td></tr>");
                                                                         echo("<tr><td>Genutzt von</td><td>".$username2[0]."</td></tr>");
+                                                                        if(!empty($filament_color) && $filament_color!=NULL)
+                                                        			echo("<tr><td>Filamentfarbe</td><td >$filament_color</td></tr>");
                                                                         echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
                                                                         echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
                                                                         echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
-                                                                        echo("<tr><td>Datei</td><td>".substr($json["job"]["file"]["name"],0,20)."...</td></tr>");
+                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".short_path($json["job"]["file"]["name"],10,10)."<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
                                                                         if($userid==$_SESSION["id"] or $role[3]==="1"){
                                                                                 echo("<tr><td><a class='btn btn-danger' href='overview.php?cancel=$printer_id&rid=".$_SESSION["rid"]."'>Abbrechen</a></td></tr>");
                                                                         }
@@ -296,6 +330,8 @@ function load_user()
                                                         echo("<table class='table table-borderless'>");
                                                         echo("<thead>");
                                                         echo("<tr><td>Status</td><td style='color:green'>Bereit</td></tr>");
+                                                        if(!empty($filament_color) && $filament_color!=NULL)
+                                                        	echo("<tr><td>Filamentfarbe</td><td >$filament_color</td></tr>");
                                                         echo("<tr><td><a class='btn btn-dark' href='print.php?preselect=$printer_id'>Drucken</a></td></tr>");
                                                         echo("</thead>");
                                                         echo("</table>");

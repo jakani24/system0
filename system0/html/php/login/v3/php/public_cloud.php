@@ -80,7 +80,7 @@ function load_user()
 		<div class="row justify-content-center">
 			<!--<div style="width: 90vh">-->
 
-			      <h1>Alle Dateien</h1>
+			      <h1>Öffentliche Dateien</h1>
 				<div class="container">
 				<form action="public_cloud.php" method="POST">
 					<input type="text" name="search" placeholder="Suchbegriff">

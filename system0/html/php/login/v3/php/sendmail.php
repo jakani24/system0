@@ -61,7 +61,7 @@
 		if($progress==100){
 				//print finished
 				//check if mail has not been sent:
-				//$used_by_user="simon.schaelli@kantiwattwil.ch";
+				
 				if($mail_sent==0 && $notification_telegram==1){
 					//send telegram message
 					echo("sending telegram for printer $printer_id<br>");
@@ -82,7 +82,7 @@ curl --request POST \
   --url https://api.sendgrid.com/v3/mail/send \
   --header "Authorization: Bearer $SENDGRID_API_KEY" \
   --header 'Content-Type: application/json' \
-  --data '{"personalizations": [{"to": [{"email": "$used_by_user"}]}],"from": {"email": "$sendgrid_email"},"subject": "3D-Druck $file abholbereit","content": [{"type": "text/html", "value": "Hallo $username2<br>Dein 3D-Druck auf Drucker $printer_id ist fertig.<br>Bitte hole diesen ab und vergiss nicht den Drucker danach freizugeben!<br>Deine Aufträge: <a href='https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php?private'>https://3dprint.ksw-informatik.ch/system0/html/php/login/v3/php/overview.php?private</a><br>Datei, welche du gedruckt hast: $file<br><br>Vielen dank für dein Vertrauen in uns!<br>Code Camp 2024<br>"}]}'
+  --data '{"personalizations": [{"to": [{"email": "$used_by_user"}]}],"from": {"email": "$sendgrid_email"},"subject": "3D-Druck $file abholbereit","content": [{"type": "text/html", "value": "Hallo $username2<br>Dein 3D-Druck auf Drucker $printer_id ist fertig.<br>Bitte hole diesen ab und vergiss nicht den Drucker danach freizugeben!<br>Deine Aufträge: <a href='https://app.ksw3d.ch/system0/html/php/login/v3/php/overview.php?private'>https://app.ksw3d.ch/system0/html/php/login/v3/php/overview.php?private</a><br>Datei, welche du gedruckt hast: $file<br><br>Vielen dank für dein Vertrauen in uns!<br>Code Camp 2024<br>"}]}'
 EOF;
 					$out="";
 					exec($mail,$out);

@@ -108,7 +108,7 @@ function load_user()
 <div id="content"></div>
 
 <head>
-  <title>Alle Dateien</title>
+  <title>Eigene Dateien</title>
   
 </head>
 <body>
@@ -122,7 +122,7 @@ function load_user()
 						echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei wurde hochgeladen</div></center>");
 			
 				?>
-			      <h1>Deine Dateien</h1>
+			      <h1>Eigene Dateien</h1>
 				<div class="container">
 					<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#upoload_file" id="lnk_1">Datei Hochladen</button>
 					<form action="cloud.php" method="POST">

@@ -28,6 +28,7 @@ The 'printer' table:<br>
   <tr><td>system_status</td><td>int</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
   <tr><td>mail_sent</td><td>int</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
   <tr><td>rotation</td><td>int</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
+  <tr><td>color</td><td>TEXT</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
 </table>
 
 The 'queue' table:<br>
@@ -51,6 +52,17 @@ The 'api' table:<br>
   <tr><td>id</td><td>int</td><td>NO</td><td>PRI</td><td>NULL</td><td>auto_increment</td></tr>
   <tr><td>print_key</td><td>varchar(50)</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
  </table>
+
+  The 'reservations' table:<br>
+<table>
+  <tr><th>Field</th><th>Type</th><th>NULL</th><th>Key</th><th>Default</th><th>Extra</th>  </tr>
+  <tr><td>id</td><td>int</td><td>NO</td><td>PRI</td><td>NULL</td><td>auto_increment</td></tr>
+  <tr><td>set_by_userid</td><td>INT</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
+  <tr><td>time_from</td><td>TEXT</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
+  <tr><td>time_to</td><td>TEXT</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
+  <tr><td>day</td><td>TEXT</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
+ </table>
+ 
 2) Install apache2 webserver.<br>
 3) Copy the system0 folder into /var/www/html.<br>
 4) Grant an sql user all permissions on your tables and add the credentials of this user in "system0/html/php/login/v3/php/config.php".<br>

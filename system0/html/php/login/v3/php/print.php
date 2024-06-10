@@ -1,16 +1,17 @@
 <?php
-function exract_param($gcode) {
+function extract_param($gcode) {
+    // Match the pattern S followed by digits, capturing the digits
     $matches = [];
-    $pattern = '/([A-Z])([0-9]+)/';
-    
+    $pattern = '/[S|T]([0-9]+)/';
+
     if (preg_match($pattern, $gcode, $matches)) {
-        return $matches[2]; // Return the first match
+        return (int)$matches[1]; // Return the first capture group as an integer
     } else {
         return false; // No match found
     }
 }
 
-function check_file($path){//check file for temperature which are toi high
+function check_file($path){//check file for temperature which are to high
 	$file = fopen($path, 'r');
 	$cnt=0;
 	while (!feof($file)&&$cnt!=2) {
@@ -19,7 +20,7 @@ function check_file($path){//check file for temperature which are toi high
 	    // Extract parameter from lines with specific commands
 	    if (strpos($line, 'M104') !== false || strpos($line, 'M140') !== false) {
 		$cnt++;
-	        $parameter = exract_param($line);
+	        $parameter = extract_param($line);
 		if(strpos($line, 'M104') !== false){ //extruder_temp
 			$ex_temp=$parameter;
 		}
@@ -28,17 +29,36 @@ function check_file($path){//check file for temperature which are toi high
 		}
 	    }
 	}
+	//echo("bed:$bed_temp;ex:$ex_temp");
 	if($bed_temp>75 or $ex_temp>225){
 		return 0;
 	}else{
 		return 1;
 	}
 }
+
+function is_time_between($startTime, $endTime, $checkTime) {
+    // Convert times to timestamps
+    $startTimestamp = strtotime($startTime);
+    $endTimestamp = strtotime($endTime);
+    $checkTimestamp = strtotime($checkTime);
+    
+    // If end time is less than start time, it means the range crosses midnight
+    if ($endTimestamp < $startTimestamp) {
+        // Check if the time is between start time and midnight or between midnight and end time
+        return ($checkTimestamp >= $startTimestamp || $checkTimestamp <= $endTimestamp);
+    } else {
+        // Normal case: check if the time is between start and end time
+        return ($checkTimestamp >= $startTimestamp && $checkTimestamp <= $endTimestamp);
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html>
 	<?php
 	// Initialize the session
+	$warning=false;
 	session_start();
 	include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
 	include "config.php";
@@ -200,7 +220,7 @@ function check_file($path){//check file for temperature which are toi high
 							if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
 								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Erfolg! Die Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen.</div></center>");
 								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div></center>");
-								if(check_file($path)!=0){
+								if(check_file($path) or isset($_POST["ignore_unsafe"])){
 									exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
 									//file is on printer and ready to be printed
 									$userid=$_SESSION["id"];
@@ -225,7 +245,8 @@ function check_file($path){//check file for temperature which are toi high
 										mysqli_stmt_close($stmt);	
 									}
 								}else{
-									echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Achtung, deinen Bett oder Extruder Temperatur ist sehr hoch eingestellt. Dies wird zur zerstörung des Druckes und somit zu Müll führen. Bitte setze diese Temperaturen tiefer in den Einstellungen deines Slicers.</div></center>");
+									$warning=true;
+									echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Achtung, deine Bett oder Extruder Temperatur ist sehr hoch eingestellt. Dies wird zur zerstörung des Druckes und somit zu Müll führen. Bitte setze diese Temperaturen tiefer in den Einstellungen deines Slicers.</div></center>");
 								}
 							}
 							else
@@ -256,7 +277,7 @@ function check_file($path){//check file for temperature which are toi high
 					mysqli_stmt_close($stmt);
 	
 							echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div></center>");
-							if(check_file($path)){
+							if(check_file($path)  or isset($_POST["ignore_unsafe"])){
 								exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
 								//file is on printer and ready to be printed
 								$userid=$_SESSION["id"];
@@ -284,6 +305,7 @@ function check_file($path){//check file for temperature which are toi high
 									mysqli_stmt_close($stmt);	
 								}
 							}else{
+								$warning=true;
 								echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Achtung, deinen Bett oder Extruder Temperatur ist sehr hoch eingestellt. Dies wird zur zerstörung des Druckes und somit zu Müll führen. Bitte setze diese Temperaturen tiefer in den Einstellungen deines Slicers.</div></center>");
 							}
 					}
@@ -298,7 +320,31 @@ function check_file($path){//check file for temperature which are toi high
 	
 			<div class="text-center mt-5" style="min-height: 95vh">
 				<h1>Datei drucken</h1>
+				<!-- Reservations notice -->
+				<?php
+					date_default_timezone_set('Europe/Zurich');
+					$reservation_conflict=false;
+					$today=date("Y-m-d");
+					$sql="select time_from, time_to from reservations where day='$today';";
+					$stmt = $link->prepare($sql);
+        				$stmt->execute();
+        				$result = $stmt->get_result();
+        				//$row = $result->fetch_assoc();
+        				$time_now=date("H:i");
+        				while ($row = $result->fetch_assoc()) {
+					    if (is_time_between($row["time_from"], $row["time_to"], $time_now)) {
+						$reservation_conflict = true;
+						break;
+					    }
+					}
+
+					if ($reservation_conflict) {
+					    echo "<center><div style='width:50%' class='alert alert-danger' role='alert'>Die Drucker sind zurzeit reserviert! Bitte drucke nur, wenn du gerade im Informatik Unterricht bist!</div></center>";
+					}
+
+				?>
 				<div class="container d-flex align-items-center justify-content-center" >
+				
 				
 				<form class="mt-5" enctype="multipart/form-data" method="POST" action="">
 					<?php if(!isset($_GET["cloudprint"])){
@@ -344,26 +390,27 @@ function check_file($path){//check file for temperature which are toi high
 							while($num_of_printers!=0)
 							{
 								$id=0;
-								$sql="Select id from printer where id>$last_id and free=1 order by id";
+								$sql="Select id,color from printer where id>$last_id and free=1 order by id";
 								//echo $sql;
+								$color="";
 								$stmt = mysqli_prepare($link, $sql);
 								mysqli_stmt_execute($stmt);
 								mysqli_stmt_store_result($stmt);
-								mysqli_stmt_bind_result($stmt, $id);
+								mysqli_stmt_bind_result($stmt, $id,$color);
 								mysqli_stmt_fetch($stmt);
 								if($id!=0 && $id!=$last_id)
 								{
 									if($id==$preselect)
-										echo("<option printer='$id' value='$id' selected>Printer $id</option>");
+										echo("<option printer='$id' value='$id' selected>Printer $id - $color</option>");
 									else
-										echo("<option printer='$id' value='$id'>Printer $id</option>");
+										echo("<option printer='$id' value='$id'>Printer $id - $color</option>");
 									$printers_av++;
 								}
 								$last_id=$id;
 								$num_of_printers--;
 							}
 							if($printers_av==0){
-								echo("<option printer='queue' value='queue'>An warteschlange Senden</option>");
+								echo("<option printer='queue' value='queue'>an Warteschlange senden</option>");
 
 							}	
 							?>
@@ -396,19 +443,20 @@ function check_file($path){//check file for temperature which are toi high
 								while($num_of_printers!=0)
 								{
 									$id=0;
-									$sql="Select id from printer where id>$last_id order by id";
+									$sql="Select id,color from printer where id>$last_id order by id";
 									//echo $sql;
+									$color="";
 									$stmt = mysqli_prepare($link, $sql);
 									mysqli_stmt_execute($stmt);
 									mysqli_stmt_store_result($stmt);
-									mysqli_stmt_bind_result($stmt, $id);
+									mysqli_stmt_bind_result($stmt, $id,$color);
 									mysqli_stmt_fetch($stmt);
 									if($id!=0 && $id!=$last_id)
 									{
 										if($id==$preselect)
-											echo("<option printer='$id' value='$id' selected>Drucker $id</option>");
+											echo("<option printer='$id' value='$id' selected>Drucker $id - $color</option>");
 										else
-											echo("<option printer='$id' value='$id'>Drucker $id</option>");
+											echo("<option printer='$id' value='$id'>Drucker $id - $color</option>");
 										$printers_av++;
 									}
 									$last_id=$id;
@@ -424,6 +472,13 @@ function check_file($path){//check file for temperature which are toi high
 					<br><br>
 					<!--<label class="my-3" for="print_key">Druckschlüssel (Kann im Sekretariat gekauft werden)</label>
 					<input type="text" class="form-control text" id="print_key" name="print_key" placeholder="z.B. A3Rg4Hujkief"><br>-->
+					<?php
+					if($warning==true){
+						echo("<input type='checkbox' id='ignore_unsafe' name='ignore_unsafe' value='true'>");
+						echo("<label for='ignore_unsafe'>Temperaturbeschränkungen Ignorieren und Drucken</label><br>");
+					}
+					
+					?>
 					<input type="submit" class="btn btn-dark mb-5" value="Datei drucken" onclick="show_loader();" id="button">
 					<div class="d-flex align-items-center">
  					 <strong role="status" style="display:none" id="spinner">Hochladen...</strong>
