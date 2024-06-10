@@ -76,10 +76,12 @@ The 'api' table:<br>
  </table>
  
 2) Install apache2 webserver.<br>
-3) Copy the system0 folder into /var/www/html.<br>
-4) Grant an sql user all permissions on your tables and add the credentials of this user in "system0/html/php/login/v3/php/config.php".<br>
-4.5) If you want to get notifications from jwaf, add your CallMeBot API key in "waf.php" and "bugreport.php".<br>
-5) I think you are all set and system0 should work.<br> 
+2) Install mysql<br>
+3) Install libapache2-mod-php<br>
+4) Git clone the project<br>
+5) Copy the system0 folder to the webroot<br>
+6) Create the sql tables and an sql user all permissions on your tables and add the credentials of this user in "system0/html/php/login/v3/php/config.php".<br>
+7) Add the apikeys to "system0/html/php/login/v3/php/config.php"
 
 
 # Installation to your Octoprint machine<br>
