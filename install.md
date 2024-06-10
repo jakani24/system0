@@ -74,11 +74,12 @@ The 'api' table:<br>
   <tr><td>name</td><td>text</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
   <tr><td>internal_id</td><td>int</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
  </table>
- 
-2) Install apache2 webserver.<br>
-2) Install mysql<br>
-3) Install libapache2-mod-php<br>
-4) Git clone the project<br>
+
+installation onto a raspberry pi:
+2) Install apache2 webserver. `sudo apt install apache2`<br>
+2) Install mysql. `sudo apt install mariadb-server`<br>
+3) Install libapache2-mod-php. `sudo apt install libapache2-mod-php`<br>
+4) Git clone the project. `git clone https://github.com/jakani24/system0`<br>
 5) Copy the system0 folder to the webroot<br>
 6) Run `chown www-data:www-data system0/html/php/login/v3/log`
 7) Create the sql tables and an sql user all permissions on your tables and add the credentials of this user in "system0/html/php/login/v3/php/config.php".<br>
