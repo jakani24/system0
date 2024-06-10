@@ -40,6 +40,7 @@ The 'queue' table:<br>
   <tr><td>from_userid</td><td>int</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
   <tr><td>id</td><td>int</td><td>NO</td><td>PRI</td><td>NULL</td><td>auto_increment</td></tr>
    <tr><td>filepath</td><td>varchar(255)</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
+  <tr><td>print_on</td><td>int</td><td>NO</td><td></td><td>NULL</td><td></td></tr>
 </table>
 
 The 'api' table:<br>
