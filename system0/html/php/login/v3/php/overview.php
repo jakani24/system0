@@ -56,13 +56,18 @@ function load_user()
         function short_path($filePath, $firstCharsCount, $lastCharsCount) {
 	    // Get the first few characters of the path
 	    $filePath=str_replace(".gcode","",$filePath);
-	    $firstChars = substr($filePath, 0, $firstCharsCount);
+	    if(strlen($filePath)>=$firstCharsCount+$lastCharsCount+3){
+		    $firstChars = substr($filePath, 0, $firstCharsCount);
+		    
+		    // Get the last few characters of the path
+		    $lastChars = substr($filePath, -$lastCharsCount);
 	    
-	    // Get the last few characters of the path
-	    $lastChars = substr($filePath, -$lastCharsCount);
-	    
-	    // Return the shortened path
-	    return $firstChars . "..." . $lastChars;
+		    // Return the shortened path
+		    return $firstChars . "..." . $lastChars;
+		}
+		else{
+			return $filePath;
+		}
 	}
         $color=$_SESSION["color"];
         include "/var/www/html/system0/html/php/login/v3/components.php";
@@ -197,7 +202,16 @@ function load_user()
                                                 mysqli_stmt_bind_result($stmt, $rotation,$is_free,$printer_id,$url,$apikey,$cancel,$userid,$system_status,$filament_color);
                                                 mysqli_stmt_fetch($stmt);
                                                 $last_id=$printer_id;
-
+						
+						$filament_color=intval($filament_color);
+						//get the real color
+						$sql="select name from filament where internal_id=$filament_color";
+						$stmt = mysqli_prepare($link, $sql);
+                                                mysqli_stmt_execute($stmt);
+                                                mysqli_stmt_store_result($stmt);
+                                                mysqli_stmt_bind_result($stmt,$filament_color);
+                                                mysqli_stmt_fetch($stmt);
+						
                                                 if($is_free==0){
                                                         //printer is printing
                                                         exec("curl --max-time 10 $url/api/job?apikey=$apikey > /var/www/html/system0/html/user_files/$username/json.json");
