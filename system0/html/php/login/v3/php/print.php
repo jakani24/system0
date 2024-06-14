@@ -506,6 +506,7 @@ function is_time_between($startTime, $endTime, $checkTime) {
 					<div class="d-flex align-items-center">
  					 <strong role="status" style="display:none" id="spinner">Hochladen...</strong>
  					 <div class="spinner-border ms-auto" aria-hidden="true" style="display:none" id="spinner2"></div>
+					<a href="print.php?send_to_queue">Auf einem Drucker Drucken, welcher besetzt ist.</a>
 					</div>
 					
 				</form>
