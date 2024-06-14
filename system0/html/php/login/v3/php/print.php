@@ -214,8 +214,8 @@ function is_time_between($startTime, $endTime, $checkTime) {
 							
 						//if(mysqli_stmt_num_rows($stmt) == 1){ turned off because user does not need to have a printer key
 						if(true){
-						mysqli_stmt_close($stmt);
-			
+							mysqli_stmt_close($stmt);
+						
 						
 							if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
 								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Erfolg! Die Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen.</div></center>");
@@ -387,29 +387,41 @@ function is_time_between($startTime, $endTime, $checkTime) {
 							}else{
 								$preselect=1;							
 							}
-							while($num_of_printers!=0)
-							{
-								$id=0;
-								$sql="Select id,color from printer where id>$last_id and free=1 order by id";
-								//echo $sql;
-								$color="";
-								$stmt = mysqli_prepare($link, $sql);
-								mysqli_stmt_execute($stmt);
-								mysqli_stmt_store_result($stmt);
-								mysqli_stmt_bind_result($stmt, $id,$color);
-								mysqli_stmt_fetch($stmt);
-								if($id!=0 && $id!=$last_id)
+							if(!isset($_GET["send_to_queue"])){
+								while($num_of_printers!=0)
 								{
-									if($id==$preselect)
-										echo("<option printer='$id' value='$id' selected>Printer $id - $color</option>");
-									else
-										echo("<option printer='$id' value='$id'>Printer $id - $color</option>");
-									$printers_av++;
+									$id=0;
+									$sql="Select id,color from printer where id>$last_id and free=1 order by id";
+									//echo $sql;
+									$color="";
+									$stmt = mysqli_prepare($link, $sql);
+									mysqli_stmt_execute($stmt);
+									mysqli_stmt_store_result($stmt);
+									mysqli_stmt_bind_result($stmt, $id,$color);
+									mysqli_stmt_fetch($stmt);
+									
+									$color=intval($color);
+									//get the real color
+									$sql="select name from filament where internal_id=$color";
+									$stmt = mysqli_prepare($link, $sql);
+						                        mysqli_stmt_execute($stmt);
+						                        mysqli_stmt_store_result($stmt);
+						                        mysqli_stmt_bind_result($stmt,$color);
+						                        mysqli_stmt_fetch($stmt);
+		                                        
+									if($id!=0 && $id!=$last_id)
+									{
+										if($id==$preselect)
+											echo("<option printer='$id' value='$id' selected>Printer $id - $color</option>");
+										else
+											echo("<option printer='$id' value='$id'>Printer $id - $color</option>");
+										$printers_av++;
+									}
+									$last_id=$id;
+									$num_of_printers--;
 								}
-								$last_id=$id;
-								$num_of_printers--;
 							}
-							if($printers_av==0){
+							if($printers_av==0 or isset($_GET["send_to_queue"])){
 								echo("<option printer='queue' value='queue'>an Warteschlange senden</option>");
 
 							}	
@@ -418,7 +430,7 @@ function is_time_between($startTime, $endTime, $checkTime) {
 					</div>
 					<!-- if we send to queue, the user should be able to choose which printer prints it afterwards -->
 					<?php
-					if($printers_av==0){
+					if($printers_av==0  or isset($_GET["send_to_queue"])){
 						echo('<div class="form-group">');
 							echo('<label class="my-3" for="printer">Auf diesem Drucker wird deine Datei gedruckt, sobald er frei ist.</label>');
 							echo('<select class="form-control selector" name="queue_printer" required>');
@@ -451,6 +463,17 @@ function is_time_between($startTime, $endTime, $checkTime) {
 									mysqli_stmt_store_result($stmt);
 									mysqli_stmt_bind_result($stmt, $id,$color);
 									mysqli_stmt_fetch($stmt);
+									
+									
+									$color=intval($color);
+									//get the real color
+									$sql="select name from filament where internal_id=$color";
+									$stmt = mysqli_prepare($link, $sql);
+						                        mysqli_stmt_execute($stmt);
+						                        mysqli_stmt_store_result($stmt);
+						                        mysqli_stmt_bind_result($stmt,$color);
+						                        mysqli_stmt_fetch($stmt);
+				                                
 									if($id!=0 && $id!=$last_id)
 									{
 										if($id==$preselect)
