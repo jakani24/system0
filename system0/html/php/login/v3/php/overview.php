@@ -1,418 +1,536 @@
+<?php
+function extract_param($gcode) {
+    // Match the pattern S followed by digits, capturing the digits
+    $matches = [];
+    $pattern = '/[S|T]([0-9]+)/';
+
+    if (preg_match($pattern, $gcode, $matches)) {
+        return (int)$matches[1]; // Return the first capture group as an integer
+    } else {
+        return false; // No match found
+    }
+}
+
+function check_file($path){//check file for temperature which are to high
+	$file = fopen($path, 'r');
+	$cnt=0;
+	while (!feof($file)&&$cnt!=2) {
+	    $line = fgets($file);
+	    
+	    // Extract parameter from lines with specific commands
+	    if (strpos($line, 'M104') !== false || strpos($line, 'M140') !== false) {
+		$cnt++;
+	        $parameter = extract_param($line);
+		if(strpos($line, 'M104') !== false){ //extruder_temp
+			$ex_temp=$parameter;
+		}
+		if(strpos($line, 'M140') !== false){ //bed temp
+			$bed_temp=$parameter;
+		}
+	    }
+	}
+	//echo("bed:$bed_temp;ex:$ex_temp");
+	if($bed_temp>75 or $ex_temp>225){
+		return 0;
+	}else{
+		return 1;
+	}
+}
+
+function is_time_between($startTime, $endTime, $checkTime) {
+    // Convert times to timestamps
+    $startTimestamp = strtotime($startTime);
+    $endTimestamp = strtotime($endTime);
+    $checkTimestamp = strtotime($checkTime);
+    
+    // If end time is less than start time, it means the range crosses midnight
+    if ($endTimestamp < $startTimestamp) {
+        // Check if the time is between start time and midnight or between midnight and end time
+        return ($checkTimestamp >= $startTimestamp || $checkTimestamp <= $endTimestamp);
+    } else {
+        // Normal case: check if the time is between start and end time
+        return ($checkTimestamp >= $startTimestamp && $checkTimestamp <= $endTimestamp);
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html>
-<head>
-<?php
-// Initialize the session
-session_start();
-include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
-include "config.php";
-include "queue.php";
-$role=$_SESSION["role"];
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
-    exit;
-}
-$username=htmlspecialchars($_SESSION["username"]);
-$id=$_SESSION["id"];
-?>
-
-
-<script src="/system0/html/php/login/v3/js/load_page.js"></script>
-<script>
-function load_admin()
-{
-        $(document).ready(function(){
-        $('#content').load("/system0/html/php/login/v3/html/admin_page.php");
-        });
-}
-function load_user()
-{
-        $(document).ready(function(){
-        $('#content').load("/system0/html/php/login/v3/html/user_page.php");
-        });
-}
-</script>
-<?php
-        echo "<script type='text/javascript' >load_user()</script>";
-?>
-<?php $color=$_SESSION["color"]; ?>
-<?php
-        function seconds_to_time($seconds) {
-            // Convert seconds to hours
-            $hours = floor($seconds / 3600);
-
-            // Convert remaining seconds to minutes
-            $minutes = floor(($seconds % 3600) / 60);
-                if($hours!=0){
-                        if($hours==1)
-                                return sprintf("%d Stunde %d Minuten", $hours, $minutes);
-                        else
-                                return sprintf("%d Stunden %d Minuten", $hours, $minutes);
-                }
-                else
-                        return sprintf("%d Minuten", $minutes);
-        }
-        function short_path($filePath, $firstCharsCount, $lastCharsCount) {
-	    // Get the first few characters of the path
-	    $filePath=str_replace(".gcode","",$filePath);
-	    if(strlen($filePath)>=$firstCharsCount+$lastCharsCount+3){
-		    $firstChars = substr($filePath, 0, $firstCharsCount);
-		    
-		    // Get the last few characters of the path
-		    $lastChars = substr($filePath, -$lastCharsCount);
-	    
-		    // Return the shortened path
-		    return $firstChars . "..." . $lastChars;
-		}
-		else{
-			return $filePath;
-		}
+	<?php
+	// Initialize the session
+	$warning=false;
+	session_start();
+	include "/var/www/html/system0/html/php/login/v3/waf/waf.php";
+	include "config.php";
+	require_once "/var/www/html/system0/html/php/login/v3/log/log.php";
+	include "queue.php";
+	// Check if the user is logged in, if not then redirect him to login page
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true or $_SESSION["role"][0]!=="1"){
+	    header("location: login.php");
+	    exit;
 	}
-        $color=$_SESSION["color"];
-        include "/var/www/html/system0/html/php/login/v3/components.php";
-        if(!isset($_SESSION["rid"]))
-                $_SESSION["rid"]=0;
-        $_SESSION["rid"]++;
-?>
+	$username=htmlspecialchars($_SESSION["username"]);
+	?>
 
-  <title>Alle Drucker</title>
-<style>
- /* Style for the description */
-    .description {
-        display: none; /* Hide the description by default */
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.7);
-        color: #fff;
-        padding: 10px;
-        border-radius: 5px;
-        width: 200px;
-    }
-    
-    /* Style for the element to trigger hover */
-    .hover-element {
-        position: relative;
-        /* Add some space below the element */
-        
-    }
-    
-    /* Style for the element to trigger hover when hovered */
-    .hover-element:hover .description {
-        display: block; /* Show the description on hover */
-    }
+	<?php 
+		$color=$_SESSION["color"]; 
+		include "/var/www/html/system0/html/php/login/v3/components.php";
+	?>
+	<script src="/system0/html/php/login/v3/js/load_page.js"></script>
+	<script>
+		function load_user()
+		{
+			$(document).ready(function(){
+		   	$('#content').load("/system0/html/php/login/v3/html/user_page.php");
+			});
+			$(document).ready(function(){
+   		$('#footer').load("/system0/html/php/login/v3/html/footer.html");
+		});
+		}
+	</script>
+	<?php
+		$role=$_SESSION["role"];
+		echo "<script type='text/javascript' >load_user()</script>";
+		
+		test_queue($link);
+	?>
 
-</style>
-</head>
-<body>
-        <div id="content"></div>
-        <div>
-                <div class="row justify-content-center">
-                <div style="width: 100%;min-height:95vh">
-                                <?php
-                                        if(isset($_GET['free'])&&$_GET["rid"]==($_SESSION["rid"]-1))
-                                        {
-                                                $printer_id=htmlspecialchars($_GET['free']);
-                                                $sql="select used_by_userid from printer where id=$printer_id";
-                                                $stmt = mysqli_prepare($link, $sql);
-                                                mysqli_stmt_execute($stmt);
-                                                mysqli_stmt_store_result($stmt);
-                                                mysqli_stmt_bind_result($stmt, $cnt);
-                                                mysqli_stmt_fetch($stmt);
-                                                $sql="update printer set free=1,printing=0,cancel=0 ,used_by_userid=0 where id=$printer_id";
-                                                $stmt = mysqli_prepare($link, $sql);
-                                                mysqli_stmt_execute($stmt);
-                                        }
-                                        if(isset($_GET['remove_queue'])&&$_GET["rid"]==($_SESSION["rid"]-1))
-                                        {
-                                                $id=htmlspecialchars($_GET['remove_queue']);
-                                                $sql="delete from queue where id=$id";
-                                                $stmt = mysqli_prepare($link, $sql);
-                                                mysqli_stmt_execute($stmt);
-                                        }
-                                        if(isset($_GET['cancel'])&&$_GET["rid"]==($_SESSION["rid"]-1))
-                                        {
-                                                $apikey="";
-                                                $printer_url="";
-                                                $printer_id=htmlspecialchars($_GET['cancel']);
-                                                $sql="select used_by_userid,apikey,printer_url from printer where id=$printer_id";
-                                                $stmt = mysqli_prepare($link, $sql);
-                                                mysqli_stmt_execute($stmt);
-                                                mysqli_stmt_store_result($stmt);
-                                                mysqli_stmt_bind_result($stmt, $cnt,$apikey,$printer_url);
-                                                mysqli_stmt_fetch($stmt);
+	<?php $userid=$_SESSION["id"]; ?>
+	<?php echo(" <body style='background-color:$color'> ");?>
+	<div id="content"></div>
 
-                                                exec("curl -k -H \"X-Api-Key: $apikey\" -H \"Content-Type: application/json\" --data '{\"command\":\"cancel\"}' \"$printer_url/api/job\" > /var/www/html/system0/html/user_files/$username/json.json");
-                                                $fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
-                                                $json=json_decode($fg,true);
-                                                if($json["error"]!="")
-                                                {
-                                                        //$sql="update printer set system_status=1 where id=$printer_id";
-                                                        //$stmt = mysqli_prepare($link, $sql);
-                                                        //mysqli_stmt_execute($stmt);
-                                                        echo("<div class='alert alert-danger' role='alert'>Beim abbrechen ist es zu einem Fehler gekommen. Bitte versuche es später erneut.</div>");
-                                                }
-                                                else
-                                                {
-                                                        $sql="update printer set cancel=1 where id=$printer_id";
-                                                        $stmt = mysqli_prepare($link, $sql);
-                                                        mysqli_stmt_execute($stmt);
-                                                }
+	<head>
+	  <title>Datei drucken</title>
+	
+	</head>
 
-                                        }
+	<body>
+		<br><br>
+		<?php
+		if(isset($_POST["printer"]))
+		{
+			
+			$status=0;
+			$free=0;
+			$url="";
+			$apikey="";
+			$printer_url="";
+			$printer_id=htmlspecialchars($_POST["printer"]);
+			if($printer_id=="queue")
+			{
+			 //send file to queue because no printer is ready!
+				//echo $sql;
+		
+				if(!empty($_FILES['file_upload']))
+				{
+					$ok_ft=array("gcode","");
+					$unwanted_chr=[' ','(',')','/','\\','<','>',':',';','?','*','"','|','%'];
+					$filetype = strtolower(pathinfo($_FILES['file_upload']['name'],PATHINFO_EXTENSION));
+					$path = "/var/www/html/system0/html/user_files/$username/";
+					$print_on=$_POST["queue_printer"];
+					$filename=basename( $_FILES['file_upload']['name']);
+					$filename=str_replace($unwanted_chr,"_",$filename);
+					$path = $path . $filename;
+					if(!in_array($filetype,$ok_ft))
+					{
+						echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Dieser Dateityp wird nicht unterstüzt.</div></center>");
+						sys0_log("Could not upload file for ".$_SESSION["username"]." because of unknown file extension",$_SESSION["username"],"PRINT::UPLOAD::FILE::FAILED");//notes,username,type
+					}
+					else
+					{
+						if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
+							$sql="INSERT INTO queue (from_userid,filepath,print_on) VALUES (?,?,?)";		
+							$stmt = mysqli_prepare($link, $sql);	
+							mysqli_stmt_bind_param($stmt, "isi", $userid,$path,$print_on);				
+							mysqli_stmt_execute($stmt);
 
-                                        $cnt=0;
-                                        $url="";
-                                        $apikey="";
-                                        if(isset($_GET["private"]))
-                                                $sql="select count(*) from printer where used_by_userid=".$_SESSION["id"];
-                                        else
-                                                $sql="select count(*) from printer";
-                                        $stmt = mysqli_prepare($link, $sql);
-                                        mysqli_stmt_execute($stmt);
-                                        mysqli_stmt_store_result($stmt);
-                                        mysqli_stmt_bind_result($stmt, $cnt);
-                                        mysqli_stmt_fetch($stmt);
-                                        //echo($cnt);
-                                        $is_free=0;
-                                        echo("<div><div class='row'>");
-                                        echo("<div class='d-flex flex-wrap justify-content-center align-items-stretch'>");
-                                        //echo("<div style='margin-left:20%'>");
-                                        echo("<div style='width:100%;margin-left:5px'>");
-                                                if(isset($_GET["private"]))
-                                                        echo("<br><a class='btn btn-dark' href='overview.php'>Alle Drucker anzeigen</a>");
-                                                else
-                                                        echo("<br><a class='btn btn-dark' href='overview.php?private'>Nur eigene Aufträge anzeigen</a>");
-                                        echo("</div>");
-                                        //echo("<div class='d-flex flex-wrap justify-content-center align-items-stretch'>");
-                                        $last_id=0;
-                                        $system_status=0;
-                                        $rotation=0;
-                                        while($cnt!=0)
-                                        {
-                                                $userid=0;
-                                                if(isset($_GET["private"]))
-                                                        $sql="select rotation,free,id,printer_url,apikey,cancel,used_by_userid,system_status,color from printer where id>$last_id and used_by_userid=".$_SESSION["id"]." ORDER BY id";
-                                                else
-                                                        $sql="select rotation,free,id,printer_url,apikey,cancel,used_by_userid,system_status,color from printer where id>$last_id ORDER BY id";
-                                                $cancel=0;
-                                                $filament_color="";
-                                                $stmt = mysqli_prepare($link, $sql);
-                                                mysqli_stmt_execute($stmt);
-                                                mysqli_stmt_store_result($stmt);
-                                                mysqli_stmt_bind_result($stmt, $rotation,$is_free,$printer_id,$url,$apikey,$cancel,$userid,$system_status,$filament_color);
-                                                mysqli_stmt_fetch($stmt);
-                                                $last_id=$printer_id;
-						
-						$filament_color=intval($filament_color);
-						//get the real color
-						$sql="select name from filament where internal_id=$filament_color";
+							echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen und an die Warteschlange gesendet</div></center>");
+							sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to the queue",$_SESSION["username"],"PRINT::UPLOAD::QUEUE");//notes,username,type
+						}   
+						else
+						{
+							echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Datei ".  basename( $_FILES['file_upload']['name']). " konnte hochgeladen werden</div></center>");
+						}
+					}
+					unset($_FILES['file']);
+				}
+				if(isset($_GET["cloudprint"])){
+					$print_on=$_POST["queue_printer"];
+					if(!isset($_GET["pc"]))
+						$path = "/var/www/html/system0/html/user_files/$username/".$_GET["cloudprint"];
+					else
+						$path = "/var/www/html/system0/html/user_files/public/".$_GET["cloudprint"];
+					$sql="INSERT INTO queue (from_userid,filepath,print_on) VALUES (?,?,?)";		
+					$stmt = mysqli_prepare($link, $sql);	
+					mysqli_stmt_bind_param($stmt, "isi", $userid,$path,$print_on);				
+					mysqli_stmt_execute($stmt);
+
+
+					echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen und an die Warteschlange gesendet</div></center>");
+					sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to the queue",$_SESSION["username"],"PRINT::UPLOAD::QUEUE");
+
+				}				 	
+			}
+			else
+			{
+				$sql="select printer_url, free, system_status,apikey,printer_url from printer where id=$printer_id";
+				//echo $sql;
+				$stmt = mysqli_prepare($link, $sql);					
+				mysqli_stmt_execute($stmt);
+				mysqli_stmt_store_result($stmt);
+				mysqli_stmt_bind_result($stmt, $url,$free,$status,$apikey,$printer_url);
+				mysqli_stmt_fetch($stmt);	
+				if($free!=1 or $status!=0)
+				{
+
+					echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Der Drucker ist zur Zeit nicht verfügbar. Warte einen Moment oder versuche es mit einem anderen Drucker erneut.</div></center>");
+					sys0_log("Could not start job for ".$_SESSION["username"]." with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
+					exit;
+				}	
+				if(!empty($_FILES['file_upload']))
+				{
+					$ok_ft=array("gcode","");
+					$unwanted_chr=[' ','(',')','/','\\','<','>',':',';','?','*','"','|','%'];
+					$filetype = strtolower(pathinfo($_FILES['file_upload']['name'],PATHINFO_EXTENSION));
+					$path = "/var/www/html/system0/html/user_files/$username/";
+					$filename=basename( $_FILES['file_upload']['name']);
+					$filename=str_replace($unwanted_chr,"_",$filename);
+					$path = $path . $filename;
+
+					//if(in_array($filetype,$unwanted_ft))
+					if(!in_array($filetype,$ok_ft))
+					{
+						echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Dieser Dateityp wird nicht unterstüzt.</div></center>");
+						sys0_log("Could not upload file for ".$_SESSION["username"]." because of unknown file extension",$_SESSION["username"],"PRINT::UPLOAD::FILE::FAILED");//notes,username,type
+					}
+					else
+					{
+						//check if print key is valid:
+						$print_key=htmlspecialchars($_POST["print_key"]);
+						$sql="SELECT id from print_key where print_key='$print_key'";
 						$stmt = mysqli_prepare($link, $sql);
-                                                mysqli_stmt_execute($stmt);
-                                                mysqli_stmt_store_result($stmt);
-                                                mysqli_stmt_bind_result($stmt,$filament_color);
-                                                mysqli_stmt_fetch($stmt);
+						mysqli_stmt_execute($stmt);
+						mysqli_stmt_store_result($stmt);
+							
+						//if(mysqli_stmt_num_rows($stmt) == 1){ turned off because user does not need to have a printer key
+						if(true){
+							mysqli_stmt_close($stmt);
 						
-                                                if($is_free==0){
-                                                        //printer is printing
-                                                        exec("curl --max-time 10 $url/api/job?apikey=$apikey > /var/www/html/system0/html/user_files/$username/json.json");
-                                                        $fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
-                                                        $json=json_decode($fg,true);
+						
+							if(move_uploaded_file($_FILES['file_upload']['tmp_name'], $path)) {
+								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Erfolg! Die Datei ".  basename( $_FILES['file_upload']['name']). " wurde hochgeladen.</div></center>");
+								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div></center>");
+								if(check_file($path) or isset($_POST["ignore_unsafe"])){
+									exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
+									//file is on printer and ready to be printed
+									$userid=$_SESSION["id"];
+									echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div></center>");
+									sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
+									$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
+									$json=json_decode($fg,true);
+									if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
+									{
+										echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgang konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div></center>");
+										sys0_log("Could not start job for ".$_SESSION["username"]."with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
+									}
+									else
+									{
+										$sql="update printer set free=0, printing=1,mail_sent=0, used_by_userid=$userid where id=$printer_id";
+										$stmt = mysqli_prepare($link, $sql);					
+										mysqli_stmt_execute($stmt);
+										//delete printer key:
+										$sql="DELETE from print_key where print_key='$print_key'";
+										$stmt = mysqli_prepare($link, $sql);
+										mysqli_stmt_execute($stmt);	
+										mysqli_stmt_close($stmt);	
+									}
+								}else{
+									$warning=true;
+									echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Achtung, deine Bett oder Extruder Temperatur ist sehr hoch eingestellt. Dies wird zur zerstörung des Druckes und somit zu Müll führen. Bitte setze diese Temperaturen tiefer in den Einstellungen deines Slicers.</div></center>");
+								}
+							}
+							else
+							{
+								echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Ein Fehler beim Uploaden der Datei ist aufgetreten! Versuche es erneut! </div></center>");
+							}
+						}
+						else{
+							echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Der Druckschlüssel ist nicht gültig. Evtl. wurde er bereits benutzt. Versuche es erneut! </div></center>");
+						}
+					}
+					unset($_FILES['file']);
+				}
+				if(isset($_GET["cloudprint"])){
+					if(!isset($_GET["pc"]))
+						$path = "/var/www/html/system0/html/user_files/$username/".$_GET["cloudprint"];
+					else
+						$path = "/var/www/html/system0/html/user_files/public/".$_GET["cloudprint"];
+					//check if print key is valid:
+					$print_key=htmlspecialchars($_POST["print_key"]);
+					$sql="SELECT id from print_key where print_key='$print_key'";
+					$stmt = mysqli_prepare($link, $sql);
+					mysqli_stmt_execute($stmt);
+					mysqli_stmt_store_result($stmt);
+						
+					//if(mysqli_stmt_num_rows($stmt) == 1){ turned off because user does not need to have a printer key
+					if(true){
+					mysqli_stmt_close($stmt);
+	
+							echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei wird an den 3D-Drucker gesendet...</div></center>");
+							if(check_file($path)  or isset($_POST["ignore_unsafe"])){
+								exec('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
+								//file is on printer and ready to be printed
+								$userid=$_SESSION["id"];
+								echo("<center><div style='width:50%' class='alert alert-success' role='alert'>Datei gesendet und Auftrag wurde gestartet.</div></center>");
+								sys0_log("user ".$_SESSION["username"]." uploaded ".basename($path)." to printer ".$_POST["printer"]."",$_SESSION["username"],"PRINT::UPLOAD::PRINTER");//notes,username,type
+								$fg=file_get_contents("/var/www/html/system0/html/user_files/$username/json.json");
+								$json=json_decode($fg,true);
+								//echo('curl -k -H "X-Api-Key: '.$apikey.'" -F "select=true" -F "print=true" -F "file=@'.$path.'" "'.$printer_url.'/api/files/local" > /var/www/html/system0/html/user_files/'.$username.'/json.json');
+								//echo("<br><br><br>");							
+								//var_dump($json);
+								if($json['effectivePrint']==false or $json["effectiveSelect"]==false)
+								{
+									echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Ein Fehler ist aufgetreten und der Vorgang konnte nicht gestartet werden. Warte einen Moment und versuche es dann erneut.</div></center>");
+									sys0_log("Could not start job for ".$_SESSION["username"]."with file ".basename($path)."",$_SESSION["username"],"PRINT::JOB::START::FAILED");//notes,username,type
+								}
+								else
+								{
+									$sql="update printer set free=0, printing=1,mail_sent=0, used_by_userid=$userid where id=$printer_id";
+									$stmt = mysqli_prepare($link, $sql);					
+									mysqli_stmt_execute($stmt);
+									//delete printer key:
+									$sql="DELETE from print_key where print_key='$print_key'";
+									$stmt = mysqli_prepare($link, $sql);
+									mysqli_stmt_execute($stmt);	
+									mysqli_stmt_close($stmt);	
+								}
+							}else{
+								$warning=true;
+								echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Achtung, deinen Bett oder Extruder Temperatur ist sehr hoch eingestellt. Dies wird zur zerstörung des Druckes und somit zu Müll führen. Bitte setze diese Temperaturen tiefer in den Einstellungen deines Slicers.</div></center>");
+							}
+					}
+					else{
+						echo("<center><div style='width:50%' class='alert alert-danger' role='alert'>Der Druckschlüssel ist nicht gültig. Evtl. wurde er bereits benutzt. Versuche es erneut! </div></center>");
+					}
+				}	
+			}
+		}
+	
+	?>
+	
+			<div class="text-center mt-5" style="min-height: 95vh">
+				<h1>Datei drucken</h1>
+				<!-- Reservations notice -->
+				<?php
+					date_default_timezone_set('Europe/Zurich');
+					$reservation_conflict=false;
+					$today=date("Y-m-d");
+					$sql="select time_from, time_to from reservations where day='$today';";
+					$stmt = $link->prepare($sql);
+        				$stmt->execute();
+        				$result = $stmt->get_result();
+        				//$row = $result->fetch_assoc();
+        				$time_now=date("H:i");
+        				while ($row = $result->fetch_assoc()) {
+					    if (is_time_between($row["time_from"], $row["time_to"], $time_now)) {
+						$reservation_conflict = true;
+						break;
+					    }
+					}
 
+					if ($reservation_conflict) {
+					    echo "<center><div style='width:50%' class='alert alert-danger' role='alert'>Die Drucker sind zurzeit reserviert! Bitte drucke nur, wenn du gerade im Informatik Unterricht bist!</div></center>";
+					}
 
-                                                        $used_by_user="";
-                                                        $sql="select username from users where id=$userid";
-                                                        $stmt = mysqli_prepare($link, $sql);
-                                                        mysqli_stmt_execute($stmt);
-                                                        mysqli_stmt_store_result($stmt);
-                                                        mysqli_stmt_bind_result($stmt, $used_by_user);
-                                                        mysqli_stmt_fetch($stmt);
-                                                        $username2=explode("@",$used_by_user);
+				?>
+				<div class="container d-flex align-items-center justify-content-center" >
+				
+				
+				<form class="mt-5" enctype="multipart/form-data" method="POST" action="">
+					<?php if(!isset($_GET["cloudprint"])){
+						echo ('<div class="form-group">');
+							echo('<div class="custom-file">');
 
-                                                        $progress=(int) $json['progress']['completion'];
-                                                        if($progress<0)
-                                                                $progress=-$progress;
-                                                        $file=$json['job']['file']['name'];
-                                                        if($progress==100){
-                                                                        $print_time=seconds_to_time(intval($json["progress"]["printTime"]));
-                                                                        $print_time_left=seconds_to_time(intval($json["progress"]["printTimeLeft"]));
-                                                                        $print_time_total=seconds_to_time(intval($json["job"]["estimatedPrintTime"]));
+								echo('<label for="file_upload" class="form-label">Zu druckende Datei</label>');
+								echo('<input type="file" class="form-control" type="file" name="file_upload" required accept=".gcode">  ');
+							echo('</div>');
+						echo('</div>');
+					}
+					else{
+						echo ('<div class="form-group">');
+							echo('<div class="custom-file">');
 
-                                                                        //echo("<div class='d-flex flex-wrap justify-content-center'>");
-                                                                        echo("<div class='card m-4 align-self-start'>");
-                                                                        echo("<div class='card-body'>");
-                                                                        echo("<h5 class='card-title'>Drucker $printer_id</h5>");
-                                                                        echo("</div>");
-                                                                        echo("<div class='card-body'>");
-                                                                        echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url&rotation=$rotation'></iframe>");
-                                                                        echo("<div class='progress'>");
-                                                                        echo("<div class='progress-bar' role='progressbar' style='width: $progress%' aria-valuenow='$progress' aria-valuemin='0' aria-valuemax='100'>$progress%</div>");
-                                                                        echo("</div>");
-                                                                        echo("<table class='table table-borderless'>");
-                                                                        echo("<thead>");
-                                                                        echo("<tr><td>Status</td><td style='color:green'>Fertig</td></tr>");
-                                                                        echo("<tr><td>Genutzt von</td><td>".$username2[0]."</td></tr>");
-                                                                        if(!empty($filament_color) && $filament_color!=NULL)
-                                                        			echo("<tr><td>Filamentfarbe</td><td >$filament_color</td></tr>");
-                                                                        echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
-                                                                        echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
-                                                                        echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
-                                                                        //echo("<tr><td>Datei</td><td><div class='hover-element'>".substr($json["job"]["file"]["name"],0,20)."...<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
-                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".short_path($json["job"]["file"]["name"],10,10)."<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
-                                                                        echo("</div>");
-                                                                        if($userid==$_SESSION["id"] or $role[3]==="1"){
-                                                                                echo("<tr><td><a class='btn btn-success' href='overview.php?free=$printer_id&rid=".$_SESSION["rid"]."'>Freigeben</a></td></tr>");
-                                                                        }
-                                                                        echo("</thead>");
-                                                                        echo("</table>");
-                                                                        echo("</div>");
-                                                                        echo("</div>");
-                                                        }
-                                                        else if($cancel==1){
-                                                                        $print_time=seconds_to_time(intval($json["progress"]["printTime"]));
-                                                                        $print_time_left=seconds_to_time(intval($json["progress"]["printTimeLeft"]));
-                                                                        $print_time_total=seconds_to_time(intval($json["job"]["estimatedPrintTime"]));
-                                                                        echo("<div class='card m-4 align-self-start'>");
-                                                                        echo("<div class='card-body'>");
-                                                                        echo("<h5 class='card-title'>Drucker $printer_id</h5>");
-                                                                        echo("</div>");
-                                                                        echo("<div class='card-body'>");
-                                                                        echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url&rotation=$rotation'></iframe>");
-                                                                        echo("<div class='progress'>");
-                                                                          echo("<div class='progress-bar' role='progressbar' style='width: $progress%' aria-valuenow='$progress' aria-valuemin='0' aria-valuemax='100'>$progress%</div>");
-                                                                        echo("</div>");
-                                                                        echo("<table class='table table-borderless'>");
-                                                                        echo("<thead>");
-                                                                        //if($system_status==0)
-                                                                                echo("<tr><td>Status</td><td style='color:red'>Druck Abgebrochen</td></tr>");
-                                                                        //else
-                                                                        //      echo("<tr><td>Status</td><td style='color:red'>Fehler</td></tr>");
-                                                                        echo("<tr><td>Genutzt von</td><td>".$username2[0]."</td></tr>");
-                                                                        if(!empty($filament_color) && $filament_color!=NULL)
-                                                        			echo("<tr><td>Filamentfarbe</td><td >$filament_color</td></tr>");
-                                                                        echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
-                                                                        echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
-                                                                        echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
-                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".short_path($json["job"]["file"]["name"],10,10)."<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
-                                                                        if($userid==$_SESSION["id"] or $role[3]=="1"){
-                                                                                echo("<tr><td><a class='btn btn-success' href='overview.php?free=$printer_id&rid=".$_SESSION["rid"]."'>Freigeben</a></td></tr>");
-                                                                        }
-                                                                        echo("</thead>");
-                                                                        echo("</table>");
-                                                                        echo("</div>");
-                                                                        echo("</div>");
-                                                        }
-                                                        else{
-                                                                        $print_time=seconds_to_time(intval($json["progress"]["printTime"]));
-                                                                        $print_time_left=seconds_to_time(intval($json["progress"]["printTimeLeft"]));
-                                                                        $print_time_total=seconds_to_time(intval($json["job"]["estimatedPrintTime"]));
-                                                                        //echo("aaaaaaaaaaaa".$json["progress"]["estimatedPrintTime"]);
-                                                                        echo("<div class='card m-4 align-self-start'>");
-                                                                        echo("<div class='card-body'>");
-                                                                        echo("<h5 class='card-title'>Drucker $printer_id</h5>");
-                                                                        echo("</div>");
-                                                                        echo("<div class='card-body'>");
-                                                                        echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url&rotation=$rotation'></iframe>");
-                                                                        echo("<div class='progress'>");
-                                                                        echo("<div class='progress-bar' role='progressbar' style='width: $progress%' aria-valuenow='$progress' aria-valuemin='0' aria-valuemax='100'>$progress%</div>");
-                                                                        echo("</div>");
-                                                                        echo("<table class='table table-borderless'>");
-                                                                        echo("<thead>");
-                                                                        echo("<tr><td>Status</td><td style='color:orange'>Drucken</td></tr>");
-                                                                        echo("<tr><td>Genutzt von</td><td>".$username2[0]."</td></tr>");
-                                                                        if(!empty($filament_color) && $filament_color!=NULL)
-                                                        			echo("<tr><td>Filamentfarbe</td><td >$filament_color</td></tr>");
-                                                                        echo("<tr><td>Erwartete Druckzeit</td><td>$print_time_total</td></tr>");
-                                                                        echo("<tr><td>Verbleibende Druckzeit</td><td>$print_time_left</td></tr>");
-                                                                        echo("<tr><td>Vergangene Druckzeit</td><td>$print_time</td></tr>");
-                                                                        echo("<tr><td>Datei</td><td><div class='hover-element'>".short_path($json["job"]["file"]["name"],10,10)."<div class='description'>".$json["job"]["file"]["name"]."</div></div></td></tr>");
-                                                                        if($userid==$_SESSION["id"] or $role[3]==="1"){
-                                                                                echo("<tr><td><a class='btn btn-danger' href='overview.php?cancel=$printer_id&rid=".$_SESSION["rid"]."'>Abbrechen</a></td></tr>");
-                                                                        }
-                                                                        echo("</thead>");
-                                                                        echo("</table>");
-                                                                        echo("</div>");
-                                                                        echo("</div>");
-                                                        }
-                                                }else{
-                                                        //printer is free
-                                                        echo("<div class='card m-4 align-self-start'>");
-                                                        echo("<div class='card-body'>");
-                                                        echo("<h5 class='card-title'>Drucker $printer_id</h5>");
-                                                        echo("</div>");
-                                                        echo("<div class='card-body'>");
-                                                        echo("<iframe height='230px' scrolling='no' width='100%' src='/system0/html/php/login/v3/php/webcam.php?printer_id=$printer_id&username=".$_SESSION["username"]."&url=$url&rotation=$rotation'></iframe>");
-                                                        echo("<table class='table table-borderless'>");
-                                                        echo("<thead>");
-                                                        echo("<tr><td>Status</td><td style='color:green'>Bereit</td></tr>");
-                                                        if(!empty($filament_color) && $filament_color!=NULL)
-                                                        	echo("<tr><td>Filamentfarbe</td><td >$filament_color</td></tr>");
-                                                        echo("<tr><td><a class='btn btn-dark' href='print.php?preselect=$printer_id'>Drucken</a></td></tr>");
-                                                        echo("</thead>");
-                                                        echo("</table>");
-                                                        echo("</div>");
-                                                        echo("</div>");
+								echo("<p>Cloudfile: ".$_GET["cloudprint"]."</p>");
+							echo('</div>');
+						echo('</div>');
+					}
+					?>
+					<br><br>
+					<div class="form-group">
+						<label class="my-3" for="printer">Druckerauswahl</label>
+						<select class="form-control selector" name="printer" required>
+							<!-- PHP to retrieve printers -->
+							<?php
+							//get number of printers
+							$num_of_printers=0;
+							$sql="select count(*) from printer where free=1";
+							$stmt = mysqli_prepare($link, $sql);
+							mysqli_stmt_execute($stmt);
+							mysqli_stmt_store_result($stmt);
+							mysqli_stmt_bind_result($stmt, $num_of_printers);
+							mysqli_stmt_fetch($stmt);
+							//echo("test1:".$num_of_printers);
+							$last_id=0;
+							$printers_av=0;
+							if(isset($_GET["preselect"])){
+								$preselect=$_GET["preselect"];
+							}else{
+								$preselect=1;							
+							}
+							if(!isset($_GET["send_to_queue"])){
+								while($num_of_printers!=0)
+								{
+									$id=0;
+									$sql="Select id,color from printer where id>$last_id and free=1 order by id";
+									//echo $sql;
+									$color="";
+									$stmt = mysqli_prepare($link, $sql);
+									mysqli_stmt_execute($stmt);
+									mysqli_stmt_store_result($stmt);
+									mysqli_stmt_bind_result($stmt, $id,$color);
+									mysqli_stmt_fetch($stmt);
+									
+									$color=intval($color);
+									//get the real color
+									$sql="select name from filament where internal_id=$color";
+									$stmt = mysqli_prepare($link, $sql);
+						                        mysqli_stmt_execute($stmt);
+						                        mysqli_stmt_store_result($stmt);
+						                        mysqli_stmt_bind_result($stmt,$color);
+						                        mysqli_stmt_fetch($stmt);
+		                                        
+									if($id!=0 && $id!=$last_id)
+									{
+										if($id==$preselect)
+											echo("<option printer='$id' value='$id' selected>Printer $id - $color</option>");
+										else
+											echo("<option printer='$id' value='$id'>Printer $id - $color</option>");
+										$printers_av++;
+									}
+									$last_id=$id;
+									$num_of_printers--;
+								}
+							}
+							if($printers_av==0 or isset($_GET["send_to_queue"])){
+								echo("<option printer='queue' value='queue'>an Warteschlange senden</option>");
 
-                                                }
-                                                $cnt--;
-                                //              echo("</div>");
-                                                //echo("</div>");
-                                        }
-                                        echo("</div></div>");
+							}	
+							?>
+						</select>
+					</div>
+					<!-- if we send to queue, the user should be able to choose which printer prints it afterwards -->
+					<?php
+					if($printers_av==0  or isset($_GET["send_to_queue"])){
+						echo('<div class="form-group">');
+							echo('<label class="my-3" for="printer">Auf diesem Drucker wird deine Datei gedruckt, sobald er frei ist.</label>');
+							echo('<select class="form-control selector" name="queue_printer" required>');
+								
+								
+								//get number of printers
+								$num_of_printers=0;
+								$sql="select count(*) from printer";
+								$stmt = mysqli_prepare($link, $sql);
+								mysqli_stmt_execute($stmt);
+								mysqli_stmt_store_result($stmt);
+								mysqli_stmt_bind_result($stmt, $num_of_printers);
+								mysqli_stmt_fetch($stmt);
+								$last_id=0;
+								$printers_av=0;
+								if(isset($_GET["preselect"])){
+									$preselect=$_GET["preselect"];
+								}else{
+									$preselect=-1;							
+								}
+								echo("<option printer='-1' value='-1' selected selected>erster verfügbarer Drucker</option>");
+								while($num_of_printers!=0)
+								{
+									$id=0;
+									$sql="Select id,color from printer where id>$last_id order by id";
+									//echo $sql;
+									$color="";
+									$stmt = mysqli_prepare($link, $sql);
+									mysqli_stmt_execute($stmt);
+									mysqli_stmt_store_result($stmt);
+									mysqli_stmt_bind_result($stmt, $id,$color);
+									mysqli_stmt_fetch($stmt);
+									
+									
+									$color=intval($color);
+									//get the real color
+									$sql="select name from filament where internal_id=$color";
+									$stmt = mysqli_prepare($link, $sql);
+						                        mysqli_stmt_execute($stmt);
+						                        mysqli_stmt_store_result($stmt);
+						                        mysqli_stmt_bind_result($stmt,$color);
+						                        mysqli_stmt_fetch($stmt);
+				                                
+									if($id!=0 && $id!=$last_id)
+									{
+										if($id==$preselect)
+											echo("<option printer='$id' value='$id' selected>Drucker $id - $color</option>");
+										else
+											echo("<option printer='$id' value='$id'>Drucker $id - $color</option>");
+										$printers_av++;
+									}
+									$last_id=$id;
+									$num_of_printers--;
+								}	
+							
+							echo('</select>');
+						echo('</div>');
+					}
+					?>
 
-                                ?>
-                                <br><br>
-                                <?php
-                                        test_queue($link);
-                                ?>
-                                </div>
-            </div>
-        </div>
-        </div>
-        <!-- We currently do not show the queue -->
-        <div style="width: 100hh">
-        <center><h3>Warteschlange</h3></center>
-        <?php
-                $userid=$_SESSION["id"];
-                $cnt=0;
-                $filepath="";
-                $sql="select count(*) from queue";
-                $stmt = mysqli_prepare($link, $sql);
-                mysqli_stmt_execute($stmt);
-                mysqli_stmt_store_result($stmt);
-                mysqli_stmt_bind_result($stmt, $cnt);
-                mysqli_stmt_fetch($stmt);
-                //echo($cnt);
-                echo("<div class='container'><div class='row'><div class='col'><div class='overflow-auto'><table class='table'><thead><tr><th>Datei</th><th>Drucken auf Drucker</th><th>aus der Warteschlange entfernen</th></tr></thead><tbody>");
-                $last_id=0;
-                $form_userid=0;
-                $print_on=0;
-                while($cnt!=0)
-                {
-                        $sql="select id,filepath,from_userid,print_on from queue where id>$last_id order by id";
-                        $cancel=0;
-                        $stmt = mysqli_prepare($link, $sql);
-                        echo mysqli_error($link);
-                        mysqli_stmt_execute($stmt);
-                        mysqli_stmt_store_result($stmt);
-                        mysqli_stmt_bind_result($stmt, $queue_id,$filepath,$from_userid,$print_on);
-                        mysqli_stmt_fetch($stmt);
-                        $filepath=basename($filepath);
-                        $last_id=$queue_id;
-                        echo("<tr><td>$filepath</td>");
-                        if($print_on==-1)
-                                echo("<td>Erster verfügbarer Drucker</td>");
-                        else
-                                echo("<td>$print_on</td>");
-                        if($_SESSION["role"][3]==="1" or $_SESSION["id"]==$from_userid)
-                                echo("<td><form method='POST' action='?remove_queue=$queue_id&rid=".$_SESSION["rid"]."'><button type='submit' value='remove'  name='remove' class='btn btn-danger'>Löschen</button></form></td></tr>");
+				
+					<br><br>
+					<!--<label class="my-3" for="print_key">Druckschlüssel (Kann im Sekretariat gekauft werden)</label>
+					<input type="text" class="form-control text" id="print_key" name="print_key" placeholder="z.B. A3Rg4Hujkief"><br>-->
+					<?php
+					if($warning==true){
+						echo("<input type='checkbox' id='ignore_unsafe' name='ignore_unsafe' value='true'>");
+						echo("<label for='ignore_unsafe'>Temperaturbeschränkungen Ignorieren und Drucken</label><br>");
+					}
+					
+					?>
+					<input type="submit" class="btn btn-dark mb-5" value="Datei drucken" onclick="show_loader();" id="button">
+					<div class="d-flex align-items-center">
+ 					 <strong role="status" style="display:none" id="spinner">Hochladen...</strong>
+ 					 <div class="spinner-border ms-auto" aria-hidden="true" style="display:none" id="spinner2"></div>
+ 					 </div>
+ 					 <?php
+ 					 	if(isset($_GET["send_to_queue"])){
+ 					 		echo('<center><a href="print.php">Nur freie Drucker anzeigen.</a></center>');	
+ 					 	}else{
+ 					 		echo(' <center><a href="print.php?send_to_queue">Auf einem Drucker Drucken, welcher besetzt ist.</a></center>');	
+ 					 	}
+ 					 ?>	
+					
+				</form>
+			</div>
+		</div>
+		<br>
+	<div id="footer"></div>
+<script>
+	function show_loader(){
+		var spinner=document.getElementById("spinner");
+		spinner.style.display="block";
+		var spinner=document.getElementById("spinner2");
+		spinner.style.display="block";
+		var spinner=document.getElementById("button");
+		spinner.style.display="none";
 
-                        $cnt--;
-                }
-                echo("</tbody></table></div></div></div></div>");
-        ?>
-        <br><br>
-        </div>
-        <div id="footer"></div>
+	}
+</script>
 </body>
 
 </html>
