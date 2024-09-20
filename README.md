@@ -1,3 +1,6 @@
+# DEPRECATED
+This Repo has ben set into an archive status. After beeing converted to a docker system we moved the code to github.com/jakani24/system0-test.
+
 # system0
 Frontend system for octoprint<br>
 This repo contains the code from system0 a frontend user controll system for octoprint<br>
